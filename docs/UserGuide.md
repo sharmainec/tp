@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+LingoGO! is a **desktop app for university students learning a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can get your learning faster than traditional flashcards.
 
 * Table of Contents
 {:toc}
@@ -14,9 +14,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `lingogo.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your LingoGO!.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,13 +24,17 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`add`**`q/hi a/hola` : Adds a flashcard for `hi` to the LingoGO!.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`delete`**`3` : Deletes the flashcard with card number 3.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`edit`**`1 q/hi a/hola` : Edit the flashcard with card number 1.
 
-   * **`clear`** : Deletes all contacts.
+   * **`flip`**`2` : Flips the flashcard with card number 2 to show or hide the answer.
+   
+   * **`test`**`1 a/good morning` : Tells the user whether the answer they entered for a flashcard is correct or wrong.
+   
+   * **`upload`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
 
    * **`exit`** : Exits the app.
 
@@ -45,7 +49,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add q/DESCRIPTION a/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add q/hi a/hola`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -148,6 +152,18 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Uploading cards : `upload`
+
+Imports cards to LingoGO! using a CSV file.
+
+Format: `upload CSV_FILE_PATH`
+
+* The file path can be absolute or relative to the location of the LingoGO! file.
+* The CSV file must have 2 columns. The first column is for the front page of the flashcard. The second column is for the other side.
+
+Examples:
+* `upload ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -183,10 +199,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Add** | `add q/DESCRIPTION a/DESCRIPTION​` <br> e.g., `add q/hi a/hola`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Edit** | `edit CARD_NUMBER q/DESCRIPTION a/DESCRIPTION`<br> e.g.,`edit 1 q/hi a/hola`
+**Flip** | `flip CARD_NUMBER`<br> e.g., `flip 3`
+**Test** | `test CARD_NUMBER a/CORRECT_ANSWER`<br> e.g., `test 1 a/good morning`
+**Upload** | `upload CSV_FILE_PATH`<br> e.g., `upload ./dictionary.csv`
+**Help** | `help [COMMAND]`<br> e.g., `help, help add`
