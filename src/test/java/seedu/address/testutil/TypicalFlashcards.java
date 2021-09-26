@@ -18,6 +18,10 @@ public class TypicalFlashcards {
             .withForeignPhrase("午安").build();
     public static final Flashcard GOOD_NIGHT_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Good Night")
             .withForeignPhrase("晚安").build();
+    public static final Flashcard GOOD_BYE_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Good bye")
+            .withForeignPhrase("再见").build();
+    public static final Flashcard SORRY_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Sorry")
+            .withForeignPhrase("对不起").build();
 
     // Flashcard's details found in {@code CommandTestUtil}
     public static final Flashcard GOOD_MORNING_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)
