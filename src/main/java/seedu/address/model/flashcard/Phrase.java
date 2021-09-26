@@ -15,7 +15,7 @@ public class Phrase {
      * This prevents " " (a blank string) from becoming a valid input.
      * (?U) allows us to match Unicode characters, which are common in foreign languages.
      */
-    public static final String VALIDATION_REGEX = "[^\\s](?U)[\\p{Alpha}' ]*";
+    public static final String VALIDATION_REGEX = "[^\\s](?U)[\\p{Alpha}', ]*";
     
     public final String value;
 
