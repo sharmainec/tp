@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.flashcard.Flashcard;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Flashcard> PREDICATE_SHOW_ALL_FLASHCARDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +35,53 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' flashcard app file path.
      */
-    Path getAddressBookFilePath();
+    Path getFlashcardAppFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' flashcard app file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFlashcardAppFilePath(Path flashcardAppFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces flashcard app data with the data in {@code flashcardApp}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setFlashcardApp(ReadOnlyFlashcardApp flashcardApp);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the FlashcardApp */
+    ReadOnlyFlashcardApp getFlashcardApp();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a flashcard with the same identity as {@code flashcard} exists in the flashcard app.
      */
-    boolean hasPerson(Person person);
+    boolean hasFlashcard(Flashcard flashcard);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given flashcard.
+     * The flashcard must exist in the flashcard app.
      */
-    void deletePerson(Person target);
+    void deleteFlashcard(Flashcard target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given flashcard.
+     * {@code flashcard} must not already exist in the flashcard app.
      */
-    void addPerson(Person person);
+    void addFlashcard(Flashcard flashcard);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given flashcard {@code target} with {@code editedFlashcard}.
+     * {@code target} must exist in the flashcard app.
+     * The flashcard identity of {@code editedFlashcard} must not be the same as another existing flashcard in the flashcard app.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setFlashcard(Flashcard target, Flashcard editedFlashcard);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered flashcard list */
+    ObservableList<Flashcard> getFilteredFlashcardList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered flashcard list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredFlashcardList(Predicate<Flashcard> predicate);
 }
