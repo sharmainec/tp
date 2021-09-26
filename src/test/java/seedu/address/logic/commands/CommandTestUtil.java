@@ -97,7 +97,6 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the flashcard at the given {@code targetIndex} in the
      * {@code model}'s flashcard app.
      */
-    // TODO: Check purpose after refactoring
     public static void showFlashcardAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredFlashcardList().size());
 
