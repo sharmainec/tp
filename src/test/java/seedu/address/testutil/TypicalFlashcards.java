@@ -18,7 +18,7 @@ public class TypicalFlashcards {
             .withForeignPhrase("午安").build();
     public static final Flashcard GOOD_NIGHT_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Good Night")
             .withForeignPhrase("晚安").build();
-    public static final Flashcard GOOD_BYE_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Good bye")
+    public static final Flashcard GOOD_BYE_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Good Bye")
             .withForeignPhrase("再见").build();
     public static final Flashcard SORRY_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Sorry")
             .withForeignPhrase("对不起").build();
@@ -43,6 +43,6 @@ public class TypicalFlashcards {
     }
 
     public static List<Flashcard> getTypicalFlashcards() {
-        return new ArrayList<>(Arrays.asList(GOOD_AFTERNOON_CHINESE_FLASHCARD, GOOD_NIGHT_CHINESE_FLASHCARD));
+        return new ArrayList<>(Arrays.asList(GOOD_AFTERNOON_CHINESE_FLASHCARD, GOOD_NIGHT_CHINESE_FLASHCARD, GOOD_BYE_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD));
     }
 }
