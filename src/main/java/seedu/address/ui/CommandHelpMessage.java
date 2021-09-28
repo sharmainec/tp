@@ -8,14 +8,14 @@ import seedu.address.logic.commands.CommandEnum;
 public class CommandHelpMessage extends UiPart<TitledPane> {
     private static final String FXML = "CommandHelpMessage.fxml";
     private static final String ADD_COMMAND_DESCRIPTION = "Adds a flashcard";
-    private static final String ADD_COMMAND_USAGE = "add q/DESCRIPTION a/DESCRIPTION";
-    private static final String ADD_COMMAND_EXAMPLES = "add q/hi a/hola";
+    private static final String ADD_COMMAND_USAGE = "add e/ENGLISH_PHRASE f/FOREIGN_PHRASE";
+    private static final String ADD_COMMAND_EXAMPLES = "add e/Hello f/你好";
     private static final String DELETE_COMMAND_DESCRIPTION = "Deletes a flashcard";
     private static final String DELETE_COMMAND_USAGE = "delete CARD_NUMBER";
     private static final String DELETE_COMMAND_EXAMPLES = "delete 3";
     private static final String EDIT_COMMAND_DESCRIPTION = "Edits a flashcard";
-    private static final String EDIT_COMMAND_USAGE = "edit CARD_NUMBER ([q/DESCRIPTION] [a/DESCRIPTION])";
-    private static final String EDIT_COMMAND_EXAMPLES = "edit 1 q/hi a/hola\nedit 1 q/hello\nedit 1 a/guten morgen";
+    private static final String EDIT_COMMAND_USAGE = "edit CARD_NUMBER ([e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE])";
+    private static final String EDIT_COMMAND_EXAMPLES = "edit 1 e/Hi f/Hola\nedit 1 e/Hello\nedit 1 f/Guten Morgen";
     private static final String FLIP_COMMAND_DESCRIPTION = "Flips a flashcard to toggle whether its answer is shown";
     private static final String FLIP_COMMAND_USAGE = "flip CARD_NUMBER";
     private static final String FLIP_COMMAND_EXAMPLES = "flip 3";
