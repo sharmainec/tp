@@ -14,14 +14,16 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the 
+   app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+   open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -33,13 +35,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
    * **`clear`** : Deletes all contacts.
 
    * **`exit`** : Exits the app.
-   
+
+   * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct translation.
+
    * **`test`**`17`**`hello`**: Checks flashcard 17's translation against the word **`hello`** and then shows 
      whether it is correct.
    
-   * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct translation.
 
-6. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -161,20 +164,30 @@ Format: `exit`
 
 ### Flipping a flashcard : `flip`
 
-* Flips the flashcard at the specified `INDEX` to either show or hide the translation to the displayed word or phrase.
-* Similar to delete, the index refers to the index number shown in the displayed flashcard list.
-* Similar to delete, the index **must be a positive integer** 1, 2, 3, …​
+Toggles the flashcard to either show or hide its English translation.
 
 Format: `flip INDEX`
 
+* Toggles the flashcard at the specified `INDEX`.
+* Similar to delete, the index refers to the index number shown in the displayed flashcard list.
+* Similar to delete, the index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `flip 3` toggles the 3rd card on display, if the English translation was originally hidden, it can now be seen.
+
 ### Testing with a flashcard : `test`
 
+Checks whether the English translation of a flashcard matches a specified English word.
+
+Format: `test INDEX WORD`
+
 * Checks the translation of the flashcard at the specified `INDEX` with the given `WORD`.
-* The app will then show user the correct translation and tell the user whether he got it right.
+* The app will then show user the correct English translation and tell the user whether he got it right.
 * We can only against with a flashcard that is flipped down (i.e. the translation is hidden).
 * The `WORD` is not case-sensitive if given in ASCII characters (e.g. "HeLLo" matches "hello"). 
 
-Format: `test INDEX WORD`
+Examples:
+* `test 4 hello` checks the 4th card on display to see if `hello` matches the English translation of the flashcard.
 
 ### Saving the data
 
@@ -212,3 +225,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Flip** | `flip INDEX` <br> e.g.,  `flip 2`
+**Test** | `test INDEX WORD` <br> e.g.,  `test 17 hello`
