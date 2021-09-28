@@ -184,7 +184,7 @@ Format: `test INDEX ENGLISH_PHRASE`
 * Checks the translation of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
 * The app will then show user the correct English translation and tell the user whether he got it right.
 * We can only against with a flashcard that is flipped down (i.e. the translation is hidden).
-* The `WORD` is not case-sensitive if given in ASCII characters (e.g. "HeLLo" matches "hello"). 
+* The `ENGLISH_PHRASE` is not case-sensitive if given in ASCII characters (e.g. "HeLLo" matches "hello"). 
 
 Examples:
 * `test 4 hello` checks the 4th card on display to see if `hello` matches the English translation of the flashcard.
