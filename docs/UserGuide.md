@@ -173,7 +173,7 @@ Format: `flip INDEX`
 * Similar to delete, the index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `flip 3` toggles the 3rd card on display, if the English translation was originally hidden, it can now be seen.
+* `flip 3` followed by `flip 3` shows and then hides the English translation for the 3rd flashcard on display.
 
 ### Testing with a flashcard : `test`
 
