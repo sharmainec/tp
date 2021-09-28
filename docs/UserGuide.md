@@ -177,11 +177,11 @@ Examples:
 
 ### Testing with a flashcard : `test`
 
-Checks whether the English translation of a flashcard matches a specified English word.
+Checks whether the English translation of a flashcard matches a given phrase.
 
-Format: `test INDEX WORD`
+Format: `test INDEX ENGLISH_PHRASE`
 
-* Checks the translation of the flashcard at the specified `INDEX` with the given `WORD`.
+* Checks the translation of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
 * The app will then show user the correct English translation and tell the user whether he got it right.
 * We can only against with a flashcard that is flipped down (i.e. the translation is hidden).
 * The `WORD` is not case-sensitive if given in ASCII characters (e.g. "HeLLo" matches "hello"). 
@@ -226,4 +226,4 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Flip** | `flip INDEX` <br> e.g.,  `flip 2`
-**Test** | `test INDEX WORD` <br> e.g.,  `test 17 hello`
+**Test** | `test INDEX ENGLISH_PHRASE` <br> e.g.,  `test 17 hello`
