@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-LingoGO! is a **desktop app for university students learning a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared to using than traditional flashcards.
+LingoGO! is a **desktop app for university students who use English as their first language and are trying to learn a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared to using than traditional flashcards.
 
 * Table of Contents
 {:toc}
@@ -153,7 +153,7 @@ Format: `upload CSV_FILE_PATH`
   ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
-* `upload ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!
+* `upload ./dictionary.csv`
 
 ### Downloading cards : `download`
 
@@ -163,9 +163,6 @@ Format: `download`
 
 * The exported file will be added to `data` folder in a CSV format.
 * The CSV file will have 2 columns. The first column is for English and the second column is for Foreign language.
-
-Examples:
-* `download` will load all cards stored in LingoGO! to the dictionary.csv.
 
 ### Exiting the program : `exit`
 
