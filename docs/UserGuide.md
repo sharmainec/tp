@@ -28,9 +28,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`e/Good Morning f/早安` : Adds a flashcard with English phrase `Good Morning` and corresponding foreign phrase `早安` to LingoGO!.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
 
    * **`clear`** : Deletes all contacts.
 
@@ -53,7 +53,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `ENGLISH_PHRASE` and `FOREIGN_PHRASE` are parameters which can be used as `add e/Good Morning f/早安`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -81,19 +81,15 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a flashcard: `add`
 
-Adds a person to the address book.
+Adds a flashcard to LingoGO!.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add e/Good Morning f/早安`
+* `add e/Hello f/你好`
 
 ### Listing all persons : `list`
 
@@ -136,19 +132,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a flashcard : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified flashcard from LingoGO!.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd flashcard in LingoGO!.
+* `find Hello` followed by `delete 1` deletes the 1st flashcard in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -218,7 +214,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add e/ENGLISH_PHRASE f/FOREIGN_PHRASE` <br> e.g., `add e/Good Morning f/早安`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
