@@ -10,6 +10,8 @@
 
 <TitledPane fx:id="commandHelpPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
+        <URL value="@Fonts.css" />
+        <URL value="@HelpWindow.css" />
         <URL value="@CommandHelpMessage.css" />
     </stylesheets>
     <content>
