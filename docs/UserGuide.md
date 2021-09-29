@@ -18,10 +18,12 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
 1. Copy the file to the folder you want to use as the _home folder_ for LingoGO!.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the 
+   app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+   open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -37,6 +39,12 @@ LingoGO! is a **desktop app for university students who use English as their fir
    * **`download`** : Exports cards from LingoGO! to a CSV file.
 
    * **`exit`** : Exits the app.
+
+   * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct translation.
+
+   * **`test`**`17`**`hello`**: Checks flashcard 17's translation against the word **`hello`** and then shows 
+     whether it is correct.
+   
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -176,6 +184,33 @@ Exits the program.
 
 Format: `exit`
 
+### Flipping a flashcard : `flip`
+
+Toggles the flashcard to either show or hide its English translation.
+
+Format: `flip INDEX`
+
+* Toggles the flashcard at the specified `INDEX`.
+* Similar to delete, the index refers to the index number shown in the displayed flashcard list.
+* Similar to delete, the index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `flip 3` followed by `flip 3` shows and then hides the English translation for the 3rd flashcard on display.
+
+### Testing with a flashcard : `test`
+
+Checks whether the English translation of a flashcard matches a given phrase.
+
+Format: `test INDEX ENGLISH_PHRASE`
+
+* Checks the translation of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
+* The app will then show user the correct English translation and tell the user whether he got it right.
+* We can only against with a flashcard that is flipped down (i.e. the translation is hidden).
+* The `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello"). 
+
+Examples:
+* `test 4 hello` checks the 4th card on display to see if `hello` matches the English translation of the flashcard.
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -214,3 +249,5 @@ Action | Format, Examples
 **Upload** | `upload CSV_FILE_PATH`<br> e.g., `upload ./dictionary.csv`
 **Download** | `download`<br> e.g., `download`
 **Help** | `help`
+**Flip** | `flip INDEX` <br> e.g.,  `flip 2`
+**Test** | `test INDEX ENGLISH_PHRASE` <br> e.g.,  `test 17 hello`
