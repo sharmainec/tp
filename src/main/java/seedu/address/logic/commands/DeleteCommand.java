@@ -16,6 +16,9 @@ import seedu.address.model.person.Person;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_DESCRIPTION = "Deletes a flashcard";
+    public static final String COMMAND_USAGE = "delete INDEX";
+    public static final String COMMAND_EXAMPLES = "delete 3";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"

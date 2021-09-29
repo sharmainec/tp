@@ -3,19 +3,15 @@ package seedu.address.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandEnum;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
 
 public class CommandHelpMessage extends UiPart<TitledPane> {
     private static final String FXML = "CommandHelpMessage.fxml";
-    private static final String ADD_COMMAND_DESCRIPTION = "Adds a flashcard";
-    private static final String ADD_COMMAND_USAGE = "add e/ENGLISH_PHRASE f/FOREIGN_PHRASE";
-    private static final String ADD_COMMAND_EXAMPLES = "add e/Hello f/你好";
-    private static final String DELETE_COMMAND_DESCRIPTION = "Deletes a flashcard";
-    private static final String DELETE_COMMAND_USAGE = "delete INDEX";
-    private static final String DELETE_COMMAND_EXAMPLES = "delete 3";
-    private static final String EDIT_COMMAND_DESCRIPTION = "Edits a flashcard";
-    private static final String EDIT_COMMAND_USAGE = "edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]";
-    private static final String EDIT_COMMAND_EXAMPLES = "edit 1 e/Hi f/Hola\nedit 1 e/Hello\nedit 1 f/Guten Morgen";
+
+    // TODO: Shift help messages to respective command classes when implemented
     private static final String FLIP_COMMAND_DESCRIPTION = "Toggles the flashcard to either show or hide its English"
             + " translation.";
     private static final String FLIP_COMMAND_USAGE = "flip INDEX";
@@ -56,11 +52,12 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
         this.getRoot().heightProperty().addListener((obs, oldHeight, newHeight) -> helpWindow.getRoot().sizeToScene());
         switch (command) {
         case ADD:
-            this.setDisplayText("Add", ADD_COMMAND_DESCRIPTION, ADD_COMMAND_USAGE, ADD_COMMAND_EXAMPLES);
+            this.setDisplayText("Add", AddCommand.COMMAND_DESCRIPTION, AddCommand.COMMAND_USAGE,
+                    AddCommand.COMMAND_EXAMPLES);
             break;
         case EDIT:
-            this.setDisplayText("Edit", EDIT_COMMAND_DESCRIPTION, EDIT_COMMAND_USAGE,
-                    EDIT_COMMAND_EXAMPLES);
+            this.setDisplayText("Edit", EditCommand.EDIT_COMMAND_DESCRIPTION, EditCommand.EDIT_COMMAND_USAGE,
+                    EditCommand.EDIT_COMMAND_EXAMPLES);
             break;
         case FLIP:
             this.setDisplayText("Flip", FLIP_COMMAND_DESCRIPTION, FLIP_COMMAND_USAGE,
@@ -71,8 +68,8 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
                     TEST_COMMAND_EXAMPLES);
             break;
         case DELETE:
-            this.setDisplayText("Delete", DELETE_COMMAND_DESCRIPTION, DELETE_COMMAND_USAGE,
-                    DELETE_COMMAND_EXAMPLES);
+            this.setDisplayText("Delete", DeleteCommand.COMMAND_DESCRIPTION, DeleteCommand.COMMAND_USAGE,
+                    DeleteCommand.COMMAND_EXAMPLES);
             break;
         case EXPORT:
             this.setDisplayText("Export", EXPORT_COMMAND_DESCRIPTION, EXPORT_COMMAND_USAGE,
