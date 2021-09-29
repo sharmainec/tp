@@ -3,16 +3,6 @@
 ![Ui](docs/images/Ui.png)
 
 # LingoGO!
-## Target User Profile
-
-University students who are learning a new language
-
-## Value Proposition
-
-1. Fast way to generate flashcards to learn new languages
-2. Help students memorise words when learning a new language
-3. Gamified features such as recording of scores and tracking of improvements to make learning engaging and encourage continued usage
-
-## Acknowledgements
-
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- LingoGO! is for university students who are learning a new language. It provides a fast way to generate flashcards so that students can memorise words faster.
+- This is our [deployed project documentation](https://tp-jqmz8ayst-jhlee1997.vercel.app/).
+- This project is done as part of CS2103T at NUS. This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

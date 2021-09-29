@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-LingoGO! is a **desktop app for university students learning a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can get your learning faster than traditional flashcards.
+LingoGO! is a **desktop app for university students learning a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared to using than traditional flashcards.
 
 * Table of Contents
 {:toc}
@@ -14,29 +14,19 @@ LingoGO! is a **desktop app for university students learning a new language, opt
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `lingogo.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `lingogo.jar` from [here](https://github.com/AY2122S1-CS2103T-T11-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your LingoGO!.
+1. Copy the file to the folder you want to use as the _home folder_ for LingoGO!.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-
-   * **`add`**`q/hi a/hola` : Adds a flashcard for `hi` to the LingoGO!.
-
-   * **`delete`**`3` : Deletes the flashcard with card number 3.
-
-   * **`edit`**`1 q/hi a/hola` : Edit the flashcard with card number 1.
-
-   * **`flip`**`2` : Flips the flashcard with card number 2 to show or hide the answer.
-   
-   * **`test`**`1 a/good morning` : Tells the user whether the answer they entered for a flashcard is correct or wrong.
    
    * **`upload`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
-
-   * **`exit`** : Exits the app.
+   
+   * **`download`** : Exports cards from LingoGO! to a CSV file.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -49,7 +39,7 @@ LingoGO! is a **desktop app for university students learning a new language, opt
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add q/DESCRIPTION a/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add q/hi a/hola`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -159,10 +149,23 @@ Imports cards to LingoGO! using a CSV file.
 Format: `upload CSV_FILE_PATH`
 
 * The file path can be absolute or relative to the location of the LingoGO! file.
-* The CSV file must have 2 columns. The first column is for the front page of the flashcard. The second column is for the other side.
+* The CSV file must have 2 columns. The first column is for English and the second column is for Foreign language.
+  ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
 * `upload ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!
+
+### Downloading cards : `download`
+
+Exports cards from LingoGO! to a CSV file.
+
+Format: `download`
+
+* The exported file will be added to `data` folder in a CSV format.
+* The CSV file will have 2 columns. The first column is for English and the second column is for Foreign language.
+
+Examples:
+* `download` will load all cards stored in LingoGO! to the dictionary.csv.
 
 ### Exiting the program : `exit`
 
@@ -199,10 +202,5 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/DESCRIPTION a/DESCRIPTION​` <br> e.g., `add q/hi a/hola`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit CARD_NUMBER q/DESCRIPTION a/DESCRIPTION`<br> e.g.,`edit 1 q/hi a/hola`
-**Flip** | `flip CARD_NUMBER`<br> e.g., `flip 3`
-**Test** | `test CARD_NUMBER a/CORRECT_ANSWER`<br> e.g., `test 1 a/good morning`
 **Upload** | `upload CSV_FILE_PATH`<br> e.g., `upload ./dictionary.csv`
-**Help** | `help [COMMAND]`<br> e.g., `help, help add`
+**Download** | `download`<br> e.g., `download`
