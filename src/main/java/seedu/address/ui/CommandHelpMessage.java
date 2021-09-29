@@ -11,26 +11,27 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
     private static final String ADD_COMMAND_USAGE = "add e/ENGLISH_PHRASE f/FOREIGN_PHRASE";
     private static final String ADD_COMMAND_EXAMPLES = "add e/Hello f/你好";
     private static final String DELETE_COMMAND_DESCRIPTION = "Deletes a flashcard";
-    private static final String DELETE_COMMAND_USAGE = "delete CARD_NUMBER";
+    private static final String DELETE_COMMAND_USAGE = "delete INDEX";
     private static final String DELETE_COMMAND_EXAMPLES = "delete 3";
     private static final String EDIT_COMMAND_DESCRIPTION = "Edits a flashcard";
-    private static final String EDIT_COMMAND_USAGE = "edit CARD_NUMBER ([e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE])";
+    private static final String EDIT_COMMAND_USAGE = "edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]";
     private static final String EDIT_COMMAND_EXAMPLES = "edit 1 e/Hi f/Hola\nedit 1 e/Hello\nedit 1 f/Guten Morgen";
-    private static final String FLIP_COMMAND_DESCRIPTION = "Flips a flashcard to toggle whether its answer is shown";
-    private static final String FLIP_COMMAND_USAGE = "flip CARD_NUMBER";
+    private static final String FLIP_COMMAND_DESCRIPTION = "Toggles the flashcard to either show or hide its English"
+            + " translation.";
+    private static final String FLIP_COMMAND_USAGE = "flip INDEX";
     private static final String FLIP_COMMAND_EXAMPLES = "flip 3";
-    private static final String TEST_COMMAND_DESCRIPTION = "Accepts an answer for a flashcard, then displays whether"
-            + " the answer is correct";
-    private static final String TEST_COMMAND_USAGE = "test CARD_NUMBER a/ANSWER";
+    private static final String TEST_COMMAND_DESCRIPTION = "Checks whether the English translation of a flashcard"
+            + " matches a given phrase.";
+    private static final String TEST_COMMAND_USAGE = "test INDEX a/ENGLISH_PHRASE";
     private static final String TEST_COMMAND_EXAMPLES = "test 1 a/good morning";
     private static final String IMPORT_COMMAND_DESCRIPTION = "Imports flashcards into LingoGO! from a specified"
             + " CSV file";
     private static final String IMPORT_COMMAND_USAGE = "upload CSV_FILE_PATH";
     private static final String IMPORT_COMMAND_EXAMPLES = "upload ./dictionary.csv";
-    private static final String EXPORT_COMMAND_DESCRIPTION = "Exports flashcards to a CSV file located at"
-            + " <TO BE CONFIRMED>";
-    private static final String EXPORT_COMMAND_USAGE = "export CSV_FILE_PATH";
-    private static final String EXPORT_COMMAND_EXAMPLES = "export ./mycards.csv";
+    private static final String EXPORT_COMMAND_DESCRIPTION = "Exports flashcards to a CSV file located in the data"
+            + " folder";
+    private static final String EXPORT_COMMAND_USAGE = "download CSV_FILE_PATH";
+    private static final String EXPORT_COMMAND_EXAMPLES = "download";
 
     @FXML
     private TitledPane helpPane;
