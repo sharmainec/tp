@@ -168,7 +168,7 @@ Exports cards from LingoGO! to a CSV file.
 Format: `download`
 
 * The exported file will be added to `data` folder in a CSV format.
-* The CSV file will have 2 columns. The first column is for English and the second column is for Foreign language.
+* The CSV file will have 2 columns. The first column is for the English phrase, and the second column is for foreign phrase.
 
 ### Exiting the program : `exit`
 
