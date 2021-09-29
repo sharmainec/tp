@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+LingoGO! is a **desktop app for university students who use English as their first language and are trying to learn a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared to using than traditional flashcards.
 
 * Table of Contents
 {:toc}
@@ -14,9 +14,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `lingogo.jar` from [here](https://github.com/AY2122S1-CS2103T-T11-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for LingoGO!.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -31,6 +31,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
 
    * **`clear`** : Deletes all contacts.
+   
+   * **`upload`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
+   
+   * **`download`** : Exports cards from LingoGO! to a CSV file.
 
    * **`exit`** : Exits the app.
 
@@ -144,6 +148,28 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Uploading cards : `upload`
+
+Imports cards to LingoGO! using a CSV file.
+
+Format: `upload CSV_FILE_PATH`
+
+* The file path can be absolute or relative to the location of the LingoGO! file.
+* The CSV file must have 2 columns. The first column is for English and the second column is for Foreign language.
+  ![sample CSV file](images/SampleCSVFile.png)
+
+Examples:
+* `upload ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!
+
+### Downloading cards : `download`
+
+Exports cards from LingoGO! to a CSV file.
+
+Format: `download`
+
+* The exported file will be added to `data` folder in a CSV format.
+* The CSV file will have 2 columns. The first column is for the English phrase, and the second column is for foreign phrase.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -185,4 +211,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Upload** | `upload CSV_FILE_PATH`<br> e.g., `upload ./dictionary.csv`
+**Download** | `download`<br> e.g., `download`
 **Help** | `help`
