@@ -20,7 +20,7 @@ Feel free to check out our individual project portfolios below and reach out to 
 [[Portfolio](team/aikenwx.md)]
 
 * Role: Developer
-* Responsibilities: TBC
+* Responsibilities: Documentation, `Storage` component
 
 ### Bryan Kwok Yan Fai
 
@@ -32,7 +32,7 @@ Feel free to check out our individual project portfolios below and reach out to 
 [[Portfolio](team/kwokieee.md)]
 
 * Role: Developer
-* Responsibilities: TBC
+* Responsibilities: Project scheduling and tracking, `Ui` component
 
 ### Chow En Rong
 
@@ -44,7 +44,7 @@ Feel free to check out our individual project portfolios below and reach out to 
 [[Portfolio](team/chownces.md)]
 
 * Role: Developer
-* Responsibilities: TBC
+* Responsibilities: Code quality, Integration, `Model` component
 
 ### Lee Jae Ho
 
@@ -56,7 +56,7 @@ Feel free to check out our individual project portfolios below and reach out to 
 [[Portfolio](team/jhlee1997.md)]
 
 * Role: Developer
-* Responsibilities: TBC
+* Responsibilities: Testing
 
 ### Sharmaine Cheong Shi Min
 
@@ -68,4 +68,4 @@ Feel free to check out our individual project portfolios below and reach out to 
 [[Portfolio](team/sharmainec.md)]
 
 * Role: Developer
-* Responsibilities: TBC
+* Responsibilities: Documentation, `Logic` component
