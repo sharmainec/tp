@@ -26,11 +26,13 @@ LingoGO! is a **desktop app for university students who use English as their fir
    open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all flashcards.
 
    * **`add`**`e/Good Morning f/早安` : Adds a flashcard with English phrase `Good Morning` and corresponding foreign phrase `早安` to LingoGO!.
 
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
+
+   * **`edit`**`3`**`f/Guten Morgen`** : Edits the foreign phrase of the 3rd flashcard shown in the current list to `Guten Morgen`.
 
    * **`clear`** : Deletes all contacts.
    
@@ -95,28 +97,27 @@ Examples:
 * `add e/Good Morning f/早安`
 * `add e/Hello f/你好`
 
-### Listing all persons : `list`
+### Listing all flashcards : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all flashcards in LingoGO!.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a flashcard : `edit`
 
-Edits an existing person in the address book.
+Edits an existing flashcard in LingoGO!.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the flashcard at the specified `INDEX`. The index refers to the index number shown in the displayed flashcard
+    list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 1 e/Good Morning` Edits the English phrase of the 1st flashcard to be `Good Morning`.
+* `edit 2 f/Guten Morgen` Edits the foreign phrase of the 2nd flashcard to be `Guten Morgen`.
+* `edit 2 e/Good Morning f/Guten Morgen` Edits the English phrase and foreign phrase of the 2nd flashcard to be `Good Morning` and `Guten Morgen` respectively.
 
 ### Locating persons by name: `find`
 
@@ -163,11 +164,11 @@ Imports cards to LingoGO! using a CSV file.
 Format: `upload CSV_FILE_PATH`
 
 * The file path can be absolute or relative to the location of the LingoGO! file.
-* The CSV file must have 2 columns. The first column is for English and the second column is for Foreign language.
+* The CSV file must have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
   ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
-* `upload ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!
+* `upload ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
 
 ### Downloading cards : `download`
 
@@ -176,7 +177,7 @@ Exports cards from LingoGO! to a CSV file.
 Format: `download`
 
 * The exported file will be added to `data` folder in a CSV format.
-* The CSV file will have 2 columns. The first column is for the English phrase, and the second column is for foreign phrase.
+* The CSV file will have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
 
 ### Exiting the program : `exit`
 
@@ -243,7 +244,7 @@ Action | Format, Examples
 **Add** | `add e/ENGLISH_PHRASE f/FOREIGN_PHRASE` <br> e.g., `add e/Good Morning f/早安`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Upload** | `upload CSV_FILE_PATH`<br> e.g., `upload ./dictionary.csv`
