@@ -65,8 +65,8 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
                     ClearCommand.COMMAND_EXAMPLES);
             break;
         case DELETE:
-            this.setDisplayText(DeleteCommand.COMMAND_WORD, DeleteCommand.COMMAND_DESCRIPTION, DeleteCommand.COMMAND_USAGE,
-                    DeleteCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(DeleteCommand.COMMAND_WORD, DeleteCommand.COMMAND_DESCRIPTION,
+                    DeleteCommand.COMMAND_USAGE, DeleteCommand.COMMAND_EXAMPLES);
             break;
         case EDIT:
             this.setDisplayText(EditCommand.COMMAND_WORD, EditCommand.COMMAND_DESCRIPTION, EditCommand.COMMAND_USAGE,
