@@ -79,7 +79,7 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessage.JPG)
 
 Format: `help [COMMAND]`
 
@@ -132,7 +132,6 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find Good` returns `e/Good Morning f/早安` and `e/Good Morning f/Guten Morgen`
 * `find Good Hello` returns `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a flashcard : `delete`
 
