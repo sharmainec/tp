@@ -239,7 +239,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Hello`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Upload** | `upload CSV_FILE_PATH`<br> e.g., `upload ./dictionary.csv`
 **Download** | `download`<br> e.g., `download`
