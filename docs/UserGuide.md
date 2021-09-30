@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+LingoGO! is a **desktop app for university students who use English as their first language and are trying to learn a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared to using than traditional flashcards.
 
 * Table of Contents
 {:toc}
@@ -14,25 +14,37 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `lingogo.jar` from [here](https://github.com/AY2122S1-CS2103T-T11-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for LingoGO!.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the 
+   app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+   open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`e/Good Morning f/早安` : Adds a flashcard with English phrase `Good Morning` and corresponding foreign phrase `早安` to LingoGO!.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
 
    * **`clear`** : Deletes all contacts.
+   
+   * **`upload`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
+   
+   * **`download`** : Exports cards from LingoGO! to a CSV file.
 
    * **`exit`** : Exits the app.
+
+   * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct translation.
+
+   * **`test`**`17`**`hello`**: Checks flashcard 17's translation against the word **`hello`** and then shows 
+     whether it is correct.
+   
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -45,7 +57,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `ENGLISH_PHRASE` and `FOREIGN_PHRASE` are parameters which can be used as `add e/Good Morning f/早安`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -74,19 +86,15 @@ for each command.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a flashcard: `add`
 
-Adds a person to the address book.
+Adds a flashcard to LingoGO!.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add e/Good Morning f/早安`
+* `add e/Hello f/你好`
 
 ### Listing all persons : `list`
 
@@ -129,19 +137,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a flashcard : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified flashcard from LingoGO!.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd flashcard in LingoGO!.
+* `find Hello` followed by `delete 1` deletes the 1st flashcard in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -149,11 +157,60 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Uploading cards : `upload`
+
+Imports cards to LingoGO! using a CSV file.
+
+Format: `upload CSV_FILE_PATH`
+
+* The file path can be absolute or relative to the location of the LingoGO! file.
+* The CSV file must have 2 columns. The first column is for English and the second column is for Foreign language.
+  ![sample CSV file](images/SampleCSVFile.png)
+
+Examples:
+* `upload ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!
+
+### Downloading cards : `download`
+
+Exports cards from LingoGO! to a CSV file.
+
+Format: `download`
+
+* The exported file will be added to `data` folder in a CSV format.
+* The CSV file will have 2 columns. The first column is for the English phrase, and the second column is for foreign phrase.
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Flipping a flashcard : `flip`
+
+Toggles the flashcard to either show or hide its English translation.
+
+Format: `flip INDEX`
+
+* Toggles the flashcard at the specified `INDEX`.
+* Similar to delete, the index refers to the index number shown in the displayed flashcard list.
+* Similar to delete, the index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `flip 3` followed by `flip 3` shows and then hides the English translation for the 3rd flashcard on display.
+
+### Testing with a flashcard : `test`
+
+Checks whether the English translation of a flashcard matches a given phrase.
+
+Format: `test INDEX ENGLISH_PHRASE`
+
+* Checks the translation of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
+* The app will then show user the correct English translation and tell the user whether he got it right.
+* We can only against with a flashcard that is flipped down (i.e. the translation is hidden).
+* The `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello"). 
+
+Examples:
+* `test 4 hello` checks the 4th card on display to see if `hello` matches the English translation of the flashcard.
 
 ### Saving the data
 
@@ -184,10 +241,14 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add e/ENGLISH_PHRASE f/FOREIGN_PHRASE` <br> e.g., `add e/Good Morning f/早安`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Upload** | `upload CSV_FILE_PATH`<br> e.g., `upload ./dictionary.csv`
+**Download** | `download`<br> e.g., `download`
 **Help** | `help`
+**Flip** | `flip INDEX` <br> e.g.,  `flip 2`
+**Test** | `test INDEX ENGLISH_PHRASE` <br> e.g.,  `test 17 hello`
