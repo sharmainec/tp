@@ -32,9 +32,9 @@ import seedu.address.model.tag.Tag;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-    public static final String EDIT_COMMAND_DESCRIPTION = "Edits a flashcard";
-    public static final String EDIT_COMMAND_USAGE = "edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]";
-    public static final String EDIT_COMMAND_EXAMPLES = "edit 1 e/Hi f/Hola\nedit 1 e/Hello\nedit 1 f/Guten Morgen";
+    public static final String COMMAND_DESCRIPTION = "Edits a flashcard";
+    public static final String COMMAND_USAGE = "edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]";
+    public static final String COMMAND_EXAMPLES = "edit 1 e/Hi f/Hola\nedit 1 e/Hello\nedit 1 f/Guten Morgen";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
