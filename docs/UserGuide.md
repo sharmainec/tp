@@ -141,7 +141,7 @@ Deletes the specified flashcard from LingoGO!.
 Format: `delete INDEX`
 
 * Deletes the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
+* The index refers to the index number shown in the current list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
@@ -189,7 +189,7 @@ Toggles the flashcard to either show or hide its English phrase.
 Format: `flip INDEX`
 
 * Toggles the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
+* The index refers to the index number shown in the current list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
@@ -203,7 +203,7 @@ Format: `test INDEX ENGLISH_PHRASE`
 
 * Checks the English phrase of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
 * The app will then show user the correct English phrase and tell the user whether he got it right.
-* The index refers to the index number shown in the displayed flashcard list.
+* The index refers to the index number shown in the current list.
 * The index **must be a positive integer** 1, 2, 3, …
 * Testing is only allowed for flashcards that are flipped down (i.e. the English phrase is hidden).
 * The `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello"). 
