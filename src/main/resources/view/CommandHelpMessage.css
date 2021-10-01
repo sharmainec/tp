@@ -1,0 +1,20 @@
+#descriptionBox, #usageBox, #examplesBox {
+    -fx-border-width: 1;
+    -fx-border-color: gray;
+}
+
+#description, #usage, #examples {
+    -fx-border-width: 1;
+    -fx-border-color: gray;
+    -fx-border-style: hidden hidden hidden solid;
+    -fx-font-family: "Open Sans";
+}
+
+#commandHelpPane, #descriptionHeader, #usageHeader, #examplesHeader {
+    -fx-font-family: "Open Sans";
+}
+
+#descriptionHeaderPane, #usageHeaderPane, #examplesHeaderPane {
+    -fx-background-color: lightgrey;
+    -fx-font-weight: bold;
+}

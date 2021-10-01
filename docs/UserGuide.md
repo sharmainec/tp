@@ -78,7 +78,8 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page, as well as dropdowns with brief explanations
+for each command.
 
 ![help message](images/helpMessage.png)
 
