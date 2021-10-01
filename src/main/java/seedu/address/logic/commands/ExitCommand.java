@@ -8,6 +8,9 @@ import seedu.address.model.Model;
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
+    public static final String COMMAND_DESCRIPTION = "Exits LingoGO!";
+    public static final String COMMAND_USAGE = "exit";
+    public static final String COMMAND_EXAMPLES = "exit";
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
