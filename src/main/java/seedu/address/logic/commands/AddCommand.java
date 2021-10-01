@@ -17,6 +17,9 @@ import seedu.address.model.person.Person;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_DESCRIPTION = "Adds a flashcard";
+    public static final String COMMAND_USAGE = "add e/ENGLISH_PHRASE f/FOREIGN_PHRASE";
+    public static final String COMMAND_EXAMPLES = "add e/Hello f/你好";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
