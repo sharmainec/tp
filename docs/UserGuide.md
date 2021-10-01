@@ -42,9 +42,9 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
    * **`exit`** : Exits the app.
 
-   * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct translation.
+   * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct English phrase.
 
-   * **`test`**`17`**`hello`**: Checks flashcard 17's translation against the word **`hello`** and then shows 
+   * **`test`**`17`**`hello`**: Checks flashcard 17's English phrase against the word **`hello`** and then shows 
      whether it is correct.
    
 
@@ -78,7 +78,7 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -161,7 +161,7 @@ Imports cards to LingoGO! using a CSV file.
 Format: `upload CSV_FILE_PATH`
 
 * The file path can be absolute or relative to the location of the LingoGO! file.
-* The CSV file must have 2 columns. The first column is for English and the second column is for Foreign language.
+* The CSV file must have 2 columns. The first column is for English and the second column is for foreign language.
   ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
@@ -193,7 +193,7 @@ Format: `flip INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `flip 3` followed by `flip 3` shows and then hides the English phrase for the 3rd in the current list.
+* `flip 3` followed by `flip 3` shows and then hides the English phrase for the 3rd flashcard in the current list.
 
 ### Testing with a flashcard : `test`
 
@@ -206,7 +206,7 @@ Format: `test INDEX ENGLISH_PHRASE`
 * The index refers to the index number shown in the current list.
 * The index **must be a positive integer** 1, 2, 3, …
 * Testing is only allowed for flashcards that are flipped down (i.e. the English phrase is hidden).
-* The `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello"). 
+* `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello"). 
 
 Examples:
 * `test 4 hello` checks the 4th card on display to see if `hello` matches the English phrase of the flashcard.
