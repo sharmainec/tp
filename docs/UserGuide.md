@@ -184,30 +184,32 @@ Format: `exit`
 
 ### Flipping a flashcard : `flip`
 
-Toggles the flashcard to either show or hide its English translation.
+Toggles the flashcard to either show or hide its English phrase.
 
 Format: `flip INDEX`
 
 * Toggles the flashcard at the specified `INDEX`.
-* Similar to delete, the index refers to the index number shown in the displayed flashcard list.
-* Similar to delete, the index **must be a positive integer** 1, 2, 3, …
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `flip 3` followed by `flip 3` shows and then hides the English translation for the 3rd flashcard on display.
+* `flip 3` followed by `flip 3` shows and then hides the English phrase for the 3rd in the current list.
 
 ### Testing with a flashcard : `test`
 
-Checks whether the English translation of a flashcard matches a given phrase.
+Checks whether the English phrase of a flashcard matches a given phrase.
 
 Format: `test INDEX ENGLISH_PHRASE`
 
-* Checks the translation of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
-* The app will then show user the correct English translation and tell the user whether he got it right.
-* We can only against with a flashcard that is flipped down (i.e. the translation is hidden).
+* Checks the English phrase of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
+* The app will then show user the correct English phrase and tell the user whether he got it right.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
+* Testing is only allowed for flashcards that are flipped down (i.e. the English phrase is hidden).
 * The `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello"). 
 
 Examples:
-* `test 4 hello` checks the 4th card on display to see if `hello` matches the English translation of the flashcard.
+* `test 4 hello` checks the 4th card on display to see if `hello` matches the English phrase of the flashcard.
 
 ### Saving the data
 
