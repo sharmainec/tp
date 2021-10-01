@@ -30,11 +30,11 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
    * **`add`**`e/Good Morning f/早安` : Adds a flashcard with English phrase `Good Morning` and corresponding foreign phrase `早安` to LingoGO!.
 
-   * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd flashcard shown in the current displayed list.
    
    * **`clear`** : Deletes all flashcards.
    
-   * **`edit`**`3`**`f/Guten Morgen`** : Edits the foreign phrase of the 3rd flashcard shown in the current list to `Guten Morgen`.
+   * **`edit`**`3`**`f/Guten Morgen`** : Edits the foreign phrase of the 3rd flashcard shown in the current displayed list to `Guten Morgen`.
    
    * **`upload`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
    
@@ -140,7 +140,7 @@ Deletes the specified flashcard from LingoGO!.
 Format: `delete INDEX`
 
 * Deletes the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the current list.
+* The index refers to the index number shown in the current displayed list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
@@ -188,11 +188,11 @@ Toggles the flashcard to either show or hide its English phrase.
 Format: `flip INDEX`
 
 * Toggles the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the current list.
+* The index refers to the index number shown in the current displayed list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `flip 3` followed by `flip 3` shows and then hides the English phrase for the 3rd flashcard in the current list.
+* `flip 3` followed by `flip 3` shows and then hides the English phrase for the 3rd flashcard in the current displayed list.
 
 ### Testing with a flashcard : `test`
 
@@ -202,7 +202,7 @@ Format: `test INDEX ENGLISH_PHRASE`
 
 * Checks the English phrase of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
 * The app will then show user the correct English phrase and tell the user whether he got it right.
-* The index refers to the index number shown in the current list.
+* The index refers to the index number shown in the current displayed list.
 * The index **must be a positive integer** 1, 2, 3, …
 * Testing is only allowed for flashcards that are flipped down (i.e. the English phrase is hidden).
 * `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello"). 
