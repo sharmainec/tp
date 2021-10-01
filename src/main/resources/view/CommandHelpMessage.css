@@ -10,7 +10,7 @@
     -fx-font-family: "Open Sans";
 }
 
-#descriptionHeader, #usageHeader, #examplesHeader {
+#commandHelpPane, #descriptionHeader, #usageHeader, #examplesHeader {
     -fx-font-family: "Open Sans";
 }
 
