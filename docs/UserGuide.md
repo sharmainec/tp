@@ -38,7 +38,7 @@ LingoGO! is a **desktop app for university students who use English as their fir
    
    * **`upload`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
    
-   * **`download`** : Exports cards from LingoGO! to a CSV file.
+   * **`download`**`myCards` : Exports cards from LingoGO! to a CSV file in a file name `myCards`.
 
    * **`exit`** : Exits the app.
 
@@ -171,10 +171,14 @@ Examples:
 
 Exports cards from LingoGO! to a CSV file.
 
-Format: `download`
+Format: `download FILE_NAME`
 
+* Provides a file name in which the flash cards will be stored and exported.
 * The exported file will be added to `data` folder in a CSV format.
 * The CSV file will have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
+
+Examples:
+* `download myCards` will save all cards in LingoGO! to a CSV file named `myCards`.
 
 ### Exiting the program : `exit`
 
@@ -242,7 +246,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Hello`
 **List** | `list`
 **Upload** | `upload CSV_FILE_PATH`<br> e.g., `upload ./dictionary.csv`
-**Download** | `download`<br> e.g., `download`
+**Download** | `download FILE_NAME`<br> e.g., `download myCards`
 **Help** | `help`
 **Flip** | `flip INDEX` <br> e.g.,  `flip 2`
 **Test** | `test INDEX ENGLISH_PHRASE` <br> e.g.,  `test 17 hello`
