@@ -18,10 +18,10 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
 
     // TODO: Shift help messages to respective command classes when implemented
     private static final String FLIP_COMMAND_DESCRIPTION = "Toggles the flashcard to either show or hide its English"
-            + " translation";
+            + " phrase";
     private static final String FLIP_COMMAND_USAGE = "flip INDEX";
     private static final String FLIP_COMMAND_EXAMPLES = "flip 3";
-    private static final String TEST_COMMAND_DESCRIPTION = "Checks whether the English translation of a flashcard"
+    private static final String TEST_COMMAND_DESCRIPTION = "Checks whether the English phrase of a flashcard"
             + " matches a given phrase";
     private static final String TEST_COMMAND_USAGE = "test INDEX a/ENGLISH_PHRASE";
     private static final String TEST_COMMAND_EXAMPLES = "test 1 a/good morning";

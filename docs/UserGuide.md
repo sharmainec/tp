@@ -30,11 +30,11 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
    * **`add`**`e/Good Morning f/早安` : Adds a flashcard with English phrase `Good Morning` and corresponding foreign phrase `早安` to LingoGO!.
 
-   * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd flashcard shown in the current displayed list.
    
    * **`clear`** : Deletes all flashcards.
    
-   * **`edit`**`3`**`f/Guten Morgen`** : Edits the foreign phrase of the 3rd flashcard shown in the current list to `Guten Morgen`.
+   * **`edit`**`3`**`f/Guten Morgen`** : Edits the foreign phrase of the 3rd flashcard shown in the current displayed list to `Guten Morgen`.
    
    * **`upload`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
    
@@ -42,9 +42,9 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
    * **`exit`** : Exits the app.
 
-   * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct translation.
+   * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct English phrase.
 
-   * **`test`**`17`**`hello`**: Checks flashcard 17's translation against the word **`hello`** and then shows 
+   * **`test`**`17`**`hello`**: Checks flashcard 17's English phrase against the word **`hello`** and then shows 
      whether it is correct.
    
 
@@ -141,7 +141,7 @@ Deletes the specified flashcard from LingoGO!.
 Format: `delete INDEX`
 
 * Deletes the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
+* The index refers to the index number shown in the current displayed list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
@@ -184,30 +184,32 @@ Format: `exit`
 
 ### Flipping a flashcard : `flip`
 
-Toggles the flashcard to either show or hide its English translation.
+Toggles the flashcard to either show or hide its English phrase.
 
 Format: `flip INDEX`
 
 * Toggles the flashcard at the specified `INDEX`.
-* Similar to delete, the index refers to the index number shown in the displayed flashcard list.
-* Similar to delete, the index **must be a positive integer** 1, 2, 3, …
+* The index refers to the index number shown in the current displayed list.
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `flip 3` followed by `flip 3` shows and then hides the English translation for the 3rd flashcard on display.
+* `flip 3` followed by `flip 3` shows and then hides the English phrase for the 3rd flashcard in the current displayed list.
 
 ### Testing with a flashcard : `test`
 
-Checks whether the English translation of a flashcard matches a given phrase.
+Checks whether the English phrase of a flashcard matches a given phrase.
 
 Format: `test INDEX ENGLISH_PHRASE`
 
-* Checks the translation of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
-* The app will then show user the correct English translation and tell the user whether he got it right.
-* We can only against with a flashcard that is flipped down (i.e. the translation is hidden).
-* The `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello"). 
+* Checks the English phrase of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
+* The app will then show user the correct English phrase and tell the user whether he got it right.
+* The index refers to the index number shown in the current displayed list.
+* The index **must be a positive integer** 1, 2, 3, …
+* Testing is only allowed for flashcards that are flipped down (i.e. the English phrase is hidden).
+* `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello"). 
 
 Examples:
-* `test 4 hello` checks the 4th card on display to see if `hello` matches the English translation of the flashcard.
+* `test 4 hello` checks the 4th card on display to see if `hello` matches the English phrase of the flashcard.
 
 ### Saving the data
 
