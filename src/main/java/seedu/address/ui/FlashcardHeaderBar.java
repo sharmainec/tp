@@ -5,6 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+/**
+ * Headers for each column of a flashcard in the application.
+ */
 public class FlashcardHeaderBar extends UiPart<Region>  {
 
     private static final String FXML = "FlashcardHeaderBar.fxml";
