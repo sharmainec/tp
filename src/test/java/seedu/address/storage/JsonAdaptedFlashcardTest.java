@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedFlashcard.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalFlashcards.GOOD_NIGHT_CHINESE_FLASHCARD;
+import static seedu.address.testutil.TypicalFlashcards.NIGHT_CHINESE_FLASHCARD;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -13,13 +13,13 @@ public class JsonAdaptedFlashcardTest {
     private static final String INVALID_ENGLISH_PHRASE = "";
     private static final String INVALID_FOREIGN_PHRASE = "";
 
-    private static final String VALID_ENGLISH_PHRASE = GOOD_NIGHT_CHINESE_FLASHCARD.getEnglishPhrase().toString();
-    private static final String VALID_FOREIGN_PHRASE = GOOD_NIGHT_CHINESE_FLASHCARD.getForeignPhrase().toString();
+    private static final String VALID_ENGLISH_PHRASE = NIGHT_CHINESE_FLASHCARD.getEnglishPhrase().toString();
+    private static final String VALID_FOREIGN_PHRASE = NIGHT_CHINESE_FLASHCARD.getForeignPhrase().toString();
 
     @Test
     public void toModelType_validFlashcardDetails_returnsFlashcard() throws Exception {
-        JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(GOOD_NIGHT_CHINESE_FLASHCARD);
-        assertEquals(GOOD_NIGHT_CHINESE_FLASHCARD, flashcard.toModelType());
+        JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(NIGHT_CHINESE_FLASHCARD);
+        assertEquals(NIGHT_CHINESE_FLASHCARD, flashcard.toModelType());
     }
 
     @Test
