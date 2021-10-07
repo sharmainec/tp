@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.FlashcardApp;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the flashcard app.
  */
 public class ClearCommand extends Command {
 
@@ -14,13 +14,13 @@ public class ClearCommand extends Command {
     public static final String COMMAND_DESCRIPTION = "Clears all flashcards";
     public static final String COMMAND_USAGE = "clear";
     public static final String COMMAND_EXAMPLES = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "All your flashcards have been cleared!";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setFlashcardApp(new FlashcardApp());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
