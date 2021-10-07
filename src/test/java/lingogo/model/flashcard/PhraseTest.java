@@ -20,7 +20,7 @@ public class PhraseTest {
 
     @Test
     public void isValidPhrase() {
-        // null address
+        // null phrase
         assertThrows(NullPointerException.class, () -> Phrase.isValidPhrase(null));
 
         // invalid phrases

@@ -68,7 +68,7 @@ public class DeleteCommandTest {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
 
         Index outOfBoundIndex = INDEX_SECOND_FLASHCARD;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of flashcard app list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashcardApp().getFlashcardList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);

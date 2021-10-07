@@ -14,7 +14,7 @@ import lingogo.model.ReadOnlyFlashcardApp;
 import lingogo.model.flashcard.Flashcard;
 
 /**
- * An Immutable seedu.address.model.FlashcardApp that is serializable to JSON format.
+ * An Immutable lingogo.model.FlashcardApp that is serializable to JSON format.
  */
 @JsonRootName(value = "flashcardapp")
 class JsonSerializableFlashcardApp {
@@ -42,7 +42,7 @@ class JsonSerializableFlashcardApp {
     }
 
     /**
-     * Converts this flashcard app into the model's {@code seedu.address.model.FlashcardApp} object.
+     * Converts this flashcard app into the model's {@code lingogo.model.FlashcardApp} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
