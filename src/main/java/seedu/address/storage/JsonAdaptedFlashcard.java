@@ -49,7 +49,7 @@ class JsonAdaptedFlashcard {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 "English " + Phrase.class.getSimpleName()));
         }
-        if (Phrase.isValidPhrase(englishPhrase)) {
+        if (!Phrase.isValidPhrase(englishPhrase)) {
             throw new IllegalValueException(Phrase.MESSAGE_CONSTRAINTS);
         }
 
@@ -59,7 +59,7 @@ class JsonAdaptedFlashcard {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 "Foreign " + Phrase.class.getSimpleName()));
         }
-        if (Phrase.isValidPhrase(foreignPhrase)) {
+        if (!Phrase.isValidPhrase(foreignPhrase)) {
             throw new IllegalValueException(Phrase.MESSAGE_CONSTRAINTS);
         }
 

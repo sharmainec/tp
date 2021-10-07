@@ -1,13 +1,13 @@
 {
   "_comment": "FlashcardApp save file which contains the same Person values as in TypicalFlashcard#getTypicalFlashcardApp()",
   "flashcards": [ {
-    "englishPhrase": "Good Afternoon",
-    "foreignPhrase": "午安"
+    "englishPhrase": "Afternoon",
+    "foreignPhrase": "下午"
   }, {
-    "englishPhrase": "Good Night",
-    "foreignPhrase": "晚安"
+    "englishPhrase": "Night",
+    "foreignPhrase": "晚上"
   }, {
-    "englishPhrase": "Good Bye",
+    "englishPhrase": "Bye",
     "foreignPhrase": "再见"
   }, {
     "englishPhrase": "Sorry",
