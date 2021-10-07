@@ -19,7 +19,7 @@ public class TypicalFlashcards {
             .withForeignPhrase("下午").build();
     public static final Flashcard NIGHT_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Night")
         .withForeignPhrase("晚上").build();
-    public static final Flashcard BYE_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Good Bye")
+    public static final Flashcard BYE_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Bye")
         .withForeignPhrase("再见").build();
     public static final Flashcard SORRY_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Sorry")
         .withForeignPhrase("对不起").build();

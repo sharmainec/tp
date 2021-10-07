@@ -71,7 +71,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BYE_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD),
+        assertEquals(Arrays.asList(NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD),
                 model.getFilteredFlashcardList());
     }
 
