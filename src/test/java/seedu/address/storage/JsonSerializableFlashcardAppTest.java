@@ -27,6 +27,10 @@ public class JsonSerializableFlashcardAppTest {
             JsonSerializableFlashcardApp.class).get();
         FlashcardApp flashCardAppFromFile = dataFromFile.toModelType();
         FlashcardApp typicalFlashcardsFlashcardApp = TypicalFlashcards.getTypicalFlashcardApp();
+
+        System.out.println(flashCardAppFromFile.getFlashcardList());
+        System.out.println(typicalFlashcardsFlashcardApp.getFlashcardList());
+
         assertEquals(flashCardAppFromFile, typicalFlashcardsFlashcardApp);
     }
 
