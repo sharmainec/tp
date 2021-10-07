@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<HBox fx:id="flashcardHeaderBar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS" prefHeight="30" alignment="CENTER" gridLinesVisible="true">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="10" halignment="CENTER" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="45" halignment="CENTER" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="45" halignment="CENTER" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="SOMETIMES" prefHeight="30" />
+        </rowConstraints>
+        <Label fx:id="id" text="No." GridPane.columnIndex="0">
+            <padding>
+                <Insets left="5.0" right="5.0" />
+            </padding>
+        </Label>
+        <Label fx:id="foreignPhrase" text="Foreign Phrase" GridPane.columnIndex="1" wrapText="true">
+            <padding>
+                <Insets left="5.0" right="5.0" />
+            </padding>
+        </Label>
+        <Label fx:id="englishPhrase" text="English Phrase" GridPane.columnIndex="2" wrapText="true">
+            <padding>
+                <Insets left="5.0" right="5.0" />
+            </padding>
+        </Label>
+    </GridPane>
+</HBox>
