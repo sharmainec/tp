@@ -14,22 +14,33 @@ import seedu.address.model.flashcard.Flashcard;
 
 public class TypicalFlashcards {
 
-    public static final Flashcard GOOD_AFTERNOON_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Good Afternoon")
+    public static final Flashcard GOOD_AFTERNOON_CHINESE_FLASHCARD =
+        new FlashcardBuilder().withEnglishPhrase("Good Afternoon")
             .withForeignPhrase("午安").build();
     public static final Flashcard GOOD_NIGHT_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Good Night")
-            .withForeignPhrase("晚安").build();
+        .withForeignPhrase("晚安").build();
     public static final Flashcard GOOD_BYE_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Good Bye")
-            .withForeignPhrase("再见").build();
+        .withForeignPhrase("再见").build();
     public static final Flashcard SORRY_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Sorry")
-            .withForeignPhrase("对不起").build();
+        .withForeignPhrase("对不起").build();
+
+    // Manually added
+    public static final Flashcard THANK_YOU_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Thank You")
+        .withForeignPhrase("谢谢").build();
+    public static final Flashcard HAPPY_BIRTHDAY = new FlashcardBuilder().withEnglishPhrase("Happy Birthday")
+        .withForeignPhrase("生日快乐").build();
+
 
     // Flashcard's details found in {@code CommandTestUtil}
-    public static final Flashcard GOOD_MORNING_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)
+    public static final Flashcard GOOD_MORNING_CHINESE_FLASHCARD =
+        new FlashcardBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)
             .withForeignPhrase(VALID_CHINESE_PHRASE_GOOD_MORNING).build();
-    public static final Flashcard HELLO_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
+    public static final Flashcard HELLO_CHINESE_FLASHCARD =
+        new FlashcardBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
             .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
 
-    private TypicalFlashcards() {} // prevents instantiation
+    private TypicalFlashcards() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code FlashcardApp} with all the typical flashcards.
@@ -43,6 +54,8 @@ public class TypicalFlashcards {
     }
 
     public static List<Flashcard> getTypicalFlashcards() {
-        return new ArrayList<>(Arrays.asList(GOOD_AFTERNOON_CHINESE_FLASHCARD, GOOD_NIGHT_CHINESE_FLASHCARD, GOOD_BYE_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD));
+        return new ArrayList<>(
+            Arrays.asList(GOOD_AFTERNOON_CHINESE_FLASHCARD, GOOD_NIGHT_CHINESE_FLASHCARD, GOOD_BYE_CHINESE_FLASHCARD,
+                SORRY_CHINESE_FLASHCARD));
     }
 }
