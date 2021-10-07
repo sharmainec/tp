@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOD_MORNING;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_HELLO;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_HELLO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_HELLO;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,11 +33,13 @@ public class EditFlashcardDescriptorTest {
         assertFalse(DESC_GOOD_MORNING.equals(DESC_HELLO));
 
         // different English phrase -> returns false
-        EditFlashcardDescriptor editedFlashcard = new EditFlashcardDescriptorBuilder(DESC_GOOD_MORNING).withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
+        EditFlashcardDescriptor editedFlashcard = new EditFlashcardDescriptorBuilder(DESC_GOOD_MORNING)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
         assertFalse(DESC_GOOD_MORNING.equals(editedFlashcard));
 
         // different foreign phrase -> returns false
-        editedFlashcard = new EditFlashcardDescriptorBuilder(DESC_GOOD_MORNING).withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+        editedFlashcard = new EditFlashcardDescriptorBuilder(DESC_GOOD_MORNING)
+                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
         assertFalse(DESC_GOOD_MORNING.equals(editedFlashcard));
     }
 }

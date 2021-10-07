@@ -34,10 +34,12 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditFlashcardDescriptor editFlashcardDescriptor = new EditFlashcardDescriptor();
         if (argMultimap.getValue(PREFIX_ENGLISH_PHRASE).isPresent()) {
-            editFlashcardDescriptor.setEnglishPhrase(ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get()));
+            editFlashcardDescriptor.setEnglishPhrase(
+                    ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get()));
         }
         if (argMultimap.getValue(PREFIX_FOREIGN_PHRASE).isPresent()) {
-            editFlashcardDescriptor.setForeignPhrase(ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_FOREIGN_PHRASE).get()));
+            editFlashcardDescriptor.setForeignPhrase(
+                    ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_FOREIGN_PHRASE).get()));
         }
 
         if (!editFlashcardDescriptor.isAnyFieldEdited()) {

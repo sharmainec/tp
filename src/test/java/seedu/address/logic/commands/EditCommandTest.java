@@ -9,9 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showFlashcardAtIndex;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,9 +53,11 @@ public class EditCommandTest {
         Flashcard lastFlashcard = model.getFilteredFlashcardList().get(indexLastFlashcard.getZeroBased());
 
         FlashcardBuilder flashcardInList = new FlashcardBuilder(lastFlashcard);
-        Flashcard editedFlashcard = flashcardInList.withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+        Flashcard editedFlashcard = flashcardInList.withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
+                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
 
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
                 .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
         EditCommand editCommand = new EditCommand(indexLastFlashcard, descriptor);
 
@@ -84,7 +86,8 @@ public class EditCommandTest {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
 
         Flashcard flashcardInFilteredList = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        Flashcard editedFlashcard = new FlashcardBuilder(flashcardInFilteredList).withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
+        Flashcard editedFlashcard = new FlashcardBuilder(flashcardInFilteredList)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD,
                 new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build());
 
@@ -110,7 +113,8 @@ public class EditCommandTest {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
 
         // edit flashcard in filtered list into a duplicate in flashcard app
-        Flashcard flashcardInList = model.getFlashcardApp().getFlashcardList().get(INDEX_SECOND_FLASHCARD.getZeroBased());
+        Flashcard flashcardInList = model.getFlashcardApp().getFlashcardList()
+                .get(INDEX_SECOND_FLASHCARD.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD,
                 new EditFlashcardDescriptorBuilder(flashcardInList).build());
 
@@ -120,7 +124,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidFlashcardIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);

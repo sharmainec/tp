@@ -8,7 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidPhrase(String)}
  */
 public class Phrase {
-    public static final String MESSAGE_CONSTRAINTS = "Phrases can take Unicode alphabet characters, and should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Phrases can take Unicode alphabet characters,"
+        + "and should not be blank";
 
     /**
      * The first character of the phrase must not be a whitespace.
@@ -16,7 +17,7 @@ public class Phrase {
      * (?U) allows us to match Unicode characters, which are common in foreign languages.
      */
     public static final String VALIDATION_REGEX = "[^\\s](?U)[\\p{Alpha}', ]*";
-    
+
     public final String value;
 
     /**
@@ -25,32 +26,32 @@ public class Phrase {
      * @param phrase A valid phrase.
      */
     public Phrase(String phrase) {
-      requireNonNull(phrase);
-      checkArgument(isValidPhrase(phrase), MESSAGE_CONSTRAINTS);
-      value = phrase;
+        requireNonNull(phrase);
+        checkArgument(isValidPhrase(phrase), MESSAGE_CONSTRAINTS);
+        value = phrase;
     }
 
     /**
      * Returns true if a given phrase is a valid phrase.
      */
     public static boolean isValidPhrase(String test) {
-      return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-      return value;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
-      return other == this
-          || (other instanceof Phrase
-          && value.equals(((Phrase) other).value));
+        return other == this
+                || (other instanceof Phrase
+                && value.equals(((Phrase) other).value));
     }
 
     @Override
     public int hashCode() {
-      return value.hashCode();
+        return value.hashCode();
     }
 }

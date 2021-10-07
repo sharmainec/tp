@@ -1,13 +1,12 @@
 package seedu.address.model;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
-import static seedu.address.testutil.TypicalFlashcards.GOOD_MORNING_CHINESE_FLASHCARD;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardApp;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
+import static seedu.address.testutil.TypicalFlashcards.GOOD_MORNING_CHINESE_FLASHCARD;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -45,7 +44,8 @@ public class FlashcardAppTest {
     @Test
     public void resetData_withDuplicateFlashcards_throwsDuplicateFlashcardException() {
         // Two flashcards with the same identity fields
-        Flashcard editedFlashcard = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD).withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+        Flashcard editedFlashcard = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
         List<Flashcard> newFlashcards = Arrays.asList(GOOD_MORNING_CHINESE_FLASHCARD, editedFlashcard);
         FlashcardAppStub newData = new FlashcardAppStub(newFlashcards);
 
@@ -71,7 +71,8 @@ public class FlashcardAppTest {
     @Test
     public void hasFlashcard_flashcardWithSameIdentityFieldsInFlashcardApp_returnsTrue() {
         flashcardApp.addFlashcard(GOOD_MORNING_CHINESE_FLASHCARD);
-        Flashcard editedFlashcard = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD).withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+        Flashcard editedFlashcard = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
         assertTrue(flashcardApp.hasFlashcard(editedFlashcard));
     }
 
@@ -86,15 +87,15 @@ public class FlashcardAppTest {
      * A stub ReadOnlyFlashcardApp whose flashcards list can violate interface constraints.
      */
     private static class FlashcardAppStub implements ReadOnlyFlashcardApp {
-      private final ObservableList<Flashcard> flashcards = FXCollections.observableArrayList();
+        private final ObservableList<Flashcard> flashcards = FXCollections.observableArrayList();
 
-      FlashcardAppStub(Collection<Flashcard> flashcards) {
-          this.flashcards.setAll(flashcards);
-      }
+        FlashcardAppStub(Collection<Flashcard> flashcards) {
+            this.flashcards.setAll(flashcards);
+        }
 
-      @Override
-      public ObservableList<Flashcard> getFlashcardList() {
-          return flashcards;
-      }
-  }
+        @Override
+        public ObservableList<Flashcard> getFlashcardList() {
+            return flashcards;
+        }
+    }
 }

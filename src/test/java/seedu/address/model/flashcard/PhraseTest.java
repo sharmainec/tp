@@ -39,7 +39,7 @@ public class PhraseTest {
         assertTrue(Phrase.isValidPhrase("shouldn't have")); // punctuation: apostrophe
         assertTrue(Phrase.isValidPhrase("Good, morning")); // punctuation: comma
         assertTrue(Phrase.isValidPhrase("sheesh, i can't believe we are back in lockdown again")); // long phrase
-       
+
         // valid Unicode character phrases
         assertTrue(Phrase.isValidPhrase("你好")); // Chinese, Simplified
         assertTrue(Phrase.isValidPhrase("Привет")); // Russian

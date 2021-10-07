@@ -58,7 +58,8 @@ public class FlashcardAppParserTest {
         Flashcard flashcard = new FlashcardBuilder().build();
         EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(flashcard).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_FLASHCARD.getOneBased() + " " + FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
+                + INDEX_FIRST_FLASHCARD.getOneBased() + " "
+                + FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_FLASHCARD, descriptor), command);
     }
 

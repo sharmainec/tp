@@ -34,8 +34,10 @@ public class FlashcardUtil {
      */
     public static String getEditFlashcardDescriptorDetails(EditFlashcardDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getEnglishPhrase().ifPresent(englishPhrase -> sb.append(PREFIX_ENGLISH_PHRASE).append(englishPhrase.value).append(" "));
-        descriptor.getForeignPhrase().ifPresent(foreignPhrase -> sb.append(PREFIX_FOREIGN_PHRASE).append(foreignPhrase.value).append(" "));
+        descriptor.getEnglishPhrase().ifPresent(englishPhrase -> sb.append(PREFIX_ENGLISH_PHRASE)
+                .append(englishPhrase.value).append(" "));
+        descriptor.getForeignPhrase().ifPresent(foreignPhrase -> sb.append(PREFIX_FOREIGN_PHRASE)
+                .append(foreignPhrase.value).append(" "));
         return sb.toString();
     }
 }

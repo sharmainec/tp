@@ -17,7 +17,8 @@ public class FindCommand extends Command {
     public static final String COMMAND_USAGE = "find ENGLISH_PHRASE";
     public static final String COMMAND_EXAMPLES = "find Good Morning";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all flashcards whose english phrases contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all flashcards whose english phrases contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " hello";

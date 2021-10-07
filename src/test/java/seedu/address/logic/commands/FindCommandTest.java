@@ -31,7 +31,7 @@ public class FindCommandTest {
     public void equals() {
         EnglishPhraseContainsKeywordsPredicate firstPredicate =
                 new EnglishPhraseContainsKeywordsPredicate(Collections.singletonList("first"));
-                EnglishPhraseContainsKeywordsPredicate secondPredicate =
+        EnglishPhraseContainsKeywordsPredicate secondPredicate =
                 new EnglishPhraseContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);

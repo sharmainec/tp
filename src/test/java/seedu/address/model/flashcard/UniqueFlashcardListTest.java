@@ -40,7 +40,8 @@ public class UniqueFlashcardListTest {
     @Test
     public void contains_flashcardWithSameIdentityFieldsInList_returnsTrue() {
         uniqueFlashcardList.add(GOOD_MORNING_CHINESE_FLASHCARD);
-        Flashcard editedFlashcard = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD).withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+        Flashcard editedFlashcard = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
         assertTrue(uniqueFlashcardList.contains(editedFlashcard));
     }
 
@@ -57,17 +58,20 @@ public class UniqueFlashcardListTest {
 
     @Test
     public void setFlashcard_nullTargetFlashcard_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcard(null, GOOD_MORNING_CHINESE_FLASHCARD));
+        assertThrows(NullPointerException.class, () -> uniqueFlashcardList
+                .setFlashcard(null, GOOD_MORNING_CHINESE_FLASHCARD));
     }
 
     @Test
     public void setFlashcard_nullEditedFlashcard_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcard(GOOD_MORNING_CHINESE_FLASHCARD, null));
+        assertThrows(NullPointerException.class, () -> uniqueFlashcardList
+                .setFlashcard(GOOD_MORNING_CHINESE_FLASHCARD, null));
     }
 
     @Test
     public void setFlashcard_targetFlashcardNotInList_throwsFlashcardNotFoundException() {
-        assertThrows(FlashcardNotFoundException.class, () -> uniqueFlashcardList.setFlashcard(GOOD_MORNING_CHINESE_FLASHCARD, GOOD_MORNING_CHINESE_FLASHCARD));
+        assertThrows(FlashcardNotFoundException.class, () -> uniqueFlashcardList
+                .setFlashcard(GOOD_MORNING_CHINESE_FLASHCARD, GOOD_MORNING_CHINESE_FLASHCARD));
     }
 
     @Test
@@ -82,7 +86,8 @@ public class UniqueFlashcardListTest {
     @Test
     public void setFlashcard_editedFlashcardHasSameIdentity_success() {
         uniqueFlashcardList.add(GOOD_MORNING_CHINESE_FLASHCARD);
-        Flashcard editedFlashcard = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD).withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+        Flashcard editedFlashcard = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
         uniqueFlashcardList.setFlashcard(GOOD_MORNING_CHINESE_FLASHCARD, editedFlashcard);
         UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
         expectedUniqueFlashcardList.add(editedFlashcard);
@@ -102,7 +107,8 @@ public class UniqueFlashcardListTest {
     public void setFlashcard_editedFlashcardHasNonUniqueIdentity_throwsDuplicateFlashcardException() {
         uniqueFlashcardList.add(GOOD_MORNING_CHINESE_FLASHCARD);
         uniqueFlashcardList.add(HELLO_CHINESE_FLASHCARD);
-        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList.setFlashcard(GOOD_MORNING_CHINESE_FLASHCARD, HELLO_CHINESE_FLASHCARD));
+        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList
+                .setFlashcard(GOOD_MORNING_CHINESE_FLASHCARD, HELLO_CHINESE_FLASHCARD));
     }
 
     @Test
@@ -112,7 +118,8 @@ public class UniqueFlashcardListTest {
 
     @Test
     public void remove_flashcardDoesNotExist_throwsFlashcardNotFoundException() {
-        assertThrows(FlashcardNotFoundException.class, () -> uniqueFlashcardList.remove(GOOD_MORNING_CHINESE_FLASHCARD));
+        assertThrows(FlashcardNotFoundException.class, () -> uniqueFlashcardList
+                .remove(GOOD_MORNING_CHINESE_FLASHCARD));
     }
 
     @Test
@@ -126,7 +133,8 @@ public class UniqueFlashcardListTest {
 
     @Test
     public void setFlashcards_nullUniqueFlashcardList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcards((UniqueFlashcardList) null));
+        assertThrows(NullPointerException.class, () -> uniqueFlashcardList
+                .setFlashcards((UniqueFlashcardList) null));
     }
 
     @Test
@@ -140,7 +148,8 @@ public class UniqueFlashcardListTest {
 
     @Test
     public void setFlashcards_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcards((List<Flashcard>) null));
+        assertThrows(NullPointerException.class, () -> uniqueFlashcardList
+                .setFlashcards((List<Flashcard>) null));
     }
 
     @Test
@@ -155,8 +164,10 @@ public class UniqueFlashcardListTest {
 
     @Test
     public void setFlashcards_listWithDuplicateFlashcards_throwsDuplicateFlashcardException() {
-        List<Flashcard> listWithDuplicateFlashcards = Arrays.asList(GOOD_MORNING_CHINESE_FLASHCARD, GOOD_MORNING_CHINESE_FLASHCARD);
-        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList.setFlashcards(listWithDuplicateFlashcards));
+        List<Flashcard> listWithDuplicateFlashcards = Arrays.asList(GOOD_MORNING_CHINESE_FLASHCARD,
+                GOOD_MORNING_CHINESE_FLASHCARD);
+        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList
+                .setFlashcards(listWithDuplicateFlashcards));
     }
 
     @Test

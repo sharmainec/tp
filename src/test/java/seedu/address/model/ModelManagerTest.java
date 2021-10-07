@@ -95,7 +95,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        FlashcardApp flashcardApp = new FlashcardAppBuilder().withFlashcard(GOOD_MORNING_CHINESE_FLASHCARD).withFlashcard(HELLO_CHINESE_FLASHCARD).build();
+        FlashcardApp flashcardApp = new FlashcardAppBuilder().withFlashcard(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withFlashcard(HELLO_CHINESE_FLASHCARD).build();
         FlashcardApp differentFlashcardApp = new FlashcardApp();
         UserPrefs userPrefs = new UserPrefs();
 

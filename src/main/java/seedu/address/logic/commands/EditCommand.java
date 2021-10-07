@@ -80,11 +80,14 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Flashcard} with the details of {@code flashcardToEdit}
      * edited with {@code editFlashcardDescriptor}.
      */
-    private static Flashcard createEditedFlashcard(Flashcard flashcardToEdit, EditFlashcardDescriptor editFlashcardDescriptor) {
+    private static Flashcard createEditedFlashcard(Flashcard flashcardToEdit,
+            EditFlashcardDescriptor editFlashcardDescriptor) {
         assert flashcardToEdit != null;
 
-        Phrase updatedEnglishPhrase = editFlashcardDescriptor.getEnglishPhrase().orElse(flashcardToEdit.getEnglishPhrase());
-        Phrase updatedForeignPhrase = editFlashcardDescriptor.getForeignPhrase().orElse(flashcardToEdit.getForeignPhrase());
+        Phrase updatedEnglishPhrase = editFlashcardDescriptor.getEnglishPhrase()
+                .orElse(flashcardToEdit.getEnglishPhrase());
+        Phrase updatedForeignPhrase = editFlashcardDescriptor.getForeignPhrase()
+                .orElse(flashcardToEdit.getForeignPhrase());
 
         return new Flashcard(updatedEnglishPhrase, updatedForeignPhrase);
     }
@@ -133,7 +136,7 @@ public class EditCommand extends Command {
         }
 
         public void setEnglishPhrase(Phrase englishPhrase) {
-            this.englishPhrase= englishPhrase;
+            this.englishPhrase = englishPhrase;
         }
 
         public Optional<Phrase> getEnglishPhrase() {
