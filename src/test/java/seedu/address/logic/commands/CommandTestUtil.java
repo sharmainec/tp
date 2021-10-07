@@ -28,13 +28,19 @@ public class CommandTestUtil {
     public static final String VALID_ENGLISH_PHRASE_GOOD_MORNING = "Good Morning";
     public static final String VALID_CHINESE_PHRASE_GOOD_MORNING = "早安";
 
-    public static final String CHINESE_PHRASE_DESC_GOOD_MORNING = " " + PREFIX_FOREIGN_PHRASE + VALID_CHINESE_PHRASE_GOOD_MORNING;
-    public static final String CHINESE_PHRASE_DESC_HELLO = " " + PREFIX_FOREIGN_PHRASE + VALID_CHINESE_PHRASE_HELLO;
-    public static final String ENGLISH_PHRASE_DESC_GOOD_MORNING = " " + PREFIX_ENGLISH_PHRASE + VALID_ENGLISH_PHRASE_GOOD_MORNING;
-    public static final String ENGLISH_PHRASE_DESC_HELLO = " " + PREFIX_ENGLISH_PHRASE + VALID_ENGLISH_PHRASE_HELLO;
+    public static final String CHINESE_PHRASE_DESC_GOOD_MORNING = " " + PREFIX_FOREIGN_PHRASE
+            + VALID_CHINESE_PHRASE_GOOD_MORNING;
+    public static final String CHINESE_PHRASE_DESC_HELLO = " " + PREFIX_FOREIGN_PHRASE
+            + VALID_CHINESE_PHRASE_HELLO;
+    public static final String ENGLISH_PHRASE_DESC_GOOD_MORNING = " " + PREFIX_ENGLISH_PHRASE
+            + VALID_ENGLISH_PHRASE_GOOD_MORNING;
+    public static final String ENGLISH_PHRASE_DESC_HELLO = " " + PREFIX_ENGLISH_PHRASE
+            + VALID_ENGLISH_PHRASE_HELLO;
 
-    public static final String INVALID_FOREIGN_PHRASE_DESC = " " + PREFIX_FOREIGN_PHRASE + "早安&"; // '&' not allowed in phrases
-    public static final String INVALID_ENGLISH_PHRASE_DESC = " " + PREFIX_ENGLISH_PHRASE + "Good Morning\""; // '"' not allows in phrases
+    public static final String INVALID_FOREIGN_PHRASE_DESC = " " + PREFIX_FOREIGN_PHRASE
+            + "早安&"; // '&' not allowed in phrases
+    public static final String INVALID_ENGLISH_PHRASE_DESC = " " + PREFIX_ENGLISH_PHRASE
+            + "Good Morning\""; // '"' not allows in phrases
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -100,7 +106,8 @@ public class CommandTestUtil {
 
         Flashcard flashcard = model.getFilteredFlashcardList().get(targetIndex.getZeroBased());
         final String[] splitEnglishPhrase = flashcard.getEnglishPhrase().value.split("\\s+");
-        model.updateFilteredFlashcardList(new EnglishPhraseContainsKeywordsPredicate(Arrays.asList(splitEnglishPhrase[0])));
+        model.updateFilteredFlashcardList(new EnglishPhraseContainsKeywordsPredicate(
+                Arrays.asList(splitEnglishPhrase[0])));
 
         assertEquals(1, model.getFilteredFlashcardList().size());
     }

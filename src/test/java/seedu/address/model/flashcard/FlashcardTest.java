@@ -3,8 +3,8 @@ package seedu.address.model.flashcard;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_HELLO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_HELLO;
 import static seedu.address.testutil.TypicalFlashcards.GOOD_MORNING_CHINESE_FLASHCARD;
 import static seedu.address.testutil.TypicalFlashcards.HELLO_CHINESE_FLASHCARD;
 
@@ -22,20 +22,24 @@ public class FlashcardTest {
         assertFalse(GOOD_MORNING_CHINESE_FLASHCARD.isSameFlashcard(null));
 
         // same english phrase, all other attributes different -> returns true
-        Flashcard editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD).withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+        Flashcard editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
         assertTrue(GOOD_MORNING_CHINESE_FLASHCARD.isSameFlashcard(editedGoodMorning));
 
         // different english phrase, all other attributes same -> returns false
-        editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD).withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
+        editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
         assertFalse(GOOD_MORNING_CHINESE_FLASHCARD.isSameFlashcard(editedGoodMorning));
 
         // English phrase differs in case, all other attributes same -> returns false
-        editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD).withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING.toLowerCase()).build();
+        editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING.toLowerCase()).build();
         assertFalse(GOOD_MORNING_CHINESE_FLASHCARD.isSameFlashcard(editedGoodMorning));
 
         // name has trailing spaces, all other attributes same -> returns false
         String englishPhraseWithTrailingSpaces = VALID_ENGLISH_PHRASE_GOOD_MORNING + " ";
-        editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD).withEnglishPhrase(englishPhraseWithTrailingSpaces).build();
+        editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withEnglishPhrase(englishPhraseWithTrailingSpaces).build();
         assertFalse(GOOD_MORNING_CHINESE_FLASHCARD.isSameFlashcard(editedGoodMorning));
     }
 
@@ -58,11 +62,13 @@ public class FlashcardTest {
         assertFalse(GOOD_MORNING_CHINESE_FLASHCARD.equals(HELLO_CHINESE_FLASHCARD));
 
         // different English phrase -> returns false
-        Flashcard editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD).withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
+        Flashcard editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
         assertFalse(GOOD_MORNING_CHINESE_FLASHCARD.equals(editedGoodMorning));
 
         // different foreign phrase -> returns false
-        editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD).withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+        editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
         assertFalse(GOOD_MORNING_CHINESE_FLASHCARD.equals(editedGoodMorning));
     }
 }

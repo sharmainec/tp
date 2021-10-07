@@ -30,13 +30,16 @@ public class AddCommandParserTest {
         Flashcard expectedFlashcard = new FlashcardBuilder(HELLO_CHINESE_FLASHCARD).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_HELLO, new AddCommand(expectedFlashcard));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + ENGLISH_PHRASE_DESC_HELLO
+                + CHINESE_PHRASE_DESC_HELLO, new AddCommand(expectedFlashcard));
 
         // multiple English phrases - last English phrase accepted
-        assertParseSuccess(parser, ENGLISH_PHRASE_DESC_GOOD_MORNING + ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_HELLO, new AddCommand(expectedFlashcard));
+        assertParseSuccess(parser, ENGLISH_PHRASE_DESC_GOOD_MORNING + ENGLISH_PHRASE_DESC_HELLO
+                + CHINESE_PHRASE_DESC_HELLO, new AddCommand(expectedFlashcard));
 
         // multiple foreign phrases - last foreign phrase accepted
-        assertParseSuccess(parser, ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_GOOD_MORNING + CHINESE_PHRASE_DESC_HELLO, new AddCommand(expectedFlashcard));
+        assertParseSuccess(parser, ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_GOOD_MORNING
+                + CHINESE_PHRASE_DESC_HELLO, new AddCommand(expectedFlashcard));
     }
 
     @Test
@@ -62,7 +65,8 @@ public class AddCommandParserTest {
         assertParseFailure(parser, ENGLISH_PHRASE_DESC_HELLO + INVALID_FOREIGN_PHRASE_DESC, Phrase.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_ENGLISH_PHRASE_DESC + INVALID_FOREIGN_PHRASE_DESC, Phrase.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_ENGLISH_PHRASE_DESC + INVALID_FOREIGN_PHRASE_DESC,
+                Phrase.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_HELLO,

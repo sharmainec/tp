@@ -47,7 +47,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validFlashcard);
         ModelStub modelStub = new ModelStubWithFlashcard(validFlashcard);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FLASHCARD, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_FLASHCARD, () -> addCommand.execute(modelStub));
     }
 
     @Test

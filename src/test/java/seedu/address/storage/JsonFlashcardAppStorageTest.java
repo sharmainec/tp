@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalFlashcards.GOOD_AFTERNOON_CHINESE_FLASHCARD;
+import static seedu.address.testutil.TypicalFlashcards.AFTERNOON_CHINESE_FLASHCARD;
 import static seedu.address.testutil.TypicalFlashcards.HAPPY_BIRTHDAY;
 import static seedu.address.testutil.TypicalFlashcards.THANK_YOU_CHINESE_FLASHCARD;
 import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardApp;
@@ -74,7 +74,7 @@ public class JsonFlashcardAppStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addFlashcard(THANK_YOU_CHINESE_FLASHCARD);
-        original.removeFlashcard(GOOD_AFTERNOON_CHINESE_FLASHCARD);
+        original.removeFlashcard(AFTERNOON_CHINESE_FLASHCARD);
         jsonFlashcardAppStorage.saveFlashcardApp(original, filePath);
         readBack = jsonFlashcardAppStorage.readFlashcardApp(filePath).get();
         assertEquals(original, new FlashcardApp(readBack));

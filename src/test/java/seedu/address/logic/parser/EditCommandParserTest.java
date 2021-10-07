@@ -61,26 +61,34 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_ENGLISH_PHRASE_DESC, Phrase.MESSAGE_CONSTRAINTS); // invalid English phrase
-        assertParseFailure(parser, "1" + INVALID_FOREIGN_PHRASE_DESC, Phrase.MESSAGE_CONSTRAINTS); // invalid foreign phrase
+        assertParseFailure(parser, "1" + INVALID_ENGLISH_PHRASE_DESC,
+                Phrase.MESSAGE_CONSTRAINTS); // invalid English phrase
+        assertParseFailure(parser, "1" + INVALID_FOREIGN_PHRASE_DESC,
+                Phrase.MESSAGE_CONSTRAINTS); // invalid foreign phrase
 
         // invalid English phrase followed by valid foreign phrase
-        assertParseFailure(parser, "1" + INVALID_ENGLISH_PHRASE_DESC + CHINESE_PHRASE_DESC_GOOD_MORNING, Phrase.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_ENGLISH_PHRASE_DESC + CHINESE_PHRASE_DESC_GOOD_MORNING,
+                Phrase.MESSAGE_CONSTRAINTS);
 
-        // valid English phrase followed by invalid English phrase. The test case for invalid English phrase followed by valid English phrase
-        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + ENGLISH_PHRASE_DESC_GOOD_MORNING + INVALID_ENGLISH_PHRASE_DESC, Phrase.MESSAGE_CONSTRAINTS);
+        // valid English phrase followed by invalid English phrase. The test case for invalid English
+        // phrase followed by valid English phrase is tested at
+        // {@code parse_invalidValueFollowedByValidValue_success()}
+        assertParseFailure(parser, "1" + ENGLISH_PHRASE_DESC_GOOD_MORNING + INVALID_ENGLISH_PHRASE_DESC,
+                Phrase.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_ENGLISH_PHRASE_DESC + INVALID_FOREIGN_PHRASE_DESC, Phrase.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_ENGLISH_PHRASE_DESC + INVALID_FOREIGN_PHRASE_DESC,
+                Phrase.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_FLASHCARD;
-        String userInput = targetIndex.getOneBased() + ENGLISH_PHRASE_DESC_GOOD_MORNING + CHINESE_PHRASE_DESC_GOOD_MORNING;
+        String userInput = targetIndex.getOneBased() + ENGLISH_PHRASE_DESC_GOOD_MORNING
+                + CHINESE_PHRASE_DESC_GOOD_MORNING;
 
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)
                 .withForeignPhrase(VALID_CHINESE_PHRASE_GOOD_MORNING).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -92,7 +100,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_FLASHCARD;
         String userInput = targetIndex.getOneBased() + ENGLISH_PHRASE_DESC_HELLO;
 
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -103,7 +112,8 @@ public class EditCommandParserTest {
         // English phrase
         Index targetIndex = INDEX_THIRD_FLASHCARD;
         String userInput = targetIndex.getOneBased() + ENGLISH_PHRASE_DESC_GOOD_MORNING;
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING).build();
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -117,10 +127,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_FLASHCARD;
-        String userInput = targetIndex.getOneBased() + ENGLISH_PHRASE_DESC_GOOD_MORNING + CHINESE_PHRASE_DESC_GOOD_MORNING
-                + ENGLISH_PHRASE_DESC_GOOD_MORNING + CHINESE_PHRASE_DESC_GOOD_MORNING + ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_HELLO;
+        String userInput = targetIndex.getOneBased() + ENGLISH_PHRASE_DESC_GOOD_MORNING
+                + CHINESE_PHRASE_DESC_GOOD_MORNING + ENGLISH_PHRASE_DESC_GOOD_MORNING
+                + CHINESE_PHRASE_DESC_GOOD_MORNING + ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_HELLO;
 
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
                 .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -131,13 +143,16 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_FLASHCARD;
-        String userInput = targetIndex.getOneBased() + INVALID_ENGLISH_PHRASE_DESC + ENGLISH_PHRASE_DESC_GOOD_MORNING;
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING).build();
+        String userInput = targetIndex.getOneBased() + INVALID_ENGLISH_PHRASE_DESC
+                + ENGLISH_PHRASE_DESC_GOOD_MORNING;
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + INVALID_ENGLISH_PHRASE_DESC + CHINESE_PHRASE_DESC_GOOD_MORNING + ENGLISH_PHRASE_DESC_GOOD_MORNING;
+        userInput = targetIndex.getOneBased() + INVALID_ENGLISH_PHRASE_DESC + CHINESE_PHRASE_DESC_GOOD_MORNING
+                + ENGLISH_PHRASE_DESC_GOOD_MORNING;
         descriptor = new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)
                 .withForeignPhrase(VALID_CHINESE_PHRASE_GOOD_MORNING).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given flashcard {@code target} with {@code editedFlashcard}.
      * {@code target} must exist in the flashcard app.
-     * The flashcard identity of {@code editedFlashcard} must not be the same as another existing flashcard in the flashcard app.
+     * The flashcard identity of {@code editedFlashcard} must not be the same as
+     * another existing flashcard in the flashcard app.
      */
     void setFlashcard(Flashcard target, Flashcard editedFlashcard);
 

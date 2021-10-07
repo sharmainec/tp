@@ -23,7 +23,7 @@ public class FlashcardApp implements ReadOnlyFlashcardApp {
      *   among constructors.
      */
     {
-        flashcards= new UniqueFlashcardList();
+        flashcards = new UniqueFlashcardList();
     }
 
     public FlashcardApp() {}
@@ -75,7 +75,8 @@ public class FlashcardApp implements ReadOnlyFlashcardApp {
     /**
      * Replaces the given flashcard {@code target} in the list with {@code editedFlashcard}.
      * {@code target} must exist in the flashcard app.
-     * The flashcard identity of {@code editedFlashcard} must not be the same as another existing flashcard in the flashcard app.
+     * The flashcard identity of {@code editedFlashcard} must not be the same as another
+     * existing flashcard in the flashcard app.
      */
     public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireNonNull(editedFlashcard);
@@ -91,7 +92,7 @@ public class FlashcardApp implements ReadOnlyFlashcardApp {
     }
 
     //// util methods
-    
+
     @Override
     public String toString() {
         return flashcards.asUnmodifiableObservableList().size() + " flashcards";

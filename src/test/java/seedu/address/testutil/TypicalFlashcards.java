@@ -14,12 +14,12 @@ import seedu.address.model.flashcard.Flashcard;
 
 public class TypicalFlashcards {
 
-    public static final Flashcard GOOD_AFTERNOON_CHINESE_FLASHCARD =
-        new FlashcardBuilder().withEnglishPhrase("Good Afternoon")
-            .withForeignPhrase("午安").build();
-    public static final Flashcard GOOD_NIGHT_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Good Night")
-        .withForeignPhrase("晚安").build();
-    public static final Flashcard GOOD_BYE_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Good Bye")
+    public static final Flashcard AFTERNOON_CHINESE_FLASHCARD =
+        new FlashcardBuilder().withEnglishPhrase("Afternoon")
+            .withForeignPhrase("下午").build();
+    public static final Flashcard NIGHT_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Night")
+        .withForeignPhrase("晚上").build();
+    public static final Flashcard BYE_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Bye")
         .withForeignPhrase("再见").build();
     public static final Flashcard SORRY_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Sorry")
         .withForeignPhrase("对不起").build();
@@ -55,7 +55,7 @@ public class TypicalFlashcards {
 
     public static List<Flashcard> getTypicalFlashcards() {
         return new ArrayList<>(
-            Arrays.asList(GOOD_AFTERNOON_CHINESE_FLASHCARD, GOOD_NIGHT_CHINESE_FLASHCARD, GOOD_BYE_CHINESE_FLASHCARD,
+            Arrays.asList(AFTERNOON_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD,
                 SORRY_CHINESE_FLASHCARD));
     }
 }

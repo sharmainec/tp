@@ -37,7 +37,7 @@ public class Flashcard {
      */
     public boolean isSameFlashcard(Flashcard otherFlashcard) {
         if (otherFlashcard == this) {
-          return true;
+            return true;
         }
         return otherFlashcard != null
                 && otherFlashcard.getEnglishPhrase().equals(getEnglishPhrase());
@@ -60,7 +60,7 @@ public class Flashcard {
         return otherFlashcard.getEnglishPhrase().equals(getEnglishPhrase())
                 && otherFlashcard.getForeignPhrase().equals(getForeignPhrase());
     }
-    
+
     @Override
     public int hashCode() {
         return Objects.hash(englishPhrase, foreignPhrase);

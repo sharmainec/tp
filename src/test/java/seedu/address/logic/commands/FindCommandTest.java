@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalFlashcards.GOOD_BYE_CHINESE_FLASHCARD;
-import static seedu.address.testutil.TypicalFlashcards.GOOD_NIGHT_CHINESE_FLASHCARD;
+import static seedu.address.testutil.TypicalFlashcards.BYE_CHINESE_FLASHCARD;
+import static seedu.address.testutil.TypicalFlashcards.NIGHT_CHINESE_FLASHCARD;
 import static seedu.address.testutil.TypicalFlashcards.SORRY_CHINESE_FLASHCARD;
 import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 
@@ -31,7 +31,7 @@ public class FindCommandTest {
     public void equals() {
         EnglishPhraseContainsKeywordsPredicate firstPredicate =
                 new EnglishPhraseContainsKeywordsPredicate(Collections.singletonList("first"));
-                EnglishPhraseContainsKeywordsPredicate secondPredicate =
+        EnglishPhraseContainsKeywordsPredicate secondPredicate =
                 new EnglishPhraseContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
@@ -71,7 +71,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(GOOD_BYE_CHINESE_FLASHCARD, GOOD_NIGHT_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD),
+        assertEquals(Arrays.asList(NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD),
                 model.getFilteredFlashcardList());
     }
 
