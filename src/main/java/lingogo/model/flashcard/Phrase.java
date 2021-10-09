@@ -9,7 +9,7 @@ import static lingogo.commons.util.AppUtil.checkArgument;
  */
 public class Phrase {
     public static final String MESSAGE_CONSTRAINTS = "Phrases can take Unicode alphabet characters,"
-        + "and should not be blank";
+        + " and should not be blank";
 
     /**
      * The first character of the phrase must not be a whitespace.
