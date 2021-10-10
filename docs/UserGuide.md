@@ -18,11 +18,11 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
 1. Copy the file to the folder you want to use as the _home folder_ for LingoGO!.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the 
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the
    app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
@@ -31,22 +31,22 @@ LingoGO! is a **desktop app for university students who use English as their fir
    * **`add`**`e/Good Morning f/早安` : Adds a flashcard with English phrase `Good Morning` and corresponding foreign phrase `早安` to LingoGO!.
 
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current displayed list.
-   
+
    * **`clear`** : Deletes all flashcards.
-   
+
    * **`edit`**`3`**`f/Guten Morgen`** : Edits the foreign phrase of the 3rd flashcard shown in the current displayed list to `Guten Morgen`.
-   
+
    * **`upload`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
-   
+
    * **`download`**`myCards.csv` : Exports cards from LingoGO! to a CSV file in a file name `myCards.csv`.
 
    * **`exit`** : Exits the app.
 
    * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct English phrase.
 
-   * **`test`**`17`**`hello`**: Checks flashcard 17's English phrase against the word **`hello`** and then shows 
+   * **`test`**`17`**`hello`**: Checks flashcard 17's English phrase against the word **`hello`** and then shows
      whether it is correct.
-   
+
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -210,7 +210,7 @@ Format: `test INDEX ENGLISH_PHRASE`
 * The index refers to the index number shown in the current displayed list.
 * The index **must be a positive integer** 1, 2, 3, …
 * Testing is only allowed for flashcards that are flipped down (i.e. the English phrase is hidden).
-* `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello"). 
+* `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello").
 
 Examples:
 * `test 4 hello` checks the 4th card on display to see if `hello` matches the English phrase of the flashcard.

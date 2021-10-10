@@ -1,0 +1,16 @@
+{
+  "_comment": "FlashcardApp save file which contains the same Flashcard values as in TypicalFlashcard#getTypicalFlashcardApp()",
+  "flashcards": [ {
+    "englishPhrase": "Afternoon",
+    "foreignPhrase": "下午"
+  }, {
+    "englishPhrase": "Night",
+    "foreignPhrase": "晚上"
+  }, {
+    "englishPhrase": "Bye",
+    "foreignPhrase": "再见"
+  }, {
+    "englishPhrase": "Sorry",
+    "foreignPhrase": "对不起"
+  } ]
+}
