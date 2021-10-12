@@ -10,6 +10,7 @@ import lingogo.logic.commands.DeleteCommand;
 import lingogo.logic.commands.EditCommand;
 import lingogo.logic.commands.ExitCommand;
 import lingogo.logic.commands.FindCommand;
+import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ListCommand;
 
@@ -17,10 +18,6 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
     private static final String FXML = "CommandHelpMessage.fxml";
 
     // TODO: Shift help messages to respective command classes when implemented
-    private static final String FLIP_COMMAND_DESCRIPTION = "Toggles the flashcard to either show or hide its English"
-            + " phrase";
-    private static final String FLIP_COMMAND_USAGE = "flip INDEX";
-    private static final String FLIP_COMMAND_EXAMPLES = "flip 3";
     private static final String TEST_COMMAND_DESCRIPTION = "Checks whether the English phrase of a flashcard"
             + " matches a given phrase";
     private static final String TEST_COMMAND_USAGE = "test INDEX a/ENGLISH_PHRASE";
@@ -81,8 +78,8 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
                     FindCommand.COMMAND_EXAMPLES);
             break;
         case FLIP:
-            this.setDisplayText("flip", FLIP_COMMAND_DESCRIPTION, FLIP_COMMAND_USAGE,
-                    FLIP_COMMAND_EXAMPLES);
+            this.setDisplayText("flip", FlipCommand.FLIP_COMMAND_DESCRIPTION, FlipCommand.FLIP_COMMAND_USAGE,
+                    FlipCommand.FLIP_COMMAND_EXAMPLES);
             break;
         case HELP:
             this.setDisplayText(HelpCommand.COMMAND_WORD, HelpCommand.COMMAND_DESCRIPTION, HelpCommand.COMMAND_USAGE,
