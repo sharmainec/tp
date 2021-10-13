@@ -12,11 +12,17 @@ public class Phrase {
         + " and should not be blank";
 
     /**
-     * The first character of the phrase must not be a whitespace.
+     * {@code \\S} The first character of the phrase must not be a whitespace.
      * This prevents " " (a blank string) from becoming a valid input.
-     * (?U) allows us to match Unicode characters, which are common in foreign languages.
+     * {@code \\X+} Allows us to match a Unicode grapheme one or more times.
+     * E.g. Consider the character {@code à}. It can be encoded in 2 ways:
+     * <ul>
+     *     <li>{@code U+0061} (letter 'a') followed by {@code U+0300} (grave accent)</li>
+     *     <li>{@code U+00E0} (letter 'a' with a grave accent)</li>
+     * </ul>
+     * Each of these ways count as 1 grapheme.
      */
-    public static final String VALIDATION_REGEX = "[^\\s](?U)[\\p{Alpha}', ]*";
+    public static final String VALIDATION_REGEX = "\\S\\X+";
 
     public final String value;
 
