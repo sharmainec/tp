@@ -18,10 +18,10 @@ import lingogo.model.flashcard.Phrase;
 public class FlipCommand extends Command {
 
     public static final String COMMAND_WORD = "flip";
-    public static final String FLIP_COMMAND_DESCRIPTION = "Toggles the flashcard to either show English or "
+    public static final String COMMAND_DESCRIPTION = "Toggles the flashcard to either show English or "
             + " foreign phrase";
-    public static final String FLIP_COMMAND_USAGE = "flip INDEX";
-    public static final String FLIP_COMMAND_EXAMPLES = "flip 3";
+    public static final String COMMAND_USAGE = "flip INDEX";
+    public static final String COMMAND_EXAMPLES = "flip 3";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Flips the flashcard identified by the index number used in the displayed flashcard list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"

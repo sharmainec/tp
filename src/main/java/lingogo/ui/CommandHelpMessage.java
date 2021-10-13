@@ -78,8 +78,8 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
                     FindCommand.COMMAND_EXAMPLES);
             break;
         case FLIP:
-            this.setDisplayText("flip", FlipCommand.FLIP_COMMAND_DESCRIPTION, FlipCommand.FLIP_COMMAND_USAGE,
-                    FlipCommand.FLIP_COMMAND_EXAMPLES);
+            this.setDisplayText("flip", FlipCommand.COMMAND_DESCRIPTION, FlipCommand.COMMAND_USAGE,
+                    FlipCommand.COMMAND_EXAMPLES);
             break;
         case HELP:
             this.setDisplayText(HelpCommand.COMMAND_WORD, HelpCommand.COMMAND_DESCRIPTION, HelpCommand.COMMAND_USAGE,
