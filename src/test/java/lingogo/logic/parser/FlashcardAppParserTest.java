@@ -3,6 +3,7 @@ package lingogo.logic.parser;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static lingogo.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
+import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.testutil.Assert.assertThrows;
 import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -94,9 +95,11 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_test() throws Exception {
+        TestCommand command = (TestCommand) parser.parseCommand(
+            TestCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased() + " " + PREFIX_ENGLISH_PHRASE
+            + VALID_ENGLISH_PHRASE_GOOD_MORNING);
         assertEquals(new TestCommand(INDEX_FIRST_FLASHCARD, ParserUtil.parsePhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)),
-            parser.parseCommand(TestCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased() + " e/"
-                + VALID_ENGLISH_PHRASE_GOOD_MORNING));
+            command);
     }
 
     @Test

@@ -36,7 +36,7 @@ public class TestCommandTest {
         Flashcard flashcardToTest = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
         TestCommand testCommand = new TestCommand(INDEX_FIRST_FLASHCARD, validPhraseAfternoon);
 
-        String expectedMessage = String.format(testCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT,
+        String expectedMessage = String.format(TestCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT,
             flashcardToTest.getForeignPhrase(), flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_AFTERNOON);
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
@@ -49,7 +49,7 @@ public class TestCommandTest {
         Flashcard flashcardToTest = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
         TestCommand testCommand = new TestCommand(INDEX_FIRST_FLASHCARD, validPhraseGoodMorning);
 
-        String expectedMessage = String.format(testCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_WRONG,
+        String expectedMessage = String.format(TestCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_WRONG,
             flashcardToTest.getForeignPhrase(), flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_GOOD_MORNING);
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());

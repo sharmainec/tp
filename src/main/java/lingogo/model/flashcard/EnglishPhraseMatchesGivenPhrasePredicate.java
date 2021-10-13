@@ -2,6 +2,9 @@ package lingogo.model.flashcard;
 
 import java.util.function.Predicate;
 
+/**
+ * A {@code Predicate} which tests whether a given {@code Flashcard}'s English phrase matches the given phrase.
+ */
 public class EnglishPhraseMatchesGivenPhrasePredicate implements Predicate<Flashcard> {
     private final Phrase givenPhrase;
 

@@ -205,7 +205,7 @@ Checks whether the English phrase of a flashcard matches a given phrase.
 
 Format: `test INDEX e/ENGLISH_PHRASE`
 
-* Checks the English phrase of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
+* Checks the English phrase of the flashcard at the specified `INDEX` against the given `ENGLISH_PHRASE`.
 * The app will then show user the correct English phrase and tell the user whether he got it right.
 * The index refers to the index number shown in the current displayed list.
 * The index **must be a positive integer** 1, 2, 3, …
