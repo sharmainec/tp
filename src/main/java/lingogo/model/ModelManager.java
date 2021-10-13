@@ -11,10 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import lingogo.commons.core.GuiSettings;
 import lingogo.commons.core.LogsCenter;
-import lingogo.commons.core.index.Index;
-import lingogo.logic.commands.CommandResult;
 import lingogo.model.flashcard.Flashcard;
-import lingogo.model.flashcard.Phrase;
 
 /**
  * Represents the in-memory model of the flashcard app data.
