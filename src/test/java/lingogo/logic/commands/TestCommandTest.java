@@ -58,6 +58,19 @@ public class TestCommandTest {
     }
 
     @Test
+    public void execute_testFlippedFlashcard_throwsCommandException() {
+        Flashcard flashcardToTest = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        model.setFlashcard(flashcardToTest, flashcardToTest.getFlippedFlashcard());
+
+        TestCommand testCommand = new TestCommand(INDEX_FIRST_FLASHCARD, validPhraseGoodMorning);
+
+        String expectedMessage =
+            String.format(TestCommand.MESSAGE_FLASHCARD_NOT_FLIPPED_DOWN, flashcardToTest.getForeignPhrase());
+
+        assertCommandFailure(testCommand, model, expectedMessage);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
         TestCommand testCommand = new TestCommand(outOfBoundIndex, validPhraseAfternoon);
@@ -96,6 +109,8 @@ public class TestCommandTest {
 
         Model expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
         showFlashcardAtIndex(expectedModel, INDEX_SECOND_FLASHCARD);
+
+        System.out.println(model.getFlashcardApp().getFlashcardList());
 
 
         assertCommandSuccess(testCommand, model, expectedMessage, expectedModel);
