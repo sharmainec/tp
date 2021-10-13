@@ -13,7 +13,7 @@ public class Flashcard {
     // Data fields
     private final Phrase englishPhrase;
     private final Phrase foreignPhrase;
-    private boolean isFlip;
+    private boolean isFlipped;
 
     /**
      * Every field must be present and not null.
@@ -22,7 +22,7 @@ public class Flashcard {
         requireAllNonNull(englishPhrase, foreignPhrase);
         this.englishPhrase = englishPhrase;
         this.foreignPhrase = foreignPhrase;
-        this.isFlip = false;
+        this.isFlipped = false;
     }
 
     public Phrase getEnglishPhrase() {
@@ -34,11 +34,11 @@ public class Flashcard {
     }
 
     public boolean getFlipStatus() {
-        return isFlip;
+        return isFlipped;
     }
 
     public void setFlipStatus(boolean status) {
-        this.isFlip = status;
+        this.isFlipped = status;
     }
 
     /**
