@@ -3,6 +3,7 @@ package lingogo.model;
 import static java.util.Objects.requireNonNull;
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import lingogo.commons.core.GuiSettings;
 import lingogo.commons.core.LogsCenter;
+import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.flashcard.Flashcard;
 
 /**
@@ -110,6 +112,18 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedFlashcard);
 
         flashcardApp.setFlashcard(target, editedFlashcard);
+    }
+
+    @Override
+    public void downloadFlashCards(String fileName) throws CommandException {
+        requireAllNonNull(fileName);
+        flashcardApp.downloadFlashCards(fileName);
+    }
+
+    @Override
+    public void uploadFlashCards(String filePath) throws CommandException {
+        requireAllNonNull(filePath);
+        flashcardApp.uploadFlashCards(filePath);
     }
 
     //=========== Filtered Flashcard List Accessors =============================================================

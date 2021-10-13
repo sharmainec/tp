@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.regex.Pattern;
 
 /**
  * Writes and reads files
@@ -78,6 +79,19 @@ public class FileUtil {
      */
     public static void writeToFile(Path file, String content) throws IOException {
         Files.write(file, content.getBytes(CHARSET));
+    }
+
+    /**
+     * Returns true if {@code fileName} is a valid CSV fileName,
+     * otherwise returns false.
+     * @param fileName A string representing the file name. Cannot be null.
+     */
+    public static boolean isValidCSVFileName(String fileName) {
+        Pattern p = Pattern.compile("[$&+:=\\\\?@#|/'<>%!*{}`]");
+        return fileName.endsWith(".csv")
+                && fileName.length() <= 31
+                && !p.matcher(fileName).find()
+                && !fileName.contains(" ");
     }
 
 }

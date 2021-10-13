@@ -21,7 +21,8 @@ import lingogo.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
-    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save/load data to/from file: ";
+    public static final String INCORRECT_CSV_FORMAT_ERROR_MESSAGE = "The CSV file is not in the correct format";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;

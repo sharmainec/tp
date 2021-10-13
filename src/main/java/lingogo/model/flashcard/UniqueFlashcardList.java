@@ -2,12 +2,18 @@ package lingogo.model.flashcard;
 
 import static java.util.Objects.requireNonNull;
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
+import static lingogo.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.flashcard.exceptions.DuplicateFlashcardException;
 import lingogo.model.flashcard.exceptions.FlashcardNotFoundException;
 
@@ -95,6 +101,38 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
         }
 
         internalList.setAll(flashcards);
+    }
+
+    public void downloadFlashcards(String fileName) throws CommandException {
+        String filePath = "./data/" + fileName;
+        try {
+            new File(filePath).createNewFile();
+            FileWriter fw = new FileWriter(filePath, false);
+            fw.append("Foreign,English\n");
+            fw.flush();
+            for (Flashcard card : internalList) {
+                String line = card.toCSVString();
+                fw.append(line);
+                fw.flush();
+            }
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+    }
+
+    public void uploadFlashcards(String filePath) throws CommandException {
+        try {
+            File f = new File(filePath);
+            Scanner sc = new Scanner(f);
+            sc.nextLine(); // skip the title row
+            while(sc.hasNextLine()) { // works as long as you don't allow "\n" in phrases
+                String line = sc.nextLine();
+                Flashcard card = new Flashcard(line);
+                internalList.add(card);
+            }
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
     }
 
     /**

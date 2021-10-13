@@ -3,11 +3,10 @@ package lingogo.model.flashcard;
 import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_HELLO;
-import static lingogo.testutil.TypicalFlashcards.GOOD_MORNING_CHINESE_FLASHCARD;
-import static lingogo.testutil.TypicalFlashcards.HELLO_CHINESE_FLASHCARD;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static lingogo.testutil.TypicalFlashcards.*;
+import static org.junit.jupiter.api.Assertions.*;
 
+import lingogo.logic.commands.exceptions.CommandException;
 import org.junit.jupiter.api.Test;
 
 import lingogo.testutil.FlashcardBuilder;
@@ -41,6 +40,16 @@ public class FlashcardTest {
         editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
                 .withEnglishPhrase(englishPhraseWithTrailingSpaces).build();
         assertFalse(GOOD_MORNING_CHINESE_FLASHCARD.isSameFlashcard(editedGoodMorning));
+
+        // correct output to CSV string -> return true
+        String CSVLine = "下午,Afternoon";
+        assertEquals(CSVLine, AFTERNOON_CHINESE_FLASHCARD.toCSVString());
+
+        // correct input from the CSV -> return true
+        CSVLine = "下午,Afternoon";
+        try {
+            assertTrue(AFTERNOON_CHINESE_FLASHCARD.isSameFlashcard(new Flashcard(CSVLine)));
+        } catch (CommandException ignored) {}
     }
 
     @Test

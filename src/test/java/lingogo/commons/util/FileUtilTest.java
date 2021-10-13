@@ -18,6 +18,12 @@ public class FileUtilTest {
 
         // null path -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> FileUtil.isValidPath(null));
+
+        // invalid CSV file name
+        assertFalse(FileUtil.isValidCSVFileName("abc"));
+        assertFalse(FileUtil.isValidCSVFileName("a/v/d/.csv"));
+        assertFalse(FileUtil.isValidCSVFileName("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz.csv"));
+        assertFalse(FileUtil.isValidCSVFileName("file name.csv"));
     }
 
 }

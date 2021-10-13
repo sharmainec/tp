@@ -11,17 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lingogo.logic.commands.*;
 import org.junit.jupiter.api.Test;
 
-import lingogo.logic.commands.AddCommand;
-import lingogo.logic.commands.ClearCommand;
-import lingogo.logic.commands.DeleteCommand;
-import lingogo.logic.commands.EditCommand;
 import lingogo.logic.commands.EditCommand.EditFlashcardDescriptor;
-import lingogo.logic.commands.ExitCommand;
-import lingogo.logic.commands.FindCommand;
-import lingogo.logic.commands.HelpCommand;
-import lingogo.logic.commands.ListCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;
@@ -87,6 +80,16 @@ public class FlashcardAppParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_download() throws Exception {
+        assertTrue(parser.parseCommand(DownloadCommand.COMMAND_WORD) instanceof DownloadCommand);
+    }
+
+    @Test
+    public void parseCommand_upload() throws Exception {
+        assertTrue(parser.parseCommand(UploadCommand.COMMAND_WORD) instanceof UploadCommand);
     }
 
     @Test
