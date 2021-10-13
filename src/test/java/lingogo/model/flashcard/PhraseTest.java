@@ -46,6 +46,9 @@ public class PhraseTest {
         assertTrue(Phrase.isValidPhrase("أهلا")); // Arabic
         assertTrue(Phrase.isValidPhrase("안녕")); // Korean
         assertTrue(Phrase.isValidPhrase("szczęśliwy")); // Polish
+        assertTrue(Phrase.isValidPhrase("légère")); //French
+        assertTrue(Phrase.isValidPhrase("शौचालय")); //Hindi
+        assertTrue(Phrase.isValidPhrase("தண்ணீர்")); //Tamil
     }
 
     @Test

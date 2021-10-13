@@ -5,15 +5,18 @@ import static lingogo.logic.commands.CommandTestUtil.CHINESE_PHRASE_DESC_GOOD_MO
 import static lingogo.logic.commands.CommandTestUtil.CHINESE_PHRASE_DESC_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.ENGLISH_PHRASE_DESC_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.ENGLISH_PHRASE_DESC_HELLO;
+import static lingogo.logic.commands.CommandTestUtil.ENGLISH_PHRASE_DESC_SUNRISE;
 import static lingogo.logic.commands.CommandTestUtil.INVALID_ENGLISH_PHRASE_DESC;
 import static lingogo.logic.commands.CommandTestUtil.INVALID_FOREIGN_PHRASE_DESC;
 import static lingogo.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static lingogo.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static lingogo.logic.commands.CommandTestUtil.TAMIL_PHRASE_DESC_SUNRISE;
 import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_HELLO;
 import static lingogo.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static lingogo.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static lingogo.testutil.TypicalFlashcards.HELLO_CHINESE_FLASHCARD;
+import static lingogo.testutil.TypicalFlashcards.SUNRISE_TAMIL_FLASHCARD;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,6 +43,14 @@ public class AddCommandParserTest {
         // multiple foreign phrases - last foreign phrase accepted
         assertParseSuccess(parser, ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_GOOD_MORNING
                 + CHINESE_PHRASE_DESC_HELLO, new AddCommand(expectedFlashcard));
+    }
+
+    @Test
+    public void parse_foreignPhraseWithCombiningMark_success() {
+        Flashcard expectedFlashcard = new FlashcardBuilder(SUNRISE_TAMIL_FLASHCARD).build();
+
+        assertParseSuccess(parser, ENGLISH_PHRASE_DESC_SUNRISE + TAMIL_PHRASE_DESC_SUNRISE,
+                new AddCommand(expectedFlashcard));
     }
 
     @Test
