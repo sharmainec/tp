@@ -77,12 +77,6 @@ public interface Model {
      */
     void setFlashcard(Flashcard target, Flashcard editedFlashcard);
 
-    /**
-     * Toggles between English and Foreign phrase of the specific flashcard.
-     * The flashcard must exist in the flashcard app.
-     */
-    String flipFlashcard(int index);
-
     /** Returns an unmodifiable view of the filtered flashcard list */
     ObservableList<Flashcard> getFilteredFlashcardList();
 

@@ -68,4 +68,11 @@ public class FlipCommand extends Command {
             return new CommandResult(phraseInEnglish.value);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FlipCommand // instanceof handles nulls
+                && index.equals(((FlipCommand) other).index)); // state check
+    }
 }
