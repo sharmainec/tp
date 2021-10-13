@@ -22,6 +22,7 @@ import lingogo.logic.commands.EditCommand;
 import lingogo.logic.commands.EditCommand.EditFlashcardDescriptor;
 import lingogo.logic.commands.ExitCommand;
 import lingogo.logic.commands.FindCommand;
+import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ListCommand;
 import lingogo.logic.commands.TestCommand;
@@ -91,6 +92,13 @@ public class FlashcardAppParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_flip() throws Exception {
+        assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " 1") instanceof FlipCommand);
+        assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased())
+            instanceof FlipCommand);
     }
 
     @Test
