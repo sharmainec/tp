@@ -27,17 +27,17 @@ public class PhraseTest {
         assertFalse(Phrase.isValidPhrase("")); // empty string
         assertFalse(Phrase.isValidPhrase(" ")); // spaces only
         assertFalse(Phrase.isValidPhrase(" Good Morning")); // preceding whitespace
-        assertFalse(Phrase.isValidPhrase("Good Morning.")); // punctuation: fullstop
-        assertFalse(Phrase.isValidPhrase("Good Morning!")); // punctuation: exclaimation mark
-        assertFalse(Phrase.isValidPhrase("Good Morning?")); // punctuation: question mark
-        assertFalse(Phrase.isValidPhrase("Good_Morning")); // punctuation: underscore
-        assertFalse(Phrase.isValidPhrase("Good-Morning")); // punctuation: dash
 
         // valid English phrases
         assertTrue(Phrase.isValidPhrase("Good Morning"));
         assertTrue(Phrase.isValidPhrase("GOOD MORNING"));
         assertTrue(Phrase.isValidPhrase("shouldn't have")); // punctuation: apostrophe
         assertTrue(Phrase.isValidPhrase("Good, morning")); // punctuation: comma
+        assertTrue(Phrase.isValidPhrase("Good Morning.")); // punctuation: fullstop
+        assertTrue(Phrase.isValidPhrase("Good Morning!")); // punctuation: exclamation mark
+        assertTrue(Phrase.isValidPhrase("Good Morning?")); // punctuation: question mark
+        assertTrue(Phrase.isValidPhrase("Good_Morning")); // punctuation: underscore
+        assertTrue(Phrase.isValidPhrase("Non-stop")); // punctuation: dash
         assertTrue(Phrase.isValidPhrase("sheesh, i can't believe we are back in lockdown again")); // long phrase
 
         // valid Unicode character phrases
