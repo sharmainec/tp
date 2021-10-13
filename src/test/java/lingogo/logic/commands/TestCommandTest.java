@@ -22,7 +22,7 @@ import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.Phrase;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
+ * Contains integration tests (interaction with the Model and Flip) and unit tests for
  * {@code TestCommand}.
  */
 public class TestCommandTest {

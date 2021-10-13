@@ -17,6 +17,10 @@ import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
 import lingogo.model.flashcard.Flashcard;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code FlipCommand}.
+ */
 public class FlipCommandTest {
 
     private Model model = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());

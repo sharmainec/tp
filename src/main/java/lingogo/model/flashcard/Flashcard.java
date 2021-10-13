@@ -99,10 +99,7 @@ public class Flashcard {
             .append(getForeignPhrase())
             .append("\n")
             .append("English phrase: ")
-            .append(getEnglishPhrase())
-            .append("\n")
-            .append("isFlipped: ")
-            .append(getFlipStatus());
+            .append(getEnglishPhrase());
 
         return builder.toString();
     }
