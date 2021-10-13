@@ -1,19 +1,21 @@
 package lingogo.logic.commands;
 
+import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
+import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
+import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
+import static lingogo.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import lingogo.commons.core.Messages;
 import lingogo.commons.core.index.Index;
 import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
 import lingogo.model.flashcard.Flashcard;
-import org.junit.jupiter.api.Test;
-
-import static lingogo.logic.commands.CommandTestUtil.*;
-import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
-import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
-import static lingogo.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FlipCommandTest {
 
@@ -28,7 +30,6 @@ public class FlipCommandTest {
         String expectedMessage = flashcardToFlip.getEnglishPhrase().toString();
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
-        
         assertCommandSuccess(flipCommand, model, expectedMessage, expectedModel);
     }
 
@@ -44,7 +45,7 @@ public class FlipCommandTest {
 
         assertCommandSuccess(flipCommand, model, expectedMessage, expectedModel);
     }
-    
+
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
@@ -52,7 +53,7 @@ public class FlipCommandTest {
 
         assertCommandFailure(flipCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
-    
+
     @Test
     public void equals() {
         FlipCommand flipFirstFlashcard = new FlipCommand(INDEX_FIRST_FLASHCARD);

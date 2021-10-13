@@ -1,13 +1,14 @@
 package lingogo.logic.parser;
 
-import lingogo.logic.commands.FlipCommand;
-import org.junit.jupiter.api.Test;
-
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static lingogo.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static lingogo.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static lingogo.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
+
+import org.junit.jupiter.api.Test;
+
+import lingogo.logic.commands.FlipCommand;
 
 public class FlipCommandParserTest {
     private FlipCommandParser parser = new FlipCommandParser();
