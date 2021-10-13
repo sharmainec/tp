@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* AddressBook-Level3 (AB3): [https://se-education.org/addressbook-level3/](https://se-education.org/addressbook-level3/)
+* This project was originally adapted from [AddressBook-Level3 (AB3)](https://se-education.org/addressbook-level3/)
 
 --------------------------------------------------------------------------------------------------------------------
 
