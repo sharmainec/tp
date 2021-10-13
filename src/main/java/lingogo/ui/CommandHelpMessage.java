@@ -13,15 +13,11 @@ import lingogo.logic.commands.FindCommand;
 import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ListCommand;
+import lingogo.logic.commands.TestCommand;
 
 public class CommandHelpMessage extends UiPart<TitledPane> {
     private static final String FXML = "CommandHelpMessage.fxml";
 
-    // TODO: Shift help messages to respective command classes when implemented
-    private static final String TEST_COMMAND_DESCRIPTION = "Checks whether the English phrase of a flashcard"
-            + " matches a given phrase";
-    private static final String TEST_COMMAND_USAGE = "test INDEX a/ENGLISH_PHRASE";
-    private static final String TEST_COMMAND_EXAMPLES = "test 1 a/good morning";
     private static final String IMPORT_COMMAND_DESCRIPTION = "Imports flashcards into LingoGO! from a specified"
             + " CSV file";
     private static final String IMPORT_COMMAND_USAGE = "upload CSV_FILE_PATH";
@@ -90,8 +86,8 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
                     ListCommand.COMMAND_EXAMPLES);
             break;
         case TEST:
-            this.setDisplayText("test", TEST_COMMAND_DESCRIPTION, TEST_COMMAND_USAGE,
-                    TEST_COMMAND_EXAMPLES);
+            this.setDisplayText(TestCommand.COMMAND_WORD, TestCommand.COMMAND_DESCRIPTION, TestCommand.COMMAND_USAGE,
+                    TestCommand.COMMAND_EXAMPLES);
             break;
         case EXPORT:
             this.setDisplayText("download", EXPORT_COMMAND_DESCRIPTION, EXPORT_COMMAND_USAGE,

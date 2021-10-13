@@ -27,6 +27,7 @@ public class CommandTestUtil {
     public static final String VALID_CHINESE_PHRASE_HELLO = "你好";
     public static final String VALID_ENGLISH_PHRASE_GOOD_MORNING = "Good Morning";
     public static final String VALID_CHINESE_PHRASE_GOOD_MORNING = "早安";
+    public static final String VALID_ENGLISH_PHRASE_AFTERNOON = "Afternoon";
 
     public static final String CHINESE_PHRASE_DESC_GOOD_MORNING = " " + PREFIX_FOREIGN_PHRASE
             + VALID_CHINESE_PHRASE_GOOD_MORNING;
