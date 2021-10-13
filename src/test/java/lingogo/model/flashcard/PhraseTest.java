@@ -26,6 +26,7 @@ public class PhraseTest {
         // invalid phrases
         assertFalse(Phrase.isValidPhrase("")); // empty string
         assertFalse(Phrase.isValidPhrase(" ")); // spaces only
+        assertFalse(Phrase.isValidPhrase("Good\nMorning")); // new line not allowed
         assertFalse(Phrase.isValidPhrase(" Good Morning")); // preceding whitespace
 
         // valid English phrases
