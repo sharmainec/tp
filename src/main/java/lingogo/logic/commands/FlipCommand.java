@@ -27,6 +27,8 @@ public class FlipCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_FLIP_FLASHCARD_SUCCESS = "Flipped flashcard with Foreign phrase: %1$s";
+
     private final Index index;
 
     /**
@@ -55,18 +57,14 @@ public class FlipCommand extends Command {
         }
 
         Flashcard flashcardToFlip = lastShownList.get(index.getZeroBased());
-        Phrase phraseInEnglish = flashcardToFlip.getEnglishPhrase();
-        Phrase phraseInForeign = flashcardToFlip.getForeignPhrase();
+        Phrase foreignPhrase = flashcardToFlip.getForeignPhrase();
 
-        if (flashcardToFlip.getFlipStatus()) {
-            flashcardToFlip.setFlipStatus(false);
-            model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-            return new CommandResult(phraseInForeign.value);
-        } else {
-            flashcardToFlip.setFlipStatus(true);
-            model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-            return new CommandResult(phraseInEnglish.value);
-        }
+        Flashcard flippedFlashcard = flashcardToFlip.getFlippedFlashcard();
+
+        model.setFlashcard(flashcardToFlip, flippedFlashcard);
+        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+
+        return new CommandResult(String.format(MESSAGE_FLIP_FLASHCARD_SUCCESS, foreignPhrase.value));
     }
 
     @Override

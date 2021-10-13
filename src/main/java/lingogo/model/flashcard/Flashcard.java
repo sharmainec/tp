@@ -13,16 +13,26 @@ public class Flashcard {
     // Data fields
     private final Phrase englishPhrase;
     private final Phrase foreignPhrase;
-    private boolean isFlipped;
+    private final Boolean isFlipped;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. {@code isFlipped} set to false by default.
      */
     public Flashcard(Phrase englishPhrase, Phrase foreignPhrase) {
         requireAllNonNull(englishPhrase, foreignPhrase);
         this.englishPhrase = englishPhrase;
         this.foreignPhrase = foreignPhrase;
         this.isFlipped = false;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Flashcard(Phrase englishPhrase, Phrase foreignPhrase, Boolean isFlipped) {
+        requireAllNonNull(englishPhrase, foreignPhrase, isFlipped);
+        this.englishPhrase = englishPhrase;
+        this.foreignPhrase = foreignPhrase;
+        this.isFlipped = isFlipped;
     }
 
     public Phrase getEnglishPhrase() {
@@ -33,12 +43,17 @@ public class Flashcard {
         return foreignPhrase;
     }
 
-    public boolean getFlipStatus() {
+    public Boolean getFlipStatus() {
         return isFlipped;
     }
 
-    public void setFlipStatus(boolean status) {
-        this.isFlipped = status;
+    /**
+     * Returns a flipped version of this flashcard.
+     *
+     * @return Flipped flashcard
+     */
+    public Flashcard getFlippedFlashcard() {
+        return new Flashcard(englishPhrase, foreignPhrase, !isFlipped);
     }
 
     /**
@@ -50,7 +65,7 @@ public class Flashcard {
             return true;
         }
         return otherFlashcard != null
-                && otherFlashcard.getEnglishPhrase().equals(getEnglishPhrase());
+            && otherFlashcard.getEnglishPhrase().equals(getEnglishPhrase());
     }
 
     /**
@@ -68,7 +83,8 @@ public class Flashcard {
 
         Flashcard otherFlashcard = (Flashcard) other;
         return otherFlashcard.getEnglishPhrase().equals(getEnglishPhrase())
-                && otherFlashcard.getForeignPhrase().equals(getForeignPhrase());
+            && otherFlashcard.getForeignPhrase().equals(getForeignPhrase()) && otherFlashcard.getFlipStatus()
+            .equals(getFlipStatus());
     }
 
     @Override
@@ -79,11 +95,15 @@ public class Flashcard {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("English phrase: ")
-                .append(getEnglishPhrase())
-                .append("\n")
-                .append("Foreign Phrase: ")
-                .append(getForeignPhrase());
+        builder.append("Foreign phrase: ")
+            .append(getForeignPhrase())
+            .append("\n")
+            .append("English phrase: ")
+            .append(getEnglishPhrase())
+            .append("\n")
+            .append("isFlipped: ")
+            .append(getFlipStatus());
+
         return builder.toString();
     }
 }
