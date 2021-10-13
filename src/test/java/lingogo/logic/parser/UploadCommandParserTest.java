@@ -1,11 +1,12 @@
 package lingogo.logic.parser;
 
-import lingogo.logic.commands.UploadCommand;
-import org.junit.jupiter.api.Test;
-
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static lingogo.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static lingogo.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import lingogo.logic.commands.UploadCommand;
 
 public class UploadCommandParserTest {
 
@@ -13,13 +14,14 @@ public class UploadCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsUploadCommand() {
-        String USER_INPUT = "./data/myCards.csv";
-        assertParseSuccess(parser, USER_INPUT, new UploadCommand(USER_INPUT));
+        String userInput = "./data/myCards.csv";
+        assertParseSuccess(parser, userInput, new UploadCommand(userInput));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        String USER_INPUT = "abc";
-        assertParseFailure(parser, USER_INPUT, String.format(MESSAGE_INVALID_COMMAND_FORMAT, UploadCommand.MESSAGE_USAGE));
+        String userInput = "abc";
+        assertParseFailure(parser, userInput,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UploadCommand.MESSAGE_USAGE));
     }
 }

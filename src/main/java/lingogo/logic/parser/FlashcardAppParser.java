@@ -6,7 +6,17 @@ import static lingogo.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import lingogo.logic.commands.*;
+import lingogo.logic.commands.AddCommand;
+import lingogo.logic.commands.ClearCommand;
+import lingogo.logic.commands.Command;
+import lingogo.logic.commands.DeleteCommand;
+import lingogo.logic.commands.DownloadCommand;
+import lingogo.logic.commands.EditCommand;
+import lingogo.logic.commands.ExitCommand;
+import lingogo.logic.commands.FindCommand;
+import lingogo.logic.commands.HelpCommand;
+import lingogo.logic.commands.ListCommand;
+import lingogo.logic.commands.UploadCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 
 /**

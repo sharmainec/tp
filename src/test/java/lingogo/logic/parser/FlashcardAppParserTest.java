@@ -11,10 +11,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lingogo.logic.commands.*;
 import org.junit.jupiter.api.Test;
 
+import lingogo.logic.commands.AddCommand;
+import lingogo.logic.commands.ClearCommand;
+import lingogo.logic.commands.DeleteCommand;
+import lingogo.logic.commands.DownloadCommand;
+import lingogo.logic.commands.EditCommand;
 import lingogo.logic.commands.EditCommand.EditFlashcardDescriptor;
+import lingogo.logic.commands.ExitCommand;
+import lingogo.logic.commands.FindCommand;
+import lingogo.logic.commands.HelpCommand;
+import lingogo.logic.commands.ListCommand;
+import lingogo.logic.commands.UploadCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;
@@ -84,12 +93,18 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_download() throws Exception {
-        assertTrue(parser.parseCommand(DownloadCommand.COMMAND_WORD) instanceof DownloadCommand);
+        String csvFileName = "test.csv";
+        DownloadCommand command = (DownloadCommand) parser.parseCommand(
+                DownloadCommand.COMMAND_WORD + " " + csvFileName);
+        assertEquals(new DownloadCommand(csvFileName), command);
     }
 
     @Test
     public void parseCommand_upload() throws Exception {
-        assertTrue(parser.parseCommand(UploadCommand.COMMAND_WORD) instanceof UploadCommand);
+        String csvFilePath = "./data/myCards.csv";
+        UploadCommand command = (UploadCommand) parser.parseCommand(
+                UploadCommand.COMMAND_WORD + " " + csvFilePath);
+        assertEquals(new UploadCommand(csvFilePath), command);
     }
 
     @Test

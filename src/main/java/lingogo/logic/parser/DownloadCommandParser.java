@@ -19,7 +19,7 @@ public class DownloadCommandParser implements Parser<DownloadCommand> {
     @Override
     public DownloadCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (!FileUtil.isValidCSVFileName(trimmedArgs)) {
+        if (!FileUtil.isValidCsvFileName(trimmedArgs)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DownloadCommand.MESSAGE_USAGE));
         }

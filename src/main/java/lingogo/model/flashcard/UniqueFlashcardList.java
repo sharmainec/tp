@@ -103,6 +103,10 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
         internalList.setAll(flashcards);
     }
 
+    /**
+     * Exports the contents of internalList to a CSV file named {@code fileName}.
+     * {@code fileName} must be a valid file name with .csv extension.
+     */
     public void downloadFlashcards(String fileName) throws CommandException {
         String filePath = "./data/" + fileName;
         try {
@@ -111,7 +115,7 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
             fw.append("Foreign,English\n");
             fw.flush();
             for (Flashcard card : internalList) {
-                String line = card.toCSVString();
+                String line = card.toCsvString();
                 fw.append(line);
                 fw.flush();
             }
@@ -120,15 +124,21 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
         }
     }
 
+    /**
+     * Imports the contents of the CSV file in {@code filePath} to LingoGO!.
+     * {@code filePath} must be a valid file path with .csv extension.
+     */
     public void uploadFlashcards(String filePath) throws CommandException {
         try {
             File f = new File(filePath);
             Scanner sc = new Scanner(f);
             sc.nextLine(); // skip the title row
-            while(sc.hasNextLine()) { // works as long as you don't allow "\n" in phrases
+            while (sc.hasNextLine()) { // works as long as you don't allow "\n" in phrases
                 String line = sc.nextLine();
                 Flashcard card = new Flashcard(line);
-                internalList.add(card);
+                if (!internalList.contains(card)) {
+                    internalList.add(card);
+                }
             }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);

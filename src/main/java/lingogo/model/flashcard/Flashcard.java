@@ -1,12 +1,11 @@
 package lingogo.model.flashcard;
 
-import lingogo.logic.commands.exceptions.CommandException;
-
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
-import static lingogo.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 import static lingogo.logic.LogicManager.INCORRECT_CSV_FORMAT_ERROR_MESSAGE;
 
 import java.util.Objects;
+
+import lingogo.logic.commands.exceptions.CommandException;
 
 /**
  * Represents a Flashcard in LingoGO!.
@@ -30,10 +29,10 @@ public class Flashcard {
     /**
      * Constructs a Flashcard from a line in a CSV file.
      */
-    public Flashcard(String CSVLine) throws CommandException {
-        requireAllNonNull(CSVLine);
-        String[] tokens = CSVLine.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
-        //System.out.println(CSVLine);
+    public Flashcard(String csvLine) throws CommandException {
+        requireAllNonNull(csvLine);
+        String[] tokens = csvLine.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+        //System.out.println(csvLine);
         if (tokens.length != 2) {
             throw new CommandException(INCORRECT_CSV_FORMAT_ERROR_MESSAGE);
         }
@@ -65,7 +64,7 @@ public class Flashcard {
      * Returns a String representation for each flashcard to be inserted into a CSV file.
      * This works like a toString() method to output a CSV line.
      */
-    public String toCSVString() {
+    public String toCsvString() {
         String foreignPhrase = excludeSpecialChars(getForeignPhrase().value);
         String englishPhrase = excludeSpecialChars(getEnglishPhrase().value);
         return foreignPhrase + "," + englishPhrase + "\n";
@@ -76,7 +75,8 @@ public class Flashcard {
      */
     private static String excludeSpecialChars(String entry) {
         String processed = entry.replaceAll("\\R", " ").replaceAll("\\t", " ");
-        if (entry.contains(",") || entry.contains("\"") || entry.contains("'") || entry.contains(";") || entry.contains("\t")) {
+        if (entry.contains(",") || entry.contains("\"") || entry.contains("'")
+                || entry.contains(";") || entry.contains("\t")) {
             entry = entry.replace("\"", "\"\"");
             processed = "\"" + entry + "\"";
         }

@@ -1,9 +1,9 @@
 package lingogo.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Exports the existing cards in the flashcard app to a CSV file.
@@ -37,5 +37,12 @@ public class DownloadCommand extends Command {
         requireNonNull(model);
         model.downloadFlashCards(fileName);
         return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DownloadCommand // instanceof handles nulls
+                && fileName.equals(((DownloadCommand) other).fileName)); // state check
     }
 }

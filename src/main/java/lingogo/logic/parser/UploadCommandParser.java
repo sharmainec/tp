@@ -1,12 +1,13 @@
 package lingogo.logic.parser;
 
-import lingogo.logic.commands.UploadCommand;
-import lingogo.logic.parser.exceptions.ParseException;
+import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.io.File;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 
-import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import lingogo.logic.commands.UploadCommand;
+import lingogo.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new UploadCommand object
@@ -21,6 +22,13 @@ public class UploadCommandParser implements Parser<UploadCommand> {
     @Override
     public UploadCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+
+        File f = new File(trimmedArgs);
+        if (!f.exists()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UploadCommand.MESSAGE_USAGE));
+        }
+
         try {
             Paths.get(trimmedArgs);
         } catch (InvalidPathException | NullPointerException e) {

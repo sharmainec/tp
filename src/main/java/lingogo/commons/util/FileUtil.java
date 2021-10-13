@@ -86,7 +86,7 @@ public class FileUtil {
      * otherwise returns false.
      * @param fileName A string representing the file name. Cannot be null.
      */
-    public static boolean isValidCSVFileName(String fileName) {
+    public static boolean isValidCsvFileName(String fileName) {
         Pattern p = Pattern.compile("[$&+:=\\\\?@#|/'<>%!*{}`]");
         return fileName.endsWith(".csv")
                 && fileName.length() <= 31
