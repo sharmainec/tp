@@ -4,6 +4,8 @@ import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_GOOD_M
 import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_HELLO;
+import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_SUNRISE;
+import static lingogo.logic.commands.CommandTestUtil.VALID_TAMIL_PHRASE_SUNRISE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,9 +16,8 @@ import lingogo.model.flashcard.Flashcard;
 
 public class TypicalFlashcards {
 
-    public static final Flashcard AFTERNOON_CHINESE_FLASHCARD =
-        new FlashcardBuilder().withEnglishPhrase("Afternoon")
-            .withForeignPhrase("下午").build();
+    public static final Flashcard AFTERNOON_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Afternoon")
+        .withForeignPhrase("下午").build();
     public static final Flashcard NIGHT_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Night")
         .withForeignPhrase("晚上").build();
     public static final Flashcard BYE_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Bye")
@@ -38,6 +39,9 @@ public class TypicalFlashcards {
     public static final Flashcard HELLO_CHINESE_FLASHCARD =
         new FlashcardBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
             .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+    public static final Flashcard SUNRISE_TAMIL_FLASHCARD =
+        new FlashcardBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_SUNRISE)
+            .withForeignPhrase(VALID_TAMIL_PHRASE_SUNRISE).build();
 
     private TypicalFlashcards() {
     } // prevents instantiation
