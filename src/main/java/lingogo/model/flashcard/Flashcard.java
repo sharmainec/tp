@@ -72,7 +72,7 @@ public class Flashcard {
         builder.append("English phrase: ")
                 .append(getEnglishPhrase())
                 .append("\n")
-                .append("Answer: ")
+                .append("Foreign Phrase: ")
                 .append(getForeignPhrase());
         return builder.toString();
     }

@@ -44,7 +44,7 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
    * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct English phrase.
 
-   * **`test`**`17`**`hello`**: Checks flashcard 17's English phrase against the word **`hello`** and then shows
+   * **`test`**`17`**`e/hello`**: Checks the 17th flashcard's English phrase against the word **`hello`** and then shows
      whether it is correct.
 
 
@@ -203,9 +203,9 @@ Examples:
 
 Checks whether the English phrase of a flashcard matches a given phrase.
 
-Format: `test INDEX ENGLISH_PHRASE`
+Format: `test INDEX e/ENGLISH_PHRASE`
 
-* Checks the English phrase of the flashcard at the specified `INDEX` with the given `ENGLISH_PHRASE`.
+* Checks the English phrase of the flashcard at the specified `INDEX` against the given `ENGLISH_PHRASE`.
 * The app will then show user the correct English phrase and tell the user whether he got it right.
 * The index refers to the index number shown in the current displayed list.
 * The index **must be a positive integer** 1, 2, 3, …
@@ -213,7 +213,7 @@ Format: `test INDEX ENGLISH_PHRASE`
 * `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello").
 
 Examples:
-* `test 4 hello` checks the 4th card on display to see if `hello` matches the English phrase of the flashcard.
+* `test 4 e/hello` checks the 4th card on display to see if `hello` matches the English phrase of the flashcard.
 
 ### Saving the data
 
@@ -251,5 +251,5 @@ Action | Format, Examples
 **Download** | `download FILE_NAME`<br> e.g., `download myCards.csv`
 **Help** | `help`
 **Flip** | `flip INDEX` <br> e.g.,  `flip 2`
-**Test** | `test INDEX ENGLISH_PHRASE` <br> e.g.,  `test 17 hello`
+**Test** | `test INDEX e/ENGLISH_PHRASE` <br> e.g., `test 17 e/hello`
 **Exit** | `exit`

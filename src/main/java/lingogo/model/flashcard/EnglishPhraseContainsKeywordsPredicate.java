@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import lingogo.commons.util.StringUtil;
 
+/**
+ * A {@code Predicate} which tests a given {@code Flashcard} against a list of given keywords.
+ */
 public class EnglishPhraseContainsKeywordsPredicate implements Predicate<Flashcard> {
     private final List<String> keywords;
 
