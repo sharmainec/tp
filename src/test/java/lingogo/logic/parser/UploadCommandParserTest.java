@@ -2,7 +2,6 @@ package lingogo.logic.parser;
 
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static lingogo.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static lingogo.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
