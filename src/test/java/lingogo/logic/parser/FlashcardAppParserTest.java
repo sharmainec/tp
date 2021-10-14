@@ -111,7 +111,7 @@ public class FlashcardAppParserTest {
                 UploadCommand.COMMAND_WORD + " " + csvFilePath);
         assertEquals(new UploadCommand(csvFilePath), command);
     }
-    
+
     @Test
     public void parseCommand_flip() throws Exception {
         assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " 1") instanceof FlipCommand);
