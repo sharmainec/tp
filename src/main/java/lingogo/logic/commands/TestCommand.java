@@ -31,8 +31,8 @@ public class TestCommand extends Command {
     public static final String COMPARISON_TEXT = "Foreign phrase: %1$s\n" + "Expected answer: %2$s\n"
         + "Your answer: %3$s";
 
-    public static final String MESSAGE_FLASHCARD_NOT_FLIPPED_DOWN = "The flashcard that is tested must be flipped down "
-        + "(i.e. English phrase cannot be hidden)";
+    public static final String MESSAGE_FLASHCARD_NOT_FLIPPED_DOWN = "The flashcard is flipped up and the "
+        + "answer is already shown, try flipping the flashcard first before testing again";
 
     public static final String MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT = "Well done! You got it right!\n"
         + COMPARISON_TEXT;
