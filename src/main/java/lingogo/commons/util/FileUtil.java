@@ -89,7 +89,6 @@ public class FileUtil {
     public static boolean isValidCsvFileName(String fileName) {
         Pattern p = Pattern.compile("[$&+:=\\\\?@#|/'<>%!*{}`]");
         return fileName.endsWith(".csv")
-                && fileName.length() <= 31
                 && !p.matcher(fileName).find()
                 && !fileName.contains(" ");
     }

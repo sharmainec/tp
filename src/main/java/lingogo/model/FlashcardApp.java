@@ -67,7 +67,7 @@ public class FlashcardApp implements ReadOnlyFlashcardApp {
     /**
      * Uploads the contents of the CSV file with the given {@code filePath}
      * to the flashcard list
-     * {@code filePath} must be a valid file path.
+     * {@code filePath} must be a valid file path with .csv extension.
      */
     public void uploadFlashCards(String filePath) throws CommandException {
         flashcards.uploadFlashcards(filePath);

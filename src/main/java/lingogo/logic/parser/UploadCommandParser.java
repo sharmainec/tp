@@ -3,8 +3,6 @@ package lingogo.logic.parser;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.io.File;
-import java.nio.file.InvalidPathException;
-import java.nio.file.Paths;
 
 import lingogo.logic.commands.UploadCommand;
 import lingogo.logic.parser.exceptions.ParseException;
@@ -24,17 +22,11 @@ public class UploadCommandParser implements Parser<UploadCommand> {
         String trimmedArgs = args.trim();
 
         File f = new File(trimmedArgs);
-        if (!f.exists()) {
+        if (!trimmedArgs.endsWith(".csv") || !f.exists()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UploadCommand.MESSAGE_USAGE));
         }
 
-        try {
-            Paths.get(trimmedArgs);
-        } catch (InvalidPathException | NullPointerException e) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UploadCommand.MESSAGE_USAGE));
-        }
         return new UploadCommand(trimmedArgs);
     }
 }

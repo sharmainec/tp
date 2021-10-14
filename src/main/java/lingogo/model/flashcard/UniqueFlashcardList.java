@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
 import static lingogo.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
-import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVWriter;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -110,16 +112,15 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
     public void downloadFlashcards(String fileName) throws CommandException {
         String filePath = "./data/" + fileName;
         try {
-            new File(filePath).createNewFile();
-            FileWriter fw = new FileWriter(filePath, false);
-            fw.append("Foreign,English\n");
-            fw.flush();
+            CSVWriter writer = new CSVWriter(new FileWriter(filePath));
+            String[] line = {"Foreign", "English"};
+            writer.writeNext(line);
             for (Flashcard card : internalList) {
-                String line = card.toCsvString();
-                fw.append(line);
-                fw.flush();
+                line = new String[]{card.getForeignPhrase().value, card.getEnglishPhrase().value};
+                writer.writeNext(line);
             }
-        } catch (IOException ioe) {
+            writer.close();
+        } catch (Exception ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
     }
@@ -130,17 +131,15 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
      */
     public void uploadFlashcards(String filePath) throws CommandException {
         try {
-            File f = new File(filePath);
-            Scanner sc = new Scanner(f);
-            sc.nextLine(); // skip the title row
-            while (sc.hasNextLine()) { // works as long as you don't allow "\n" in phrases
-                String line = sc.nextLine();
-                Flashcard card = new Flashcard(line);
+            CSVReader reader = new CSVReaderBuilder(new FileReader(filePath)).withSkipLines(1).build();
+            String[] line;
+            while ((line = reader.readNext()) != null) {
+                Flashcard card = new Flashcard(new Phrase(line[1]), new Phrase(line[0]));
                 if (!internalList.contains(card)) {
                     internalList.add(card);
                 }
             }
-        } catch (IOException ioe) {
+        } catch (Exception ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
     }

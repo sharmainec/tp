@@ -22,7 +22,6 @@ public class FileUtilTest {
         // invalid CSV file name
         assertFalse(FileUtil.isValidCsvFileName("abc"));
         assertFalse(FileUtil.isValidCsvFileName("a/v/d/.csv"));
-        assertFalse(FileUtil.isValidCsvFileName("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz.csv"));
         assertFalse(FileUtil.isValidCsvFileName("file name.csv"));
     }
 
