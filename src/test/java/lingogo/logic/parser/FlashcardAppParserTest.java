@@ -27,7 +27,6 @@ import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ListCommand;
 import lingogo.logic.commands.TestCommand;
-import lingogo.logic.commands.UploadCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;
