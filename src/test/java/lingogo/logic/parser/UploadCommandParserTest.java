@@ -13,12 +13,6 @@ public class UploadCommandParserTest {
     private final UploadCommandParser parser = new UploadCommandParser();
 
     @Test
-    public void parse_validArgs_returnsUploadCommand() {
-        String userInput = "./data/myCards.csv";
-        assertParseSuccess(parser, userInput, new UploadCommand(userInput));
-    }
-
-    @Test
     public void parse_invalidArgs_throwsParseException() {
         String userInput = "abc";
         assertParseFailure(parser, userInput,
