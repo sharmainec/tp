@@ -17,6 +17,10 @@ import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
 import lingogo.model.flashcard.Flashcard;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code FlipCommand}.
+ */
 public class FlipCommandTest {
 
     private Model model = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
@@ -24,24 +28,32 @@ public class FlipCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Flashcard flashcardToFlip = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        flashcardToFlip.setFlipStatus(false);
         FlipCommand flipCommand = new FlipCommand(INDEX_FIRST_FLASHCARD);
 
-        String expectedMessage = flashcardToFlip.getEnglishPhrase().toString();
+        String expectedMessage =
+            String.format(FlipCommand.MESSAGE_FLIP_FLASHCARD_SUCCESS, flashcardToFlip.getForeignPhrase());
+
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
+
+        expectedModel.setFlashcard(flashcardToFlip, flashcardToFlip.getFlippedFlashcard());
+
         assertCommandSuccess(flipCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_validIndexUnfilteredListAgain_success() {
-        Flashcard flashcardToFlip = model.getFilteredFlashcardList().get(INDEX_SECOND_FLASHCARD.getZeroBased());
-        flashcardToFlip.setFlipStatus(true);
-        FlipCommand flipCommand = new FlipCommand(INDEX_SECOND_FLASHCARD);
-
-        String expectedMessage = flashcardToFlip.getForeignPhrase().toString();
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
+        Flashcard originalFlashcard = model.getFilteredFlashcardList().get(INDEX_SECOND_FLASHCARD.getZeroBased());
+        Flashcard flashcardToFlip = originalFlashcard.getFlippedFlashcard();
+        model.setFlashcard(originalFlashcard, flashcardToFlip);
+
+        FlipCommand flipCommand = new FlipCommand(INDEX_SECOND_FLASHCARD);
+
+        String expectedMessage =
+            String.format(FlipCommand.MESSAGE_FLIP_FLASHCARD_SUCCESS, flashcardToFlip.getForeignPhrase());
+
 
         assertCommandSuccess(flipCommand, model, expectedMessage, expectedModel);
     }

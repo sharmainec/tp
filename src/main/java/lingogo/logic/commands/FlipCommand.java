@@ -18,14 +18,15 @@ import lingogo.model.flashcard.Phrase;
 public class FlipCommand extends Command {
 
     public static final String COMMAND_WORD = "flip";
-    public static final String COMMAND_DESCRIPTION = "Toggles the flashcard to either show English or "
-            + " foreign phrase";
+    public static final String COMMAND_DESCRIPTION = "Flips the flashcard to hide or show its English phrase";
     public static final String COMMAND_USAGE = "flip INDEX";
     public static final String COMMAND_EXAMPLES = "flip 3";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Flips the flashcard identified by the index number used in the displayed flashcard list.\n"
+            + ": Flips the flashcard to hide or show its English phrase.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
+
+    public static final String MESSAGE_FLIP_FLASHCARD_SUCCESS = "Flipped flashcard with Foreign phrase: %1$s";
 
     private final Index index;
 
@@ -55,18 +56,14 @@ public class FlipCommand extends Command {
         }
 
         Flashcard flashcardToFlip = lastShownList.get(index.getZeroBased());
-        Phrase phraseInEnglish = flashcardToFlip.getEnglishPhrase();
-        Phrase phraseInForeign = flashcardToFlip.getForeignPhrase();
+        Phrase foreignPhrase = flashcardToFlip.getForeignPhrase();
 
-        if (flashcardToFlip.getFlipStatus()) {
-            flashcardToFlip.setFlipStatus(false);
-            model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-            return new CommandResult(phraseInForeign.value);
-        } else {
-            flashcardToFlip.setFlipStatus(true);
-            model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-            return new CommandResult(phraseInEnglish.value);
-        }
+        Flashcard flippedFlashcard = flashcardToFlip.getFlippedFlashcard();
+
+        model.setFlashcard(flashcardToFlip, flippedFlashcard);
+        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+
+        return new CommandResult(String.format(MESSAGE_FLIP_FLASHCARD_SUCCESS, foreignPhrase.value));
     }
 
     @Override

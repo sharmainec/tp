@@ -40,7 +40,15 @@ public class FlashcardPane extends UiPart<Region> {
         this.flashcard = flashcard;
         id.setText(displayedIndex + ". ");
         foreignPhrase.setText(flashcard.getForeignPhrase().value);
-        englishPhrase.setText(flashcard.getEnglishPhrase().value);
+        setDisplayedEnglishphrase();
+    }
+
+    public void setDisplayedEnglishphrase() {
+        if (flashcard.getFlipStatus()) {
+            englishPhrase.setText(flashcard.getEnglishPhrase().value);
+        } else {
+            englishPhrase.setText("███████████");
+        }
     }
 
     @Override

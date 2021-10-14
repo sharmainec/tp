@@ -28,8 +28,11 @@ public class TestCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) e/ENGLISH_PHRASE\n"
         + "Example: " + COMMAND_EXAMPLES;
 
-    private static final String COMPARISON_TEXT = "Foreign Phrase: %1$s\n" + "Expected answer: %2$s\n"
+    public static final String COMPARISON_TEXT = "Foreign phrase: %1$s\n" + "Expected answer: %2$s\n"
         + "Your answer: %3$s";
+
+    public static final String MESSAGE_FLASHCARD_NOT_FLIPPED_DOWN = "The flashcard is flipped up and the "
+        + "answer is already shown, try flipping the flashcard first before testing again";
 
     public static final String MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT = "Well done! You got it right!\n"
         + COMPARISON_TEXT;
@@ -55,11 +58,16 @@ public class TestCommand extends Command {
         requireNonNull(model);
         List<Flashcard> lastShownList = model.getFilteredFlashcardList();
 
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         }
 
         Flashcard flashcardToTest = lastShownList.get(targetIndex.getZeroBased());
+
+        if (flashcardToTest.getFlipStatus()) {
+            throw new CommandException(MESSAGE_FLASHCARD_NOT_FLIPPED_DOWN);
+        }
 
         if (!predicate.test(flashcardToTest)) {
             return new CommandResult(String.format(MESSAGE_TEST_FLASHCARD_SUCCESS_WRONG,

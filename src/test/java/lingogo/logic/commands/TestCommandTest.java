@@ -22,7 +22,7 @@ import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.Phrase;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
+ * Contains integration tests (interaction with the Model and Flip) and unit tests for
  * {@code TestCommand}.
  */
 public class TestCommandTest {
@@ -55,6 +55,19 @@ public class TestCommandTest {
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
 
         assertCommandSuccess(testCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_testFlippedFlashcard_throwsCommandException() {
+        Flashcard flashcardToTest = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        model.setFlashcard(flashcardToTest, flashcardToTest.getFlippedFlashcard());
+
+        TestCommand testCommand = new TestCommand(INDEX_FIRST_FLASHCARD, validPhraseGoodMorning);
+
+        String expectedMessage =
+            String.format(TestCommand.MESSAGE_FLASHCARD_NOT_FLIPPED_DOWN, flashcardToTest.getForeignPhrase());
+
+        assertCommandFailure(testCommand, model, expectedMessage);
     }
 
     @Test
@@ -106,6 +119,7 @@ public class TestCommandTest {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
 
         Index outOfBoundIndex = INDEX_SECOND_FLASHCARD;
+
         // ensures that outOfBoundIndex is still in bounds of flashcard app list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashcardApp().getFlashcardList().size());
 
