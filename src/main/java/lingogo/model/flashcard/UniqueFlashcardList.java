@@ -2,12 +2,20 @@ package lingogo.model.flashcard;
 
 import static java.util.Objects.requireNonNull;
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
+import static lingogo.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Iterator;
 import java.util.List;
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVWriter;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.flashcard.exceptions.DuplicateFlashcardException;
 import lingogo.model.flashcard.exceptions.FlashcardNotFoundException;
 
@@ -95,6 +103,45 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
         }
 
         internalList.setAll(flashcards);
+    }
+
+    /**
+     * Exports the contents of internalList to a CSV file named {@code fileName}.
+     * {@code fileName} must be a valid file name with .csv extension.
+     */
+    public void downloadFlashcards(String fileName) throws CommandException {
+        String filePath = "./data/" + fileName;
+        try {
+            CSVWriter writer = new CSVWriter(new FileWriter(filePath));
+            String[] line = {"Foreign", "English"};
+            writer.writeNext(line);
+            for (Flashcard card : internalList) {
+                line = new String[]{card.getForeignPhrase().value, card.getEnglishPhrase().value};
+                writer.writeNext(line);
+            }
+            writer.close();
+        } catch (Exception ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+    }
+
+    /**
+     * Imports the contents of the CSV file in {@code filePath} to LingoGO!.
+     * {@code filePath} must be a valid file path with .csv extension.
+     */
+    public void uploadFlashcards(String filePath) throws CommandException {
+        try {
+            CSVReader reader = new CSVReaderBuilder(new FileReader(filePath)).withSkipLines(1).build();
+            String[] line;
+            while ((line = reader.readNext()) != null) {
+                Flashcard card = new Flashcard(new Phrase(line[1]), new Phrase(line[0]));
+                if (!internalList.contains(card)) {
+                    internalList.add(card);
+                }
+            }
+        } catch (Exception ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
     }
 
     /**

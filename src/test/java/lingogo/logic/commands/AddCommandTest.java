@@ -140,6 +140,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void downloadFlashCards(String fileName) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void uploadFlashCards(String filePath) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Flashcard> getFilteredFlashcardList() {
             throw new AssertionError("This method should not be called.");
         }

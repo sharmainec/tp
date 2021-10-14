@@ -7,6 +7,7 @@ import lingogo.logic.commands.AddCommand;
 import lingogo.logic.commands.ClearCommand;
 import lingogo.logic.commands.CommandEnum;
 import lingogo.logic.commands.DeleteCommand;
+import lingogo.logic.commands.DownloadCommand;
 import lingogo.logic.commands.EditCommand;
 import lingogo.logic.commands.ExitCommand;
 import lingogo.logic.commands.FindCommand;
@@ -14,18 +15,10 @@ import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ListCommand;
 import lingogo.logic.commands.TestCommand;
+import lingogo.logic.commands.UploadCommand;
 
 public class CommandHelpMessage extends UiPart<TitledPane> {
     private static final String FXML = "CommandHelpMessage.fxml";
-
-    private static final String IMPORT_COMMAND_DESCRIPTION = "Imports flashcards into LingoGO! from a specified"
-            + " CSV file";
-    private static final String IMPORT_COMMAND_USAGE = "upload CSV_FILE_PATH";
-    private static final String IMPORT_COMMAND_EXAMPLES = "upload ./dictionary.csv";
-    private static final String EXPORT_COMMAND_DESCRIPTION = "Exports flashcards to a CSV file located in the data"
-            + " folder";
-    private static final String EXPORT_COMMAND_USAGE = "download CSV_FILE_PATH";
-    private static final String EXPORT_COMMAND_EXAMPLES = "download";
 
     @FXML
     private TitledPane helpPane;
@@ -90,12 +83,12 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
                     TestCommand.COMMAND_EXAMPLES);
             break;
         case EXPORT:
-            this.setDisplayText("download", EXPORT_COMMAND_DESCRIPTION, EXPORT_COMMAND_USAGE,
-                    EXPORT_COMMAND_EXAMPLES);
+            this.setDisplayText("download", DownloadCommand.COMMAND_DESCRIPTION, DownloadCommand.COMMAND_USAGE,
+                    DownloadCommand.COMMAND_EXAMPLES);
             break;
         case IMPORT:
-            this.setDisplayText("upload", IMPORT_COMMAND_DESCRIPTION, IMPORT_COMMAND_USAGE,
-                    IMPORT_COMMAND_EXAMPLES);
+            this.setDisplayText("upload", UploadCommand.COMMAND_DESCRIPTION, UploadCommand.COMMAND_USAGE,
+                    UploadCommand.COMMAND_EXAMPLES);
             break;
         default:
             assert false : "CommandHelpMessage: Invalid command";

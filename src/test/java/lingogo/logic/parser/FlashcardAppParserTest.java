@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import lingogo.logic.commands.AddCommand;
 import lingogo.logic.commands.ClearCommand;
 import lingogo.logic.commands.DeleteCommand;
+import lingogo.logic.commands.DownloadCommand;
 import lingogo.logic.commands.EditCommand;
 import lingogo.logic.commands.EditCommand.EditFlashcardDescriptor;
 import lingogo.logic.commands.ExitCommand;
@@ -92,6 +93,14 @@ public class FlashcardAppParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_download() throws Exception {
+        String csvFileName = "test.csv";
+        DownloadCommand command = (DownloadCommand) parser.parseCommand(
+                DownloadCommand.COMMAND_WORD + " " + csvFileName);
+        assertEquals(new DownloadCommand(csvFileName), command);
     }
 
     @Test

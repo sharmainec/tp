@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.UniqueFlashcardList;
 
@@ -52,6 +53,24 @@ public class FlashcardApp implements ReadOnlyFlashcardApp {
     public void resetData(ReadOnlyFlashcardApp newData) {
         requireNonNull(newData);
         setFlashcards(newData.getFlashcardList());
+    }
+
+    /**
+     * Downloads the contents of the flashcard list to the CSV file with
+     * the given {@code fileName}
+     * {@code fileName} must be a valid file name.
+     */
+    public void downloadFlashCards(String fileName) throws CommandException {
+        flashcards.downloadFlashcards(fileName);
+    }
+
+    /**
+     * Uploads the contents of the CSV file with the given {@code filePath}
+     * to the flashcard list
+     * {@code filePath} must be a valid file path with .csv extension.
+     */
+    public void uploadFlashCards(String filePath) throws CommandException {
+        flashcards.uploadFlashcards(filePath);
     }
 
     //// flashcard-level operations
