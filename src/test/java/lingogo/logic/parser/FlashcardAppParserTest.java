@@ -105,14 +105,6 @@ public class FlashcardAppParserTest {
     }
 
     @Test
-    public void parseCommand_upload() throws Exception {
-        String csvFilePath = "./data/myCards.csv";
-        UploadCommand command = (UploadCommand) parser.parseCommand(
-                UploadCommand.COMMAND_WORD + " " + csvFilePath);
-        assertEquals(new UploadCommand(csvFilePath), command);
-    }
-
-    @Test
     public void parseCommand_flip() throws Exception {
         assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " 1") instanceof FlipCommand);
         assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased())
