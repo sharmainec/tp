@@ -56,7 +56,6 @@ public class FlipCommandTest {
 
 
         assertCommandSuccess(flipCommand, model, expectedMessage, expectedModel);
-
     }
 
     @Test

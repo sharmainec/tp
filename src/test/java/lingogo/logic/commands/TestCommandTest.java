@@ -110,8 +110,6 @@ public class TestCommandTest {
         Model expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
         showFlashcardAtIndex(expectedModel, INDEX_SECOND_FLASHCARD);
 
-        System.out.println(model.getFlashcardApp().getFlashcardList());
-
 
         assertCommandSuccess(testCommand, model, expectedMessage, expectedModel);
     }
@@ -121,6 +119,7 @@ public class TestCommandTest {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
 
         Index outOfBoundIndex = INDEX_SECOND_FLASHCARD;
+
         // ensures that outOfBoundIndex is still in bounds of flashcard app list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashcardApp().getFlashcardList().size());
 
