@@ -12,11 +12,11 @@ public class Phrase {
         + " and should not be blank";
 
     /**
-     * The first character of the phrase must not be a whitespace.
+     * {@code \\S} The first character of the phrase must not be a whitespace.
      * This prevents " " (a blank string) from becoming a valid input.
-     * (?U) allows us to match Unicode characters, which are common in foreign languages.
+     * {@code \\[^\n]*} Allows us to match any character that is not a new line character 0 or more times.
      */
-    public static final String VALIDATION_REGEX = "[^\\s](?U)[\\p{Alpha}', ]*";
+    public static final String VALIDATION_REGEX = "\\S[^\n]*";
 
     public final String value;
 

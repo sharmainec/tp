@@ -2,6 +2,8 @@ package lingogo.logic.parser;
 
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static lingogo.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
+import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.testutil.Assert.assertThrows;
 import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,8 +23,10 @@ import lingogo.logic.commands.EditCommand;
 import lingogo.logic.commands.EditCommand.EditFlashcardDescriptor;
 import lingogo.logic.commands.ExitCommand;
 import lingogo.logic.commands.FindCommand;
+import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ListCommand;
+import lingogo.logic.commands.TestCommand;
 import lingogo.logic.commands.UploadCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
@@ -30,6 +34,7 @@ import lingogo.model.flashcard.Flashcard;
 import lingogo.testutil.EditFlashcardDescriptorBuilder;
 import lingogo.testutil.FlashcardBuilder;
 import lingogo.testutil.FlashcardUtil;
+
 
 public class FlashcardAppParserTest {
 
@@ -51,7 +56,7 @@ public class FlashcardAppParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_FLASHCARD), command);
     }
 
@@ -60,8 +65,8 @@ public class FlashcardAppParserTest {
         Flashcard flashcard = new FlashcardBuilder().build();
         EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(flashcard).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_FLASHCARD.getOneBased() + " "
-                + FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
+            + INDEX_FIRST_FLASHCARD.getOneBased() + " "
+            + FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_FLASHCARD, descriptor), command);
     }
 
@@ -75,7 +80,7 @@ public class FlashcardAppParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+            FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new EnglishPhraseContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -105,6 +110,20 @@ public class FlashcardAppParserTest {
         UploadCommand command = (UploadCommand) parser.parseCommand(
                 UploadCommand.COMMAND_WORD + " " + csvFilePath);
         assertEquals(new UploadCommand(csvFilePath), command);
+    
+    public void parseCommand_flip() throws Exception {
+        assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " 1") instanceof FlipCommand);
+        assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased())
+            instanceof FlipCommand);
+    }
+
+    @Test
+    public void parseCommand_test() throws Exception {
+        TestCommand command = (TestCommand) parser.parseCommand(
+            TestCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased() + " " + PREFIX_ENGLISH_PHRASE
+            + VALID_ENGLISH_PHRASE_GOOD_MORNING);
+        assertEquals(new TestCommand(INDEX_FIRST_FLASHCARD, ParserUtil.parsePhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)),
+            command);
     }
 
     @Test

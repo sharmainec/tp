@@ -11,7 +11,7 @@ import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.Phrase;
 
 public class ParserUtilTest {
-    private static final String INVALID_PHRASE = "Go0d Morning";
+    private static final String INVALID_PHRASE = "";
     private static final String VALID_PHRASE = "Good Morning";
     private static final String WHITESPACE = " \t\r\n";
 

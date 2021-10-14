@@ -27,20 +27,27 @@ public class CommandTestUtil {
     public static final String VALID_CHINESE_PHRASE_HELLO = "你好";
     public static final String VALID_ENGLISH_PHRASE_GOOD_MORNING = "Good Morning";
     public static final String VALID_CHINESE_PHRASE_GOOD_MORNING = "早安";
+    public static final String VALID_ENGLISH_PHRASE_AFTERNOON = "Afternoon";
+    public static final String VALID_ENGLISH_PHRASE_SUNRISE = "Sunrise";
+    public static final String VALID_TAMIL_PHRASE_SUNRISE = "சூரிய உதயம்";
 
     public static final String CHINESE_PHRASE_DESC_GOOD_MORNING = " " + PREFIX_FOREIGN_PHRASE
             + VALID_CHINESE_PHRASE_GOOD_MORNING;
     public static final String CHINESE_PHRASE_DESC_HELLO = " " + PREFIX_FOREIGN_PHRASE
             + VALID_CHINESE_PHRASE_HELLO;
+    public static final String TAMIL_PHRASE_DESC_SUNRISE = " " + PREFIX_FOREIGN_PHRASE
+            + VALID_TAMIL_PHRASE_SUNRISE;
     public static final String ENGLISH_PHRASE_DESC_GOOD_MORNING = " " + PREFIX_ENGLISH_PHRASE
             + VALID_ENGLISH_PHRASE_GOOD_MORNING;
     public static final String ENGLISH_PHRASE_DESC_HELLO = " " + PREFIX_ENGLISH_PHRASE
             + VALID_ENGLISH_PHRASE_HELLO;
+    public static final String ENGLISH_PHRASE_DESC_SUNRISE = " " + PREFIX_ENGLISH_PHRASE
+            + VALID_ENGLISH_PHRASE_SUNRISE;
 
     public static final String INVALID_FOREIGN_PHRASE_DESC = " " + PREFIX_FOREIGN_PHRASE
-            + "早安&"; // '&' not allowed in phrases
+            + "    "; // Phrases cannot be empty
     public static final String INVALID_ENGLISH_PHRASE_DESC = " " + PREFIX_ENGLISH_PHRASE
-            + "Good Morning\""; // '"' not allows in phrases
+            + "    "; // Phrases cannot be empty
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

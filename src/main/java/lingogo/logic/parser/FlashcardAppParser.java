@@ -14,8 +14,10 @@ import lingogo.logic.commands.DownloadCommand;
 import lingogo.logic.commands.EditCommand;
 import lingogo.logic.commands.ExitCommand;
 import lingogo.logic.commands.FindCommand;
+import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ListCommand;
+import lingogo.logic.commands.TestCommand;
 import lingogo.logic.commands.UploadCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 
@@ -75,6 +77,12 @@ public class FlashcardAppParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case FlipCommand.COMMAND_WORD:
+            return new FlipCommandParser().parse(arguments);
+
+        case TestCommand.COMMAND_WORD:
+            return new TestCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

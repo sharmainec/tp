@@ -13,6 +13,7 @@ public class Flashcard {
     // Data fields
     private final Phrase englishPhrase;
     private final Phrase foreignPhrase;
+    private boolean isFlipped;
 
     /**
      * Every field must be present and not null.
@@ -21,6 +22,7 @@ public class Flashcard {
         requireAllNonNull(englishPhrase, foreignPhrase);
         this.englishPhrase = englishPhrase;
         this.foreignPhrase = foreignPhrase;
+        this.isFlipped = false;
     }
 
     public Phrase getEnglishPhrase() {
@@ -29,6 +31,14 @@ public class Flashcard {
 
     public Phrase getForeignPhrase() {
         return foreignPhrase;
+    }
+
+    public boolean getFlipStatus() {
+        return isFlipped;
+    }
+
+    public void setFlipStatus(boolean status) {
+        this.isFlipped = status;
     }
 
     /**
@@ -72,7 +82,7 @@ public class Flashcard {
         builder.append("English phrase: ")
                 .append(getEnglishPhrase())
                 .append("\n")
-                .append("Answer: ")
+                .append("Foreign Phrase: ")
                 .append(getForeignPhrase());
         return builder.toString();
     }
