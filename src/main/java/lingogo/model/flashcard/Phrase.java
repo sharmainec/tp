@@ -14,15 +14,9 @@ public class Phrase {
     /**
      * {@code \\S} The first character of the phrase must not be a whitespace.
      * This prevents " " (a blank string) from becoming a valid input.
-     * {@code \\X+} Allows us to match a Unicode grapheme one or more times.
-     * E.g. Consider the character {@code à}. It can be encoded in 2 ways:
-     * <ul>
-     *     <li>{@code U+0061} (letter 'a') followed by {@code U+0300} (grave accent)</li>
-     *     <li>{@code U+00E0} (letter 'a' with a grave accent)</li>
-     * </ul>
-     * Each of these ways count as 1 grapheme.
+     * {@code \\[^\n]*} Allows us to match any character that is not a new line character 0 or more times.
      */
-    public static final String VALIDATION_REGEX = "\\S\\X+";
+    public static final String VALIDATION_REGEX = "\\S[^\n]*";
 
     public final String value;
 
