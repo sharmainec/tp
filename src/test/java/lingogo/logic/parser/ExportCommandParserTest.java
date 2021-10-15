@@ -6,22 +6,22 @@ import static lingogo.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import lingogo.logic.commands.DownloadCommand;
+import lingogo.logic.commands.ExportCommand;
 
-public class DownloadCommandParserTest {
+public class ExportCommandParserTest {
 
-    private final DownloadCommandParser parser = new DownloadCommandParser();
+    private final ExportCommandParser parser = new ExportCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDownloadCommand() {
+    public void parse_validArgs_returnsExportCommand() {
         String userInput = "test.csv";
-        assertParseSuccess(parser, userInput, new DownloadCommand(userInput));
+        assertParseSuccess(parser, userInput, new ExportCommand(userInput));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         String userInput = "abc";
         assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DownloadCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE));
     }
 }

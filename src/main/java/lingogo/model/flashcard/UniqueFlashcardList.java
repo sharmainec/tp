@@ -1,6 +1,7 @@
 package lingogo.model.flashcard;
 
 import static java.util.Objects.requireNonNull;
+import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_FORMAT;
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
 import static lingogo.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
@@ -109,14 +110,15 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
      * Exports the contents of internalList to a CSV file named {@code fileName}.
      * {@code fileName} must be a valid file name with .csv extension.
      */
-    public void downloadFlashcards(String fileName) throws CommandException {
+    public void exportFlashcards(String fileName) throws CommandException {
         String filePath = "./data/" + fileName;
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(filePath));
-            String[] line = {"Foreign", "English"};
+            String[] line = {"Language", "Foreign", "English"};
             writer.writeNext(line);
             for (Flashcard card : internalList) {
-                line = new String[]{card.getForeignPhrase().value, card.getEnglishPhrase().value};
+                line = new String[]{card.getLanguageType().value,
+                        card.getForeignPhrase().value, card.getEnglishPhrase().value};
                 writer.writeNext(line);
             }
             writer.close();
@@ -129,12 +131,15 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
      * Imports the contents of the CSV file in {@code filePath} to LingoGO!.
      * {@code filePath} must be a valid file path with .csv extension.
      */
-    public void uploadFlashcards(String filePath) throws CommandException {
+    public void importFlashcards(String filePath) throws CommandException {
         try {
             CSVReader reader = new CSVReaderBuilder(new FileReader(filePath)).withSkipLines(1).build();
             String[] line;
             while ((line = reader.readNext()) != null) {
-                Flashcard card = new Flashcard(new Phrase(line[1]), new Phrase(line[0]));
+                if (line.length != 3) {
+                    throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, filePath));
+                }
+                Flashcard card = new Flashcard(new Phrase(line[0]), new Phrase(line[2]), new Phrase(line[1]));
                 if (!internalList.contains(card)) {
                     internalList.add(card);
                 }

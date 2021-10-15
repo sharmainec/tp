@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
+import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 
 import lingogo.commons.core.index.Index;
 import lingogo.logic.commands.EditCommand;
@@ -22,7 +23,8 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ENGLISH_PHRASE, PREFIX_FOREIGN_PHRASE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_LANGUAGE_TYPE, PREFIX_ENGLISH_PHRASE, PREFIX_FOREIGN_PHRASE);
 
         Index index;
 
@@ -33,6 +35,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditFlashcardDescriptor editFlashcardDescriptor = new EditFlashcardDescriptor();
+
+        if (argMultimap.getValue(PREFIX_LANGUAGE_TYPE).isPresent()) {
+            editFlashcardDescriptor.setLanguageType(
+                    ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_LANGUAGE_TYPE).get()));
+        }
         if (argMultimap.getValue(PREFIX_ENGLISH_PHRASE).isPresent()) {
             editFlashcardDescriptor.setEnglishPhrase(
                     ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get()));

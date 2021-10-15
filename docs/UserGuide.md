@@ -36,9 +36,9 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
    * **`edit`**`3`**`f/Guten Morgen`** : Edits the foreign phrase of the 3rd flashcard shown in the current displayed list to `Guten Morgen`.
 
-   * **`upload`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
+   * **`import`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
 
-   * **`download`**`myCards.csv` : Exports cards from LingoGO! to a CSV file in a file name `myCards.csv`.
+   * **`export`**`myCards.csv` : Exports cards from LingoGO! to a CSV file in a file name `myCards.csv`.
 
    * **`exit`** : Exits the app.
 
@@ -154,31 +154,31 @@ Clears all flashcards from LingoGO!.
 
 Format: `clear`
 
-### Uploading cards : `upload`
+### importing cards : `import`
 
 Imports cards to LingoGO! using a CSV file.
 
-Format: `upload CSV_FILE_PATH`
+Format: `import CSV_FILE_PATH`
 
 * The file path can be absolute or relative to the location of the LingoGO! file.
 * The CSV file must have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
   ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
-* `upload ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
+* `import ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
 
-### Downloading cards : `download`
+### exporting cards : `export`
 
 Exports cards from LingoGO! to a CSV file.
 
-Format: `download FILE_NAME`
+Format: `export FILE_NAME`
 
 * Provides a file name with .csv extension in which the flash cards will be stored and exported.
 * The exported file will be added to `data` folder in a CSV format.
 * The CSV file will have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
 
 Examples:
-* `download myCards.csv` will save all cards in LingoGO! to a CSV file named `myCards.csv`.
+* `export myCards.csv` will save all cards in LingoGO! to a CSV file named `myCards.csv`.
 
 ### Exiting the program : `exit`
 
@@ -247,8 +247,8 @@ Action | Format, Examples
 **Edit** | `edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Hello`
 **List** | `list`
-**Upload** | `upload CSV_FILE_PATH`<br> e.g., `upload ./dictionary.csv`
-**Download** | `download FILE_NAME`<br> e.g., `download myCards.csv`
+**import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
+**export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
 **Help** | `help`
 **Flip** | `flip INDEX` <br> e.g.,  `flip 2`
 **Test** | `test INDEX e/ENGLISH_PHRASE` <br> e.g., `test 17 e/hello`

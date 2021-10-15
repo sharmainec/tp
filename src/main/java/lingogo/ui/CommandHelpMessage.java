@@ -7,15 +7,15 @@ import lingogo.logic.commands.AddCommand;
 import lingogo.logic.commands.ClearCommand;
 import lingogo.logic.commands.CommandEnum;
 import lingogo.logic.commands.DeleteCommand;
-import lingogo.logic.commands.DownloadCommand;
 import lingogo.logic.commands.EditCommand;
 import lingogo.logic.commands.ExitCommand;
+import lingogo.logic.commands.ExportCommand;
 import lingogo.logic.commands.FindCommand;
 import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
+import lingogo.logic.commands.ImportCommand;
 import lingogo.logic.commands.ListCommand;
 import lingogo.logic.commands.TestCommand;
-import lingogo.logic.commands.UploadCommand;
 
 public class CommandHelpMessage extends UiPart<TitledPane> {
     private static final String FXML = "CommandHelpMessage.fxml";
@@ -83,12 +83,12 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
                     TestCommand.COMMAND_EXAMPLES);
             break;
         case EXPORT:
-            this.setDisplayText("download", DownloadCommand.COMMAND_DESCRIPTION, DownloadCommand.COMMAND_USAGE,
-                    DownloadCommand.COMMAND_EXAMPLES);
+            this.setDisplayText("export", ExportCommand.COMMAND_DESCRIPTION, ExportCommand.COMMAND_USAGE,
+                    ExportCommand.COMMAND_EXAMPLES);
             break;
         case IMPORT:
-            this.setDisplayText("upload", UploadCommand.COMMAND_DESCRIPTION, UploadCommand.COMMAND_USAGE,
-                    UploadCommand.COMMAND_EXAMPLES);
+            this.setDisplayText("import", ImportCommand.COMMAND_DESCRIPTION, ImportCommand.COMMAND_USAGE,
+                    ImportCommand.COMMAND_EXAMPLES);
             break;
         default:
             assert false : "CommandHelpMessage: Invalid command";
