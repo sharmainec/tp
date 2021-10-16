@@ -24,8 +24,17 @@ public class EditFlashcardDescriptorBuilder {
      */
     public EditFlashcardDescriptorBuilder(Flashcard flashcard) {
         descriptor = new EditFlashcardDescriptor();
+        descriptor.setLanguageType(flashcard.getLanguageType());
         descriptor.setEnglishPhrase(flashcard.getEnglishPhrase());
         descriptor.setForeignPhrase(flashcard.getForeignPhrase());
+    }
+
+    /**
+     * Sets the {@code languageType} of the {@code EditFlashcardDescriptor} that we are building.
+     */
+    public EditFlashcardDescriptorBuilder withLanguageType(String languageType) {
+        descriptor.setLanguageType(new Phrase(languageType));
+        return this;
     }
 
     /**

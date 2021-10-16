@@ -3,6 +3,7 @@ package lingogo.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
+import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
@@ -15,14 +16,16 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
     public static final String COMMAND_DESCRIPTION = "Adds a flashcard";
-    public static final String COMMAND_USAGE = "add e/ENGLISH_PHRASE f/FOREIGN_PHRASE";
-    public static final String COMMAND_EXAMPLES = "add e/Hello f/你好";
+    public static final String COMMAND_USAGE = "add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE";
+    public static final String COMMAND_EXAMPLES = "add l/Chinese e/Hello f/你好";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a flashcard to the flashcard app. "
             + "Parameters: "
+            + PREFIX_LANGUAGE_TYPE + "LANGUAGE_TYPE "
             + PREFIX_ENGLISH_PHRASE + "ENGLISH_PHRASE "
             + PREFIX_FOREIGN_PHRASE + "FOREIGN_PHRASE\n"
             + "Example: " + COMMAND_WORD + " "
+            + PREFIX_LANGUAGE_TYPE + "Chinese "
             + PREFIX_ENGLISH_PHRASE + "Good Morning "
             + PREFIX_FOREIGN_PHRASE + "早安";
 

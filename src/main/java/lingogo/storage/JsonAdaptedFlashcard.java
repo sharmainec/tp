@@ -16,6 +16,7 @@ class JsonAdaptedFlashcard {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Flashcard's %s field is missing!";
 
+    private final String languageType;
     private final String englishPhrase;
     private final String foreignPhrase;
 
@@ -23,8 +24,10 @@ class JsonAdaptedFlashcard {
      * Constructs a {@code JsonAdaptedFlashcard} with the given flashcard details.
      */
     @JsonCreator
-    public JsonAdaptedFlashcard(@JsonProperty("englishPhrase") String englishPhrase,
+    public JsonAdaptedFlashcard(@JsonProperty("languageType") String languageType,
+                                @JsonProperty("englishPhrase") String englishPhrase,
                                 @JsonProperty("foreignPhrase") String foreignPhrase) {
+        this.languageType = languageType;
         this.englishPhrase = englishPhrase;
         this.foreignPhrase = foreignPhrase;
 
@@ -34,6 +37,7 @@ class JsonAdaptedFlashcard {
      * Converts a given {@code Flashcard} into this class for Jackson use.
      */
     public JsonAdaptedFlashcard(Flashcard source) {
+        languageType = source.getLanguageType().value;
         englishPhrase = source.getEnglishPhrase().value;
         foreignPhrase = source.getForeignPhrase().value;
     }
@@ -44,6 +48,16 @@ class JsonAdaptedFlashcard {
      * @throws IllegalValueException if there were any data constraints violated in the adapted flashcard.
      */
     public Flashcard toModelType() throws IllegalValueException {
+
+        if (languageType == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    "Language " + Phrase.class.getSimpleName()));
+        }
+        if (!Phrase.isValidPhrase(languageType)) {
+            throw new IllegalValueException(Phrase.MESSAGE_CONSTRAINTS);
+        }
+
+        final Phrase modelLanguageType = new Phrase(languageType);
 
         if (englishPhrase == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -65,7 +79,7 @@ class JsonAdaptedFlashcard {
 
         final Phrase modelForeignPhrase = new Phrase(foreignPhrase);
 
-        return new Flashcard(modelEnglishPhrase, modelForeignPhrase);
+        return new Flashcard(modelLanguageType, modelEnglishPhrase, modelForeignPhrase);
     }
 
 }

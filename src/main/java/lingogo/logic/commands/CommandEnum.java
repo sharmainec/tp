@@ -6,6 +6,7 @@ public enum CommandEnum {
     DELETE,
     EDIT,
     EXIT,
+    FILTER,
     FIND,
     FLIP,
     HELP,

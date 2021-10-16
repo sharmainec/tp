@@ -140,12 +140,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void downloadFlashCards(String fileName) throws CommandException {
+        public void exportFlashCards(String fileName) throws CommandException {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void uploadFlashCards(String filePath) throws CommandException {
+        public void importFlashCards(String filePath) throws CommandException {
             throw new AssertionError("This method should not be called.");
         }
 

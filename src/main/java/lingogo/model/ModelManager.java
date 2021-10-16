@@ -114,15 +114,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void downloadFlashCards(String fileName) throws CommandException {
+    public void exportFlashCards(String fileName) throws CommandException {
         requireAllNonNull(fileName);
-        flashcardApp.downloadFlashCards(fileName);
+        flashcardApp.exportFlashCards(fileName);
     }
 
     @Override
-    public void uploadFlashCards(String filePath) throws CommandException {
+    public void importFlashCards(String filePath) throws CommandException {
         requireAllNonNull(filePath);
-        flashcardApp.uploadFlashCards(filePath);
+        flashcardApp.importFlashCards(filePath);
     }
 
     //=========== Filtered Flashcard List Accessors =============================================================
