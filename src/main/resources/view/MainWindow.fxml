@@ -46,19 +46,26 @@
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="flashcardHeaderBarPlaceholder" styleClass="pane-with-border"
-                   minHeight="40" prefHeight="40" maxHeight="40">
+        <StackPane VBox.vgrow="ALWAYS" fx:id="flashcardListPlaceholder" styleClass="pane-with-border"
+                   minHeight="150" prefHeight="350">
           <padding>
-            <Insets top="10" right="10" left="10" />
+            <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
 
-        <VBox fx:id="flashcardList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="flashcardListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+<!--        <StackPane VBox.vgrow="NEVER" fx:id="flashcardHeaderBarPlaceholder" styleClass="pane-with-border"-->
+<!--                   minHeight="40" prefHeight="40" maxHeight="40">-->
+<!--          <padding>-->
+<!--            <Insets top="10" right="10" left="10" />-->
+<!--          </padding>-->
+<!--        </StackPane>-->
+
+<!--        <VBox fx:id="flashcardList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">-->
+<!--          <padding>-->
+<!--            <Insets right="10" bottom="10" left="10" />-->
+<!--          </padding>-->
+<!--          <StackPane fx:id="flashcardListPanelPlaceholder" VBox.vgrow="ALWAYS"/>-->
+<!--        </VBox>-->
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

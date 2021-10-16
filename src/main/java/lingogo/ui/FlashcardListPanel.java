@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import lingogo.commons.core.LogsCenter;
 import lingogo.model.flashcard.Flashcard;
 
@@ -18,6 +19,8 @@ public class FlashcardListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
 
     @FXML
+    private StackPane flashcardHeaderBarPlaceholder;
+    @FXML
     private ListView<Flashcard> flashcardListView;
 
     /**
@@ -25,6 +28,7 @@ public class FlashcardListPanel extends UiPart<Region> {
      */
     public FlashcardListPanel(ObservableList<Flashcard> flashcardList) {
         super(FXML);
+        flashcardHeaderBarPlaceholder.getChildren().add(new FlashcardHeaderBar().getRoot());
         flashcardListView.setItems(flashcardList);
         flashcardListView.setCellFactory(listView -> new FlashcardListViewCell());
     }
@@ -45,5 +49,4 @@ public class FlashcardListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
