@@ -44,12 +44,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane flashcardListPlaceholder;
 
-//    @FXML
-//    private StackPane flashcardHeaderBarPlaceholder;
-//
-//    @FXML
-//    private StackPane flashcardListPanelPlaceholder;
-
     @FXML
     private StackPane resultDisplayPlaceholder;
 
@@ -116,9 +110,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-//        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
-//        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
@@ -130,9 +121,6 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getFlashcardAppFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-//        FlashcardHeaderBar flashcardHeaderBar = new FlashcardHeaderBar();
-//        flashcardHeaderBarPlaceholder.getChildren().add(flashcardHeaderBar.getRoot());
     }
 
     /**
