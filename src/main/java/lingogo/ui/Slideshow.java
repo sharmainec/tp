@@ -23,7 +23,7 @@ public class Slideshow extends UiPart<Region> {
     @FXML
     private Label progress;
 
-    ObservableList<Flashcard> flashcardList;
+    private ObservableList<Flashcard> flashcardList;
 
     /**
      * Creates a {@code Slideshow} component.
