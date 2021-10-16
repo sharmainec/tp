@@ -1,8 +1,10 @@
 {
   "flashcards": [ {
+    "languageType": "Chinese",
     "englishPhrase": "Good Afternoon",
     "foreignPhrase": "午安"
   }, {
+    "languageType": "Chinese",
     "englishPhrase": "Good Afternoon",
     "foreignPhrase": "午安"
   } ]

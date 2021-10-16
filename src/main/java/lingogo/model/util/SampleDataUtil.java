@@ -11,10 +11,10 @@ import lingogo.model.flashcard.Phrase;
 public class SampleDataUtil {
     public static Flashcard[] getSampleFlashcards() {
         return new Flashcard[] {
-            new Flashcard(new Phrase("Hello"), new Phrase("你好")),
-            new Flashcard(new Phrase("Good Morning"), new Phrase("早安")),
-            new Flashcard(new Phrase("Good Afternoon"), new Phrase("午安")),
-            new Flashcard(new Phrase("Good Night"), new Phrase("晚安"))
+            new Flashcard(new Phrase("Chinese"), new Phrase("Hello"), new Phrase("你好")),
+            new Flashcard(new Phrase("Chinese"), new Phrase("Good Morning"), new Phrase("早安")),
+            new Flashcard(new Phrase("Chinese"), new Phrase("Good Afternoon"), new Phrase("午安")),
+            new Flashcard(new Phrase("Chinese"), new Phrase("Good Night"), new Phrase("晚安"))
         };
     }
 

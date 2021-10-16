@@ -5,6 +5,8 @@ import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_SUNRISE;
+import static lingogo.logic.commands.CommandTestUtil.VALID_LANGUAGE_TYPE_CHINESE;
+import static lingogo.logic.commands.CommandTestUtil.VALID_LANGUAGE_TYPE_TAMIL;
 import static lingogo.logic.commands.CommandTestUtil.VALID_TAMIL_PHRASE_SUNRISE;
 
 import java.util.ArrayList;
@@ -16,32 +18,35 @@ import lingogo.model.flashcard.Flashcard;
 
 public class TypicalFlashcards {
 
-    public static final Flashcard AFTERNOON_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Afternoon")
-        .withForeignPhrase("下午").build();
-    public static final Flashcard NIGHT_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Night")
-        .withForeignPhrase("晚上").build();
-    public static final Flashcard BYE_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Bye")
-        .withForeignPhrase("再见").build();
-    public static final Flashcard SORRY_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Sorry")
-        .withForeignPhrase("对不起").build();
+    public static final Flashcard AFTERNOON_CHINESE_FLASHCARD = new FlashcardBuilder().withLanguageType("Chinese")
+            .withEnglishPhrase("Afternoon").withForeignPhrase("下午").build();
+    public static final Flashcard NIGHT_CHINESE_FLASHCARD = new FlashcardBuilder().withLanguageType("Chinese")
+            .withEnglishPhrase("Night").withForeignPhrase("晚上").build();
+    public static final Flashcard BYE_CHINESE_FLASHCARD = new FlashcardBuilder().withLanguageType("Chinese")
+            .withEnglishPhrase("Bye").withForeignPhrase("再见").build();
+    public static final Flashcard SORRY_CHINESE_FLASHCARD = new FlashcardBuilder().withLanguageType("Chinese")
+            .withEnglishPhrase("Sorry").withForeignPhrase("对不起").build();
 
     // Manually added
-    public static final Flashcard THANK_YOU_CHINESE_FLASHCARD = new FlashcardBuilder().withEnglishPhrase("Thank You")
-        .withForeignPhrase("谢谢").build();
-    public static final Flashcard HAPPY_BIRTHDAY = new FlashcardBuilder().withEnglishPhrase("Happy Birthday")
-        .withForeignPhrase("生日快乐").build();
+    public static final Flashcard THANK_YOU_CHINESE_FLASHCARD = new FlashcardBuilder().withLanguageType("Chinese")
+            .withEnglishPhrase("Thank You").withForeignPhrase("谢谢").build();
+    public static final Flashcard HAPPY_BIRTHDAY = new FlashcardBuilder().withLanguageType("Chinese")
+            .withEnglishPhrase("Happy Birthday").withForeignPhrase("生日快乐").build();
 
 
     // Flashcard's details found in {@code CommandTestUtil}
     public static final Flashcard GOOD_MORNING_CHINESE_FLASHCARD =
-        new FlashcardBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)
-            .withForeignPhrase(VALID_CHINESE_PHRASE_GOOD_MORNING).build();
+        new FlashcardBuilder().withLanguageType(VALID_LANGUAGE_TYPE_CHINESE)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)
+                .withForeignPhrase(VALID_CHINESE_PHRASE_GOOD_MORNING).build();
     public static final Flashcard HELLO_CHINESE_FLASHCARD =
-        new FlashcardBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
-            .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+        new FlashcardBuilder().withLanguageType(VALID_LANGUAGE_TYPE_CHINESE)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
+                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
     public static final Flashcard SUNRISE_TAMIL_FLASHCARD =
-        new FlashcardBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_SUNRISE)
-            .withForeignPhrase(VALID_TAMIL_PHRASE_SUNRISE).build();
+        new FlashcardBuilder().withLanguageType(VALID_LANGUAGE_TYPE_TAMIL)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_SUNRISE)
+                .withForeignPhrase(VALID_TAMIL_PHRASE_SUNRISE).build();
 
     private TypicalFlashcards() {
     } // prevents instantiation
@@ -60,6 +65,6 @@ public class TypicalFlashcards {
     public static List<Flashcard> getTypicalFlashcards() {
         return new ArrayList<>(
             Arrays.asList(AFTERNOON_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD,
-                SORRY_CHINESE_FLASHCARD));
+                SORRY_CHINESE_FLASHCARD, SUNRISE_TAMIL_FLASHCARD));
     }
 }

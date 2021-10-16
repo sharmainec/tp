@@ -3,6 +3,7 @@ package lingogo.logic.parser;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
+import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 
 import java.util.stream.Stream;
 
@@ -23,17 +24,18 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ENGLISH_PHRASE, PREFIX_FOREIGN_PHRASE);
+                ArgumentTokenizer.tokenize(args, PREFIX_LANGUAGE_TYPE, PREFIX_ENGLISH_PHRASE, PREFIX_FOREIGN_PHRASE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ENGLISH_PHRASE, PREFIX_FOREIGN_PHRASE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_LANGUAGE_TYPE, PREFIX_ENGLISH_PHRASE, PREFIX_FOREIGN_PHRASE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        Phrase languageType = ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_LANGUAGE_TYPE).get());
         Phrase englishPhrase = ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get());
         Phrase foreignPhrase = ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_FOREIGN_PHRASE).get());
 
-        Flashcard flashcard = new Flashcard(englishPhrase, foreignPhrase);
+        Flashcard flashcard = new Flashcard(languageType, englishPhrase, foreignPhrase);
 
         return new AddCommand(flashcard);
     }

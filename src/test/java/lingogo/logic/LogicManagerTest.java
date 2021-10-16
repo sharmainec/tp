@@ -4,6 +4,7 @@ import static lingogo.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_
 import static lingogo.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static lingogo.logic.commands.CommandTestUtil.CHINESE_PHRASE_DESC_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.ENGLISH_PHRASE_DESC_HELLO;
+import static lingogo.logic.commands.CommandTestUtil.LANGUAGE_TYPE_DESC_CHINESE;
 import static lingogo.testutil.Assert.assertThrows;
 import static lingogo.testutil.TypicalFlashcards.HELLO_CHINESE_FLASHCARD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -77,7 +78,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_HELLO;
+        String addCommand = AddCommand.COMMAND_WORD + LANGUAGE_TYPE_DESC_CHINESE
+                + ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_HELLO;
         Flashcard expectedFlashcard = new FlashcardBuilder(HELLO_CHINESE_FLASHCARD).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addFlashcard(expectedFlashcard);

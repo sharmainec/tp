@@ -11,6 +11,7 @@ import java.util.Objects;
 public class Flashcard {
 
     // Data fields
+    private final Phrase languageType;
     private final Phrase englishPhrase;
     private final Phrase foreignPhrase;
     private final Boolean isFlipped;
@@ -18,8 +19,9 @@ public class Flashcard {
     /**
      * Every field must be present and not null. {@code isFlipped} set to false by default.
      */
-    public Flashcard(Phrase englishPhrase, Phrase foreignPhrase) {
+    public Flashcard(Phrase languageType, Phrase englishPhrase, Phrase foreignPhrase) {
         requireAllNonNull(englishPhrase, foreignPhrase);
+        this.languageType = languageType;
         this.englishPhrase = englishPhrase;
         this.foreignPhrase = foreignPhrase;
         this.isFlipped = false;
@@ -28,11 +30,16 @@ public class Flashcard {
     /**
      * Every field must be present and not null.
      */
-    public Flashcard(Phrase englishPhrase, Phrase foreignPhrase, Boolean isFlipped) {
+    public Flashcard(Phrase languageType, Phrase englishPhrase, Phrase foreignPhrase, Boolean isFlipped) {
         requireAllNonNull(englishPhrase, foreignPhrase, isFlipped);
+        this.languageType = languageType;
         this.englishPhrase = englishPhrase;
         this.foreignPhrase = foreignPhrase;
         this.isFlipped = isFlipped;
+    }
+
+    public Phrase getLanguageType() {
+        return languageType;
     }
 
     public Phrase getEnglishPhrase() {
@@ -53,7 +60,7 @@ public class Flashcard {
      * @return Flipped flashcard
      */
     public Flashcard getFlippedFlashcard() {
-        return new Flashcard(englishPhrase, foreignPhrase, !isFlipped);
+        return new Flashcard(languageType, englishPhrase, foreignPhrase, !isFlipped);
     }
 
     /**
@@ -82,24 +89,28 @@ public class Flashcard {
         }
 
         Flashcard otherFlashcard = (Flashcard) other;
-        return otherFlashcard.getEnglishPhrase().equals(getEnglishPhrase())
-            && otherFlashcard.getForeignPhrase().equals(getForeignPhrase()) && otherFlashcard.getFlipStatus()
-            .equals(getFlipStatus());
+        return otherFlashcard.getLanguageType().equals(getLanguageType())
+            && otherFlashcard.getEnglishPhrase().equals(getEnglishPhrase())
+            && otherFlashcard.getForeignPhrase().equals(getForeignPhrase())
+            && otherFlashcard.getFlipStatus().equals(getFlipStatus());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(englishPhrase, foreignPhrase);
+        return Objects.hash(languageType, englishPhrase, foreignPhrase);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Foreign phrase: ")
-            .append(getForeignPhrase())
-            .append("\n")
-            .append("English phrase: ")
-            .append(getEnglishPhrase());
+        builder.append("Language type: ")
+                .append(getLanguageType())
+                .append("\n")
+                .append("Foreign phrase: ")
+                .append(getForeignPhrase())
+                .append("\n")
+                .append("English phrase: ")
+                .append(getEnglishPhrase());
 
         return builder.toString();
     }

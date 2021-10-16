@@ -8,12 +8,12 @@ import lingogo.model.Model;
 /**
  * Exports the existing cards in the flashcard app to a CSV file.
  */
-public class DownloadCommand extends Command {
+public class ExportCommand extends Command {
 
-    public static final String COMMAND_WORD = "download";
+    public static final String COMMAND_WORD = "export";
     public static final String COMMAND_DESCRIPTION = "Exports flashcards to a CSV file";
-    public static final String COMMAND_USAGE = "download FILE_NAME";
-    public static final String COMMAND_EXAMPLES = "download myCards.csv";
+    public static final String COMMAND_USAGE = "export FILE_NAME";
+    public static final String COMMAND_EXAMPLES = "export myCards.csv";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports cards from LingoGO! to a CSV file. "
             + "Parameters: FILE_NAME (must have a valid file name with .csv extension)\n"
@@ -24,9 +24,9 @@ public class DownloadCommand extends Command {
     private final String fileName;
 
     /**
-     * @param fileName of the CSV file to be downloaded from the flashcard app
+     * @param fileName of the CSV file to be exported from the flashcard app
      */
-    public DownloadCommand(String fileName) {
+    public ExportCommand(String fileName) {
         requireNonNull(fileName);
 
         this.fileName = fileName;
@@ -35,14 +35,14 @@ public class DownloadCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.downloadFlashCards(fileName);
+        model.exportFlashCards(fileName);
         return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DownloadCommand // instanceof handles nulls
-                && fileName.equals(((DownloadCommand) other).fileName)); // state check
+                || (other instanceof ExportCommand // instanceof handles nulls
+                && fileName.equals(((ExportCommand) other).fileName)); // state check
     }
 }
