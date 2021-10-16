@@ -4,9 +4,16 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Button?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <StackPane VBox.vgrow="NEVER" fx:id="flashcardHeaderBarPlaceholder" styleClass="pane-with-border" />
-  <VBox>
-    <ListView fx:id="flashcardListView" VBox.vgrow="ALWAYS" />
-  </VBox>
+  <!-- TODO: Remove this button once Test and Exit command are fully implemented -->
+  <Button text="Toggle Slideshow" onAction="#toggleSlideshowMode" />
+  <StackPane fx:id="flashcardListPanel">
+    <VBox>
+      <StackPane fx:id="flashcardHeaderBarPlaceholder" VBox.vgrow="NEVER" styleClass="pane-with-border" />
+      <VBox>
+        <ListView fx:id="flashcardListView" VBox.vgrow="ALWAYS" />
+      </VBox>
+    </VBox>
+  </StackPane>
 </VBox>
