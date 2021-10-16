@@ -104,12 +104,13 @@ public class Flashcard {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Language type: ")
-            .append(getLanguageType())
-            .append("Foreign phrase: ")
-            .append(getForeignPhrase())
-            .append("\n")
-            .append("English phrase: ")
-            .append(getEnglishPhrase());
+                .append(getLanguageType())
+                .append("\n")
+                .append("Foreign phrase: ")
+                .append(getForeignPhrase())
+                .append("\n")
+                .append("English phrase: ")
+                .append(getEnglishPhrase());
 
         return builder.toString();
     }

@@ -7,6 +7,7 @@ import static lingogo.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
     private final ObservableList<Flashcard> internalList = FXCollections.observableArrayList();
     private final ObservableList<Flashcard> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final String[] csvHeaders = {"Language", "Foreign", "English"};
 
     /**
      * Returns true if the list contains an equivalent flashcard as the given argument.
@@ -114,8 +116,8 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
         String filePath = "./data/" + fileName;
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(filePath));
-            String[] line = {"Language", "Foreign", "English"};
-            writer.writeNext(line);
+            writer.writeNext(csvHeaders);
+            String[] line;
             for (Flashcard card : internalList) {
                 line = new String[]{card.getLanguageType().value,
                         card.getForeignPhrase().value, card.getEnglishPhrase().value};
@@ -133,8 +135,11 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
      */
     public void importFlashcards(String filePath) throws CommandException {
         try {
-            CSVReader reader = new CSVReaderBuilder(new FileReader(filePath)).withSkipLines(1).build();
-            String[] line;
+            CSVReader reader = new CSVReaderBuilder(new FileReader(filePath)).build();
+            String[] line = reader.readNext();
+            if (!Arrays.toString(line).equals(Arrays.toString(csvHeaders))) {
+                throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, filePath));
+            }
             while ((line = reader.readNext()) != null) {
                 if (line.length != 3) {
                     throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, filePath));
