@@ -11,8 +11,9 @@
   <GridPane HBox.hgrow="ALWAYS" prefHeight="60" alignment="CENTER" gridLinesVisible="true">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="10" halignment="CENTER" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="45" halignment="CENTER" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="45" halignment="CENTER" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="20" halignment="CENTER" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="35" halignment="CENTER" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="35" halignment="CENTER" />
     </columnConstraints>
     <rowConstraints>
       <RowConstraints vgrow="SOMETIMES" prefHeight="60" />
@@ -22,12 +23,17 @@
         <Insets left="5.0" right="5.0" />
       </padding>
     </Label>
-    <Label fx:id="foreignPhrase" text="Foreign Phrase" GridPane.columnIndex="1" wrapText="true">
+    <Label fx:id="language" text="Language" GridPane.columnIndex="1">
       <padding>
         <Insets left="5.0" right="5.0" />
       </padding>
     </Label>
-    <Label fx:id="englishPhrase" text="English Phrase" GridPane.columnIndex="2" wrapText="true">
+    <Label fx:id="foreignPhrase" text="Foreign Phrase" GridPane.columnIndex="2" wrapText="true">
+      <padding>
+        <Insets left="5.0" right="5.0" />
+      </padding>
+    </Label>
+    <Label fx:id="englishPhrase" text="English Phrase" GridPane.columnIndex="3" wrapText="true">
       <padding>
         <Insets left="5.0" right="5.0" />
       </padding>

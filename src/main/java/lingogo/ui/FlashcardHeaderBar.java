@@ -17,6 +17,8 @@ public class FlashcardHeaderBar extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label language;
+    @FXML
     private Label foreignPhrase;
     @FXML
     private Label englishPhrase;
@@ -27,6 +29,7 @@ public class FlashcardHeaderBar extends UiPart<Region> {
     public FlashcardHeaderBar() {
         super(FXML);
         id.setText("No.");
+        language.setText("Language");
         foreignPhrase.setText("Foreign phrase");
         englishPhrase.setText("English phrase");
     }
