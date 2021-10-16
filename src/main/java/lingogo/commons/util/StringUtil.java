@@ -6,10 +6,6 @@ import static lingogo.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.logging.Logger;
-
-import lingogo.commons.core.LogsCenter;
-import lingogo.logic.LogicManager;
 
 /**
  * Helper functions for handling strings.
@@ -47,8 +43,8 @@ public class StringUtil {
      *   Ignores case, but a full word match is required for words whose length is more than 1.
      *   Else, compares characters, does not need a full word match.
      *   <br>examples:<pre>
-     *       containsForeignCharacter("早", "早安") == true //need full word match for keywords with length more than 1
-     *       containsForeignCharacter("晚安", "安") == true //dont need to be a full word match since keyword's length is 1
+     *       containsForeignCharacter("早", "早安") == true //need full word match since keyword is 2 char
+     *       containsForeignCharacter("晚安", "安") == true //only need to match 1 char
      *       containsForeignCharacter("hola", "ho") == false //need full word match for alphabet characters
      *       </pre>
      * @param sentence cannot be null

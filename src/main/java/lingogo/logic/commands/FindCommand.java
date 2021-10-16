@@ -7,7 +7,7 @@ import lingogo.model.Model;
 import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 
 /**
- * Finds and lists all flashcards in the flashcard app whose English phrase or foreign phrase 
+ * Finds and lists all flashcards in the flashcard app whose English phrase or foreign phrase
  * contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
