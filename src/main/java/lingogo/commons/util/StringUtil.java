@@ -44,18 +44,17 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required for words containing characters.
-     *   Else, compares foreign characters, does not need a full word match.
+     *   Ignores case, but a full word match is required for words whose length is more than 1.
+     *   Else, compares characters, does not need a full word match.
      *   <br>examples:<pre>
-     *       containsForeignCharacter("早", "早") == true
-     *       containsForeignCharacter("晚安", "安") == true //dont need to be a full word match
+     *       containsForeignCharacter("早", "早安") == true //need full word match for keywords with length more than 1
+     *       containsForeignCharacter("晚安", "安") == true //dont need to be a full word match since keyword's length is 1
      *       containsForeignCharacter("hola", "ho") == false //need full word match for alphabet characters
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
     public static boolean containsForeignCharacter(String sentence, String word) {
-        Logger logger = LogsCenter.getLogger(LogicManager.class);
         requireNonNull(sentence);
         requireNonNull(word);
 
