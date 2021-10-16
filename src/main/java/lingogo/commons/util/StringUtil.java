@@ -6,6 +6,10 @@ import static lingogo.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.logging.Logger;
+
+import lingogo.commons.core.LogsCenter;
+import lingogo.logic.LogicManager;
 
 /**
  * Helper functions for handling strings.
@@ -36,6 +40,42 @@ public class StringUtil {
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     *   Ignores case, but a full word match is required for words containing characters.
+     *   Else, compares foreign characters, does not need a full word match.
+     *   <br>examples:<pre>
+     *       containsForeignCharacter("早", "早") == true
+     *       containsForeignCharacter("晚安", "安") == true //dont need to be a full word match
+     *       containsForeignCharacter("hola", "ho") == false //need full word match for alphabet characters
+     *       </pre>
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsForeignCharacter(String sentence, String word) {
+        Logger logger = LogsCenter.getLogger(LogicManager.class);
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        if (word.matches("^[a-zA-Z]*$") || word.length() > 1) { // only allow full word match
+            String preppedSentence = sentence;
+            String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+
+            return Arrays.stream(wordsInPreppedSentence)
+                    .anyMatch(preppedWord::equalsIgnoreCase);
+        } else { // allow non-full word match
+            String preppedSentence = sentence;
+            String[] charsInPreppedSentence = preppedSentence.split("(?!^)");
+
+            return Arrays.stream(charsInPreppedSentence)
+                    .anyMatch(preppedWord::equalsIgnoreCase);
+        }
     }
 
     /**

@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import lingogo.logic.commands.FindCommand;
-import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
+import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -24,7 +24,7 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new EnglishPhraseContainsKeywordsPredicate(Arrays.asList("Hello", "Good")));
+                new FindCommand(new PhraseContainsKeywordsPredicate(Arrays.asList("Hello", "Good")));
         assertParseSuccess(parser, "Hello Good", expectedFindCommand);
 
         // multiple whitespaces between keywords

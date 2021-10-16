@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import lingogo.logic.commands.FindCommand;
 import lingogo.logic.parser.exceptions.ParseException;
-import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
+import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] englishPhraseKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new EnglishPhraseContainsKeywordsPredicate(Arrays.asList(englishPhraseKeywords)));
+        return new FindCommand(new PhraseContainsKeywordsPredicate(Arrays.asList(englishPhraseKeywords)));
     }
 
 }

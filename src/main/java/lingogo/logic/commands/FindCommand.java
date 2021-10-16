@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import lingogo.commons.core.Messages;
 import lingogo.model.Model;
-import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
+import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 
 /**
  * Finds and lists all flashcards in the flashcard app whose English phrase contains any of the argument keywords.
@@ -23,9 +23,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " hello";
 
-    private final EnglishPhraseContainsKeywordsPredicate predicate;
+    private final PhraseContainsKeywordsPredicate predicate;
 
-    public FindCommand(EnglishPhraseContainsKeywordsPredicate predicate) {
+    public FindCommand(PhraseContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

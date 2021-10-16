@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
-import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
+import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -29,10 +29,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        EnglishPhraseContainsKeywordsPredicate firstPredicate =
-                new EnglishPhraseContainsKeywordsPredicate(Collections.singletonList("first"));
-        EnglishPhraseContainsKeywordsPredicate secondPredicate =
-                new EnglishPhraseContainsKeywordsPredicate(Collections.singletonList("second"));
+        PhraseContainsKeywordsPredicate firstPredicate =
+                new PhraseContainsKeywordsPredicate(Collections.singletonList("first"));
+        PhraseContainsKeywordsPredicate secondPredicate =
+                new PhraseContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -57,7 +57,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noFlashcardFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
-        EnglishPhraseContainsKeywordsPredicate predicate = preparePredicate(" ");
+        PhraseContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -65,9 +65,20 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleFlashcardsFound() {
+    public void execute_multipleEnglishKeywords_multipleFlashcardsFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
-        EnglishPhraseContainsKeywordsPredicate predicate = preparePredicate("Bye Night Sorry");
+        PhraseContainsKeywordsPredicate predicate = preparePredicate("Bye Night Sorry");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD),
+                model.getFilteredFlashcardList());
+    }
+
+    @Test
+    public void execute_multipleForeignKeywords_multipleFlashcardsFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        PhraseContainsKeywordsPredicate predicate = preparePredicate("再见 晚上 对");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -76,9 +87,9 @@ public class FindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code EnglishPhraseContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PhraseContainsKeywordsPredicate}.
      */
-    private EnglishPhraseContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new EnglishPhraseContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PhraseContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new PhraseContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
