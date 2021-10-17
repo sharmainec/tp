@@ -1,6 +1,5 @@
 package lingogo.model;
 
-import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
 import static lingogo.testutil.TypicalFlashcards.GOOD_MORNING_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,7 +44,7 @@ public class FlashcardAppTest {
     public void resetData_withDuplicateFlashcards_throwsDuplicateFlashcardException() {
         // Two flashcards with the same identity fields
         Flashcard editedFlashcard = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
-                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+                .withFlipStatus(!FlashcardBuilder.DEFAULT_IS_FLIPPED).build();
         List<Flashcard> newFlashcards = Arrays.asList(GOOD_MORNING_CHINESE_FLASHCARD, editedFlashcard);
         FlashcardAppStub newData = new FlashcardAppStub(newFlashcards);
 
@@ -72,7 +71,7 @@ public class FlashcardAppTest {
     public void hasFlashcard_flashcardWithSameIdentityFieldsInFlashcardApp_returnsTrue() {
         flashcardApp.addFlashcard(GOOD_MORNING_CHINESE_FLASHCARD);
         Flashcard editedFlashcard = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
-                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+                .withFlipStatus(!FlashcardBuilder.DEFAULT_IS_FLIPPED).build();
         assertTrue(flashcardApp.hasFlashcard(editedFlashcard));
     }
 
