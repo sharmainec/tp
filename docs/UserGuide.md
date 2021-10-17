@@ -36,6 +36,8 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
    * **`edit`**`3`**`f/Guten Morgen`** : Edits the foreign phrase of the 3rd flashcard shown in the current displayed list to `Guten Morgen`.
 
+   * **`find`**`e/Hello f/早安` : Finds flashcards based on its english phrase `Hello` and foreign phrase `早安`.
+
    * **`upload`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
 
    * **`download`**`myCards.csv` : Exports cards from LingoGO! to a CSV file in a file name `myCards.csv`.
@@ -122,17 +124,21 @@ Examples:
 
 Finds flashcards based on the keyword specified.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORD]`
 
 * The search is case-insensitive. e.g `HELLO` will match `Hello`
 * The order of the keywords does not matter. e.g. `Good morning` will match `Morning good`
-* Only full words will be matched e.g. `Hello` will not match `Helloooo`
+* Only full words will be matched e.g. `Hello` will not match `Helloooo` for English keywords
+* Non-full words match will be accepted for foreign keywords e.g. `早` with match `早安`
 * Flashcard matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Good Hello` will return `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`
+  e.g. `e/Good Hello` will return `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`
 
 Examples:
-* `find Good` returns `e/Good Morning f/早安` and `e/Good Morning f/Guten Morgen`
-* `find Good Hello` returns `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`<br>
+* `find e/Good` returns `e/Good Morning f/早安` and `e/Good Morning f/Guten Morgen`
+* `find e/Good Hello` returns `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`
+* `find f/早` return `e/Good Morning f/早安` and `e/Morning f/早晨`
+* `find f/安 好` return `e/Good Morning f/早安`, `e/Good Afternoon f/午安`, `e/Good Night f/晚安` and `e/Hello f/你好`
+* `find e/Hello f/早` return `e/Hello f/你好`, `e/Good Morning f/早安` and `e/Morning f/早晨`<br>
 
 ### Deleting a flashcard : `delete`
 
@@ -245,7 +251,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Hello`
+**Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`<br> e.g., `find e/Hello f/早`
 **List** | `list`
 **Upload** | `upload CSV_FILE_PATH`<br> e.g., `upload ./dictionary.csv`
 **Download** | `download FILE_NAME`<br> e.g., `download myCards.csv`

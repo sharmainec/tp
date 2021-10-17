@@ -400,6 +400,20 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 
       Use case resumes at step 1.
 
+**Use case: Find a flashcard**
+
+**MSS**
+1. User requests to find a flashcard based on its English or Foreign value.
+2. LingoGO! shows a list of flashcards that contains the keyword given by the user.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given user input is invalid.
+    * 1a1. LingoGO! shows an error message.
+
+      Use case resumes at step 1.
+
 **Use case: Test a user**
 
 **Preconditions: Flashcard tested is not showing its answer.**
