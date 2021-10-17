@@ -33,12 +33,9 @@ import lingogo.logic.commands.TestCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;
-<<<<<<< HEAD
 import lingogo.model.flashcard.ForeignPhraseContainsKeywordsPredicate;
-=======
 import lingogo.model.flashcard.LanguageTypeMatchesGivenPhrasePredicate;
 import lingogo.model.flashcard.Phrase;
->>>>>>> c2f9a61776c1ec75b52d95bf80c9561c09049763
 import lingogo.testutil.EditFlashcardDescriptorBuilder;
 import lingogo.testutil.FlashcardBuilder;
 import lingogo.testutil.FlashcardUtil;
@@ -99,7 +96,7 @@ public class FlashcardAppParserTest {
                 FindCommand.COMMAND_WORD + " f/" + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new ForeignPhraseContainsKeywordsPredicate(keywords)), command);
     }
-    
+
     @Test
     public void parseCommand_filter() throws Exception {
         Phrase givenPhrase = new Phrase(VALID_LANGUAGE_TYPE_TAMIL);
