@@ -7,13 +7,12 @@ import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
 
 import java.util.Arrays;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import lingogo.logic.commands.FindCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.ForeignPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * Parses input arguments and creates a new FindCommand object
