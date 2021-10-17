@@ -39,7 +39,6 @@ LingoGO! is a **desktop app for university students who use English as their fir
    * **`find`**`e/Hello f/早安` : Finds flashcards based on its english phrase `Hello` and foreign phrase `早安`.
 
    * **`import`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
->>>>>>> c2f9a61776c1ec75b52d95bf80c9561c09049763
 
    * **`export`**`myCards.csv` : Exports cards from LingoGO! to a CSV file in a file name `myCards.csv`.
 
