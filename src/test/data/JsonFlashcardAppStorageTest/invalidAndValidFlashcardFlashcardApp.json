@@ -1,8 +1,10 @@
 {
   "flashcards": [ {
+    "languageType": "Invalid Foreign Phrase",
     "englishPhrase": "Invalid Foreign Phrase",
     "foreignPhrase": ""
   }, {
+    "languageType": "Chinese",
     "englishPhrase": "Hello",
     "foreignPhrase": "你好"
   }]

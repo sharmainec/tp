@@ -10,15 +10,16 @@ import lingogo.logic.commands.AddCommand;
 import lingogo.logic.commands.ClearCommand;
 import lingogo.logic.commands.Command;
 import lingogo.logic.commands.DeleteCommand;
-import lingogo.logic.commands.DownloadCommand;
 import lingogo.logic.commands.EditCommand;
 import lingogo.logic.commands.ExitCommand;
+import lingogo.logic.commands.ExportCommand;
+import lingogo.logic.commands.FilterCommand;
 import lingogo.logic.commands.FindCommand;
 import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
+import lingogo.logic.commands.ImportCommand;
 import lingogo.logic.commands.ListCommand;
 import lingogo.logic.commands.TestCommand;
-import lingogo.logic.commands.UploadCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 
 /**
@@ -63,14 +64,17 @@ public class FlashcardAppParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case DownloadCommand.COMMAND_WORD:
-            return new DownloadCommandParser().parse(arguments);
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommandParser().parse(arguments);
 
-        case UploadCommand.COMMAND_WORD:
-            return new UploadCommandParser().parse(arguments);
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

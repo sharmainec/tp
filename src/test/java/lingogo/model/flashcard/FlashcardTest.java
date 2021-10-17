@@ -3,6 +3,7 @@ package lingogo.model.flashcard;
 import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_HELLO;
+import static lingogo.logic.commands.CommandTestUtil.VALID_LANGUAGE_TYPE_TAMIL;
 import static lingogo.testutil.TypicalFlashcards.GOOD_MORNING_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.HELLO_CHINESE_FLASHCARD;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -61,8 +62,13 @@ public class FlashcardTest {
         // different flashcard -> returns false
         assertFalse(GOOD_MORNING_CHINESE_FLASHCARD.equals(HELLO_CHINESE_FLASHCARD));
 
-        // different English phrase -> returns false
+        // different Language type -> returns false
         Flashcard editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
+                .withLanguageType(VALID_LANGUAGE_TYPE_TAMIL).build();
+        assertFalse(GOOD_MORNING_CHINESE_FLASHCARD.equals(editedGoodMorning));
+
+        // different English phrase -> returns false
+        editedGoodMorning = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO).build();
         assertFalse(GOOD_MORNING_CHINESE_FLASHCARD.equals(editedGoodMorning));
 

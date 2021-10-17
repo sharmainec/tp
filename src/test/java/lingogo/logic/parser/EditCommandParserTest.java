@@ -7,10 +7,12 @@ import static lingogo.logic.commands.CommandTestUtil.ENGLISH_PHRASE_DESC_GOOD_MO
 import static lingogo.logic.commands.CommandTestUtil.ENGLISH_PHRASE_DESC_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.INVALID_ENGLISH_PHRASE_DESC;
 import static lingogo.logic.commands.CommandTestUtil.INVALID_FOREIGN_PHRASE_DESC;
+import static lingogo.logic.commands.CommandTestUtil.LANGUAGE_TYPE_DESC_CHINESE;
 import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_HELLO;
+import static lingogo.logic.commands.CommandTestUtil.VALID_LANGUAGE_TYPE_CHINESE;
 import static lingogo.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static lingogo.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
@@ -84,10 +86,11 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_FLASHCARD;
-        String userInput = targetIndex.getOneBased() + ENGLISH_PHRASE_DESC_GOOD_MORNING
-                + CHINESE_PHRASE_DESC_GOOD_MORNING;
+        String userInput = targetIndex.getOneBased() + LANGUAGE_TYPE_DESC_CHINESE
+                + ENGLISH_PHRASE_DESC_GOOD_MORNING + CHINESE_PHRASE_DESC_GOOD_MORNING;
 
         EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+                .withLanguageType(VALID_LANGUAGE_TYPE_CHINESE)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)
                 .withForeignPhrase(VALID_CHINESE_PHRASE_GOOD_MORNING).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -111,10 +114,16 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // English phrase
         Index targetIndex = INDEX_THIRD_FLASHCARD;
-        String userInput = targetIndex.getOneBased() + ENGLISH_PHRASE_DESC_GOOD_MORNING;
+        String userInput = targetIndex.getOneBased() + LANGUAGE_TYPE_DESC_CHINESE;
         EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
-                .withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING).build();
+                .withLanguageType(VALID_LANGUAGE_TYPE_CHINESE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // English phrase
+        userInput = targetIndex.getOneBased() + ENGLISH_PHRASE_DESC_GOOD_MORNING;
+        descriptor = new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // foreign phrase
