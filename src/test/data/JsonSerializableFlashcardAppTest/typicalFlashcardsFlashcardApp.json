@@ -1,16 +1,24 @@
 {
   "_comment": "FlashcardApp save file which contains the same Flashcard values as in TypicalFlashcard#getTypicalFlashcardApp()",
   "flashcards": [ {
+    "languageType": "Chinese",
     "englishPhrase": "Afternoon",
     "foreignPhrase": "下午"
   }, {
+    "languageType": "Chinese",
     "englishPhrase": "Night",
     "foreignPhrase": "晚上"
   }, {
+    "languageType": "Chinese",
     "englishPhrase": "Bye",
     "foreignPhrase": "再见"
   }, {
+    "languageType": "Chinese",
     "englishPhrase": "Sorry",
     "foreignPhrase": "对不起"
+  }, {
+    "languageType": "Tamil",
+    "englishPhrase": "Sunrise",
+    "foreignPhrase": "சூரிய உதயம்"
   } ]
 }

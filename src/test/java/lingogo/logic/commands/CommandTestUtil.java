@@ -2,6 +2,7 @@ package lingogo.logic.commands;
 
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
+import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 import static lingogo.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,6 +24,8 @@ import lingogo.testutil.EditFlashcardDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_LANGUAGE_TYPE_CHINESE = "Chinese";
+    public static final String VALID_LANGUAGE_TYPE_TAMIL = "Tamil";
     public static final String VALID_ENGLISH_PHRASE_HELLO = "Hello";
     public static final String VALID_CHINESE_PHRASE_HELLO = "你好";
     public static final String VALID_ENGLISH_PHRASE_GOOD_MORNING = "Good Morning";
@@ -31,6 +34,10 @@ public class CommandTestUtil {
     public static final String VALID_ENGLISH_PHRASE_SUNRISE = "Sunrise";
     public static final String VALID_TAMIL_PHRASE_SUNRISE = "சூரிய உதயம்";
 
+    public static final String LANGUAGE_TYPE_DESC_CHINESE = " " + PREFIX_LANGUAGE_TYPE
+            + VALID_LANGUAGE_TYPE_CHINESE;
+    public static final String LANGUAGE_TYPE_DESC_TAMIL = " " + PREFIX_LANGUAGE_TYPE
+            + VALID_LANGUAGE_TYPE_TAMIL;
     public static final String CHINESE_PHRASE_DESC_GOOD_MORNING = " " + PREFIX_FOREIGN_PHRASE
             + VALID_CHINESE_PHRASE_GOOD_MORNING;
     public static final String CHINESE_PHRASE_DESC_HELLO = " " + PREFIX_FOREIGN_PHRASE
@@ -44,6 +51,8 @@ public class CommandTestUtil {
     public static final String ENGLISH_PHRASE_DESC_SUNRISE = " " + PREFIX_ENGLISH_PHRASE
             + VALID_ENGLISH_PHRASE_SUNRISE;
 
+    public static final String INVALID_LANGUAGE_TYPE_DESC = " " + PREFIX_LANGUAGE_TYPE
+            + "    "; // Phrases cannot be empty
     public static final String INVALID_FOREIGN_PHRASE_DESC = " " + PREFIX_FOREIGN_PHRASE
             + "    "; // Phrases cannot be empty
     public static final String INVALID_ENGLISH_PHRASE_DESC = " " + PREFIX_ENGLISH_PHRASE
@@ -56,9 +65,11 @@ public class CommandTestUtil {
     public static final EditCommand.EditFlashcardDescriptor DESC_GOOD_MORNING;
 
     static {
-        DESC_GOOD_MORNING = new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)
+        DESC_GOOD_MORNING = new EditFlashcardDescriptorBuilder().withLanguageType(VALID_LANGUAGE_TYPE_CHINESE)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)
                 .withForeignPhrase(VALID_CHINESE_PHRASE_GOOD_MORNING).build();
-        DESC_HELLO = new EditFlashcardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
+        DESC_HELLO = new EditFlashcardDescriptorBuilder().withLanguageType(VALID_LANGUAGE_TYPE_CHINESE)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_HELLO)
                 .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
     }
 

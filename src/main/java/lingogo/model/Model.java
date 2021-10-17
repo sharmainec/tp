@@ -83,14 +83,14 @@ public interface Model {
      * cards in the flashcard app.
      * {@code fileName} must be a valid filename with .csv extension.
      */
-    void downloadFlashCards(String fileName) throws CommandException;
+    void exportFlashCards(String fileName) throws CommandException;
 
     /**
      * Loads the CSV file named {@code filePath} which contains foreign words
      * in the first column and English meanings in the second column
      * {@code filePath} must be a valid file path with .csv extension.
      */
-    void uploadFlashCards(String filePath) throws CommandException;
+    void importFlashCards(String filePath) throws CommandException;
 
     /** Returns an unmodifiable view of the filtered flashcard list */
     ObservableList<Flashcard> getFilteredFlashcardList();

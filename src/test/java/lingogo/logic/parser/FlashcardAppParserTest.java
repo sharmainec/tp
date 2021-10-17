@@ -3,7 +3,9 @@ package lingogo.logic.parser;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static lingogo.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
+import static lingogo.logic.commands.CommandTestUtil.VALID_LANGUAGE_TYPE_TAMIL;
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
+import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 import static lingogo.testutil.Assert.assertThrows;
 import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,10 +20,11 @@ import org.junit.jupiter.api.Test;
 import lingogo.logic.commands.AddCommand;
 import lingogo.logic.commands.ClearCommand;
 import lingogo.logic.commands.DeleteCommand;
-import lingogo.logic.commands.DownloadCommand;
 import lingogo.logic.commands.EditCommand;
 import lingogo.logic.commands.EditCommand.EditFlashcardDescriptor;
 import lingogo.logic.commands.ExitCommand;
+import lingogo.logic.commands.ExportCommand;
+import lingogo.logic.commands.FilterCommand;
 import lingogo.logic.commands.FindCommand;
 import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
@@ -31,6 +34,8 @@ import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.ForeignPhraseContainsKeywordsPredicate;
+import lingogo.model.flashcard.LanguageTypeMatchesGivenPhrasePredicate;
+import lingogo.model.flashcard.Phrase;
 import lingogo.testutil.EditFlashcardDescriptorBuilder;
 import lingogo.testutil.FlashcardBuilder;
 import lingogo.testutil.FlashcardUtil;
@@ -90,6 +95,13 @@ public class FlashcardAppParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " f/" + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new ForeignPhraseContainsKeywordsPredicate(keywords)), command);
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        Phrase givenPhrase = new Phrase(VALID_LANGUAGE_TYPE_TAMIL);
+        FilterCommand command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + VALID_LANGUAGE_TYPE_TAMIL);
+        assertEquals(new FilterCommand(new LanguageTypeMatchesGivenPhrasePredicate(givenPhrase)), command);
     }
 
     @Test
@@ -105,11 +117,11 @@ public class FlashcardAppParserTest {
     }
 
     @Test
-    public void parseCommand_download() throws Exception {
+    public void parseCommand_export() throws Exception {
         String csvFileName = "test.csv";
-        DownloadCommand command = (DownloadCommand) parser.parseCommand(
-                DownloadCommand.COMMAND_WORD + " " + csvFileName);
-        assertEquals(new DownloadCommand(csvFileName), command);
+        ExportCommand command = (ExportCommand) parser.parseCommand(
+                ExportCommand.COMMAND_WORD + " " + csvFileName);
+        assertEquals(new ExportCommand(csvFileName), command);
     }
 
     @Test

@@ -5,16 +5,16 @@ import static lingogo.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
 
-import lingogo.logic.commands.UploadCommand;
+import lingogo.logic.commands.ImportCommand;
 
-public class UploadCommandParserTest {
+public class ImportCommandParserTest {
 
-    private final UploadCommandParser parser = new UploadCommandParser();
+    private final ImportCommandParser parser = new ImportCommandParser();
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         String userInput = "abc";
         assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UploadCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
     }
 }

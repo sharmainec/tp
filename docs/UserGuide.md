@@ -28,7 +28,7 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
    * **`list`** : Lists all flashcards.
 
-   * **`add`**`e/Good Morning f/早安` : Adds a flashcard with English phrase `Good Morning` and corresponding foreign phrase `早安` to LingoGO!.
+   * **`add`**`l/Chinese e/Good Morning f/早安` : Adds a flashcard with Language type `Chinese`, English phrase `Good Morning`, and corresponding foreign phrase `早安` to LingoGO!.
 
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current displayed list.
 
@@ -38,17 +38,19 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
    * **`find`**`e/Hello f/早安` : Finds flashcards based on its english phrase `Hello` and foreign phrase `早安`.
 
-   * **`upload`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
+   * **`import`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
 
-   * **`download`**`myCards.csv` : Exports cards from LingoGO! to a CSV file in a file name `myCards.csv`.
+   * **`export`**`myCards.csv` : Exports cards from LingoGO! to a CSV file in a file name `myCards.csv`.
 
    * **`exit`** : Exits the app.
 
    * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct English phrase.
 
-   * **`test`**`17`**`e/hello`**: Checks the 17th flashcard's English phrase against the word **`hello`** and then shows
-     whether it is correct.
-
+   * **`test`**`17`**`e/hello`**: Checks the 17th flashcard's English phrase against the word **`hello`** and then shows whether it is correct.
+   
+   * **`find`**`Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
+   
+   * **`filter`**`l/Chinese` : Filters and shows only the flashcards with the Language type `Chinese`
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -61,13 +63,13 @@ LingoGO! is a **desktop app for university students who use English as their fir
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `ENGLISH_PHRASE` and `FOREIGN_PHRASE` are parameters which can be used as `add e/Good Morning f/早安`.
+  e.g. in `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `LANGUAGE_TYPE`, `ENGLISH_PHRASE`, and `FOREIGN_PHRASE` are parameters which can be used as `add l/Chinese e/Good Morning f/早安`.
 
 * Items in square brackets are optional.<br>
-  e.g. `edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 e/Good Morning f/早安` or as `edit 1 f/早安` or as `edit 1 e/Good Morning`
+  e.g. `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or as `edit 1 l/Chinese` or as `edit 1 f/早安` or as `edit 1 e/Good Morning`
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `add e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `f/FOREIGN_PHRASE e/ENGLISH_PHRASE` is also acceptable.
+  e.g. if the command specifies `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `f/FOREIGN_PHRASE l/LANGUAGE_TYPE e/ENGLISH_PHRASE` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `edit 2 e/Hi e/Hello`, only `e/Hello` will be taken.
@@ -92,11 +94,11 @@ Format: `help`
 
 Adds a flashcard to LingoGO!.
 
-Format: `add e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
+Format: `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
 
 Examples:
-* `add e/Good Morning f/早安`
-* `add e/Hello f/你好`
+* `add l/Chinese e/Good Morning f/早安`
+* `add l/Chinese e/Hello f/你好`
 
 ### Listing all flashcards : `list`
 
@@ -108,7 +110,7 @@ Format: `list`
 
 Edits an existing flashcard in LingoGO!.
 
-Format: `edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
+Format: `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 
 * Edits the flashcard at the specified `INDEX`. The index refers to the index number shown in the displayed flashcard
     list. The index **must be a positive integer** 1, 2, 3, …​
@@ -116,9 +118,10 @@ Format: `edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 * Existing values will be updated to the input values.
 
 Examples:
+* `edit 1 l/German` Edits the Language type of the 1st flashcard to be `German`.
 * `edit 1 e/Good Morning` Edits the English phrase of the 1st flashcard to be `Good Morning`.
 * `edit 2 f/Guten Morgen` Edits the foreign phrase of the 2nd flashcard to be `Guten Morgen`.
-* `edit 2 e/Good Morning f/Guten Morgen` Edits the English phrase and foreign phrase of the 2nd flashcard to be `Good Morning` and `Guten Morgen` respectively.
+* `edit 2 l/German e/Good Morning f/Guten Morgen` Edits the Language type, English phrase, and foreign phrase of the 2nd flashcard to be `German`, `Good Morning`, and `Guten Morgen` respectively.
 
 ### Locating flashcards by keyword: `find`
 
@@ -140,6 +143,18 @@ Examples:
 * `find f/安 好` return `e/Good Morning f/早安`, `e/Good Afternoon f/午安`, `e/Good Night f/晚安` and `e/Hello f/你好`
 * `find e/Hello f/早` return `e/Hello f/你好`, `e/Good Morning f/早安` and `e/Morning f/早晨`<br>
 
+### Filtering flashcards by condition(s): `filter`
+
+Filters flashcards based on the specified condition(s).
+
+Format: `filter l/LANGUAGE_TYPE`
+
+* `LANGUAGE_TYPE` is not case-sensitive (e.g. "Chinese" matches "CHINESE").
+
+Examples:
+* `filter l/Chinese` returns all flashcards of `Chinese` Language type like `e/Good Morning f/早安`.
+* `filter l/German` returns all flashcards of `German` Language type like `e/Good Morning f/Guten Morgen`<br>
+
 ### Deleting a flashcard : `delete`
 
 Deletes the specified flashcard from LingoGO!.
@@ -160,31 +175,31 @@ Clears all flashcards from LingoGO!.
 
 Format: `clear`
 
-### Uploading cards : `upload`
+### importing cards : `import`
 
 Imports cards to LingoGO! using a CSV file.
 
-Format: `upload CSV_FILE_PATH`
+Format: `import CSV_FILE_PATH`
 
 * The file path can be absolute or relative to the location of the LingoGO! file.
 * The CSV file must have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
   ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
-* `upload ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
+* `import ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
 
-### Downloading cards : `download`
+### exporting cards : `export`
 
 Exports cards from LingoGO! to a CSV file.
 
-Format: `download FILE_NAME`
+Format: `export FILE_NAME`
 
 * Provides a file name with .csv extension in which the flash cards will be stored and exported.
 * The exported file will be added to `data` folder in a CSV format.
 * The CSV file will have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
 
 Examples:
-* `download myCards.csv` will save all cards in LingoGO! to a CSV file named `myCards.csv`.
+* `export myCards.csv` will save all cards in LingoGO! to a CSV file named `myCards.csv`.
 
 ### Exiting the program : `exit`
 
@@ -247,14 +262,15 @@ If your changes to the data file makes its format invalid, LingoGO! will discard
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add e/ENGLISH_PHRASE f/FOREIGN_PHRASE` <br> e.g., `add e/Good Morning f/早安`
+**Add** | `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` <br> e.g., `add l/Chinese e/Good Morning f/早安`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
+**Edit** | `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
 **Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`<br> e.g., `find e/Hello f/早`
+**Filter** | `filter l/LANGUAGE_TYPE`<br> e.g., `filter l/Chinese`
 **List** | `list`
-**Upload** | `upload CSV_FILE_PATH`<br> e.g., `upload ./dictionary.csv`
-**Download** | `download FILE_NAME`<br> e.g., `download myCards.csv`
+**import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
+**export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
 **Help** | `help`
 **Flip** | `flip INDEX` <br> e.g.,  `flip 2`
 **Test** | `test INDEX e/ENGLISH_PHRASE` <br> e.g., `test 17 e/hello`

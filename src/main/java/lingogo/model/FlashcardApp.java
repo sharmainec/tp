@@ -56,21 +56,21 @@ public class FlashcardApp implements ReadOnlyFlashcardApp {
     }
 
     /**
-     * Downloads the contents of the flashcard list to the CSV file with
+     * Exports the contents of the flashcard list to the CSV file with
      * the given {@code fileName}
      * {@code fileName} must be a valid file name.
      */
-    public void downloadFlashCards(String fileName) throws CommandException {
-        flashcards.downloadFlashcards(fileName);
+    public void exportFlashCards(String fileName) throws CommandException {
+        flashcards.exportFlashcards(fileName);
     }
 
     /**
-     * Uploads the contents of the CSV file with the given {@code filePath}
+     * imports the contents of the CSV file with the given {@code filePath}
      * to the flashcard list
      * {@code filePath} must be a valid file path with .csv extension.
      */
-    public void uploadFlashCards(String filePath) throws CommandException {
-        flashcards.uploadFlashcards(filePath);
+    public void importFlashCards(String filePath) throws CommandException {
+        flashcards.importFlashcards(filePath);
     }
 
     //// flashcard-level operations

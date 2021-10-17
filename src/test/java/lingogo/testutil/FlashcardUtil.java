@@ -2,6 +2,7 @@ package lingogo.testutil;
 
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
+import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 
 import lingogo.logic.commands.AddCommand;
 import lingogo.logic.commands.EditCommand.EditFlashcardDescriptor;
@@ -24,6 +25,7 @@ public class FlashcardUtil {
      */
     public static String getFlashcardDetails(Flashcard flashcard) {
         StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_LANGUAGE_TYPE + flashcard.getLanguageType().value + " ");
         sb.append(PREFIX_ENGLISH_PHRASE + flashcard.getEnglishPhrase().value + " ");
         sb.append(PREFIX_FOREIGN_PHRASE + flashcard.getForeignPhrase().value + " ");
         return sb.toString();
@@ -34,6 +36,8 @@ public class FlashcardUtil {
      */
     public static String getEditFlashcardDescriptorDetails(EditFlashcardDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
+        descriptor.getLanguageType().ifPresent(languageType -> sb.append(PREFIX_LANGUAGE_TYPE)
+                .append(languageType.value).append(" "));
         descriptor.getEnglishPhrase().ifPresent(englishPhrase -> sb.append(PREFIX_ENGLISH_PHRASE)
                 .append(englishPhrase.value).append(" "));
         descriptor.getForeignPhrase().ifPresent(foreignPhrase -> sb.append(PREFIX_FOREIGN_PHRASE)
