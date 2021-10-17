@@ -11,6 +11,8 @@ import lingogo.logic.commands.FindCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.ForeignPhraseContainsKeywordsPredicate;
+import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +29,13 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ENGLISH_PHRASE, PREFIX_FOREIGN_PHRASE);
 
-        if (argMultimap.getValue(PREFIX_ENGLISH_PHRASE).isPresent()) {
+        if (argMultimap.getValue(PREFIX_ENGLISH_PHRASE).isPresent()
+                && argMultimap.getValue(PREFIX_FOREIGN_PHRASE).isPresent()) {
+            String[] englishPhraseKeywords = argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get().split("\\s+");
+            String[] foreignPhraseKeywords = argMultimap.getValue(PREFIX_FOREIGN_PHRASE).get().split("\\s+");
+            String[] phraseKeywords = ArrayUtils.addAll(englishPhraseKeywords, foreignPhraseKeywords);
+            return new FindCommand(new PhraseContainsKeywordsPredicate(Arrays.asList(phraseKeywords)));
+        } else if (argMultimap.getValue(PREFIX_ENGLISH_PHRASE).isPresent()) {
             String[] englishPhraseKeywords = argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get().split("\\s+");
             return new FindCommand(new EnglishPhraseContainsKeywordsPredicate(Arrays.asList(englishPhraseKeywords)));
         } else if (argMultimap.getValue(PREFIX_FOREIGN_PHRASE).isPresent()) {
