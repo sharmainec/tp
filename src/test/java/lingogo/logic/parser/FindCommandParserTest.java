@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import lingogo.logic.commands.FindCommand;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.ForeignPhraseContainsKeywordsPredicate;
+import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -19,6 +20,11 @@ public class FindCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_missingPrefix_throwsParseException() {
+        assertParseFailure(parser, "Good", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -41,5 +47,16 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " f/\n 你好 \n \t 早  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validMixedArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new PhraseContainsKeywordsPredicate(Arrays.asList("Good", "早")));
+        assertParseSuccess(parser, " e/Good f/早", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " e/\n Good \n \t f/\n 早 \t", expectedFindCommand);
     }
 }

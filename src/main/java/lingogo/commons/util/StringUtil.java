@@ -64,6 +64,7 @@ public class StringUtil {
         for (String foreignWord : wordsInPreppedSentence) {
             if (foreignWord.contains(preppedWord)) {
                 isPresent = true;
+                break;
             }
         }
         return isPresent;

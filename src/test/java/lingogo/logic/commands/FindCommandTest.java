@@ -90,6 +90,18 @@ public class FindCommandTest {
                 model.getFilteredFlashcardList());
     }
 
+    @Test
+    public void execute_multipleMixedKeywords_multipleFlashcardsFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        PhraseContainsKeywordsPredicate predicate =
+                new PhraseContainsKeywordsPredicate(Arrays.asList("Bye", "晚上", "Sorry"));
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD),
+                model.getFilteredFlashcardList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code PhraseContainsKeywordsPredicate}.
      */

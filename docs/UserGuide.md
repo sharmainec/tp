@@ -133,8 +133,9 @@ Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORD]`
 * The order of the keywords does not matter. e.g. `Good morning` will match `Morning good`
 * Only full words will be matched e.g. `Hello` will not match `Helloooo` for English keywords
 * Non-full words match will be accepted for foreign keywords e.g. `早` with match `早安`
-* Flashcard matching at least one keyword will be returned (i.e. `OR` search).
+* Flashcard(s) matching at least one keyword will be returned.
   e.g. `e/Good Hello` will return `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`
+* At least one of the optional fields must be provided.
 
 Examples:
 * `find e/Good` returns `e/Good Morning f/早安` and `e/Good Morning f/Guten Morgen`

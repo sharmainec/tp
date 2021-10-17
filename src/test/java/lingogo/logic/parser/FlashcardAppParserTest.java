@@ -36,6 +36,7 @@ import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.ForeignPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.LanguageTypeMatchesGivenPhrasePredicate;
 import lingogo.model.flashcard.Phrase;
+import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 import lingogo.testutil.EditFlashcardDescriptorBuilder;
 import lingogo.testutil.FlashcardBuilder;
 import lingogo.testutil.FlashcardUtil;
@@ -95,6 +96,14 @@ public class FlashcardAppParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " f/" + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new ForeignPhraseContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findMixed() throws Exception {
+        List<String> keywords = Arrays.asList("早", "foo", "bar", "好");
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " f/" + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new PhraseContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
