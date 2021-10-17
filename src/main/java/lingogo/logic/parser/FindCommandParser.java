@@ -1,12 +1,16 @@
 package lingogo.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
+import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
 
 import java.util.Arrays;
 
 import lingogo.logic.commands.FindCommand;
 import lingogo.logic.parser.exceptions.ParseException;
-import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
+import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
+import lingogo.model.flashcard.ForeignPhraseContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -19,15 +23,20 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        requireNonNull(args);
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ENGLISH_PHRASE, PREFIX_FOREIGN_PHRASE);
+
+        if (argMultimap.getValue(PREFIX_ENGLISH_PHRASE).isPresent()) {
+            String[] englishPhraseKeywords = argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get().split("\\s+");
+            return new FindCommand(new EnglishPhraseContainsKeywordsPredicate(Arrays.asList(englishPhraseKeywords)));
+        } else if (argMultimap.getValue(PREFIX_FOREIGN_PHRASE).isPresent()) {
+            String[] foreignPhraseKeywords = argMultimap.getValue(PREFIX_FOREIGN_PHRASE).get().split("\\s+");
+            return new FindCommand(new ForeignPhraseContainsKeywordsPredicate(Arrays.asList(foreignPhraseKeywords)));
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
-        String[] englishPhraseKeywords = trimmedArgs.split("\\s+");
-
-        return new FindCommand(new PhraseContainsKeywordsPredicate(Arrays.asList(englishPhraseKeywords)));
     }
 
 }

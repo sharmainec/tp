@@ -56,21 +56,17 @@ public class StringUtil {
 
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
-        if (word.matches("^[a-zA-Z]*$") || word.length() > 1) { // only allow full word match
-            String preppedSentence = sentence;
-            String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String preppedSentence = sentence;
+        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        boolean isPresent = false;
 
-            return Arrays.stream(wordsInPreppedSentence)
-                    .anyMatch(preppedWord::equalsIgnoreCase);
-        } else { // allow non-full word match
-            String preppedSentence = sentence;
-            String[] charsInPreppedSentence = preppedSentence.split("(?!^)");
-
-            return Arrays.stream(charsInPreppedSentence)
-                    .anyMatch(preppedWord::equalsIgnoreCase);
+        for (String foreignWord : wordsInPreppedSentence) {
+            if (foreignWord.contains(preppedWord)) {
+                isPresent = true;
+            }
         }
+        return isPresent;
     }
 
     /**

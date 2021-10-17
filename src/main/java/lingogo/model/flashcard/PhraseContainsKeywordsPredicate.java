@@ -15,6 +15,10 @@ public class PhraseContainsKeywordsPredicate implements Predicate<Flashcard> {
         this.keywords = keywords;
     }
 
+    public List<String> getKeywords() {
+        return keywords;
+    }
+
     @Override
     public boolean test(Flashcard flashcard) {
         return keywords.stream()
