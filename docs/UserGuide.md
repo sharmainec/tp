@@ -26,7 +26,7 @@ LingoGO! is a **desktop app for university students who use English as their fir
    open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all flashcards.
+   * **`list`**`3` : Randomly selects 3 flashcards to be shown in the current displayed list.
 
    * **`add`**`l/Chinese e/Good Morning f/早安` : Adds a flashcard with Language type `Chinese`, English phrase `Good Morning`, and corresponding foreign phrase `早安` to LingoGO!.
 
@@ -102,9 +102,17 @@ Examples:
 
 ### Listing all flashcards : `list`
 
-Shows a list of all flashcards in LingoGO!.
+Shows a list of flashcards in LingoGO!.
 
-Format: `list`
+Format: `list [NUMBER_OF_FLASHCARDS]`
+
+* Lists all flashcards in LingoGO!. 
+* If `[NUMBER_OF_FLASHCARDS]` is present, randomly select `[NUMBER_OF_FLASHCARDS]` flashcards to be shown in the current displayed list. The `[NUMBER_OF_FLASHCARDS]` **must be a positive integer** 1, 2, 3, …
+  * If `[NUMBER_OF_FLASHCARDS]` is larger than the size of the current displayed list, list all flashcards in LingGO!.
+
+Examples:
+* `list`
+* `list 4`
 
 ### Editing a flashcard : `edit`
 
@@ -269,7 +277,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
 **Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`<br> e.g., `find e/Hello f/早`
 **Filter** | `filter l/LANGUAGE_TYPE`<br> e.g., `filter l/Chinese`
-**List** | `list`
+**List** | `list [NUMBER_OF_FLASHCARDS]` <br> e.g., `list 2`
 **import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
 **export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
 **Help** | `help`

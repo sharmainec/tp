@@ -309,6 +309,20 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 
 (For all use cases below, the **System** is `LingoGO!` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: List flashcards**
+
+**MSS**
+1. User requests to list out flashcards.
+2. LingoGO! shows a list of flashcards.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given user input is invalid.
+    * 3a1. Lists all flashcards.
+
+      Use case resumes at step 2.
+
 **Use case: Add a flashcard**
 
 **Guarantees**

@@ -13,6 +13,7 @@ import java.util.List;
 
 import lingogo.commons.core.index.Index;
 import lingogo.logic.commands.exceptions.CommandException;
+import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.FlashcardApp;
 import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
@@ -84,7 +85,7 @@ public class CommandTestUtil {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
-        } catch (CommandException ce) {
+        } catch (CommandException | ParseException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }

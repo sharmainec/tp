@@ -29,6 +29,14 @@ public class ListCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(""), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+
+        // when n > total number of flashcards, list is not filtered
+        String size = Integer.toString(model.getFilteredFlashcardList().size() + 100);
+        assertCommandSuccess(new ListCommand(size), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+
+        // when n is not an integer, ignore user input and display list which is not filtered
+        assertCommandSuccess(new ListCommand("abc"), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
