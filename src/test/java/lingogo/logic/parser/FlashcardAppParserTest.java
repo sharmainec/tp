@@ -2,6 +2,7 @@ package lingogo.logic.parser;
 
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static lingogo.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static lingogo.logic.commands.CommandTestUtil.INDICES_DESC_DESC_ONE_TWO;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.VALID_LANGUAGE_TYPE_TAMIL;
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
@@ -33,9 +34,9 @@ import lingogo.logic.commands.TestCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;
-import lingogo.model.flashcard.LanguageTypeMatchesGivenPhrasePredicate;
 import lingogo.model.flashcard.Phrase;
 import lingogo.testutil.EditFlashcardDescriptorBuilder;
+import lingogo.testutil.FilterBuilderBuilder;
 import lingogo.testutil.FlashcardBuilder;
 import lingogo.testutil.FlashcardUtil;
 
@@ -92,8 +93,12 @@ public class FlashcardAppParserTest {
     public void parseCommand_filter() throws Exception {
         Phrase givenPhrase = new Phrase(VALID_LANGUAGE_TYPE_TAMIL);
         FilterCommand command = (FilterCommand) parser.parseCommand(
-                FilterCommand.COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + VALID_LANGUAGE_TYPE_TAMIL);
-        assertEquals(new FilterCommand(new LanguageTypeMatchesGivenPhrasePredicate(givenPhrase)), command);
+            FilterCommand.COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + VALID_LANGUAGE_TYPE_TAMIL
+                + INDICES_DESC_DESC_ONE_TWO);
+
+        assertEquals(
+            new FilterCommand(new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(givenPhrase).build()),
+            command);
     }
 
     @Test
@@ -112,7 +117,7 @@ public class FlashcardAppParserTest {
     public void parseCommand_export() throws Exception {
         String csvFileName = "test.csv";
         ExportCommand command = (ExportCommand) parser.parseCommand(
-                ExportCommand.COMMAND_WORD + " " + csvFileName);
+            ExportCommand.COMMAND_WORD + " " + csvFileName);
         assertEquals(new ExportCommand(csvFileName), command);
     }
 
@@ -127,7 +132,7 @@ public class FlashcardAppParserTest {
     public void parseCommand_test() throws Exception {
         TestCommand command = (TestCommand) parser.parseCommand(
             TestCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased() + " " + PREFIX_ENGLISH_PHRASE
-            + VALID_ENGLISH_PHRASE_GOOD_MORNING);
+                + VALID_ENGLISH_PHRASE_GOOD_MORNING);
         assertEquals(new TestCommand(INDEX_FIRST_FLASHCARD, ParserUtil.parsePhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)),
             command);
     }
