@@ -39,6 +39,38 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     *   Ignores case, but a full word match is required for words whose length is more than 1.
+     *   Else, compares characters, does not need a full word match.
+     *   <br>examples:<pre>
+     *       containsForeignCharacter("早", "早安") == true //need full word match since keyword is 2 char
+     *       containsForeignCharacter("晚安", "安") == true //only need to match 1 char
+     *       containsForeignCharacter("hola", "ho") == false //need full word match for alphabet characters
+     *       </pre>
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsForeignCharacter(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+
+        String preppedSentence = sentence;
+        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        boolean isPresent = false;
+
+        for (String foreignWord : wordsInPreppedSentence) {
+            if (foreignWord.contains(preppedWord)) {
+                isPresent = true;
+                break;
+            }
+        }
+        return isPresent;
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

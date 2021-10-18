@@ -15,8 +15,8 @@ import lingogo.commons.core.index.Index;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.FlashcardApp;
 import lingogo.model.Model;
-import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 import lingogo.testutil.EditFlashcardDescriptorBuilder;
 
 /**
@@ -124,7 +124,7 @@ public class CommandTestUtil {
 
         Flashcard flashcard = model.getFilteredFlashcardList().get(targetIndex.getZeroBased());
         final String[] splitEnglishPhrase = flashcard.getEnglishPhrase().value.split("\\s+");
-        model.updateFilteredFlashcardList(new EnglishPhraseContainsKeywordsPredicate(
+        model.updateFilteredFlashcardList(new PhraseContainsKeywordsPredicate(
                 Arrays.asList(splitEnglishPhrase[0])));
 
         assertEquals(1, model.getFilteredFlashcardList().size());
