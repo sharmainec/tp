@@ -11,15 +11,15 @@ import static lingogo.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
 import org.junit.jupiter.api.Test;
 
 import lingogo.commons.core.index.Index;
-import lingogo.logic.commands.TestCommand;
+import lingogo.logic.commands.AnswerCommand;
 import lingogo.model.flashcard.Phrase;
 
-public class TestCommandParserTest {
+public class AnswerCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
-        String.format(MESSAGE_INVALID_COMMAND_FORMAT, TestCommand.MESSAGE_USAGE);
+        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AnswerCommand.MESSAGE_USAGE);
 
-    private TestCommandParser parser = new TestCommandParser();
+    private AnswerCommandParser parser = new AnswerCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -63,7 +63,7 @@ public class TestCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_FLASHCARD;
         String userInput = targetIndex.getOneBased() + ENGLISH_PHRASE_DESC_GOOD_MORNING;
-        TestCommand expectedCommand = new TestCommand(targetIndex, new Phrase(VALID_ENGLISH_PHRASE_GOOD_MORNING));
+        AnswerCommand expectedCommand = new AnswerCommand(targetIndex, new Phrase(VALID_ENGLISH_PHRASE_GOOD_MORNING));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

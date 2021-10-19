@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import lingogo.logic.commands.AddCommand;
+import lingogo.logic.commands.AnswerCommand;
 import lingogo.logic.commands.ClearCommand;
 import lingogo.logic.commands.CommandEnum;
 import lingogo.logic.commands.DeleteCommand;
@@ -16,7 +17,6 @@ import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ImportCommand;
 import lingogo.logic.commands.ListCommand;
-import lingogo.logic.commands.TestCommand;
 
 public class CommandHelpMessage extends UiPart<TitledPane> {
     private static final String FXML = "CommandHelpMessage.fxml";
@@ -83,10 +83,11 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
             this.setDisplayText(ListCommand.COMMAND_WORD, ListCommand.COMMAND_DESCRIPTION, ListCommand.COMMAND_USAGE,
                     ListCommand.COMMAND_EXAMPLES);
             break;
-        case TEST:
-            this.setDisplayText(TestCommand.COMMAND_WORD, TestCommand.COMMAND_DESCRIPTION, TestCommand.COMMAND_USAGE,
-                    TestCommand.COMMAND_EXAMPLES);
+        case ANSWER:
+            this.setDisplayText(AnswerCommand.COMMAND_WORD, AnswerCommand.COMMAND_DESCRIPTION, AnswerCommand.COMMAND_USAGE,
+                    AnswerCommand.COMMAND_EXAMPLES);
             break;
+        // TODO: Rest of the slideshow commands
         case EXPORT:
             this.setDisplayText("export", ExportCommand.COMMAND_DESCRIPTION, ExportCommand.COMMAND_USAGE,
                     ExportCommand.COMMAND_EXAMPLES);

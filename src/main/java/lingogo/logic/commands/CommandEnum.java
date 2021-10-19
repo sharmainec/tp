@@ -11,7 +11,7 @@ public enum CommandEnum {
     FLIP,
     HELP,
     LIST,
-    TEST,
+    ANSWER,
     IMPORT,
     EXPORT
 }

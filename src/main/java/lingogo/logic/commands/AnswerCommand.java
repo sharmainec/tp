@@ -2,10 +2,7 @@ package lingogo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import lingogo.commons.core.Messages;
-import lingogo.commons.core.index.Index;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.EnglishPhraseMatchesGivenPhrasePredicate;
@@ -15,9 +12,10 @@ import lingogo.model.flashcard.Phrase;
 /**
  * Checks whether the English phrase of a flashcard matches a given phrase.
  */
-public class TestCommand extends Command {
+public class AnswerCommand extends Command {
 
-    public static final String COMMAND_WORD = "test";
+    // TODO: Rewrite all the constants
+    public static final String COMMAND_WORD = "answer";
     public static final String COMMAND_DESCRIPTION = "Checks whether the English phrase of a flashcard"
         + " matches a given phrase";
     public static final String COMMAND_USAGE = "test INDEX e/ENGLISH_PHRASE";
@@ -31,15 +29,11 @@ public class TestCommand extends Command {
     public static final String COMPARISON_TEXT = "Foreign phrase: %1$s\n" + "Expected answer: %2$s\n"
         + "Your answer: %3$s";
 
-    public static final String MESSAGE_FLASHCARD_NOT_FLIPPED_DOWN = "The flashcard is flipped up and the "
-        + "answer is already shown, try flipping the flashcard first before testing again";
-
     public static final String MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT = "Well done! You got it right!\n"
         + COMPARISON_TEXT;
 
     public static final String MESSAGE_TEST_FLASHCARD_SUCCESS_WRONG = "Oh no! You got it wrong!\n" + COMPARISON_TEXT;
 
-    private final Index targetIndex;
     private final EnglishPhraseMatchesGivenPhrasePredicate predicate;
     private final Phrase givenPhrase;
 
@@ -47,8 +41,7 @@ public class TestCommand extends Command {
      * @param targetIndex of the flashcard in the displayed flashcard list to test
      * @param givenPhrase to test for match with the flashcard's English Phrase
      */
-    public TestCommand(Index targetIndex, Phrase givenPhrase) {
-        this.targetIndex = targetIndex;
+    public AnswerCommand(Phrase givenPhrase) {
         this.predicate = new EnglishPhraseMatchesGivenPhrasePredicate(givenPhrase);
         this.givenPhrase = givenPhrase;
     }
@@ -56,32 +49,28 @@ public class TestCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Flashcard> lastShownList = model.getFilteredFlashcardList();
 
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        if (!model.isSlideshowActive()) {
+            throw new CommandException(Messages.MESSAGE_NOT_IN_SLIDESHOW_MODE);
         }
 
-        Flashcard flashcardToTest = lastShownList.get(targetIndex.getZeroBased());
+        Flashcard currentFlashcard = model.getCurrentSlide();
 
-        if (flashcardToTest.getFlipStatus()) {
-            throw new CommandException(MESSAGE_FLASHCARD_NOT_FLIPPED_DOWN);
-        }
+        model.displayCurrentAnswer();
 
-        if (!predicate.test(flashcardToTest)) {
+        if (!predicate.test(currentFlashcard)) {
             return new CommandResult(String.format(MESSAGE_TEST_FLASHCARD_SUCCESS_WRONG,
-                flashcardToTest.getForeignPhrase(), flashcardToTest.getEnglishPhrase(), givenPhrase));
+                    currentFlashcard.getForeignPhrase(), currentFlashcard.getEnglishPhrase(), givenPhrase));
         }
+
         return new CommandResult(String.format(MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT,
-            flashcardToTest.getForeignPhrase(), flashcardToTest.getEnglishPhrase(), givenPhrase));
+                currentFlashcard.getForeignPhrase(), currentFlashcard.getEnglishPhrase(), givenPhrase));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof TestCommand // instanceof handles nulls
-            && targetIndex.equals(((TestCommand) other).targetIndex)
-            && givenPhrase.equals(((TestCommand) other).givenPhrase)); // state check
+            || (other instanceof AnswerCommand // instanceof handles nulls
+            && givenPhrase.equals(((AnswerCommand) other).givenPhrase)); // state check
     }
 }

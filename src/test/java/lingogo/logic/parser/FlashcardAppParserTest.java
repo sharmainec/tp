@@ -29,7 +29,7 @@ import lingogo.logic.commands.FindCommand;
 import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ListCommand;
-import lingogo.logic.commands.TestCommand;
+import lingogo.logic.commands.AnswerCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;
@@ -143,10 +143,10 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_test() throws Exception {
-        TestCommand command = (TestCommand) parser.parseCommand(
-            TestCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased() + " " + PREFIX_ENGLISH_PHRASE
+        AnswerCommand command = (AnswerCommand) parser.parseCommand(
+            AnswerCommand.COMMAND_WORD + " " + " " + PREFIX_ENGLISH_PHRASE
             + VALID_ENGLISH_PHRASE_GOOD_MORNING);
-        assertEquals(new TestCommand(INDEX_FIRST_FLASHCARD, ParserUtil.parsePhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)),
+        assertEquals(new AnswerCommand(ParserUtil.parsePhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)),
             command);
     }
 

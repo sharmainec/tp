@@ -46,6 +46,8 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        // TODO: Throw an error if in slideshow mode (same for the rest of the non-slideshow commands)
+
         if (model.hasFlashcard(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
         }

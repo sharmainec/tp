@@ -9,6 +9,9 @@ import java.util.Objects;
  * Guarantees: details are present and not null; field values are validated; immutable.
  */
 public class Flashcard {
+    // Empty flashcard
+    public static final Flashcard EMPTY_FLASHCARD = new Flashcard(new Phrase("empty"),
+            new Phrase("empty english phrase"), new Phrase("empty foreign phrase"));
 
     // Data fields
     private final Phrase languageType;
