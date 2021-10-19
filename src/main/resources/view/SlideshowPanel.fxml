@@ -16,6 +16,8 @@
     <Label styleClass="label-bright" text="What does this mean?" />
     <Label styleClass="label-header" fx:id="currentForeignPhrase"
            text="Foreign Phrase" wrapText="true" textAlignment="CENTER" />
+    <Label styleClass="label-header" fx:id="answer"
+           text="" wrapText="true" textAlignment="CENTER" />
   </VBox>
   <StackPane VBox.vgrow="NEVER" alignment="BOTTOM_RIGHT" minHeight="30" prefHeight="30" maxHeight="30">
     <padding>
