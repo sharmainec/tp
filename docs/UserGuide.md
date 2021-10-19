@@ -176,7 +176,7 @@ Clears all flashcards from LingoGO!.
 
 Format: `clear`
 
-### importing cards : `import`
+### Importing cards : `import`
 
 Imports cards to LingoGO! using a CSV file.
 
@@ -189,7 +189,7 @@ Format: `import CSV_FILE_PATH`
 Examples:
 * `import ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
 
-### exporting cards : `export`
+### Exporting cards : `export`
 
 Exports cards from LingoGO! to a CSV file.
 
@@ -270,8 +270,8 @@ Action | Format, Examples
 **Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`<br> e.g., `find e/Hello f/早`
 **Filter** | `filter l/LANGUAGE_TYPE`<br> e.g., `filter l/Chinese`
 **List** | `list`
-**import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
-**export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
+**Import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
+**Export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
 **Help** | `help`
 **Flip** | `flip INDEX` <br> e.g.,  `flip 2`
 **Test** | `test INDEX e/ENGLISH_PHRASE` <br> e.g., `test 17 e/hello`
