@@ -47,9 +47,9 @@ LingoGO! is a **desktop app for university students who use English as their fir
    * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct English phrase.
 
    * **`test`**`17`**`e/hello`**: Checks the 17th flashcard's English phrase against the word **`hello`** and then shows whether it is correct.
-   
+
    * **`find`**`Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
-   
+
    * **`filter`**`l/Chinese` : Filters and shows only the flashcards with the Language type `Chinese`
 
 1. Refer to the [Features](#features) below for details of each command.
