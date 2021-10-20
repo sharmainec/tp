@@ -11,7 +11,13 @@ public enum CommandEnum {
     FLIP,
     HELP,
     LIST,
-    ANSWER,
     IMPORT,
-    EXPORT
+    EXPORT,
+
+    // Slideshow commands
+    ANSWER,
+    NEXT,
+    PREVIOUS,
+    SLIDESHOW,
+    STOP
 }

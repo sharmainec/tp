@@ -5,6 +5,7 @@ import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 
+import lingogo.commons.core.Messages;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
@@ -46,7 +47,9 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // TODO: Throw an error if in slideshow mode (same for the rest of the non-slideshow commands)
+        if (model.isSlideshowActive()) {
+            throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+        }
 
         if (model.hasFlashcard(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);

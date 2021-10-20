@@ -2,6 +2,8 @@ package lingogo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import lingogo.commons.core.Messages;
+import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.FlashcardApp;
 import lingogo.model.Model;
 
@@ -18,8 +20,13 @@ public class ClearCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.isSlideshowActive()) {
+            throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+        }
+
         model.setFlashcardApp(new FlashcardApp());
         return new CommandResult(MESSAGE_SUCCESS);
     }

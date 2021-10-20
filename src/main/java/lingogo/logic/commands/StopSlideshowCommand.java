@@ -7,11 +7,11 @@ import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 
 public class StopSlideshowCommand extends Command {
-    // TODO: Confirm the command name
+
     public static final String COMMAND_WORD = "stop";
-    public static final String COMMAND_DESCRIPTION = "";
-    public static final String COMMAND_USAGE = "";
-    public static final String COMMAND_EXAMPLES = "";
+    public static final String COMMAND_DESCRIPTION = "Stops the current slideshow in progress";
+    public static final String COMMAND_USAGE = "stop";
+    public static final String COMMAND_EXAMPLES = "stop";
     public static final String MESSAGE_SUCCESS = "Slideshow stopped!";
 
     @Override

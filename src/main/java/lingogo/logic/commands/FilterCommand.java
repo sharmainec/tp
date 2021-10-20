@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 
 import lingogo.commons.core.Messages;
+import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.LanguageTypeMatchesGivenPhrasePredicate;
 
@@ -31,8 +32,13 @@ public class FilterCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.isSlideshowActive()) {
+            throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+        }
+
         model.updateFilteredFlashcardList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));

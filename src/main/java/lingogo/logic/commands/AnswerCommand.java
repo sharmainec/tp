@@ -14,16 +14,14 @@ import lingogo.model.flashcard.Phrase;
  */
 public class AnswerCommand extends Command {
 
-    // TODO: Rewrite all the constants
     public static final String COMMAND_WORD = "answer";
-    public static final String COMMAND_DESCRIPTION = "Checks whether the English phrase of a flashcard"
-        + " matches a given phrase";
-    public static final String COMMAND_USAGE = "test INDEX e/ENGLISH_PHRASE";
-    public static final String COMMAND_EXAMPLES = "test 4 e/hello";
+    public static final String COMMAND_DESCRIPTION = "Checks whether the given English phrase matches the English phrase of the current displayed flashcard in the slideshow";
+    public static final String COMMAND_USAGE = "answer e/ENGLISH_PHRASE";
+    public static final String COMMAND_EXAMPLES = "answer e/hello";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Checks whether the English phrase of a flashcard matches a given phrase.\n"
-        + "Parameters: INDEX (must be a positive integer) e/ENGLISH_PHRASE\n"
+        + ": Checks whether the English phrase of the current displayed flashcard in the slideshow matches the given phrase.\n"
+        + "Parameters: e/ENGLISH_PHRASE\n"
         + "Example: " + COMMAND_EXAMPLES;
 
     public static final String COMPARISON_TEXT = "Foreign phrase: %1$s\n" + "Expected answer: %2$s\n"

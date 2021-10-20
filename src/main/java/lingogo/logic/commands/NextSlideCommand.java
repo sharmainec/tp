@@ -9,9 +9,9 @@ import lingogo.model.slideshow.exceptions.InvalidSlideshowIndexException;
 
 public class NextSlideCommand extends Command {
     public static final String COMMAND_WORD = "next";
-    public static final String COMMAND_DESCRIPTION = "";
-    public static final String COMMAND_USAGE = "";
-    public static final String COMMAND_EXAMPLES = "";
+    public static final String COMMAND_DESCRIPTION = "Display the next flashcard in the slideshow";
+    public static final String COMMAND_USAGE = "next";
+    public static final String COMMAND_EXAMPLES = "next";
     public static final String MESSAGE_SUCCESS = "Next flashcard shown!";
     public static final String MESSAGE_NO_NEXT_SLIDE = "There are no more slides left in the current slideshow!";
 
