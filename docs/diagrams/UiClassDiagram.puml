@@ -42,7 +42,7 @@ MainWindow -down-> "0..1" HelpWindow
 FlashcardListPanel -down-> "0..1" Slideshow
 FlashcardListPanel -down-> "1" FlashcardHeaderBar
 FlashcardListPanel -down-> "*" FlashcardPane
-HelpWindow -down-> "*" CommandHelpMessage
+HelpWindow <-down-> "*" CommandHelpMessage
 
 MainWindow -left-|> UiPart
 
