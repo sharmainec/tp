@@ -1,6 +1,7 @@
 package lingogo.model;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import lingogo.model.flashcard.Flashcard;
 
 /**
@@ -11,6 +12,11 @@ public interface ReadOnlySlideshowApp {
      * Returns the current flashcard to be displayed in the slideshow app.
      */
     Flashcard getCurrentSlide();
+
+    /**
+     * Returns the currentSlide property of the slideshow app.
+     */
+    ObjectProperty<Flashcard> getCurrentSlideProperty();
 
     /**
      * Returns the isActive boolean property of the slideshow app.

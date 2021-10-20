@@ -61,5 +61,4 @@ public class Slideshow {
     public void stop() {
         currentIdx = 0; // reset index
     }
-
 }

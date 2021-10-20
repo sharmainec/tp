@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -29,20 +28,22 @@ public class SlideshowPanel extends UiPart<Region> {
     @FXML
     private Label progress;
 
-    private Flashcard currentFlashcard;
-
     /**
      * Creates a {@code Slideshow} component.
      */
     public SlideshowPanel(ReadOnlySlideshowApp readOnlySlideshowApp) {
         super(FXML);
-        this.currentFlashcard = currentFlashcard;
-        currentForeignPhrase.textProperty().bind(Bindings.format("%s", readOnlySlideshowApp.getCurrentSlide()));
+        readOnlySlideshowApp.getCurrentSlideProperty().addListener(new ChangeListener<>() {
+            @Override
+            public void changed(ObservableValue<? extends Flashcard> o, Flashcard oldVal, Flashcard newVal) {
+                currentForeignPhrase.setText(newVal.getForeignPhrase().toString());
+            }
+        });
         readOnlySlideshowApp.isAnswerDisplayedProperty().addListener(new ChangeListener<>(){
             @Override
             public void changed(ObservableValue<? extends Boolean> o, Boolean oldVal, Boolean newVal) {
                 if (newVal.booleanValue()) {
-                    answer.setText(readOnlySlideshowApp.getCurrentSlide().getEnglishPhrase().value);
+                    answer.setText(readOnlySlideshowApp.getCurrentSlide().getEnglishPhrase().toString());
                 } else {
                     answer.setText("");
                 }
