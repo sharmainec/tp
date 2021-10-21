@@ -1,9 +1,12 @@
 package lingogo.model;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.transformation.FilteredList;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.slideshow.Slideshow;
@@ -15,22 +18,26 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
     private Slideshow slideshow;
     private BooleanProperty isActive;
     private BooleanProperty isAnswerDisplayed;
+    private IntegerProperty currentSlideNumber;
 
     public SlideshowApp(FilteredList<Flashcard> filteredFlashcards) {
         this.currentFlashcard = new SimpleObjectProperty<>(Flashcard.EMPTY_FLASHCARD);
         this.slideshow = new Slideshow(filteredFlashcards);
         this.isActive = new SimpleBooleanProperty(false);
         this.isAnswerDisplayed = new SimpleBooleanProperty(false);
+        this.currentSlideNumber = new SimpleIntegerProperty(0);
     }
 
     public void nextFlashcard() {
         currentFlashcard.set(slideshow.nextFlashcard());
         isAnswerDisplayed.set(false);
+        currentSlideNumber.set(currentSlideNumber.get() + 1);
     }
 
     public void previousFlashcard() {
         currentFlashcard.set(slideshow.previousFlashcard());
         isAnswerDisplayed.set(false);
+        currentSlideNumber.set(currentSlideNumber.get() - 1);
     }
 
     public void start() {
@@ -40,6 +47,7 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
         currentFlashcard.set(slideshow.start());
         isActive.set(true);
         isAnswerDisplayed.set(false);
+        currentSlideNumber.set(1);
     }
 
     public void stop() {
@@ -49,7 +57,7 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
         slideshow.stop();
         isActive.set(false);
         isAnswerDisplayed.set(false);
-
+        currentSlideNumber.set(0);
         currentFlashcard.set(Flashcard.EMPTY_FLASHCARD);
     }
 
@@ -63,7 +71,7 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
     }
 
     @Override
-    public ObjectProperty<Flashcard> getCurrentSlideProperty() {
+    public ObjectProperty<Flashcard> currentSlideProperty() {
         return currentFlashcard;
     }
 
@@ -75,5 +83,10 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
     @Override
     public BooleanProperty isAnswerDisplayedProperty() {
         return isAnswerDisplayed;
+    }
+
+    @Override
+    public IntegerProperty currentSlideNumberProperty() {
+        return currentSlideNumber;
     }
 }

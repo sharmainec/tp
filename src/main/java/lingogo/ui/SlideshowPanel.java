@@ -18,6 +18,7 @@ import lingogo.model.flashcard.Flashcard;
 public class SlideshowPanel extends UiPart<Region> {
     private static final String FXML = "SlideshowPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
+    private static final String PROGRESS_FORMAT_STRING = "Flashcards answered: %s";
 
     @FXML
     private Label currentFlashcardNumber;
@@ -33,22 +34,27 @@ public class SlideshowPanel extends UiPart<Region> {
      */
     public SlideshowPanel(ReadOnlySlideshowApp readOnlySlideshowApp) {
         super(FXML);
-        readOnlySlideshowApp.getCurrentSlideProperty().addListener(new ChangeListener<>() {
+        readOnlySlideshowApp.currentSlideProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends Flashcard> o, Flashcard oldVal, Flashcard newVal) {
                 currentForeignPhrase.setText(newVal.getForeignPhrase().toString());
             }
         });
-        readOnlySlideshowApp.isAnswerDisplayedProperty().addListener(new ChangeListener<>(){
+        readOnlySlideshowApp.isAnswerDisplayedProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> o, Boolean oldVal, Boolean newVal) {
                 if (newVal.booleanValue()) {
-                    answer.setText(readOnlySlideshowApp.getCurrentSlide().getEnglishPhrase().toString());
+                    answer.setText("Answer: " + readOnlySlideshowApp.getCurrentSlide().getEnglishPhrase().toString());
                 } else {
                     answer.setText("");
                 }
             }
         });
-        // TODO: Add getters for current flashcard number and current progress
+        readOnlySlideshowApp.currentSlideNumberProperty().addListener(new ChangeListener<>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> o, Number oldVal, Number newVal) {
+                currentFlashcardNumber.setText("Current flashcard: " + newVal.toString());
+            }
+        });
     }
 }
