@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FlashcardAppParser" as FlashcardAppParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":PhraseContainsKeywordsPredicate" as PhraseContainsKeywordsPredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[->LogicManager : execute("find e/Hello")
+activate LogicManager
+
+LogicManager -> FlashcardAppParser : parseCommand("find e/hello")
+activate FlashcardAppParser
+
+FlashcardAppParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> FlashcardAppParser
+deactivate FindCommandParser
+
+FlashcardAppParser -> FindCommandParser : parse("e/hello")
+activate FindCommandParser
+
+FindCommandParser -> PhraseContainsKeywordsPredicate
+activate PhraseContainsKeywordsPredicate
+
+PhraseContainsKeywordsPredicate --> FindCommandParser
+deactivate PhraseContainsKeywordsPredicate
+
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser : findCommand
+deactivate FindCommand
+
+FindCommandParser --> FlashcardAppParser : findCommand
+deactivate FindCommandParser
+
+FlashcardAppParser --> LogicManager : findCommand
+deactivate FlashcardAppParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredFlashcardList()
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
