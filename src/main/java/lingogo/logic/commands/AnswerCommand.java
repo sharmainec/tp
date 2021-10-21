@@ -53,6 +53,10 @@ public class AnswerCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NOT_IN_SLIDESHOW_MODE);
         }
 
+        if (model.isCurrentSlideAnswered()) {
+            throw new CommandException(Messages.MESSAGE_FLASHCARD_ALREADY_ANSWERED);
+        }
+
         Flashcard currentFlashcard = model.getCurrentSlide();
         model.answerCurrentSlide();
         model.displayCurrentAnswer();

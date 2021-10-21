@@ -31,7 +31,7 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
      */
     public void nextFlashcard() {
         currentFlashcard.set(slideshow.nextFlashcard());
-        isAnswerDisplayed.set(false);
+        isAnswerDisplayed.set(slideshow.isCurrentSlideAnswered());
     }
 
     /**
@@ -39,7 +39,7 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
      */
     public void previousFlashcard() {
         currentFlashcard.set(slideshow.previousFlashcard());
-        isAnswerDisplayed.set(false);
+        isAnswerDisplayed.set(slideshow.isCurrentSlideAnswered());
     }
 
     /**

@@ -14,5 +14,6 @@ public class Messages {
             + "active!";
     public static final String MESSAGE_NOT_IN_SLIDESHOW_MODE = "This command can only be run when slideshow mode is "
             + "active!";
+    public static final String MESSAGE_FLASHCARD_ALREADY_ANSWERED = "This flashcard has already been answered!";
 
 }

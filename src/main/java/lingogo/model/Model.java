@@ -146,4 +146,8 @@ public interface Model {
      */
     Flashcard getCurrentSlide();
 
+    /**
+     * Checks whether the current flashcard in the slideshow has been answered.
+     */
+    boolean isCurrentSlideAnswered();
 }
