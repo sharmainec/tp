@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.slideshow.exceptions.EmptySlideshowException;
 import lingogo.model.slideshow.exceptions.InvalidSlideshowIndexException;
+import lingogo.model.slideshow.exceptions.SlideAlreadyAnsweredException;
 
 public class Slideshow {
     private final ObservableList<Flashcard> flashcards;
@@ -74,6 +75,9 @@ public class Slideshow {
      * Answers the current slide in the slideshow.
      */
     public void answerCurrentSlide() {
+        if (isCurrentSlideAnswered()) {
+            throw new SlideAlreadyAnsweredException();
+        }
         Flashcard flippedFlashcard = slides.get(currentIdx).getFlippedFlashcard();
         slides.set(currentIdx, flippedFlashcard);
     }

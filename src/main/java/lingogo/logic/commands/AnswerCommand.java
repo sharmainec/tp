@@ -8,6 +8,7 @@ import lingogo.model.Model;
 import lingogo.model.flashcard.EnglishPhraseMatchesGivenPhrasePredicate;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.Phrase;
+import lingogo.model.slideshow.exceptions.SlideAlreadyAnsweredException;
 
 /**
  * Checks whether the English phrase of a flashcard matches a given phrase.
@@ -53,14 +54,14 @@ public class AnswerCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NOT_IN_SLIDESHOW_MODE);
         }
 
-        if (model.isCurrentSlideAnswered()) {
+        try {
+            model.answerCurrentSlide();
+            model.displayCurrentAnswer();
+        } catch (SlideAlreadyAnsweredException e) {
             throw new CommandException(Messages.MESSAGE_FLASHCARD_ALREADY_ANSWERED);
         }
 
         Flashcard currentFlashcard = model.getCurrentSlide();
-        model.answerCurrentSlide();
-        model.displayCurrentAnswer();
-
         if (!predicate.test(currentFlashcard)) {
             return new CommandResult(String.format(MESSAGE_TEST_FLASHCARD_SUCCESS_WRONG,
                     currentFlashcard.getForeignPhrase(), currentFlashcard.getEnglishPhrase(), givenPhrase));
