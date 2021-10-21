@@ -16,13 +16,13 @@ public class AnswerCommand extends Command {
 
     public static final String COMMAND_WORD = "answer";
     public static final String COMMAND_DESCRIPTION = "Checks whether the given English phrase matches the English"
-            + "phrase of the current displayed flashcard in the slideshow";
+            + " phrase of the current displayed flashcard in the slideshow";
     public static final String COMMAND_USAGE = "answer e/ENGLISH_PHRASE";
     public static final String COMMAND_EXAMPLES = "answer e/hello";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Checks whether the English phrase of the current displayed flashcard in the slideshow matches the"
-            + "given phrase.\n"
+            + " given phrase.\n"
             + "Parameters: e/ENGLISH_PHRASE\n"
             + "Example: " + COMMAND_EXAMPLES;
 
