@@ -14,7 +14,7 @@ public class PreviousSlideCommand extends Command {
     public static final String COMMAND_EXAMPLES = "previous";
     public static final String MESSAGE_SUCCESS = "Previous flashcard shown!";
     public static final String MESSAGE_NO_PREVIOUS_SLIDE = "There are no previous slides left in the current"
-            + "slideshow!";
+            + " slideshow!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
