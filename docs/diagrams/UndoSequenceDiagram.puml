@@ -4,49 +4,82 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+participant "f:FilterBuilder" as FilterBuilder LOGIC_COLOR
+participant "u:FilterCommand" as FilterCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
 end box
-[-> LogicManager : execute(undo)
+[-> LogicManager : execute(filter)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
+LogicManager -> AddressBookParser : parseCommand(filter)
 activate AddressBookParser
 
-create UndoCommand
-AddressBookParser -> UndoCommand
-activate UndoCommand
+create FilterBuilder
+AddressBookParser -> FilterBuilder
+activate FilterBuilder
 
-UndoCommand --> AddressBookParser
-deactivate UndoCommand
+FilterBuilder --> AddressBookParser :f
+deactivate FilterBuilder
+
+opt language type is given for filter
+
+AddressBookParser -> FilterBuilder : setLanguageType()
+activate FilterBuilder
+
+end
+
+FilterBuilder --> AddressBookParser :
+deactivate FilterBuilder
+
+opt index list is given for filter
+
+    AddressBookParser -> FilterBuilder : setIndexFilter()
+    activate FilterBuilder
+end
+
+FilterBuilder --> AddressBookParser :
+deactivate FilterBuilder
+
+
+create FilterCommand
+AddressBookParser -> FilterCommand : FilterCommand(f)
+activate FilterCommand
+
+FilterCommand --> AddressBookParser : u
 
 AddressBookParser --> LogicManager : u
 deactivate AddressBookParser
 
-LogicManager -> UndoCommand : execute()
-activate UndoCommand
+LogicManager -> FilterCommand : execute()
+activate FilterCommand
 
-UndoCommand -> Model : undoAddressBook()
+FilterCommand -> FilterBuilder : buiLd()
+activate FilterBuilder
+
+FilterBuilder --> FilterCommand : filterPredicate
+deactivate FilterBuilder
+
+FilterCommand -> Model : filterAddressBook()
 activate Model
 
-Model -> VersionedAddressBook : undo()
+Model -> VersionedAddressBook : filter()
 activate VersionedAddressBook
 
 VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
 VersionedAddressBook --> Model :
 deactivate VersionedAddressBook
 
-Model --> UndoCommand
+Model --> FilterCommand
 deactivate Model
 
-UndoCommand --> LogicManager : result
-deactivate UndoCommand
-UndoCommand -[hidden]-> LogicManager : result
-destroy UndoCommand
+FilterCommand --> LogicManager : result
+deactivate FilterCommand
+FilterCommand -[hidden]-> LogicManager : result
+destroy FilterCommand
 
 [<--LogicManager
 deactivate LogicManager
