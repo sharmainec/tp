@@ -11,7 +11,7 @@ import lingogo.model.slideshow.exceptions.InvalidSlideshowIndexException;
 
 public class Slideshow {
     private final ObservableList<Flashcard> flashcards;
-    private List<Slide> slides;
+    private List<Flashcard> slides;
     private int currentIdx; // index of the current slide in the flashcard list
 
     /**
@@ -53,7 +53,7 @@ public class Slideshow {
      */
     public Flashcard start() {
         // Create slides for each flashcard
-        slides = flashcards.stream().map(flashcard -> new Slide(flashcard)).collect(Collectors.toList());
+        slides = flashcards.stream().map(flashcard -> new Flashcard(flashcard)).collect(Collectors.toList());
         currentIdx = 0; // reset index
 
         if (flashcards.size() == 0) {
@@ -74,7 +74,8 @@ public class Slideshow {
      * Answers the current slide in the slideshow.
      */
     public void answerCurrentSlide() {
-        slides.get(currentIdx).answer();
+        Flashcard flippedFlashcard = slides.get(currentIdx).getFlippedFlashcard();
+        slides.set(currentIdx, flippedFlashcard);
     }
 
     /**
@@ -88,7 +89,7 @@ public class Slideshow {
      * Checks whether the current slide in the slideshow has been answered.
      */
     public boolean isCurrentSlideAnswered() {
-        return slides.get(currentIdx).isAnswered();
+        return slides.get(currentIdx).getFlipStatus();
     }
 
     /**
@@ -102,9 +103,13 @@ public class Slideshow {
      * Returns the total number of flashcards answered so far in the slideshow.
      */
     public int getNumberOfAnsweredFlashcards() {
-        return (int) slides.stream().filter(Slide::isAnswered).count();
+        return (int) slides.stream().filter(Flashcard::getFlipStatus).count();
     }
 
+    /**
+     * Returns a string showing how many flashcards out of the
+     * total number of flashcards in the slideshow have been answered.
+     */
     public String getProgress() {
         return String.format("%d out of %d", getNumberOfAnsweredFlashcards(), getTotalNumberOfSlides());
     }

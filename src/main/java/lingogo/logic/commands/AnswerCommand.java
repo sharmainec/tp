@@ -38,7 +38,6 @@ public class AnswerCommand extends Command {
     private final Phrase givenPhrase;
 
     /**
-     * @param targetIndex of the flashcard in the displayed flashcard list to test
      * @param givenPhrase to test for match with the flashcard's English Phrase
      */
     public AnswerCommand(Phrase givenPhrase) {

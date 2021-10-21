@@ -53,18 +53,13 @@ public class SlideshowPanel extends UiPart<Region> {
             @Override
             public void changed(ObservableValue<? extends Boolean> o, Boolean oldVal, Boolean newVal) {
                 if (newVal) {
-                    answer.setText("Answer: " + readOnlySlideshowApp.getCurrentSlide().getEnglishPhrase().toString());
+                    answer.setText(String.format(ANSWER_FORMAT_STRING,
+                            readOnlySlideshowApp.getCurrentSlide().getEnglishPhrase().toString()));
                     progress.setText(String.format(PROGRESS_FORMAT_STRING, readOnlySlideshowApp.getProgress()));
                 } else {
                     answer.setText("");
                 }
             }
         });
-//        readOnlySlideshowApp.currentSlideNumberProperty().addListener(new ChangeListener<>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Number> o, Number oldVal, Number newVal) {
-//                currentFlashcardNumber.setText("Current flashcard: " + newVal.toString());
-//            }
-//        });
     }
 }

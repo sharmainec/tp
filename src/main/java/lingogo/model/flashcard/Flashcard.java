@@ -1,5 +1,6 @@
 package lingogo.model.flashcard;
 
+import static java.util.Objects.requireNonNull;
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -39,6 +40,17 @@ public class Flashcard {
         this.englishPhrase = englishPhrase;
         this.foreignPhrase = foreignPhrase;
         this.isFlipped = isFlipped;
+    }
+
+    /**
+     * Copy constructor.
+     */
+    public Flashcard(Flashcard toCopy) {
+        requireNonNull(toCopy);
+        this.languageType = toCopy.languageType;
+        this.englishPhrase = toCopy.englishPhrase;
+        this.foreignPhrase = toCopy.foreignPhrase;
+        this.isFlipped = toCopy.isFlipped;
     }
 
     public Phrase getLanguageType() {
