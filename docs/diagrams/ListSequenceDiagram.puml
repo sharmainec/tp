@@ -5,6 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FlashCardAppParser" as FlashCardAppParser LOGIC_COLOR
 participant ":ListCommand" as ListCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -21,10 +22,10 @@ create ListCommand
 FlashCardAppParser -> ListCommand
 activate ListCommand
 
-ListCommand --> FlashCardAppParser : listCommand
+ListCommand --> FlashCardAppParser : listCommand(4)
 deactivate ListCommand
 
-FlashCardAppParser --> LogicManager : listCommand
+FlashCardAppParser --> LogicManager : listCommand(4)
 deactivate FlashCardAppParser
 
 LogicManager -> ListCommand : execute()
@@ -35,6 +36,12 @@ activate Model
 
 Model --> ListCommand
 deactivate Model
+
+ListCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListCommand
+deactivate CommandResult
 
 ListCommand --> LogicManager : result
 deactivate ListCommand
