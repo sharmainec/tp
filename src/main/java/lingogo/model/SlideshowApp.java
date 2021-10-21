@@ -4,7 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.transformation.FilteredList;
+import javafx.collections.ObservableList;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.slideshow.Slideshow;
 import lingogo.model.slideshow.exceptions.InvalidSlideshowStartException;
@@ -16,9 +16,9 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
     private BooleanProperty isActive;
     private BooleanProperty isAnswerDisplayed;
 
-    public SlideshowApp(FilteredList<Flashcard> filteredFlashcards) {
+    public SlideshowApp(ObservableList<Flashcard> flashcards) {
         this.currentFlashcard = new SimpleObjectProperty<>(Flashcard.EMPTY_FLASHCARD);
-        this.slideshow = new Slideshow(filteredFlashcards);
+        this.slideshow = new Slideshow(flashcards);
         this.isActive = new SimpleBooleanProperty(false);
         this.isAnswerDisplayed = new SimpleBooleanProperty(false);
     }

@@ -1,7 +1,6 @@
 package lingogo.model.slideshow;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.slideshow.exceptions.EmptySlideshowException;
 import lingogo.model.slideshow.exceptions.InvalidSlideshowIndexException;
@@ -10,7 +9,7 @@ public class Slideshow {
     private final ObservableList<Flashcard> flashcards;
     private int currentIdx; // index of the current slide in the flashcard list
 
-    public Slideshow(FilteredList<Flashcard> flashcards) {
+    public Slideshow(ObservableList<Flashcard> flashcards) {
         this.flashcards = flashcards;
         currentIdx = 0;
     }
@@ -20,8 +19,6 @@ public class Slideshow {
      * if the end of the list is reached.
      */
     public Flashcard nextFlashcard() {
-        // TODO: Boundary tests for this (incl empty list)
-
         if (currentIdx + 1 >= flashcards.size()) {
             throw new InvalidSlideshowIndexException();
         }
@@ -35,8 +32,6 @@ public class Slideshow {
      * @return
      */
     public Flashcard previousFlashcard() {
-        // TODO: Boundary tests for this (incl empty list)
-
         if (currentIdx - 1 < 0) {
             throw new InvalidSlideshowIndexException();
         }
@@ -63,6 +58,13 @@ public class Slideshow {
         currentIdx = 0; // reset index
     }
 
+    /**
+     * Returns the current index of the slideshow. This method should only be used for testing purposes.
+     */
+    public int getCurrentIndex() {
+        return currentIdx;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -77,5 +79,10 @@ public class Slideshow {
 
         return flashcards.equals(s.flashcards)
                 && currentIdx == s.currentIdx;
+    }
+
+    @Override
+    public int hashCode() {
+        return flashcards.hashCode();
     }
 }
