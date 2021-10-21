@@ -7,6 +7,7 @@ import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import lingogo.commons.core.Messages;
 import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
@@ -40,6 +41,13 @@ public class AddCommandIntegrationTest {
     public void execute_duplicateFlashcard_throwsCommandException() {
         Flashcard flashcardInList = model.getFlashcardApp().getFlashcardList().get(0);
         assertCommandFailure(new AddCommand(flashcardInList), model, AddCommand.MESSAGE_DUPLICATE_FLASHCARD);
+    }
+
+    @Test
+    public void execute_slideshowActive_throwsCommandException() {
+        model.startSlideshow();
+        Flashcard validFlashcard = new FlashcardBuilder().build();
+        assertCommandFailure(new AddCommand(validFlashcard), model, Messages.MESSAGE_IN_SLIDESHOW_MODE);
     }
 
 }

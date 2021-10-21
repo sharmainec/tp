@@ -1,6 +1,7 @@
 package lingogo.logic.commands;
 
 import static lingogo.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
+import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static lingogo.testutil.TypicalFlashcards.BYE_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.NIGHT_CHINESE_FLASHCARD;
@@ -15,6 +16,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import lingogo.commons.core.Messages;
 import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
@@ -100,6 +102,17 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD),
                 model.getFilteredFlashcardList());
+    }
+
+    @Test
+    public void execute_slideshowActive_throwsCommandException() {
+        model.startSlideshow();
+        
+        PhraseContainsKeywordsPredicate predicate = preparePredicate(" ");
+        FindCommand command = new FindCommand(predicate);
+        String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+
+        assertCommandFailure(command, model, expectedMessage);
     }
 
     /**

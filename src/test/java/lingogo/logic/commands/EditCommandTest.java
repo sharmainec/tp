@@ -149,6 +149,19 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_slideshowActive_throwsCommandException() {
+        model.startSlideshow();
+
+        Flashcard editedFlashcard = new FlashcardBuilder().build();
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD, descriptor);
+        
+        String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+
+        assertCommandFailure(editCommand, model, expectedMessage);
+    }
+
+    @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_FLASHCARD, DESC_GOOD_MORNING);
 

@@ -76,4 +76,22 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
     public BooleanProperty isAnswerDisplayedProperty() {
         return isAnswerDisplayed;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof SlideshowApp)) {
+            return false;
+        }
+
+        SlideshowApp s = (SlideshowApp) other;
+
+        return currentFlashcard.getValue().equals(s.currentFlashcard.getValue())
+                && slideshow.equals(s.slideshow)
+                && isActive.getValue().equals(s.isActive.getValue())
+                && isAnswerDisplayed.getValue().equals(s.isAnswerDisplayed.getValue());
+    }
 }
