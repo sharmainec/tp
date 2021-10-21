@@ -53,7 +53,7 @@ public class AnswerCommand extends Command {
         }
 
         Flashcard currentFlashcard = model.getCurrentSlide();
-
+        model.answerCurrentSlide();
         model.displayCurrentAnswer();
 
         if (!predicate.test(currentFlashcard)) {

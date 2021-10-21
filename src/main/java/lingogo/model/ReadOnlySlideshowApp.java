@@ -1,9 +1,7 @@
 package lingogo.model;
 
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.StringProperty;
 import lingogo.model.flashcard.Flashcard;
 
 /**
@@ -31,7 +29,17 @@ public interface ReadOnlySlideshowApp {
     BooleanProperty isAnswerDisplayedProperty();
 
     /**
-     * Returns the currentSlideNumber property of the slideshow app.
+     * Returns the current slide number of the slideshow app.
      */
-    IntegerProperty currentSlideNumberProperty();
+    int getCurrentSlideNumber();
+
+    /**
+     * Returns if the current slide has been answered by the user.
+     */
+    boolean isCurrentSlideAnswered();
+
+    /**
+     * Returns the progress property of the slideshow app.
+     */
+    String getProgress();
 }

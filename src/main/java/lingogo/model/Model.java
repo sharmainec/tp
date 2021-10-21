@@ -127,6 +127,11 @@ public interface Model {
     void slideshowPreviousFlashcard();
 
     /**
+     * Marks the current slide as answered.
+     */
+    void answerCurrentSlide();
+
+    /**
      * Displays the answer for the current slide.
      */
     void displayCurrentAnswer();

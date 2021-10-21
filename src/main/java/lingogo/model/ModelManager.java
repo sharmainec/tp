@@ -176,6 +176,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void answerCurrentSlide() {
+        slideshowApp.answerCurrentSlide();
+    }
+
+    @Override
     public void displayCurrentAnswer() {
         slideshowApp.displayCurrentAnswer();
     }

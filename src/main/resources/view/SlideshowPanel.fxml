@@ -23,6 +23,6 @@
     <padding>
       <Insets bottom="5" right="10" />
     </padding>
-    <Label styleClass="label-bright" fx:id="progress" text="Flashcards answered: 0 out of 20" />
+    <Label styleClass="label-bright" fx:id="progress" text="Flashcards answered: " />
   </StackPane>
 </VBox>

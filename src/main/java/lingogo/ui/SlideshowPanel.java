@@ -2,7 +2,6 @@ package lingogo.ui;
 
 import java.util.logging.Logger;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -18,6 +17,8 @@ import lingogo.model.flashcard.Flashcard;
 public class SlideshowPanel extends UiPart<Region> {
     private static final String FXML = "SlideshowPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
+    private static final String CURRENT_FLASHCARD_NUMBER_FORMAT_STRING = "Current flashcard: %s";
+    private static final String ANSWER_FORMAT_STRING = "Answer: %s";
     private static final String PROGRESS_FORMAT_STRING = "Flashcards answered: %s";
 
     @FXML
@@ -37,24 +38,33 @@ public class SlideshowPanel extends UiPart<Region> {
         readOnlySlideshowApp.currentSlideProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends Flashcard> o, Flashcard oldVal, Flashcard newVal) {
+                currentFlashcardNumber.setText(String.format(CURRENT_FLASHCARD_NUMBER_FORMAT_STRING,
+                        readOnlySlideshowApp.getCurrentSlideNumber()));
                 currentForeignPhrase.setText(newVal.getForeignPhrase().toString());
+                if (readOnlySlideshowApp.isCurrentSlideAnswered()) {
+                    answer.setText(String.format(ANSWER_FORMAT_STRING, newVal.getEnglishPhrase().toString()));
+                } else {
+                    answer.setText("");
+                }
+                progress.setText(String.format(PROGRESS_FORMAT_STRING, readOnlySlideshowApp.getProgress()));
             }
         });
         readOnlySlideshowApp.isAnswerDisplayedProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> o, Boolean oldVal, Boolean newVal) {
-                if (newVal.booleanValue()) {
+                if (newVal) {
                     answer.setText("Answer: " + readOnlySlideshowApp.getCurrentSlide().getEnglishPhrase().toString());
+                    progress.setText(String.format(PROGRESS_FORMAT_STRING, readOnlySlideshowApp.getProgress()));
                 } else {
                     answer.setText("");
                 }
             }
         });
-        readOnlySlideshowApp.currentSlideNumberProperty().addListener(new ChangeListener<>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> o, Number oldVal, Number newVal) {
-                currentFlashcardNumber.setText("Current flashcard: " + newVal.toString());
-            }
-        });
+//        readOnlySlideshowApp.currentSlideNumberProperty().addListener(new ChangeListener<>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Number> o, Number oldVal, Number newVal) {
+//                currentFlashcardNumber.setText("Current flashcard: " + newVal.toString());
+//            }
+//        });
     }
 }
