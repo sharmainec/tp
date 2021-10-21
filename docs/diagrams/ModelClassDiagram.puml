@@ -5,50 +5,48 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyFlashcardApp <<Interface>>
 Interface ReadOnlyUserPrefs <<Interface>>
+Interface ReadOnlySlideshowApp <<Interface>>
 Interface Model <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class FlashcardApp
+Class ReadOnlyFlashcardApp
+Class SlideshowApp
+Class ReadOnlySlideshowApp
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class UniqueFlashcardList
+Class Flashcard
+Class Phrase
+Class Slideshow
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+FlashcardApp .up.|> ReadOnlyFlashcardApp
+SlideshowApp .up.|> ReadOnlySlideshowApp
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyFlashcardApp
+Model .left.> ReadOnlySlideshowApp
+ModelManager -left-> "1" FlashcardApp
+ModelManager -left-> "1" SlideshowApp
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+FlashcardApp *--> "1" UniqueFlashcardList
+UniqueFlashcardList --> "~* all" Flashcard
+Flashcard *--> "3" Phrase
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+SlideshowApp *--> "1" Slideshow
+Slideshow --> "slideshow flashcards ~*" Flashcard
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Flashcard
 @enduml
