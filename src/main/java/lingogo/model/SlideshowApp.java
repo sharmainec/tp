@@ -4,7 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.transformation.FilteredList;
+import javafx.collections.ObservableList;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.slideshow.Slideshow;
 import lingogo.model.slideshow.exceptions.InvalidSlideshowStartException;
@@ -16,23 +16,36 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
     private BooleanProperty isActive;
     private BooleanProperty isAnswerDisplayed;
 
-    public SlideshowApp(FilteredList<Flashcard> filteredFlashcards) {
+    /**
+     * Creates a SlideshowApp using the flashcards in {@code flashcards}.
+     */
+    public SlideshowApp(ObservableList<Flashcard> flashcards) {
         this.currentFlashcard = new SimpleObjectProperty<>(Flashcard.EMPTY_FLASHCARD);
-        this.slideshow = new Slideshow(filteredFlashcards);
+        this.slideshow = new Slideshow(flashcards);
         this.isActive = new SimpleBooleanProperty(false);
         this.isAnswerDisplayed = new SimpleBooleanProperty(false);
     }
 
+    /**
+     * Toggles to the next flashcard in the SlideshowApp.
+     */
     public void nextFlashcard() {
         currentFlashcard.set(slideshow.nextFlashcard());
         isAnswerDisplayed.set(false);
     }
 
+    /**
+     * Toggles to the previous flashcard in the SlideshowApp.
+     */
     public void previousFlashcard() {
         currentFlashcard.set(slideshow.previousFlashcard());
         isAnswerDisplayed.set(false);
     }
 
+    /**
+     * Starts the slideshow in the SlideshowApp. Throws {@code InvalidSlideshowStartException}
+     * if the SlideshowApp is already started.
+     */
     public void start() {
         if (isActive.get()) {
             throw new InvalidSlideshowStartException();
@@ -42,6 +55,10 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
         isAnswerDisplayed.set(false);
     }
 
+    /**
+     * Stops the slideshow in the SlideshowApp. Throws {@code InvalidSlideshowStopException}
+     * if the SlideshowApp is already stopped.
+     */
     public void stop() {
         if (!isActive.get()) {
             throw new InvalidSlideshowStopException();
@@ -52,6 +69,9 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
         currentFlashcard.set(Flashcard.EMPTY_FLASHCARD);
     }
 
+    /**
+     * Display the answer to the current flashcard in the SlideshowApp.
+     */
     public void displayCurrentAnswer() {
         isAnswerDisplayed.set(true);
     }
@@ -93,5 +113,23 @@ public class SlideshowApp implements ReadOnlySlideshowApp {
     @Override
     public String getProgress() {
         return slideshow.getProgress();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof SlideshowApp)) {
+            return false;
+        }
+
+        SlideshowApp s = (SlideshowApp) other;
+
+        return currentFlashcard.getValue().equals(s.currentFlashcard.getValue())
+                && slideshow.equals(s.slideshow)
+                && isActive.getValue().equals(s.isActive.getValue())
+                && isAnswerDisplayed.getValue().equals(s.isAnswerDisplayed.getValue());
     }
 }

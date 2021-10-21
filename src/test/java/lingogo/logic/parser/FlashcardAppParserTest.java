@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import lingogo.logic.commands.AddCommand;
+import lingogo.logic.commands.AnswerCommand;
 import lingogo.logic.commands.ClearCommand;
 import lingogo.logic.commands.DeleteCommand;
 import lingogo.logic.commands.EditCommand;
@@ -29,7 +30,6 @@ import lingogo.logic.commands.FindCommand;
 import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ListCommand;
-import lingogo.logic.commands.AnswerCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;

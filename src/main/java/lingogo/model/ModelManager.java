@@ -206,7 +206,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return flashcardApp.equals(other.flashcardApp)
                 && userPrefs.equals(other.userPrefs)
-                && filteredFlashcards.equals(other.filteredFlashcards);
+                && filteredFlashcards.equals(other.filteredFlashcards)
+                && slideshowApp.equals(other.slideshowApp);
     }
 
 }

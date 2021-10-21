@@ -4,49 +4,48 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javafx.collections.transformation.FilteredList;
+import javafx.collections.ObservableList;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.slideshow.exceptions.EmptySlideshowException;
 import lingogo.model.slideshow.exceptions.InvalidSlideshowIndexException;
 
 public class Slideshow {
-    private final FilteredList<Flashcard> filteredFlashcards;
+    private final ObservableList<Flashcard> flashcards;
     private List<Slide> slides;
-    private int currentIdx; // index of the current slide in the filteredlist
+    private int currentIdx; // index of the current slide in the flashcard list
 
-    public Slideshow(FilteredList<Flashcard> filteredFlashcards) {
-        this.filteredFlashcards = filteredFlashcards;
+    /**
+     * Creates a Slideshow using the flashcards in {@code flashcards}.
+     */
+    public Slideshow(ObservableList<Flashcard> flashcards) {
+        this.flashcards = flashcards;
         this.slides = Collections.emptyList();
         currentIdx = 0;
     }
 
     /**
-     * Returns the next {@code Flashcard} in the filtered list. Throws {@code InvalidSlideshowIndexException}
+     * Returns the next {@code Flashcard} in the flashcard list. Throws {@code InvalidSlideshowIndexException}
      * if the end of the list is reached.
      */
     public Flashcard nextFlashcard() {
-        // TODO: Boundary tests for this (incl empty list)
-
-        if (currentIdx + 1 >= filteredFlashcards.size()) {
+        if (currentIdx + 1 >= flashcards.size()) {
             throw new InvalidSlideshowIndexException();
         }
         currentIdx++;
-        return filteredFlashcards.get(currentIdx);
+        return flashcards.get(currentIdx);
     }
 
     /**
-     * Returns the previous {@code Flashcard} in the filtered list. Throws {@code InvalidSlideshowIndexException}
+     * Returns the previous {@code Flashcard} in the flashcard list. Throws {@code InvalidSlideshowIndexException}
      * if there is no previous flashcard in the list.
      * @return
      */
     public Flashcard previousFlashcard() {
-        // TODO: Boundary tests for this (incl empty list)
-
         if (currentIdx - 1 < 0) {
             throw new InvalidSlideshowIndexException();
         }
         currentIdx--;
-        return filteredFlashcards.get(currentIdx);
+        return flashcards.get(currentIdx);
     }
 
     /**
@@ -54,13 +53,13 @@ public class Slideshow {
      */
     public Flashcard start() {
         // Create slides for each flashcard
-        slides = filteredFlashcards.stream().map(flashcard -> new Slide(flashcard)).collect(Collectors.toList());
+        slides = flashcards.stream().map(flashcard -> new Slide(flashcard)).collect(Collectors.toList());
         currentIdx = 0; // reset index
 
-        if (filteredFlashcards.size() == 0) {
+        if (flashcards.size() == 0) {
             throw new EmptySlideshowException();
         }
-        return filteredFlashcards.get(currentIdx);
+        return flashcards.get(currentIdx);
     }
 
     /**
@@ -96,7 +95,7 @@ public class Slideshow {
      * Returns the total number of slides in the slideshow.
      */
     public int getTotalNumberOfSlides() {
-        return filteredFlashcards.size();
+        return flashcards.size();
     }
 
     /**
@@ -108,5 +107,33 @@ public class Slideshow {
 
     public String getProgress() {
         return String.format("%d out of %d", getNumberOfAnsweredFlashcards(), getTotalNumberOfSlides());
+    }
+
+    /**
+     * Returns the current index of the slideshow. This method should only be used for testing purposes.
+     */
+    public int getCurrentIndex() {
+        return currentIdx;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Slideshow)) {
+            return false;
+        }
+
+        Slideshow s = (Slideshow) other;
+
+        return flashcards.equals(s.flashcards)
+                && currentIdx == s.currentIdx;
+    }
+
+    @Override
+    public int hashCode() {
+        return flashcards.hashCode();
     }
 }

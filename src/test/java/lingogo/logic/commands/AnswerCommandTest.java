@@ -4,26 +4,23 @@ import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_AFTERN
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static lingogo.logic.commands.CommandTestUtil.showFlashcardAtIndex;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
-import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
-import static lingogo.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import lingogo.commons.core.Messages;
-import lingogo.commons.core.index.Index;
 import lingogo.model.Model;
 import lingogo.model.ModelManager;
+import lingogo.model.ReadOnlySlideshowApp;
 import lingogo.model.UserPrefs;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.Phrase;
 
 /**
  * Contains integration tests (interaction with the Model and Flip) and unit tests for
- * {@code TestCommand}.
+ * {@code AnswerCommand}.
  */
 public class AnswerCommandTest {
 
@@ -32,121 +29,75 @@ public class AnswerCommandTest {
     private Phrase validPhraseGoodMorning = new Phrase(VALID_ENGLISH_PHRASE_GOOD_MORNING);
 
     @Test
-    public void execute_validIndexUnfilteredListCorrectGivenPhrase_success() {
-        Flashcard flashcardToTest = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        AnswerCommand testCommand = new AnswerCommand(INDEX_FIRST_FLASHCARD, validPhraseAfternoon);
+    public void execute_correctGivenPhrase_success() {
+        model.startSlideshow();
+
+        Flashcard flashcardToTest = model.getCurrentSlide();
+        AnswerCommand answerCommand = new AnswerCommand(validPhraseAfternoon);
 
         String expectedMessage = String.format(AnswerCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT,
             flashcardToTest.getForeignPhrase(), flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_AFTERNOON);
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
+        expectedModel.startSlideshow();
+        expectedModel.displayCurrentAnswer();
 
-        assertCommandSuccess(testCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(answerCommand, model, expectedMessage, expectedModel);
+
+        ReadOnlySlideshowApp slideshowApp = model.getSlideshowApp();
+        assertTrue(slideshowApp.isAnswerDisplayedProperty().get());
     }
 
     @Test
-    public void execute_validIndexUnfilteredListWrongGivenPhrase_success() {
-        Flashcard flashcardToTest = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        AnswerCommand testCommand = new AnswerCommand(INDEX_FIRST_FLASHCARD, validPhraseGoodMorning);
+    public void execute_wrongGivenPhrase_success() {
+        model.startSlideshow();
+
+        Flashcard flashcardToTest = model.getCurrentSlide();
+        AnswerCommand answerCommand = new AnswerCommand(validPhraseGoodMorning);
 
         String expectedMessage = String.format(AnswerCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_WRONG,
             flashcardToTest.getForeignPhrase(), flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_GOOD_MORNING);
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
+        expectedModel.startSlideshow();
+        expectedModel.displayCurrentAnswer();
 
-        assertCommandSuccess(testCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(answerCommand, model, expectedMessage, expectedModel);
+
+        ReadOnlySlideshowApp slideshowApp = model.getSlideshowApp();
+        assertTrue(slideshowApp.isAnswerDisplayedProperty().get());
     }
 
     @Test
-    public void execute_testFlippedFlashcard_throwsCommandException() {
-        Flashcard flashcardToTest = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        model.setFlashcard(flashcardToTest, flashcardToTest.getFlippedFlashcard());
+    public void execute_slideshowInactive_throwsCommandException() {
+        AnswerCommand answerCommand = new AnswerCommand(validPhraseAfternoon);
+        String expectedMessage = String.format(Messages.MESSAGE_NOT_IN_SLIDESHOW_MODE);
 
-        AnswerCommand testCommand = new AnswerCommand(INDEX_FIRST_FLASHCARD, validPhraseGoodMorning);
+        assertCommandFailure(answerCommand, model, expectedMessage);
 
-        String expectedMessage =
-            String.format(AnswerCommand.MESSAGE_FLASHCARD_NOT_FLIPPED_DOWN, flashcardToTest.getForeignPhrase());
-
-        assertCommandFailure(testCommand, model, expectedMessage);
-    }
-
-    @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
-        AnswerCommand testCommand = new AnswerCommand(outOfBoundIndex, validPhraseAfternoon);
-
-        assertCommandFailure(testCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredListCorrectGivenPhrase_success() {
-        showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
-
-        Flashcard flashcardToTest = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        AnswerCommand testCommand = new AnswerCommand(INDEX_FIRST_FLASHCARD, validPhraseAfternoon);
-
-        String expectedMessage =
-            String.format(AnswerCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT, flashcardToTest.getForeignPhrase(),
-                flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_AFTERNOON);
-
-        Model expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
-        showFlashcardAtIndex(expectedModel, INDEX_FIRST_FLASHCARD);
-
-
-        assertCommandSuccess(testCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_validIndexFilteredListWrongGivenPhrase_success() {
-        showFlashcardAtIndex(model, INDEX_SECOND_FLASHCARD);
-
-        Flashcard flashcardToTest = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        AnswerCommand testCommand = new AnswerCommand(INDEX_FIRST_FLASHCARD, validPhraseAfternoon);
-
-        String expectedMessage =
-            String.format(AnswerCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_WRONG, flashcardToTest.getForeignPhrase(),
-                flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_AFTERNOON);
-
-        Model expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
-        showFlashcardAtIndex(expectedModel, INDEX_SECOND_FLASHCARD);
-
-
-        assertCommandSuccess(testCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
-
-        Index outOfBoundIndex = INDEX_SECOND_FLASHCARD;
-
-        // ensures that outOfBoundIndex is still in bounds of flashcard app list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashcardApp().getFlashcardList().size());
-
-        AnswerCommand testCommand = new AnswerCommand(outOfBoundIndex, validPhraseAfternoon);
-
-        assertCommandFailure(testCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        ReadOnlySlideshowApp slideshowApp = model.getSlideshowApp();
+        assertFalse(slideshowApp.isAnswerDisplayedProperty().get());
     }
 
     @Test
     public void equals() {
-        AnswerCommand testFirstCommand = new AnswerCommand(INDEX_FIRST_FLASHCARD, validPhraseAfternoon);
-        AnswerCommand testSecondCommand = new AnswerCommand(INDEX_SECOND_FLASHCARD, validPhraseAfternoon);
+        AnswerCommand answerFirstCommand = new AnswerCommand(validPhraseAfternoon);
+        AnswerCommand answerSecondCommand = new AnswerCommand(validPhraseGoodMorning);
 
         // same object -> returns true
-        assertTrue(testFirstCommand.equals(testFirstCommand));
+        assertTrue(answerFirstCommand.equals(answerFirstCommand));
 
         // same values -> returns true
-        AnswerCommand testFirstCommandCopy = new AnswerCommand(INDEX_FIRST_FLASHCARD, validPhraseAfternoon);
-        assertTrue(testFirstCommand.equals(testFirstCommandCopy));
+        AnswerCommand answerFirstCommandCopy = new AnswerCommand(validPhraseAfternoon);
+        assertTrue(answerFirstCommand.equals(answerFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(testFirstCommand.equals(1));
+        assertFalse(answerFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(testFirstCommand.equals(null));
+        assertFalse(answerFirstCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(testFirstCommand.equals(testSecondCommand));
+        // different phrase -> returns false
+        assertFalse(answerFirstCommand.equals(answerSecondCommand));
     }
 }

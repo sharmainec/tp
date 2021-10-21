@@ -88,29 +88,33 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
                     ListCommand.COMMAND_EXAMPLES);
             break;
         case EXPORT:
-            this.setDisplayText(ExportCommand.COMMAND_WORD, ExportCommand.COMMAND_DESCRIPTION, ExportCommand.COMMAND_USAGE,
-                    ExportCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(ExportCommand.COMMAND_WORD, ExportCommand.COMMAND_DESCRIPTION,
+                    ExportCommand.COMMAND_USAGE, ExportCommand.COMMAND_EXAMPLES);
             break;
         case IMPORT:
-            this.setDisplayText(ImportCommand.COMMAND_WORD, ImportCommand.COMMAND_DESCRIPTION, ImportCommand.COMMAND_USAGE,
-                    ImportCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(ImportCommand.COMMAND_WORD, ImportCommand.COMMAND_DESCRIPTION,
+                    ImportCommand.COMMAND_USAGE, ImportCommand.COMMAND_EXAMPLES);
             break;
         case ANSWER:
-            this.setDisplayText(AnswerCommand.COMMAND_WORD, AnswerCommand.COMMAND_DESCRIPTION, AnswerCommand.COMMAND_USAGE,
-                    AnswerCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(AnswerCommand.COMMAND_WORD, AnswerCommand.COMMAND_DESCRIPTION,
+                    AnswerCommand.COMMAND_USAGE, AnswerCommand.COMMAND_EXAMPLES);
             break;
         case NEXT:
-            this.setDisplayText(NextSlideCommand.COMMAND_WORD, NextSlideCommand.COMMAND_DESCRIPTION, NextSlideCommand.COMMAND_USAGE,
-                    NextSlideCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(NextSlideCommand.COMMAND_WORD, NextSlideCommand.COMMAND_DESCRIPTION,
+                    NextSlideCommand.COMMAND_USAGE, NextSlideCommand.COMMAND_EXAMPLES);
+            break;
         case PREVIOUS:
-            this.setDisplayText(PreviousSlideCommand.COMMAND_WORD, PreviousSlideCommand.COMMAND_DESCRIPTION, PreviousSlideCommand.COMMAND_USAGE,
-                    PreviousSlideCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(PreviousSlideCommand.COMMAND_WORD, PreviousSlideCommand.COMMAND_DESCRIPTION,
+                    PreviousSlideCommand.COMMAND_USAGE, PreviousSlideCommand.COMMAND_EXAMPLES);
+            break;
         case SLIDESHOW:
-            this.setDisplayText(SlideshowCommand.COMMAND_WORD, SlideshowCommand.COMMAND_DESCRIPTION, SlideshowCommand.COMMAND_USAGE,
-                    SlideshowCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(SlideshowCommand.COMMAND_WORD, SlideshowCommand.COMMAND_DESCRIPTION,
+                    SlideshowCommand.COMMAND_USAGE, SlideshowCommand.COMMAND_EXAMPLES);
+            break;
         case STOP:
-            this.setDisplayText(StopSlideshowCommand.COMMAND_WORD, StopSlideshowCommand.COMMAND_DESCRIPTION, StopSlideshowCommand.COMMAND_USAGE,
-                    StopSlideshowCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(StopSlideshowCommand.COMMAND_WORD, StopSlideshowCommand.COMMAND_DESCRIPTION,
+                    StopSlideshowCommand.COMMAND_USAGE, StopSlideshowCommand.COMMAND_EXAMPLES);
+            break;
         default:
             assert false : "CommandHelpMessage: Invalid command";
         }

@@ -1,6 +1,7 @@
 package lingogo.logic.commands;
 
 import static lingogo.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
+import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static lingogo.testutil.TypicalFlashcards.SUNRISE_TAMIL_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
@@ -13,6 +14,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import lingogo.commons.core.Messages;
 import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
@@ -72,6 +74,17 @@ public class FilterCommandTest {
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(SUNRISE_TAMIL_FLASHCARD), model.getFilteredFlashcardList());
+    }
+
+    @Test
+    public void execute_slideshowActive_throwsCommandException() {
+        model.startSlideshow();
+
+        LanguageTypeMatchesGivenPhrasePredicate predicate = preparePredicate("Tamil");
+        FilterCommand command = new FilterCommand(predicate);
+        String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+
+        assertCommandFailure(command, model, expectedMessage);
     }
 
     /**

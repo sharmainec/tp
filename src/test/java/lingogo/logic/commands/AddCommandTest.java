@@ -15,10 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import lingogo.commons.core.GuiSettings;
+import lingogo.commons.core.Messages;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.FlashcardApp;
 import lingogo.model.Model;
 import lingogo.model.ReadOnlyFlashcardApp;
+import lingogo.model.ReadOnlySlideshowApp;
 import lingogo.model.ReadOnlyUserPrefs;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.testutil.FlashcardBuilder;
@@ -52,6 +54,16 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_slideshowActive_throwsCommandException() {
+        Flashcard validFlashcard = new FlashcardBuilder().build();
+        AddCommand addCommand = new AddCommand(validFlashcard);
+        ModelStub modelStub = new ModelStubWithActiveSlideshow();
+
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_IN_SLIDESHOW_MODE, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         Flashcard goodMorning = new FlashcardBuilder().withEnglishPhrase("Good Morning").build();
         Flashcard hello = new FlashcardBuilder().withEnglishPhrase("Hello").build();
@@ -76,7 +88,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all of the methods failing, and an inactive slideshow.
      */
     private class ModelStub implements Model {
         @Override
@@ -158,6 +170,46 @@ public class AddCommandTest {
         public void updateFilteredFlashcardList(Predicate<Flashcard> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void startSlideshow() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void stopSlideshow() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isSlideshowActive() {
+            return false;
+        }
+
+        @Override
+        public void slideshowNextFlashcard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void slideshowPreviousFlashcard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void displayCurrentAnswer() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlySlideshowApp getSlideshowApp() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Flashcard getCurrentSlide() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -199,6 +251,13 @@ public class AddCommandTest {
         @Override
         public ReadOnlyFlashcardApp getFlashcardApp() {
             return new FlashcardApp();
+        }
+    }
+
+    private class ModelStubWithActiveSlideshow extends ModelStub {
+        @Override
+        public boolean isSlideshowActive() {
+            return true;
         }
     }
 
