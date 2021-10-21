@@ -165,12 +165,9 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The proposed undo/redo mechanism is facilitated by `ModelManager`. It extends `Model` implements 
-`updateFilteredFlashcardList` which returns an unmodifiable view of filtered flashcards in the GUI.
+The proposed undo/redo mechanism is facilitated by `ModelManager`. It extends `Model` implements `updateFilteredFlashcardList` which returns an unmodifiable view of filtered flashcards in the GUI.
 
-The find feature relies on the `FindCommandParser` and `PhraseContainsKeywordsPredicate`. Multiple keywords can be 
-given for both english and foreign phrases. `FindCommandParser` uses `PhraseContainsKeywordsPredicate` to select 
-flashcards that matches the keywords.
+The find feature relies on the `FindCommandParser` and `PhraseContainsKeywordsPredicate`. Multiple keywords can be given for both english and foreign phrases. `FindCommandParser` uses `PhraseContainsKeywordsPredicate` to select flashcards that matches the keywords.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
