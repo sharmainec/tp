@@ -165,13 +165,11 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The list feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList`
-which returns an unmodifiable view of the flashcards in the GUI.
+The list feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList`which returns an unmodifiable view of the flashcards in the GUI.
 
-In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the 
-main list of flashcards. 
+In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the main list of flashcards. 
 
-The sequence diagram below illustrates the execution of `ListCommand`. 
+The sequence diagram below illustrates the execution of `ListCommand`.
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
@@ -181,13 +179,12 @@ The sequence diagram below illustrates the execution of `ListCommand`.
 **Aspect: Generating list of flashcards:**
 
 * **Alternative 1 (current choice):** Randomise the list of flashcards
-  * Pros: Users are able to use flashcards more effectively. 
+  * Pros: Users are able to use flashcards more effectively.
   * Cons: Harder to implement and more difficult to test (due to random stream of `Index`).
 
 * **Alternative 2:** Output list up to `n`
   * Pros: Easy to implement.
   * Cons: Does not add value to the user's learning experience.
-  
 
 
 
