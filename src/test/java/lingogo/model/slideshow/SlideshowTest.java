@@ -4,12 +4,14 @@ import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import lingogo.model.FlashcardApp;
 import lingogo.model.slideshow.exceptions.EmptySlideshowException;
 import lingogo.model.slideshow.exceptions.InvalidSlideshowIndexException;
+import lingogo.model.slideshow.exceptions.SlideAlreadyAnsweredException;
 
 public class SlideshowTest {
     private final FlashcardApp flashcardApp = getTypicalFlashcardApp();
@@ -18,8 +20,10 @@ public class SlideshowTest {
     @Test
     public void nextFlashcard_success() {
         assertEquals(slideshow.getCurrentIndex(), 0);
+        assertEquals(slideshow.getCurrentSlideNumber(), 1);
         slideshow.nextFlashcard();
         assertEquals(slideshow.getCurrentIndex(), 1);
+        assertEquals(slideshow.getCurrentSlideNumber(), 2);
     }
 
     @Test
@@ -32,8 +36,10 @@ public class SlideshowTest {
     public void previousFlashcard_success() {
         slideshow.nextFlashcard();
         assertEquals(slideshow.getCurrentIndex(), 1);
+        assertEquals(slideshow.getCurrentSlideNumber(), 2);
         slideshow.previousFlashcard();
         assertEquals(slideshow.getCurrentIndex(), 0);
+        assertEquals(slideshow.getCurrentSlideNumber(), 1);
     }
 
     @Test
@@ -46,9 +52,11 @@ public class SlideshowTest {
     public void start_resetsCurrentIndex_success() {
         slideshow.nextFlashcard(); // makes currentIdx != 0
         assertNotEquals(slideshow.getCurrentIndex(), 0);
+        assertNotEquals(slideshow.getCurrentSlideNumber(), 1);
 
         slideshow.start();
         assertEquals(slideshow.getCurrentIndex(), 0);
+        assertEquals(slideshow.getCurrentSlideNumber(), 1);
     }
 
     @Test
@@ -61,9 +69,46 @@ public class SlideshowTest {
     public void stop_resetsCurrentIndex_success() {
         slideshow.nextFlashcard(); // makes currentIdx != 0
         assertNotEquals(slideshow.getCurrentIndex(), 0);
+        assertNotEquals(slideshow.getCurrentSlideNumber(), 1);
 
         slideshow.stop();
         assertEquals(slideshow.getCurrentIndex(), 0);
+        assertEquals(slideshow.getCurrentSlideNumber(), 1);
+    }
+
+    @Test
+    public void answerCurrentSlide_success() {
+        slideshow.start();
+
+        slideshow.answerCurrentSlide();
+        assertTrue(slideshow.isCurrentSlideAnswered());
+        assertEquals(slideshow.getNumberOfAnsweredFlashcards(), 1);
+        String expectedProgress = String.format("%d out of %d",
+                slideshow.getNumberOfAnsweredFlashcards(), slideshow.getTotalNumberOfSlides());
+        assertEquals(slideshow.getProgress(), expectedProgress);
+
+        slideshow.stop();
+    }
+
+    @Test
+    public void answerCurrentSlide_currentSlideAlreadyAnswered_throwsSlideAlreadyAnsweredException() {
+        slideshow.start();
+
+        slideshow.answerCurrentSlide();
+        assertTrue(slideshow.isCurrentSlideAnswered());
+
+        assertThrows(SlideAlreadyAnsweredException.class, () -> slideshow.answerCurrentSlide());
+
+        slideshow.stop();
+    }
+
+    @Test
+    public void getNumberOfSlides() {
+        slideshow.start();
+
+        assertEquals(slideshow.getTotalNumberOfSlides(), flashcardApp.getFlashcardList().size());
+
+        slideshow.stop();
     }
 
     @Test

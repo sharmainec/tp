@@ -16,10 +16,11 @@ import lingogo.model.flashcard.Flashcard;
  */
 public class SlideshowPanel extends UiPart<Region> {
     private static final String FXML = "SlideshowPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
     private static final String CURRENT_FLASHCARD_NUMBER_FORMAT_STRING = "Current flashcard: %s";
     private static final String ANSWER_FORMAT_STRING = "Answer: %s";
     private static final String PROGRESS_FORMAT_STRING = "Flashcards answered: %s";
+
+    private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
 
     @FXML
     private Label currentFlashcardNumber;

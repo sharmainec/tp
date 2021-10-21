@@ -39,7 +39,7 @@ public class FlashcardListPanel extends UiPart<Region> {
         flashcardListView.setItems(flashcardList);
         flashcardListView.setCellFactory(listView -> new FlashcardListViewCell());
         slideshowPanel = new SlideshowPanel(readOnlySlideshowApp);
-        readOnlySlideshowApp.isActiveProperty().addListener(new ChangeListener<>(){
+        readOnlySlideshowApp.isActiveProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> o, Boolean oldVal, Boolean newVal) {
                 if (newVal.booleanValue()) {

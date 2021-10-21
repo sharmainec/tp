@@ -138,6 +138,7 @@ public class Slideshow {
         Slideshow s = (Slideshow) other;
 
         return flashcards.equals(s.flashcards)
+                && slides.equals(s.slides)
                 && currentIdx == s.currentIdx;
     }
 

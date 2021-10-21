@@ -197,6 +197,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void answerCurrentSlide() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void displayCurrentAnswer() {
             throw new AssertionError("This method should not be called.");
         }

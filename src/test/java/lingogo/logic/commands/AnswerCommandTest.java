@@ -40,6 +40,7 @@ public class AnswerCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
         expectedModel.startSlideshow();
+        expectedModel.answerCurrentSlide();
         expectedModel.displayCurrentAnswer();
 
         assertCommandSuccess(answerCommand, model, expectedMessage, expectedModel);
@@ -60,6 +61,7 @@ public class AnswerCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
         expectedModel.startSlideshow();
+        expectedModel.answerCurrentSlide();
         expectedModel.displayCurrentAnswer();
 
         assertCommandSuccess(answerCommand, model, expectedMessage, expectedModel);
@@ -77,6 +79,34 @@ public class AnswerCommandTest {
 
         ReadOnlySlideshowApp slideshowApp = model.getSlideshowApp();
         assertFalse(slideshowApp.isAnswerDisplayedProperty().get());
+    }
+
+    @Test
+    public void execute_slideAlreadyAnswered_throwsCommandException() {
+        model.startSlideshow();
+
+        Flashcard flashcardToTest = model.getCurrentSlide();
+        AnswerCommand answerCommand = new AnswerCommand(validPhraseAfternoon);
+        String expectedMessage = String.format(AnswerCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT,
+                flashcardToTest.getForeignPhrase(), flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_AFTERNOON);
+
+        ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
+        expectedModel.startSlideshow();
+        expectedModel.answerCurrentSlide();
+        expectedModel.displayCurrentAnswer();
+
+        // First time answer command is executed
+        assertCommandSuccess(answerCommand, model, expectedMessage, expectedModel);
+
+        String expectedErrorMessage = String.format(Messages.MESSAGE_FLASHCARD_ALREADY_ANSWERED);
+
+        ReadOnlySlideshowApp slideshowApp = model.getSlideshowApp();
+        assertTrue(slideshowApp.isAnswerDisplayedProperty().get());
+
+        // Second time answer command is executed
+        assertCommandFailure(answerCommand, model, expectedErrorMessage);
+
+        assertTrue(slideshowApp.isAnswerDisplayedProperty().get());
     }
 
     @Test

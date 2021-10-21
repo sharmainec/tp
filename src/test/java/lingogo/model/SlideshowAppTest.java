@@ -16,6 +16,8 @@ import lingogo.model.slideshow.exceptions.InvalidSlideshowStartException;
 import lingogo.model.slideshow.exceptions.InvalidSlideshowStopException;
 
 public class SlideshowAppTest {
+    private static final String PROGRESS_FORMAT_STRING = "%d out of %d";
+
     private final FlashcardApp flashcardApp = getTypicalFlashcardApp();
     private SlideshowApp slideshowApp = new SlideshowApp(flashcardApp.getFlashcardList());
 
@@ -27,7 +29,10 @@ public class SlideshowAppTest {
 
         assertTrue(slideshowApp.isActiveProperty().get());
         assertEquals(slideshowApp.getCurrentSlide(), AFTERNOON_CHINESE_FLASHCARD);
+        assertEquals(slideshowApp.getCurrentSlideNumber(), 1);
         assertFalse(slideshowApp.isAnswerDisplayedProperty().get());
+        assertEquals(slideshowApp.getProgress(), String.format(PROGRESS_FORMAT_STRING,
+                0, flashcardApp.getFlashcardList().size()));
     }
 
     @Test
@@ -43,6 +48,10 @@ public class SlideshowAppTest {
         slideshowApp.start();
         assertTrue(slideshowApp.isActiveProperty().get());
         assertEquals(slideshowApp.getCurrentSlide(), AFTERNOON_CHINESE_FLASHCARD);
+        assertEquals(slideshowApp.getCurrentSlideNumber(), 1);
+        assertFalse(slideshowApp.isAnswerDisplayedProperty().get());
+        assertEquals(slideshowApp.getProgress(), String.format(PROGRESS_FORMAT_STRING,
+                0, flashcardApp.getFlashcardList().size()));
 
         slideshowApp.stop();
 
@@ -61,12 +70,16 @@ public class SlideshowAppTest {
     public void nextFlashcard_success() {
         slideshowApp.start();
         assertEquals(slideshowApp.getCurrentSlide(), AFTERNOON_CHINESE_FLASHCARD);
-        slideshowApp.displayCurrentAnswer(); // display current flashcard answer
+        assertEquals(slideshowApp.getCurrentSlideNumber(), 1);
+        assertEquals(slideshowApp.getProgress(), String.format(PROGRESS_FORMAT_STRING,
+                0, flashcardApp.getFlashcardList().size()));
 
         slideshowApp.nextFlashcard();
 
         assertEquals(slideshowApp.getCurrentSlide(), NIGHT_CHINESE_FLASHCARD);
-        assertFalse(slideshowApp.isAnswerDisplayedProperty().get()); // new flashcard answer is hidden
+        assertEquals(slideshowApp.getCurrentSlideNumber(), 2);
+        assertEquals(slideshowApp.getProgress(), String.format(PROGRESS_FORMAT_STRING,
+                0, flashcardApp.getFlashcardList().size()));
     }
 
     @Test
@@ -74,12 +87,16 @@ public class SlideshowAppTest {
         slideshowApp.start();
         slideshowApp.nextFlashcard();
         assertEquals(slideshowApp.getCurrentSlide(), NIGHT_CHINESE_FLASHCARD);
-        slideshowApp.displayCurrentAnswer(); // display current flashcard answer
+        assertEquals(slideshowApp.getCurrentSlideNumber(), 2);
+        assertEquals(slideshowApp.getProgress(), String.format(PROGRESS_FORMAT_STRING,
+                0, flashcardApp.getFlashcardList().size()));
 
         slideshowApp.previousFlashcard();
 
         assertEquals(slideshowApp.getCurrentSlide(), AFTERNOON_CHINESE_FLASHCARD);
-        assertFalse(slideshowApp.isAnswerDisplayedProperty().get()); // new flashcard answer is hidden
+        assertEquals(slideshowApp.getCurrentSlideNumber(), 1);
+        assertEquals(slideshowApp.getProgress(), String.format(PROGRESS_FORMAT_STRING,
+                0, flashcardApp.getFlashcardList().size()));
     }
 
     @Test
@@ -87,6 +104,21 @@ public class SlideshowAppTest {
         assertFalse(slideshowApp.isAnswerDisplayedProperty().get());
         slideshowApp.displayCurrentAnswer();
         assertTrue(slideshowApp.isAnswerDisplayedProperty().get());
+    }
+
+    @Test
+    public void answerCurrentSlide_success() {
+        slideshowApp.start();
+
+        assertFalse(slideshowApp.isCurrentSlideAnswered());
+        assertEquals(slideshowApp.getProgress(), String.format(PROGRESS_FORMAT_STRING,
+                0, flashcardApp.getFlashcardList().size()));
+        slideshowApp.answerCurrentSlide();
+        assertTrue(slideshowApp.isCurrentSlideAnswered());
+        assertEquals(slideshowApp.getProgress(), String.format(PROGRESS_FORMAT_STRING,
+                1, flashcardApp.getFlashcardList().size()));
+
+        slideshowApp.stop();
     }
 
     @Test
