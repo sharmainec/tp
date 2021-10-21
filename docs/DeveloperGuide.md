@@ -202,13 +202,11 @@ the lifeline reaches the end of diagram.
     * Pros: No need for complex constructors and easier for more filters to be added in the future.
     * Cons: Less defensive code and easier for bugs to arise due to programmer error.
 
-* **Alternative 2:** Can use multiple filters per command.
+* **Alternative 2:** Make it immutable.
     * Pros: More defensive code.
     * Cons: There is a need for multiple constructors due to handle optional user inputs due to a lack of set-variable 
       methods. Furthermore `FilterCommandParser` may become needlessly complex.
-
-
-
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
