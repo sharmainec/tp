@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        
+
         if (model.isSlideshowActive()) {
             throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
         }

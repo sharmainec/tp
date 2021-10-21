@@ -36,7 +36,7 @@ public interface Logic {
 
     /**
      * Returns the SlideshowApp.
-     * 
+     *
      * @see lingogo.model.Model#getSlideshowApp()
      */
     ReadOnlySlideshowApp getSlideshowApp();

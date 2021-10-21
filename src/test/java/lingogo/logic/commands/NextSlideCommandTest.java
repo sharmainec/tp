@@ -15,7 +15,7 @@ import lingogo.model.UserPrefs;
 
 public class NextSlideCommandTest {
 
-    Model model = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
 
     @Test
     public void execute_success() {

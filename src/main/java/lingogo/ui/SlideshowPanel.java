@@ -2,7 +2,6 @@ package lingogo.ui;
 
 import java.util.logging.Logger;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -39,7 +38,7 @@ public class SlideshowPanel extends UiPart<Region> {
                 currentForeignPhrase.setText(newVal.getForeignPhrase().toString());
             }
         });
-        readOnlySlideshowApp.isAnswerDisplayedProperty().addListener(new ChangeListener<>(){
+        readOnlySlideshowApp.isAnswerDisplayedProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> o, Boolean oldVal, Boolean newVal) {
                 if (newVal.booleanValue()) {

@@ -35,7 +35,7 @@ public class ClearCommandTest {
     public void execute_slideshowActive_throwsCommandException() {
         Model model = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
         model.startSlideshow();
-        
+
         String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);
 
         assertCommandFailure(new ClearCommand(), model, expectedMessage);

@@ -107,7 +107,7 @@ public class FindCommandTest {
     @Test
     public void execute_slideshowActive_throwsCommandException() {
         model.startSlideshow();
-        
+
         PhraseContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);

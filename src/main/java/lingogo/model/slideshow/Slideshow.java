@@ -9,6 +9,9 @@ public class Slideshow {
     private final ObservableList<Flashcard> flashcards;
     private int currentIdx; // index of the current slide in the flashcard list
 
+    /**
+     * Creates a Slideshow using the flashcards in {@code flashcards}.
+     */
     public Slideshow(ObservableList<Flashcard> flashcards) {
         this.flashcards = flashcards;
         currentIdx = 0;

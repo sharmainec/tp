@@ -1,8 +1,8 @@
 package lingogo.model;
 
-import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 import static lingogo.testutil.TypicalFlashcards.AFTERNOON_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.NIGHT_CHINESE_FLASHCARD;
+import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -64,7 +64,7 @@ public class SlideshowAppTest {
         slideshowApp.displayCurrentAnswer(); // display current flashcard answer
 
         slideshowApp.nextFlashcard();
-        
+
         assertEquals(slideshowApp.getCurrentSlide(), NIGHT_CHINESE_FLASHCARD);
         assertFalse(slideshowApp.isAnswerDisplayedProperty().get()); // new flashcard answer is hidden
     }
@@ -77,7 +77,7 @@ public class SlideshowAppTest {
         slideshowApp.displayCurrentAnswer(); // display current flashcard answer
 
         slideshowApp.previousFlashcard();
-        
+
         assertEquals(slideshowApp.getCurrentSlide(), AFTERNOON_CHINESE_FLASHCARD);
         assertFalse(slideshowApp.isAnswerDisplayedProperty().get()); // new flashcard answer is hidden
     }

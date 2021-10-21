@@ -35,5 +35,5 @@ public class StopSlideshowCommandTest {
     public void execute_slideshowIsAlreadyInactive_throwsCommandException() {
         assertCommandFailure(new StopSlideshowCommand(), model, Messages.MESSAGE_NOT_IN_SLIDESHOW_MODE);
     }
-    
+
 }

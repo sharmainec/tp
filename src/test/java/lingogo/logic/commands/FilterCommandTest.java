@@ -79,7 +79,7 @@ public class FilterCommandTest {
     @Test
     public void execute_slideshowActive_throwsCommandException() {
         model.startSlideshow();
-        
+
         LanguageTypeMatchesGivenPhrasePredicate predicate = preparePredicate("Tamil");
         FilterCommand command = new FilterCommand(predicate);
         String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);

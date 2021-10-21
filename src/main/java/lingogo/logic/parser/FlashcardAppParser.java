@@ -92,7 +92,7 @@ public class FlashcardAppParser {
 
         case SlideshowCommand.COMMAND_WORD:
             return new SlideshowCommand();
-        
+
         case StopSlideshowCommand.COMMAND_WORD:
             return new StopSlideshowCommand();
 

@@ -155,7 +155,7 @@ public class EditCommandTest {
         Flashcard editedFlashcard = new FlashcardBuilder().build();
         EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD, descriptor);
-        
+
         String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);
 
         assertCommandFailure(editCommand, model, expectedMessage);
