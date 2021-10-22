@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+
+'https://plantuml.com/sequence-diagram
+
+participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+participant "filterBuilder:FilterBuilder" as FilterBuilder LOGIC_COLOR
+
+mainframe set filters
+
+opt if language filter is present
+
+FilterCommandParser -> FilterBuilder: setLanguageType(languageType)
+activate FilterBuilder
+
+FilterBuilder --> FilterCommandParser
+deactivate FilterBuilder
+
+
+end
+
+
+opt if index filter is present
+
+FilterCommandParser -> FilterBuilder: setIndexList(indexList)
+activate FilterBuilder
+
+FilterBuilder --> FilterCommandParser
+deactivate FilterBuilder
+
+
+end
+
+
+@enduml
