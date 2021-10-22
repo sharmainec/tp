@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Collections;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
