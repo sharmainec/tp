@@ -61,7 +61,7 @@ public class FlashcardAppParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_FLASHCARD), command);
     }
 
@@ -70,8 +70,8 @@ public class FlashcardAppParserTest {
         Flashcard flashcard = new FlashcardBuilder().build();
         EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(flashcard).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_FLASHCARD.getOneBased() + " "
-            + FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
+                + INDEX_FIRST_FLASHCARD.getOneBased() + " "
+                + FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_FLASHCARD, descriptor), command);
     }
 
@@ -85,7 +85,7 @@ public class FlashcardAppParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-            FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new EnglishPhraseContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -93,12 +93,12 @@ public class FlashcardAppParserTest {
     public void parseCommand_filter() throws Exception {
         Phrase givenPhrase = new Phrase(VALID_LANGUAGE_TYPE_TAMIL);
         FilterCommand command = (FilterCommand) parser.parseCommand(
-            FilterCommand.COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + VALID_LANGUAGE_TYPE_TAMIL
+                FilterCommand.COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + VALID_LANGUAGE_TYPE_TAMIL
                 + INDICES_DESC_DESC_ONE_TWO);
 
         assertEquals(
-            new FilterCommand(new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(givenPhrase).build()),
-            command);
+                new FilterCommand(new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(givenPhrase)
+                .build()), command);
     }
 
     @Test
@@ -117,7 +117,7 @@ public class FlashcardAppParserTest {
     public void parseCommand_export() throws Exception {
         String csvFileName = "test.csv";
         ExportCommand command = (ExportCommand) parser.parseCommand(
-            ExportCommand.COMMAND_WORD + " " + csvFileName);
+                ExportCommand.COMMAND_WORD + " " + csvFileName);
         assertEquals(new ExportCommand(csvFileName), command);
     }
 
@@ -125,22 +125,22 @@ public class FlashcardAppParserTest {
     public void parseCommand_flip() throws Exception {
         assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " 1") instanceof FlipCommand);
         assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased())
-            instanceof FlipCommand);
+                instanceof FlipCommand);
     }
 
     @Test
     public void parseCommand_test() throws Exception {
         TestCommand command = (TestCommand) parser.parseCommand(
-            TestCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased() + " " + PREFIX_ENGLISH_PHRASE
+                TestCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased() + " " + PREFIX_ENGLISH_PHRASE
                 + VALID_ENGLISH_PHRASE_GOOD_MORNING);
         assertEquals(new TestCommand(INDEX_FIRST_FLASHCARD, ParserUtil.parsePhrase(VALID_ENGLISH_PHRASE_GOOD_MORNING)),
-            command);
+                command);
     }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String
+                .format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test
