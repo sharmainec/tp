@@ -3,8 +3,8 @@ package lingogo.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static lingogo.logic.parser.CliSyntax.PREFIX_INDEX_LIST;
 import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
+import static lingogo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -26,17 +26,16 @@ import lingogo.model.flashcard.Phrase;
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
-    public static final String COMMAND_DESCRIPTION =
-        "Filters all flashcards by a given filter";
+    public static final String COMMAND_DESCRIPTION = "Filters all flashcards by a given filter";
     public static final String COMMAND_USAGE = "filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]";
-    public static final String COMMAND_EXAMPLES = "filter l/Chinese\n filter i/1 2 3 \n filter l/Chinese i/ 1 2 3";
+    public static final String COMMAND_EXAMPLES = "filter l/Chinese\nfilter i/1 2 3\nfilter l/Chinese i/ 1 2 3";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Filters all flashcards by a given filter.\n"
-        + "Parameters: "
-        + "[" + PREFIX_LANGUAGE_TYPE + "LANGUAGE_TYPE] "
-        + "[" + PREFIX_INDEX_LIST + "INDEX_LIST] "
-        + "Example: " + COMMAND_EXAMPLES;
+            + ": Filters all flashcards by a given filter.\n"
+            + "Parameters: "
+            + "[" + PREFIX_LANGUAGE_TYPE + "LANGUAGE_TYPE] "
+            + "[" + PREFIX_INDEX_LIST + "INDEX_LIST] "
+            + "Example: " + COMMAND_EXAMPLES;
 
     private final FilterBuilder filterBuilder;
 
@@ -51,21 +50,20 @@ public class FilterCommand extends Command {
 
         model.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
         return new CommandResult(
-            String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
+                String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof FilterCommand // instanceof handles nulls
-            && filterBuilder.equals(((FilterCommand) other).filterBuilder)); // state check
+                || (other instanceof FilterCommand // instanceof handles nulls
+                && filterBuilder.equals(((FilterCommand) other).filterBuilder)); // state check
     }
 
     /**
      * Builds a filter predicate from the given inputs
      */
     public static class FilterBuilder {
-        public static final Predicate<Flashcard> DEFAULT_FLASHCARD_FILTER = flashcard -> true;
 
         private Phrase languageType;
         private List<Index> indexList;
@@ -93,19 +91,17 @@ public class FilterCommand extends Command {
         private Predicate<Flashcard> buildIndexFilter(Model model) throws CommandException {
 
             if (this.indexList == null) {
-                return DEFAULT_FLASHCARD_FILTER;
+                return PREDICATE_SHOW_ALL_FLASHCARDS;
             }
 
             List<Flashcard> lastShownList = model.getFilteredFlashcardList();
-
-            indexList.sort(Comparator.comparingInt(Index::getOneBased));
 
             if (indexList.stream().anyMatch(index -> index.getZeroBased() >= lastShownList.size())) {
                 throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
             }
 
             List<Flashcard> filteredList =
-                indexList.stream().map(index -> lastShownList.get(index.getZeroBased())).collect(
+                    indexList.stream().map(index -> lastShownList.get(index.getZeroBased())).collect(
                     Collectors.toList());
 
             return new FlashcardInGivenFlashcardListPredicate(filteredList);
@@ -113,7 +109,7 @@ public class FilterCommand extends Command {
 
         private Predicate<Flashcard> buildLanguageTypeFilter() {
             if (this.languageType == null) {
-                return DEFAULT_FLASHCARD_FILTER;
+                return PREDICATE_SHOW_ALL_FLASHCARDS;
             }
 
             return new LanguageTypeMatchesGivenPhrasePredicate(languageType);
@@ -144,7 +140,7 @@ public class FilterCommand extends Command {
             }
             FilterBuilder that = (FilterBuilder) o;
             return Objects.equals(languageType, that.languageType) && Objects.equals(indexList,
-                that.indexList);
+                    that.indexList);
         }
 
         @Override

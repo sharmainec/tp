@@ -100,6 +100,14 @@ public class FilterCommandTest {
         assertCommandFailure(command, model, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
 
+    @Test
+    public void execute_invalidIndexKeywordTamil_failure() {
+        FilterBuilder filterBuilder =
+            new FilterBuilderBuilder().withIndexList(1000).withLanguagePhrase("Tamil").build();
+        FilterCommand command = new FilterCommand(filterBuilder);
+        assertCommandFailure(command, model, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+    }
+
 
     @Test
     public void execute_keywordTamil_tamilFlashcardsFound() {

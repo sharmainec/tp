@@ -135,7 +135,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find Good` returns `e/Good Morning f/早安` and `e/Good Morning f/Guten Morgen`
-* `find Good Hello` returns `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`<br>
+* `find Good Hello` returns `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`
 
 ### Filtering flashcards by condition(s): `filter`
 
@@ -145,13 +145,14 @@ Format: `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]`
 
 * `LANGUAGE_TYPE` is not case-sensitive (e.g. "Chinese" matches "CHINESE").
 * `INDEX_LIST` is a list of space separated indices, that refer to the indices shown in the current displayed list.
-*  The indices **must be positive integers**
+*  The indices **must be positive integers** 1, 2, 3, …
 
 Examples:
 * `filter l/Chinese` returns all flashcards of `Chinese` language type like `e/Good Morning f/早安`.
-* `filter l/German` returns all flashcards of `German` language type like `e/Good Morning f/Guten Morgen`<br>
-* `filter i/1 2 3` returns flashcards in the current displayed list indexed at 1, 2 and 3
-* `filter i/1 3 6 l/Tamil` returns all flashcards in the current displayed list indexed at 1, 3 and 6 that are also of `Tamil` language type
+* `filter l/German` returns all flashcards of `German` language type like `e/Good Morning f/Guten Morgen`.
+* `filter i/1 2 3` returns flashcards in the current displayed list indexed at 1, 2 and 3.
+* `filter i/1 3 6 l/Tamil` returns all flashcards in the current displayed list indexed at 1, 3 and 6 that are also 
+  of `Tamil` language type.
 
 
 ### Deleting a flashcard : `delete`

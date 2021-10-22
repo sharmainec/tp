@@ -1,6 +1,7 @@
 package lingogo.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static lingogo.commons.core.Messages.MESSAGE_INDEX_IS_NOT_NON_ZERO_UNSIGNED_INT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,6 @@ import lingogo.model.flashcard.Phrase;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
 
     /**
@@ -29,7 +29,7 @@ public class ParserUtil {
         for (String index
             : splitIndices) {
             if (!StringUtil.isNonZeroUnsignedInteger(index)) {
-                throw new ParseException(MESSAGE_INVALID_INDEX);
+                throw new ParseException(MESSAGE_INDEX_IS_NOT_NON_ZERO_UNSIGNED_INT);
             }
             indexList.add(Index.fromOneBased(Integer.parseInt(index)));
         }
@@ -45,7 +45,7 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INDEX_IS_NOT_NON_ZERO_UNSIGNED_INT);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }

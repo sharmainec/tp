@@ -10,5 +10,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX = "The flashcard index provided is invalid";
     public static final String MESSAGE_FLASHCARDS_LISTED_OVERVIEW = "%1$d flashcards listed!";
     public static final String MESSAGE_INVALID_CSV_FORMAT = "The flashcards in %1$s are not in the correct format";
+    public static final String MESSAGE_INDEX_IS_NOT_NON_ZERO_UNSIGNED_INT = "Index is not a non-zero unsigned integer.";
 
 }
