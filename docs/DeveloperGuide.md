@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103T-T11-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -93,16 +93,16 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `FlashcardAppParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a flashcard).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -117,43 +117,37 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `FlashcardAppParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FlashcardAppParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the flashcard app data i.e., all `Flashcard` objects (which are contained in a `UniqueFlashcardList` object).
+* stores the currently 'selected' `Flashcard` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the slideshow app data i.e., all `Flashcard` objects in the slideshow (which are contained in a `Slideshow` object).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `FlashcardAppStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `lingogo.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -161,33 +155,121 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### List Feature
+### Filter feature
+
+#### Description
+The filter feature allows users to quickly select a group of flashcards to be shown in the displayed flashcards list 
+of the GUI. This effectively enables users to "prepare" a batch of flashcards for a test session. The command 
+accepts various conditions from the user to filter the flashcards with. (e.g. what type of 
+language, which card indexes).
 
 #### Implementation
 
-The list feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList`which returns an unmodifiable view of the flashcards in the GUI.
+The filter feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList` 
+which returns an unmodifiable view of filtered flashcards in the GUI.
 
-In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the main list of flashcards. 
+The filter feature also relies on a nested `FilterBuilder` class within `FilterCommand`. Multiple filters can be 
+given by the user in one command, however only one predicate (filter) can be accepted by 
+`Model::updateFilteredFlashList` to produce the filtered flashcards. `FilterBuilder` helps by combining multiple 
+predicates into a single predicate.
 
-The sequence diagram below illustrates the execution of `ListCommand`.
+`FilterBuilder` is also a mutable class which allows processed user inputs to be directly set as variables within a 
+`FilterBuilder` instance. A mutable design is acceptable for `FilterBuilder` since it only has a one-time usage within 
+`FilterCommand`. Furthermore, set-variable methods in `FilterBuilder` reduces the need to add unnecessarily 
+complex constructors or factory methods when more types of filters are added. 
 
-![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+The following sequence diagrams shows how the filter operation works:
+
+![FilterSequenceDiagram](images/filterCommand/FilterSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterCommand`, 
+`FilterCommandParser` and `FilterBuilder`should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
+</div>
+
+![SetFilterReferenceSequenceDiagram](images/filterCommand/SetFilterReferenceSequenceDiagram.png)
 
 
 #### Design considerations:
 
-**Aspect: Generating list of flashcards:**
+**Aspect: Number of filter conditions that users can input per command:**
 
-* **Alternative 1 (current choice):** Randomise the list of flashcards
-  * Pros: Users are able to use flashcards more effectively.
-  * Cons: Harder to implement and more difficult to test (due to random stream of `Index`).
+* **Alternative 1 (current choice):** Accept multiple conditions per command.
+  * Pros: More convenient for users, creating a better user experience.
+  * Cons: Harder to implement and more difficult to test (due to large permutations of different conditions to 
+    consider).
 
-* **Alternative 2:** Output list up to `n`
-  * Pros: Easy to implement.
-  * Cons: Does not add value to the user's learning experience.
+* **Alternative 2:** Only accept one condition per command.
+  * Pros: Easier to implement.
+  * Cons: Less convenient for users.
+  
+**Aspect: Mutability of `FilterBuilder`**
+
+* **Alternative 1 (current choice):** Make it mutable.
+    * Pros: No need for complex constructors and easier for more types of filters to be added in the future.
+    * Cons: Less defensive code and easier for bugs to arise due to programmer error.
+
+* **Alternative 2:** Make it immutable.
+    * Pros: More defensive code.
+    * Cons: There is a need for multiple constructors to handle optional user inputs due to a lack of set-variable
+      methods. Furthermore `FilterCommandParser` may become needlessly complex.
+
+### Export feature
+
+#### Implementation
+
+The export feature is facilitated by `ModelManager`. It extends `Model` and implements `exportFlashcards`
+which creates a CSV file in the `data` folder.
+
+The export feature uses `CSVWriter` class which generates a CSV file
+line by line in the file specified by the user.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+
+### Import feature
+
+#### Implementation
+
+The import feature is facilitated by `ModelManager`. It extends `Model` and implements `importFlashcards`
+which returns an updated view of the flashcards in the GUI.
+
+The import feature uses `CSVReader` class to check if the given CSV file 
+is in the correct format line by line and uploads each card to the flashcard list
+if there is no duplicate.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+### Find feature
+
+#### Implementation
+
+The find feature is facilitated by `ModelManager`. It extends `Model` implements `updateFilteredFlashcardList` which returns an unmodifiable view of filtered flashcards in the GUI.
+
+The find feature relies on the `FindCommandParser` and `PhraseContainsKeywordsPredicate`. Multiple keywords can be given for both english and foreign phrases. `FindCommandParser` uses `PhraseContainsKeywordsPredicate` to select flashcards that matches the keywords.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How to search in foreign language:**
+
+* **Alternative 1 (current choice):** Allow non-full match
+  * Pros: Will not miss out any related flashcards that is related to the keyword provided.
+  * Cons: May output a lot more flashcards than the user's desired outcome.
+
+* **Alternative 2:** Only allow full match
+  * Pros: Only exact match will be output, user will only see flashcards that are exactly the keyword.
+  * Cons: Too restrictive, will not output phrases that contains more than the keyword.
 
 
-
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

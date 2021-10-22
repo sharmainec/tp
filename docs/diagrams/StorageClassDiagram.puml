@@ -14,12 +14,12 @@ Class JsonUserPrefsStorage
 Interface Storage <<Interface>>
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Interface AddressBookStorage <<Interface>>
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
+package "FlashcardApp Storage" #F4F6F6{
+Interface FlashcardAppStorage <<Interface>>
+Class JsonFlashcardAppStorage
+Class JsonSerializableFlashcardApp
+Class JsonAdaptedFlashcard
+
 }
 
 }
@@ -29,15 +29,14 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" FlashcardAppStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> FlashcardAppStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonFlashcardAppStorage .up.|> FlashcardAppStorage
+JsonFlashcardAppStorage ..> JsonSerializableFlashcardApp
+JsonSerializableFlashcardApp --> "*" JsonAdaptedFlashcard
 
 @enduml

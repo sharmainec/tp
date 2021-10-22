@@ -116,7 +116,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList(), logic.getSlideshowApp());
         flashcardListPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getFlashcardAppFilePath());

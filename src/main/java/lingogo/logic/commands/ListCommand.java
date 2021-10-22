@@ -3,6 +3,8 @@ package lingogo.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static lingogo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
+import lingogo.commons.core.Messages;
+import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 
 /**
@@ -19,8 +21,13 @@ public class ListCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.isSlideshowActive()) {
+            throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+        }
+
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
