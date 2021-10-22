@@ -55,7 +55,7 @@ deactivate FlashcardAppParser
 LogicManager -> FindCommand : execute()
 activate FindCommand
 
-FindCommand -> Model : updateFilteredFlashcardList()
+FindCommand -> Model : updateFilteredFlashcardList(predicate)
 activate Model
 
 Model --> FindCommand

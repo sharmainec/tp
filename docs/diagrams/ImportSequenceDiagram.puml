@@ -48,7 +48,7 @@ deactivate FlashcardAppParser
 LogicManager -> ImportCommand : execute()
 activate ImportCommand
 
-ImportCommand -> Model : importFlashCards(./data/dictionary.csv)
+ImportCommand -> Model : importFlashCards("./data/dictionary.csv")
 activate Model
 
 Model --> ImportCommand
