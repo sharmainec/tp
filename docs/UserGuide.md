@@ -109,7 +109,7 @@ Format: `list [NUMBER_OF_FLASHCARDS]`
 
 * Lists all flashcards in LingoGO!. 
 * If `[NUMBER_OF_FLASHCARDS]` is present, randomly select `[NUMBER_OF_FLASHCARDS]` flashcards to be shown in the current displayed list. The `[NUMBER_OF_FLASHCARDS]` **must be a positive integer** 1, 2, 3, …
-  * If `[NUMBER_OF_FLASHCARDS]` is larger than the size of the current displayed list, list all flashcards in LingGO!.
+* If `[NUMBER_OF_FLASHCARDS]` is larger than the size of the current displayed list, list all flashcards in LingGO!.
 
 Examples:
 * `list`

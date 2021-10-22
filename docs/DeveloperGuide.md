@@ -290,8 +290,8 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
    Use case ends.
 
 **Extensions**
-* 1a. The given user input is invalid.
-    * 3a1. Lists all flashcards.
+* 1a. The given user input is invalid (e.g. `list abc` or `list -1`)
+    * 1a1. Lists all flashcards.
 
       Use case resumes at step 2.
 
