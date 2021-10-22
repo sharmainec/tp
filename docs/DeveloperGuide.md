@@ -155,6 +155,35 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Export feature
+
+#### Implementation
+
+The export feature is facilitated by `ModelManager`. It extends `Model` and implements `exportFlashcards`
+which creates a CSV file in the `data` folder.
+
+The export feature uses `CSVWriter` class which generates a CSV file
+line by line in the file specified by the user.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+
+### Import feature
+
+#### Implementation
+
+The import feature is facilitated by `ModelManager`. It extends `Model` and implements `importFlashcards`
+which returns an updated view of the flashcards in the GUI.
+
+The import feature uses `CSVReader` class to check if the given CSV file 
+is in the correct format line by line and uploads each card to the flashcard list
+if there is no duplicate.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
 ### Find feature
 
 #### Implementation
@@ -178,8 +207,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Only allow full match
   * Pros: Only exact match will be output, user will only see flashcards that are exactly the keyword.
   * Cons: Too restrictive, will not output phrases that contains more than the keyword.
-  
-
 
 --------------------------------------------------------------------------------------------------------------------
 

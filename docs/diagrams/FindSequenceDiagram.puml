@@ -11,7 +11,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":PhraseContainsKeywordsPredicate" as PhraseContainsKeywordsPredicate MODEL_COLOR
-participant ":Model" as Model MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
 end box
 
 [->LogicManager : execute("find e/Hello")
@@ -55,7 +55,7 @@ deactivate FlashcardAppParser
 LogicManager -> FindCommand : execute()
 activate FindCommand
 
-FindCommand -> Model : updateFilteredFlashcardList()
+FindCommand -> Model : updateFilteredFlashcardList(predicate)
 activate Model
 
 Model --> FindCommand
