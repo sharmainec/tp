@@ -14,7 +14,7 @@ public class LanguageTypeMatchesGivenPhrasePredicate implements Predicate<Flashc
 
     @Override
     public boolean test(Flashcard flashcard) {
-        return flashcard.getLanguageType().value.equalsIgnoreCase(givenPhrase.value);
+        return flashcard.getLanguageType().value.trim().equalsIgnoreCase(givenPhrase.value.trim());
     }
 
     @Override

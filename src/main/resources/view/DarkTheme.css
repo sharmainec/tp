@@ -93,6 +93,21 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
+.list-view .scroll-bar:vertical .increment-button,
+.list-view .scroll-bar:vertical .decrement-button {
+    -fx-padding: 0;
+}
+
+.list-view .scroll-bar:vertical .increment-arrow,
+.list-view .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 5;
+}
+
+.list-view .scroll-bar:vertical {
+    -fx-padding: 0;
+    -fx-scale-x: 0.5
+}
+
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;

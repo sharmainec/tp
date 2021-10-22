@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Flashcard {
 
     // Data fields
-    private final Phrase languageType;
+    private final Phrase languageType; // to update UML diagram multiplicity if languageType is no longer Phrase
     private final Phrase englishPhrase;
     private final Phrase foreignPhrase;
     private final Boolean isFlipped;
@@ -64,7 +64,8 @@ public class Flashcard {
     }
 
     /**
-     * Returns true if both flashcards have the same English phrase and foreign language.
+     * Returns true if both flashcards have the matching English phrase, foreign phrase, foreign language and
+     * language type. English phrase and language type matches are case-insensitive and disregard trailing spaces.
      * This defines a weaker notion of equality between two flashcards.
      */
     public boolean isSameFlashcard(Flashcard otherFlashcard) {
@@ -72,12 +73,14 @@ public class Flashcard {
             return true;
         }
         return otherFlashcard != null
-            && otherFlashcard.getEnglishPhrase().equals(getEnglishPhrase());
+            && new LanguageTypeMatchesGivenPhrasePredicate(this.languageType).test(otherFlashcard)
+            && new EnglishPhraseMatchesGivenPhrasePredicate(this.englishPhrase).test(otherFlashcard)
+            && otherFlashcard.getForeignPhrase().equals(getForeignPhrase());
     }
 
     /**
      * Returns true if both flashcards have the same foreign language, English phrase,
-     * and foreign phrase.
+     * foreign phrase and flipStatus.
      */
     @Override
     public boolean equals(Object other) {
