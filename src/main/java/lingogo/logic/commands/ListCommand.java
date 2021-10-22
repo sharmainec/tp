@@ -20,11 +20,12 @@ import lingogo.model.flashcard.FlashcardInGivenFlashcardListPredicate;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
-    public static final String COMMAND_DESCRIPTION = "Lists all flashcards";
+    public static final String COMMAND_DESCRIPTION = "Lists flashcards";
     public static final String COMMAND_USAGE = "list [NUMBER_OF_FLASHCARDS]";
     public static final String COMMAND_EXAMPLES = "list\nlist 4";
 
     public static final String MESSAGE_SUCCESS = "Listed all flashcards";
+    public static final String MESSAGE_SUCCESS_SHUFFLED = "Randomly selected %1$d flashcard(s) to be listed";
     private final int n;
 
     public ListCommand() {
@@ -54,12 +55,14 @@ public class ListCommand extends Command {
                 .boxed()
                 .map(String::valueOf)
                 .collect(Collectors.joining(" "));
+        System.out.println(indexString);
         List<Index> indexList = ParserUtil.parseIndices(indexString);
         List<Flashcard> filteredList = indexList.stream()
                 .map(index -> lastShownList.get(index.getZeroBased()))
                 .collect(Collectors.toList());
 
         model.updateFilteredFlashcardList(new FlashcardInGivenFlashcardListPredicate(filteredList));
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS_SHUFFLED, model.getFilteredFlashcardList().size()));
     }
 }
