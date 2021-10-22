@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FlashcardAppParser" as FlashcardAppParser LOGIC_COLOR
 participant ":ExportCommandParser" as ExportCommandParser LOGIC_COLOR
-participant "exportCommand:ExportCommand" as ExportCommand LOGIC_COLOR
+participant ":ExportCommand" as ExportCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -33,20 +33,17 @@ create ExportCommand
 ExportCommandParser -> ExportCommand
 activate ExportCommand
 
-ExportCommand --> ExportCommandParser : exportCommand
+ExportCommand --> ExportCommandParser
 deactivate ExportCommand
 
-ExportCommandParser --> FlashcardAppParser: exportCommand
+ExportCommandParser --> FlashcardAppParser
 deactivate ExportCommandParser
 
-ExportCommandParser -[hidden]-> FlashcardAppParser: exportCommand
+ExportCommandParser -[hidden]-> FlashcardAppParser
 destroy ExportCommandParser
 
-FlashcardAppParser --> LogicManager : exportCommand
+FlashcardAppParser --> LogicManager
 deactivate FlashcardAppParser
-
-FlashcardAppParser -[hidden]-> LogicManager : exportCommand
-destroy FlashcardAppParser
 
 LogicManager -> ExportCommand : execute()
 activate ExportCommand
@@ -57,6 +54,7 @@ activate Model
 Model --> ExportCommand
 deactivate Model
 
+create CommandResult
 ExportCommand -> CommandResult
 activate CommandResult
 

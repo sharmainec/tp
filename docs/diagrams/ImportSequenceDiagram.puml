@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FlashcardAppParser" as FlashcardAppParser LOGIC_COLOR
 participant ":ImportCommandParser" as ImportCommandParser LOGIC_COLOR
-participant "importCommand:ImportCommand" as ImportCommand LOGIC_COLOR
+participant ":ImportCommand" as ImportCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -33,20 +33,17 @@ create ImportCommand
 ImportCommandParser -> ImportCommand
 activate ImportCommand
 
-ImportCommand --> ImportCommandParser : importCommand
+ImportCommand --> ImportCommandParser
 deactivate ImportCommand
 
-ImportCommandParser --> FlashcardAppParser: importCommand
+ImportCommandParser --> FlashcardAppParser
 deactivate ImportCommandParser
 
-ImportCommandParser -[hidden]-> FlashcardAppParser: importCommand
+ImportCommandParser -[hidden]-> FlashcardAppParser
 destroy ImportCommandParser
 
-FlashcardAppParser --> LogicManager : importCommand
+FlashcardAppParser --> LogicManager
 deactivate FlashcardAppParser
-
-FlashcardAppParser -[hidden]-> LogicManager : importCommand
-destroy FlashcardAppParser
 
 LogicManager -> ImportCommand : execute()
 activate ImportCommand
@@ -57,6 +54,7 @@ activate Model
 Model --> ImportCommand
 deactivate Model
 
+create CommandResult
 ImportCommand -> CommandResult
 activate CommandResult
 
