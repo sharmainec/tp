@@ -25,46 +25,41 @@ public class ListCommand extends Command {
     public static final String COMMAND_EXAMPLES = "list\nlist 4";
 
     public static final String MESSAGE_SUCCESS = "Listed all flashcards";
-
-    private static String args;
+    private final int n;
 
     public ListCommand() {
-        args = "";
+        this.n = 0;
     }
 
-    public ListCommand(String userInput) {
-        args = userInput;
+    public ListCommand(int n) {
+        this.n = n;
     }
 
     @Override
     public CommandResult execute(Model model) throws ParseException {
         requireNonNull(model);
-        String trimmedArgs = args.trim();
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
 
-        if (trimmedArgs.matches("^[0-9]+$")) {
-            List<Flashcard> lastShownList = model.getFilteredFlashcardList();
-            int n = Integer.parseInt(trimmedArgs);
-            int size = lastShownList.size();
+        List<Flashcard> lastShownList = model.getFilteredFlashcardList();
+        int size = lastShownList.size();
 
-            if (n > size) { // show all flashcards
-                return new CommandResult(MESSAGE_SUCCESS);
-            }
-
-            // convert IntStream of random ints to string seperated with space
-            String indexString = new Random().ints(1, size + 1)
-                    .distinct()
-                    .limit(n)
-                    .boxed()
-                    .map(String::valueOf)
-                    .collect(Collectors.joining(" "));
-            List<Index> indexList = ParserUtil.parseIndices(indexString);
-            List<Flashcard> filteredList = indexList.stream()
-                    .map(index -> lastShownList.get(index.getZeroBased()))
-                    .collect(Collectors.toList());
-
-            model.updateFilteredFlashcardList(new FlashcardInGivenFlashcardListPredicate(filteredList));
+        if (n > size || n <= 0) { // show all flashcards
+            return new CommandResult(MESSAGE_SUCCESS);
         }
+
+        // convert IntStream of random ints to string seperated with space
+        String indexString = new Random().ints(1, size + 1)
+                .distinct()
+                .limit(n)
+                .boxed()
+                .map(String::valueOf)
+                .collect(Collectors.joining(" "));
+        List<Index> indexList = ParserUtil.parseIndices(indexString);
+        List<Flashcard> filteredList = indexList.stream()
+                .map(index -> lastShownList.get(index.getZeroBased()))
+                .collect(Collectors.toList());
+
+        model.updateFilteredFlashcardList(new FlashcardInGivenFlashcardListPredicate(filteredList));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -68,7 +68,7 @@ public class FlashcardAppParser {
             return new FilterCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand(arguments);
+            return new ListCommandParser().parse(arguments);
 
         case ExportCommand.COMMAND_WORD:
             return new ExportCommandParser().parse(arguments);
