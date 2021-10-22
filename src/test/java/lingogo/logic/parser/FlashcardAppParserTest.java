@@ -34,7 +34,9 @@ import lingogo.logic.commands.TestCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.ForeignPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Phrase;
+import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 import lingogo.testutil.EditFlashcardDescriptorBuilder;
 import lingogo.testutil.FilterBuilderBuilder;
 import lingogo.testutil.FlashcardBuilder;
@@ -82,11 +84,27 @@ public class FlashcardAppParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findEnglish() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " e/" + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new EnglishPhraseContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findForeign() throws Exception {
+        List<String> keywords = Arrays.asList("早", "晚", "好");
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " f/" + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new ForeignPhraseContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findMixed() throws Exception {
+        List<String> keywords = Arrays.asList("早", "foo", "bar", "好");
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " f/" + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new PhraseContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

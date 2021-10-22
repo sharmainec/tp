@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Flashcard {
 
     // Data fields
-    private final Phrase languageType;
+    private final Phrase languageType; // to update UML diagram multiplicity if languageType is no longer Phrase
     private final Phrase englishPhrase;
     private final Phrase foreignPhrase;
     private final Boolean isFlipped;

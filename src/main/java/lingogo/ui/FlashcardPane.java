@@ -28,6 +28,8 @@ public class FlashcardPane extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label language;
+    @FXML
     private Label foreignPhrase;
     @FXML
     private Label englishPhrase;
@@ -39,16 +41,9 @@ public class FlashcardPane extends UiPart<Region> {
         super(FXML);
         this.flashcard = flashcard;
         id.setText(displayedIndex + ". ");
+        language.setText(flashcard.getLanguageType().value);
         foreignPhrase.setText(flashcard.getForeignPhrase().value);
-        setDisplayedEnglishphrase();
-    }
-
-    public void setDisplayedEnglishphrase() {
-        if (flashcard.getFlipStatus()) {
-            englishPhrase.setText(flashcard.getEnglishPhrase().value);
-        } else {
-            englishPhrase.setText("███████████");
-        }
+        englishPhrase.setText(flashcard.getEnglishPhrase().value);
     }
 
     @Override

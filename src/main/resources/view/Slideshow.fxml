@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="slideshow" styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <StackPane VBox.vgrow="NEVER" alignment="TOP_LEFT" minHeight="30" prefHeight="30" maxHeight="30">
+    <padding>
+      <Insets top="5" left="10" />
+    </padding>
+    <Label styleClass="label-bright" fx:id="currentFlashcardNumber" text="Flashcard number: 1" />
+  </StackPane>
+  <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+    <Label styleClass="label-bright" text="What does this mean?" />
+    <Label styleClass="label-header" fx:id="currentForeignPhrase"
+           text="Foreign Phrase" wrapText="true" textAlignment="CENTER" />
+  </VBox>
+  <StackPane VBox.vgrow="NEVER" alignment="BOTTOM_RIGHT" minHeight="30" prefHeight="30" maxHeight="30">
+    <padding>
+      <Insets bottom="5" right="10" />
+    </padding>
+    <Label styleClass="label-bright" fx:id="progress" text="Flashcards tested: 0 out of 20" />
+  </StackPane>
+</VBox>

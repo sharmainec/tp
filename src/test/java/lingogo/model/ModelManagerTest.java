@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import lingogo.commons.core.GuiSettings;
-import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
+import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 import lingogo.testutil.FlashcardAppBuilder;
 
 public class ModelManagerTest {
@@ -119,7 +119,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = GOOD_MORNING_CHINESE_FLASHCARD.getEnglishPhrase().value.split("\\s+");
-        modelManager.updateFilteredFlashcardList(new EnglishPhraseContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredFlashcardList(new PhraseContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(flashcardApp, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

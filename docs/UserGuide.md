@@ -36,6 +36,8 @@ LingoGO! is a **desktop app for university students who use English as their fir
 
    * **`edit`**`3`**`f/Guten Morgen`** : Edits the foreign phrase of the 3rd flashcard shown in the current displayed list to `Guten Morgen`.
 
+   * **`find`**`e/Hello f/早安` : Finds flashcards based on its english phrase `Hello` and foreign phrase `早安`.
+
    * **`import`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
 
    * **`export`**`myCards.csv` : Exports cards from LingoGO! to a CSV file in a file name `myCards.csv`.
@@ -45,10 +47,15 @@ LingoGO! is a **desktop app for university students who use English as their fir
    * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct English phrase.
 
    * **`test`**`17`**`e/hello`**: Checks the 17th flashcard's English phrase against the word **`hello`** and then shows whether it is correct.
-   
+
    * **`find`**`Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
+<<<<<<< HEAD
    
    * **`filter`**`l/Chinese i/1 2 3` : Filters and shows only the flashcards with the Language type `Chinese` and with indices 1, 2 and 3 in the current displayed list
+=======
+
+   * **`filter`**`l/Chinese` : Filters and shows only the flashcards with the Language type `Chinese`
+>>>>>>> 0f78d4298b84e824ff7352a5dc3e723d6691f909
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -125,17 +132,22 @@ Examples:
 
 Finds flashcards based on the keyword specified.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORD]`
 
 * The search is case-insensitive. e.g `HELLO` will match `Hello`
 * The order of the keywords does not matter. e.g. `Good morning` will match `Morning good`
-* Only full words will be matched e.g. `Hello` will not match `Helloooo`
-* Flashcard matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Good Hello` will return `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`
+* Only full words will be matched e.g. `Hello` will not match `Helloooo` for English keywords
+* Non-full words match will be accepted for foreign keywords e.g. `早` with match `早安`
+* Flashcard(s) matching at least one keyword will be returned.
+  e.g. `e/Good Hello` will return `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`
+* At least one of the optional fields must be provided.
 
 Examples:
-* `find Good` returns `e/Good Morning f/早安` and `e/Good Morning f/Guten Morgen`
-* `find Good Hello` returns `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`
+* `find e/Good` returns `e/Good Morning f/早安` and `e/Good Morning f/Guten Morgen`
+* `find e/Good Hello` returns `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`
+* `find f/早` return `e/Good Morning f/早安` and `e/Morning f/早晨`
+* `find f/安 好` return `e/Good Morning f/早安`, `e/Good Afternoon f/午安`, `e/Good Night f/晚安` and `e/Hello f/你好`
+* `find e/Hello f/早` return `e/Hello f/你好`, `e/Good Morning f/早安` and `e/Morning f/早晨`<br>
 
 ### Filtering flashcards by condition(s): `filter`
 
@@ -175,7 +187,7 @@ Clears all flashcards from LingoGO!.
 
 Format: `clear`
 
-### importing cards : `import`
+### Importing cards : `import`
 
 Imports cards to LingoGO! using a CSV file.
 
@@ -188,7 +200,7 @@ Format: `import CSV_FILE_PATH`
 Examples:
 * `import ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
 
-### exporting cards : `export`
+### Exporting cards : `export`
 
 Exports cards from LingoGO! to a CSV file.
 
@@ -266,11 +278,11 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Hello`
 **Filter** | `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]`<br> e.g., `filter l/Chinese i/1 2 3`
+**Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`<br> e.g., `find e/Hello f/早`
 **List** | `list`
-**import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
-**export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
+**Import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
+**Export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
 **Help** | `help`
 **Flip** | `flip INDEX` <br> e.g.,  `flip 2`
 **Test** | `test INDEX e/ENGLISH_PHRASE` <br> e.g., `test 17 e/hello`
