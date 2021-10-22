@@ -1,5 +1,6 @@
 package lingogo.logic.commands;
 
+import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static lingogo.logic.commands.CommandTestUtil.showFlashcardAtIndex;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
@@ -8,6 +9,7 @@ import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import lingogo.commons.core.Messages;
 import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
@@ -35,5 +37,13 @@ public class ListCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_slideshowActive_throwsCommandException() {
+        model.startSlideshow();
+        String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+
+        assertCommandFailure(new ListCommand(), model, expectedMessage);
     }
 }

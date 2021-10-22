@@ -14,7 +14,7 @@ public class EnglishPhraseMatchesGivenPhrasePredicate implements Predicate<Flash
 
     @Override
     public boolean test(Flashcard flashcard) {
-        return flashcard.getEnglishPhrase().value.equalsIgnoreCase(givenPhrase.value);
+        return flashcard.getEnglishPhrase().value.trim().equalsIgnoreCase(givenPhrase.value.trim());
     }
 
     @Override

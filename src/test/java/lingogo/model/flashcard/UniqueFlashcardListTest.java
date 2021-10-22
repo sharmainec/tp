@@ -41,7 +41,7 @@ public class UniqueFlashcardListTest {
     public void contains_flashcardWithSameIdentityFieldsInList_returnsTrue() {
         uniqueFlashcardList.add(GOOD_MORNING_CHINESE_FLASHCARD);
         Flashcard editedFlashcard = new FlashcardBuilder(GOOD_MORNING_CHINESE_FLASHCARD)
-                .withForeignPhrase(VALID_CHINESE_PHRASE_HELLO).build();
+                .withFlipStatus(!FlashcardBuilder.DEFAULT_IS_FLIPPED).build();
         assertTrue(uniqueFlashcardList.contains(editedFlashcard));
     }
 

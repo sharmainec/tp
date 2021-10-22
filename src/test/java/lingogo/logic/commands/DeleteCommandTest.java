@@ -77,6 +77,16 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_slideshowActive_throwsCommandException() {
+        model.startSlideshow();
+
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_FLASHCARD);
+        String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+
+        assertCommandFailure(deleteCommand, model, expectedMessage);
+    }
+
+    @Test
     public void equals() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_FLASHCARD);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_FLASHCARD);

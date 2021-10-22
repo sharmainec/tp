@@ -1,5 +1,6 @@
 package lingogo.model.flashcard;
 
+import static java.util.Objects.requireNonNull;
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -9,9 +10,12 @@ import java.util.Objects;
  * Guarantees: details are present and not null; field values are validated; immutable.
  */
 public class Flashcard {
+    // Empty flashcard
+    public static final Flashcard EMPTY_FLASHCARD = new Flashcard(new Phrase("empty"),
+            new Phrase("empty english phrase"), new Phrase("empty foreign phrase"));
 
     // Data fields
-    private final Phrase languageType;
+    private final Phrase languageType; // to update UML diagram multiplicity if languageType is no longer Phrase
     private final Phrase englishPhrase;
     private final Phrase foreignPhrase;
     private final Boolean isFlipped;
@@ -36,6 +40,17 @@ public class Flashcard {
         this.englishPhrase = englishPhrase;
         this.foreignPhrase = foreignPhrase;
         this.isFlipped = isFlipped;
+    }
+
+    /**
+     * Copy constructor.
+     */
+    public Flashcard(Flashcard toCopy) {
+        requireNonNull(toCopy);
+        this.languageType = toCopy.languageType;
+        this.englishPhrase = toCopy.englishPhrase;
+        this.foreignPhrase = toCopy.foreignPhrase;
+        this.isFlipped = toCopy.isFlipped;
     }
 
     public Phrase getLanguageType() {
@@ -64,7 +79,8 @@ public class Flashcard {
     }
 
     /**
-     * Returns true if both flashcards have the same English phrase and foreign language.
+     * Returns true if both flashcards have the matching English phrase, foreign phrase, foreign language and
+     * language type. English phrase and language type matches are case-insensitive and disregard trailing spaces.
      * This defines a weaker notion of equality between two flashcards.
      */
     public boolean isSameFlashcard(Flashcard otherFlashcard) {
@@ -72,12 +88,14 @@ public class Flashcard {
             return true;
         }
         return otherFlashcard != null
-            && otherFlashcard.getEnglishPhrase().equals(getEnglishPhrase());
+            && new LanguageTypeMatchesGivenPhrasePredicate(this.languageType).test(otherFlashcard)
+            && new EnglishPhraseMatchesGivenPhrasePredicate(this.englishPhrase).test(otherFlashcard)
+            && otherFlashcard.getForeignPhrase().equals(getForeignPhrase());
     }
 
     /**
      * Returns true if both flashcards have the same foreign language, English phrase,
-     * and foreign phrase.
+     * foreign phrase and flipStatus.
      */
     @Override
     public boolean equals(Object other) {

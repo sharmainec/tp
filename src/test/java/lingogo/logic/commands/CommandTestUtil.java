@@ -2,6 +2,7 @@ package lingogo.logic.commands;
 
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
+import static lingogo.logic.parser.CliSyntax.PREFIX_INDEX_LIST;
 import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 import static lingogo.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,6 +34,10 @@ public class CommandTestUtil {
     public static final String VALID_ENGLISH_PHRASE_AFTERNOON = "Afternoon";
     public static final String VALID_ENGLISH_PHRASE_SUNRISE = "Sunrise";
     public static final String VALID_TAMIL_PHRASE_SUNRISE = "சூரிய உதயம்";
+    public static final String VALID_INDICES_ONE_TWO = "1 2";
+    public static final String VALID_INDICES_DUPLICATE_ONES = "1 1";
+
+
 
     public static final String LANGUAGE_TYPE_DESC_CHINESE = " " + PREFIX_LANGUAGE_TYPE
             + VALID_LANGUAGE_TYPE_CHINESE;
@@ -50,6 +55,11 @@ public class CommandTestUtil {
             + VALID_ENGLISH_PHRASE_HELLO;
     public static final String ENGLISH_PHRASE_DESC_SUNRISE = " " + PREFIX_ENGLISH_PHRASE
             + VALID_ENGLISH_PHRASE_SUNRISE;
+    public static final String INDICES_DESC_DESC_ONE_TWO = " " + PREFIX_INDEX_LIST + VALID_INDICES_ONE_TWO;
+    public static final String INDICES_DESC_DESC_DUPLICATE_ONES = " " + PREFIX_INDEX_LIST
+            + VALID_INDICES_DUPLICATE_ONES;
+
+
 
     public static final String INVALID_LANGUAGE_TYPE_DESC = " " + PREFIX_LANGUAGE_TYPE
             + "    "; // Phrases cannot be empty
@@ -57,6 +67,13 @@ public class CommandTestUtil {
             + "    "; // Phrases cannot be empty
     public static final String INVALID_ENGLISH_PHRASE_DESC = " " + PREFIX_ENGLISH_PHRASE
             + "    "; // Phrases cannot be empty
+    public static final String INVALID_NEGATIVE_INDEX_DESC = " " + PREFIX_INDEX_LIST + "-1";
+
+    public static final String INVALID_INDICES_DESC = " " + PREFIX_INDEX_LIST + "1 1 C ; , ?";
+
+    public static final String INVALID_VERY_LARGE_INDICES_DESC = " " + PREFIX_INDEX_LIST
+        + "1000000000000000000000000000000000000000000000 999999999999999999999999999999999999999999";
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

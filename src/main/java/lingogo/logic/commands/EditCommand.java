@@ -62,6 +62,11 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.isSlideshowActive()) {
+            throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+        }
+
         List<Flashcard> lastShownList = model.getFilteredFlashcardList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
