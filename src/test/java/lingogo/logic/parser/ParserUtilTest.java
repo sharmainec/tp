@@ -1,6 +1,6 @@
 package lingogo.logic.parser;
 
-import static lingogo.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static lingogo.commons.core.Messages.MESSAGE_INDEX_IS_NOT_NON_ZERO_UNSIGNED_INT;
 import static lingogo.testutil.Assert.assertThrows;
 import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,7 +22,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+        assertThrows(ParseException.class, MESSAGE_INDEX_IS_NOT_NON_ZERO_UNSIGNED_INT, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
