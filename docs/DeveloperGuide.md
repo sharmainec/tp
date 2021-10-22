@@ -156,6 +156,12 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Filter feature
 
+#### Description
+The filter feature allows users to quickly select a group of flashcards to be shown in the displayed flashcards list 
+of the GUI. This effectively enables users to "prepare" a batch of flashcards for a test session. The command 
+accepts various conditions from the user to filter the flashcards with. (e.g. what type of 
+language, which card indexes).
+
 #### Implementation
 
 The filter feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList` 
@@ -163,13 +169,13 @@ which returns an unmodifiable view of filtered flashcards in the GUI.
 
 The filter feature also relies on a nested `FilterBuilder` class within `FilterCommand`. Multiple filters can be 
 given by the user in one command, however only one predicate (filter) can be accepted by 
-`Model::updateFilteredFlashcList` to produce the filtered flashcards. `FilterBuilder` helps by generating multiple 
-predicates from the user input, and then combining them into a single predicate. 
+`Model::updateFilteredFlashList` to produce the filtered flashcards. `FilterBuilder` helps by combining multiple 
+predicates into a single predicate.
 
 `FilterBuilder` is also a mutable class which allows processed user inputs to be directly set as variables within a 
-`FilterBuilder` instance. A mutable design is acceptable for `FilterBuilder` since it acts as a throwaway variable, 
-with only a one-time usage within `FilterCommand`. Furthermore, setVariable methods in `FilterBuilder` reduces the 
-need for creating unnecessarily complex constructors or factory methods when more types of filters are added. 
+`FilterBuilder` instance. A mutable design is acceptable for `FilterBuilder` since it only has a one-time usage within 
+`FilterCommand`. Furthermore, set-variable methods in `FilterBuilder` reduces the need to add unnecessarily 
+complex constructors or factory methods when more types of filters are added. 
 
 
 The following sequence diagrams shows how the filter operation works:
@@ -186,25 +192,26 @@ the lifeline reaches the end of diagram.
 
 #### Design considerations:
 
-**Aspect: Number of filters per command:**
+**Aspect: Number of filter conditions that users can input per command:**
 
-* **Alternative 1 (current choice):** Can only use one filter per command.
+* **Alternative 1 (current choice):** Accept multiple conditions per command.
+  * Pros: More convenient for users, creating a better user experience.
+  * Cons: Harder to implement and more difficult to test (due to large permutations of different conditions to 
+    consider).
+
+* **Alternative 2:** Only accept one condition per command.
   * Pros: Easier to implement.
   * Cons: Less convenient for users.
-
-* **Alternative 2:** Can use multiple types filters per command.
-  * Pros: Greater convenient for users, creating a better user experience. 
-  * Cons: Harder to implement and more difficult to test (due to large permutations of different filters to consider).
-
+  
 **Aspect: Mutability of `FilterBuilder`**
 
 * **Alternative 1 (current choice):** Make it mutable.
-    * Pros: No need for complex constructors and easier for more filters to be added in the future.
+    * Pros: No need for complex constructors and easier for more types of filters to be added in the future.
     * Cons: Less defensive code and easier for bugs to arise due to programmer error.
 
 * **Alternative 2:** Make it immutable.
     * Pros: More defensive code.
-    * Cons: There is a need for multiple constructors due to handle optional user inputs due to a lack of set-variable 
+    * Cons: There is a need for multiple constructors to handle optional user inputs due to a lack of set-variable 
       methods. Furthermore `FilterCommandParser` may become needlessly complex.
     
 --------------------------------------------------------------------------------------------------------------------
