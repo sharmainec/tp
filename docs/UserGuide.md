@@ -49,8 +49,9 @@ LingoGO! is a **desktop app for university students who use English as their fir
    * **`test`**`17`**`e/hello`**: Checks the 17th flashcard's English phrase against the word **`hello`** and then shows whether it is correct.
 
    * **`find`**`Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
+   
+   * **`filter`**`l/Chinese i/1 2 3` : Filters and shows only the flashcards with the Language type `Chinese` and with indices 1, 2 and 3 in the current displayed list
 
-   * **`filter`**`l/Chinese` : Filters and shows only the flashcards with the Language type `Chinese`
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -148,13 +149,19 @@ Examples:
 
 Filters flashcards based on the specified condition(s).
 
-Format: `filter l/LANGUAGE_TYPE`
+Format: `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]`
 
 * `LANGUAGE_TYPE` is not case-sensitive (e.g. "Chinese" matches "CHINESE").
+* `INDEX_LIST` is a list of space separated indices, that refer to the indices shown in the current displayed list.
+*  The indices **must be positive integers** 1, 2, 3, …
 
 Examples:
-* `filter l/Chinese` returns all flashcards of `Chinese` Language type like `e/Good Morning f/早安`.
-* `filter l/German` returns all flashcards of `German` Language type like `e/Good Morning f/Guten Morgen`<br>
+* `filter l/Chinese` returns all flashcards of `Chinese` language type like `e/Good Morning f/早安`.
+* `filter l/German` returns all flashcards of `German` language type like `e/Good Morning f/Guten Morgen`.
+* `filter i/1 2 3` returns flashcards in the current displayed list indexed at 1, 2 and 3.
+* `filter i/1 3 6 l/Tamil` returns all flashcards in the current displayed list indexed at 1, 3 and 6 that are also 
+  of `Tamil` language type.
+
 
 ### Deleting a flashcard : `delete`
 
@@ -267,8 +274,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
+**Filter** | `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]`<br> e.g., `filter l/Chinese i/1 2 3`
 **Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`<br> e.g., `find e/Hello f/早`
-**Filter** | `filter l/LANGUAGE_TYPE`<br> e.g., `filter l/Chinese`
 **List** | `list`
 **Import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
 **Export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
