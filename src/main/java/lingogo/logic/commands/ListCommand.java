@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import lingogo.commons.core.Messages;
 import lingogo.commons.core.index.Index;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.logic.parser.ParserUtil;
@@ -40,6 +41,11 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.isSlideshowActive()) {
+            throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+        }
+
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
 
         List<Flashcard> lastShownList = model.getFilteredFlashcardList();

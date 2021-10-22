@@ -94,6 +94,47 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void startSlideshow() {
+        modelManager.addFlashcard(GOOD_MORNING_CHINESE_FLASHCARD);
+        modelManager.startSlideshow();
+        assertTrue(modelManager.isSlideshowActive());
+        assertEquals(modelManager.getCurrentSlide(), GOOD_MORNING_CHINESE_FLASHCARD);
+    }
+
+    @Test
+    public void stopSlideshow() {
+        modelManager.addFlashcard(GOOD_MORNING_CHINESE_FLASHCARD);
+        modelManager.startSlideshow();
+        assertTrue(modelManager.isSlideshowActive());
+        assertEquals(modelManager.getCurrentSlide(), GOOD_MORNING_CHINESE_FLASHCARD);
+
+        modelManager.stopSlideshow();
+        assertFalse(modelManager.isSlideshowActive());
+    }
+
+    @Test
+    public void answerCurrentSlide() {
+        modelManager.addFlashcard(GOOD_MORNING_CHINESE_FLASHCARD);
+        modelManager.startSlideshow();
+        assertTrue(modelManager.isSlideshowActive());
+        assertEquals(modelManager.getCurrentSlide(), GOOD_MORNING_CHINESE_FLASHCARD);
+
+        modelManager.answerCurrentSlide();
+        assertTrue(modelManager.getSlideshowApp().isCurrentSlideAnswered());
+    }
+
+    @Test
+    public void displayCurrentAnswer() {
+        modelManager.addFlashcard(GOOD_MORNING_CHINESE_FLASHCARD);
+        modelManager.startSlideshow();
+        assertTrue(modelManager.isSlideshowActive());
+        assertEquals(modelManager.getCurrentSlide(), GOOD_MORNING_CHINESE_FLASHCARD);
+
+        modelManager.displayCurrentAnswer();
+        assertTrue(modelManager.getSlideshowApp().isAnswerDisplayedProperty().get());
+    }
+
+    @Test
     public void equals() {
         FlashcardApp flashcardApp = new FlashcardAppBuilder().withFlashcard(GOOD_MORNING_CHINESE_FLASHCARD)
                 .withFlashcard(HELLO_CHINESE_FLASHCARD).build();

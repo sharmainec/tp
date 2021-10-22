@@ -100,4 +100,49 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFlashcardList(Predicate<Flashcard> predicate);
+
+    /**
+     * Starts the {@code SlideshowApp} with the existing filtered flashcard list.
+     */
+    void startSlideshow();
+
+    /**
+     * Stops the {@code SlideshowApp}
+     */
+    void stopSlideshow();
+
+    /**
+     * Returns true if the slideshow is active.
+     */
+    boolean isSlideshowActive();
+
+    /**
+     * Toggle to the next flashcard in the slideshow.
+     */
+    void slideshowNextFlashcard();
+
+    /**
+     * Toggle to the previous flashcard in the slideshow.
+     */
+    void slideshowPreviousFlashcard();
+
+    /**
+     * Marks the current slide as answered.
+     */
+    void answerCurrentSlide();
+
+    /**
+     * Displays the answer for the current slide.
+     */
+    void displayCurrentAnswer();
+
+    /**
+     * Returns the slideshow app.
+     */
+    ReadOnlySlideshowApp getSlideshowApp();
+
+    /**
+     * Returns the current flashcard in the slideshow.
+     */
+    Flashcard getCurrentSlide();
 }

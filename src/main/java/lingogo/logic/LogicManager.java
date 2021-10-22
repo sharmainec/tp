@@ -14,6 +14,7 @@ import lingogo.logic.parser.FlashcardAppParser;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.Model;
 import lingogo.model.ReadOnlyFlashcardApp;
+import lingogo.model.ReadOnlySlideshowApp;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.storage.Storage;
 
@@ -63,6 +64,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Flashcard> getFilteredFlashcardList() {
         return model.getFilteredFlashcardList();
+    }
+
+    @Override
+    public ReadOnlySlideshowApp getSlideshowApp() {
+        return model.getSlideshowApp();
     }
 
     @Override

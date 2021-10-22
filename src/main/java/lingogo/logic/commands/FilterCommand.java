@@ -47,6 +47,9 @@ public class FilterCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (model.isSlideshowActive()) {
+            throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+        }
 
         model.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
         return new CommandResult(

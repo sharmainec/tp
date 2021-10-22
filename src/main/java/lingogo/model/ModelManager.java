@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final FlashcardApp flashcardApp;
     private final UserPrefs userPrefs;
     private final FilteredList<Flashcard> filteredFlashcards;
+    private final SlideshowApp slideshowApp;
 
     /**
      * Initializes a ModelManager with the given flashcardApp and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         this.flashcardApp = new FlashcardApp(flashcardApp);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFlashcards = new FilteredList<>(this.flashcardApp.getFlashcardList());
+        slideshowApp = new SlideshowApp(filteredFlashcards);
     }
 
     public ModelManager() {
@@ -142,6 +144,52 @@ public class ModelManager implements Model {
         filteredFlashcards.setPredicate(predicate);
     }
 
+    //=========== Slideshow =====================================================================================
+    @Override
+    public void startSlideshow() {
+        slideshowApp.start();
+    }
+
+    @Override
+    public void stopSlideshow() {
+        slideshowApp.stop();
+    }
+
+    @Override
+    public boolean isSlideshowActive() {
+        return slideshowApp.isActiveProperty().getValue();
+    }
+
+    @Override
+    public void slideshowNextFlashcard() {
+        slideshowApp.nextFlashcard();
+    }
+
+    @Override
+    public void slideshowPreviousFlashcard() {
+        slideshowApp.previousFlashcard();
+    }
+
+    @Override
+    public Flashcard getCurrentSlide() {
+        return slideshowApp.getCurrentSlide();
+    }
+
+    @Override
+    public void answerCurrentSlide() {
+        slideshowApp.answerCurrentSlide();
+    }
+
+    @Override
+    public void displayCurrentAnswer() {
+        slideshowApp.displayCurrentAnswer();
+    }
+
+    @Override
+    public ReadOnlySlideshowApp getSlideshowApp() {
+        return slideshowApp;
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -158,7 +206,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return flashcardApp.equals(other.flashcardApp)
                 && userPrefs.equals(other.userPrefs)
-                && filteredFlashcards.equals(other.filteredFlashcards);
+                && filteredFlashcards.equals(other.filteredFlashcards)
+                && slideshowApp.equals(other.slideshowApp);
     }
 
 }
