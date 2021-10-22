@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import lingogo.logic.commands.AddCommand;
+import lingogo.logic.commands.AnswerCommand;
 import lingogo.logic.commands.ClearCommand;
 import lingogo.logic.commands.CommandEnum;
 import lingogo.logic.commands.DeleteCommand;
@@ -16,7 +17,10 @@ import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ImportCommand;
 import lingogo.logic.commands.ListCommand;
-import lingogo.logic.commands.TestCommand;
+import lingogo.logic.commands.NextSlideCommand;
+import lingogo.logic.commands.PreviousSlideCommand;
+import lingogo.logic.commands.SlideshowCommand;
+import lingogo.logic.commands.StopSlideshowCommand;
 
 public class CommandHelpMessage extends UiPart<TitledPane> {
     private static final String FXML = "CommandHelpMessage.fxml";
@@ -72,7 +76,7 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
                     FilterCommand.COMMAND_USAGE, FilterCommand.COMMAND_EXAMPLES);
             break;
         case FLIP:
-            this.setDisplayText("flip", FlipCommand.COMMAND_DESCRIPTION, FlipCommand.COMMAND_USAGE,
+            this.setDisplayText(FlipCommand.COMMAND_WORD, FlipCommand.COMMAND_DESCRIPTION, FlipCommand.COMMAND_USAGE,
                     FlipCommand.COMMAND_EXAMPLES);
             break;
         case HELP:
@@ -83,17 +87,33 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
             this.setDisplayText(ListCommand.COMMAND_WORD, ListCommand.COMMAND_DESCRIPTION, ListCommand.COMMAND_USAGE,
                     ListCommand.COMMAND_EXAMPLES);
             break;
-        case TEST:
-            this.setDisplayText(TestCommand.COMMAND_WORD, TestCommand.COMMAND_DESCRIPTION, TestCommand.COMMAND_USAGE,
-                    TestCommand.COMMAND_EXAMPLES);
-            break;
         case EXPORT:
-            this.setDisplayText("export", ExportCommand.COMMAND_DESCRIPTION, ExportCommand.COMMAND_USAGE,
-                    ExportCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(ExportCommand.COMMAND_WORD, ExportCommand.COMMAND_DESCRIPTION,
+                    ExportCommand.COMMAND_USAGE, ExportCommand.COMMAND_EXAMPLES);
             break;
         case IMPORT:
-            this.setDisplayText("import", ImportCommand.COMMAND_DESCRIPTION, ImportCommand.COMMAND_USAGE,
-                    ImportCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(ImportCommand.COMMAND_WORD, ImportCommand.COMMAND_DESCRIPTION,
+                    ImportCommand.COMMAND_USAGE, ImportCommand.COMMAND_EXAMPLES);
+            break;
+        case ANSWER:
+            this.setDisplayText(AnswerCommand.COMMAND_WORD, AnswerCommand.COMMAND_DESCRIPTION,
+                    AnswerCommand.COMMAND_USAGE, AnswerCommand.COMMAND_EXAMPLES);
+            break;
+        case NEXT:
+            this.setDisplayText(NextSlideCommand.COMMAND_WORD, NextSlideCommand.COMMAND_DESCRIPTION,
+                    NextSlideCommand.COMMAND_USAGE, NextSlideCommand.COMMAND_EXAMPLES);
+            break;
+        case PREVIOUS:
+            this.setDisplayText(PreviousSlideCommand.COMMAND_WORD, PreviousSlideCommand.COMMAND_DESCRIPTION,
+                    PreviousSlideCommand.COMMAND_USAGE, PreviousSlideCommand.COMMAND_EXAMPLES);
+            break;
+        case SLIDESHOW:
+            this.setDisplayText(SlideshowCommand.COMMAND_WORD, SlideshowCommand.COMMAND_DESCRIPTION,
+                    SlideshowCommand.COMMAND_USAGE, SlideshowCommand.COMMAND_EXAMPLES);
+            break;
+        case STOP:
+            this.setDisplayText(StopSlideshowCommand.COMMAND_WORD, StopSlideshowCommand.COMMAND_DESCRIPTION,
+                    StopSlideshowCommand.COMMAND_USAGE, StopSlideshowCommand.COMMAND_EXAMPLES);
             break;
         default:
             assert false : "CommandHelpMessage: Invalid command";

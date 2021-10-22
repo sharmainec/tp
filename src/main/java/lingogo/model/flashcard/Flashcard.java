@@ -1,5 +1,6 @@
 package lingogo.model.flashcard;
 
+import static java.util.Objects.requireNonNull;
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -9,6 +10,9 @@ import java.util.Objects;
  * Guarantees: details are present and not null; field values are validated; immutable.
  */
 public class Flashcard {
+    // Empty flashcard
+    public static final Flashcard EMPTY_FLASHCARD = new Flashcard(new Phrase("empty"),
+            new Phrase("empty english phrase"), new Phrase("empty foreign phrase"));
 
     // Data fields
     private final Phrase languageType; // to update UML diagram multiplicity if languageType is no longer Phrase
@@ -36,6 +40,17 @@ public class Flashcard {
         this.englishPhrase = englishPhrase;
         this.foreignPhrase = foreignPhrase;
         this.isFlipped = isFlipped;
+    }
+
+    /**
+     * Copy constructor.
+     */
+    public Flashcard(Flashcard toCopy) {
+        requireNonNull(toCopy);
+        this.languageType = toCopy.languageType;
+        this.englishPhrase = toCopy.englishPhrase;
+        this.foreignPhrase = toCopy.foreignPhrase;
+        this.isFlipped = toCopy.isFlipped;
     }
 
     public Phrase getLanguageType() {

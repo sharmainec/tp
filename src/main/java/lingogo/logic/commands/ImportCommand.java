@@ -2,6 +2,7 @@ package lingogo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import lingogo.commons.core.Messages;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 
@@ -35,6 +36,11 @@ public class ImportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.isSlideshowActive()) {
+            throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+        }
+
         model.importFlashCards(filePath);
         return new CommandResult(String.format(MESSAGE_SUCCESS, filePath));
     }

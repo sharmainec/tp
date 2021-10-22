@@ -21,11 +21,10 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import lingogo.commons.core.Messages;
 import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
-import lingogo.model.flashcard.LanguageTypeMatchesGivenPhrasePredicate;
-import lingogo.model.flashcard.Phrase;
 import lingogo.testutil.FilterBuilderBuilder;
 
 /**
@@ -85,7 +84,6 @@ public class FilterCommandTest {
         FilterCommand command = new FilterCommand(filterBuilder);
         try {
             expectedModel.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
-
         } catch (Exception e) {
             fail("Exception not expected");
         }
@@ -103,7 +101,7 @@ public class FilterCommandTest {
     @Test
     public void execute_invalidIndexKeywordTamil_failure() {
         FilterBuilder filterBuilder =
-            new FilterBuilderBuilder().withIndexList(1000).withLanguagePhrase("Tamil").build();
+                new FilterBuilderBuilder().withIndexList(1000).withLanguagePhrase("Tamil").build();
         FilterCommand command = new FilterCommand(filterBuilder);
         assertCommandFailure(command, model, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
@@ -116,12 +114,22 @@ public class FilterCommandTest {
         FilterCommand command = new FilterCommand(filterBuilder);
         try {
             expectedModel.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
-
         } catch (Exception e) {
             fail("Exception not expected");
         }
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(SUNRISE_TAMIL_FLASHCARD), model.getFilteredFlashcardList());
+    }
+
+    @Test
+    public void execute_slideshowActive_throwsCommandException() {
+        model.startSlideshow();
+
+        FilterBuilder filterBuilder = new FilterBuilderBuilder().withLanguagePhrase("Tamil").build();
+        FilterCommand command = new FilterCommand(filterBuilder);
+        String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);
+
+        assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
@@ -131,13 +139,12 @@ public class FilterCommandTest {
         FilterCommand command = new FilterCommand(filterBuilder);
         try {
             expectedModel.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
-
         } catch (Exception e) {
             fail("Exception not expected");
         }
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(AFTERNOON_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD),
-            model.getFilteredFlashcardList());
+                model.getFilteredFlashcardList());
     }
 
     @Test
@@ -148,19 +155,10 @@ public class FilterCommandTest {
         FilterCommand command = new FilterCommand(filterBuilder);
         try {
             expectedModel.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
-
         } catch (Exception e) {
             fail("Exception not expected");
         }
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(AFTERNOON_CHINESE_FLASHCARD),
-            model.getFilteredFlashcardList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code LanguageTypeMatchesGivenPhrasePredicate}.
-     */
-    private LanguageTypeMatchesGivenPhrasePredicate preparePredicate(String userInput) {
-        return new LanguageTypeMatchesGivenPhrasePredicate(new Phrase(userInput));
+        assertEquals(Arrays.asList(AFTERNOON_CHINESE_FLASHCARD), model.getFilteredFlashcardList());
     }
 }

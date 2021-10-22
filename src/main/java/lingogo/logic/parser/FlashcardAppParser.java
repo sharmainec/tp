@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import lingogo.logic.commands.AddCommand;
+import lingogo.logic.commands.AnswerCommand;
 import lingogo.logic.commands.ClearCommand;
 import lingogo.logic.commands.Command;
 import lingogo.logic.commands.DeleteCommand;
@@ -19,7 +20,10 @@ import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ImportCommand;
 import lingogo.logic.commands.ListCommand;
-import lingogo.logic.commands.TestCommand;
+import lingogo.logic.commands.NextSlideCommand;
+import lingogo.logic.commands.PreviousSlideCommand;
+import lingogo.logic.commands.SlideshowCommand;
+import lingogo.logic.commands.StopSlideshowCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 
 /**
@@ -82,11 +86,24 @@ public class FlashcardAppParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        // TODO: Remove flip command
         case FlipCommand.COMMAND_WORD:
             return new FlipCommandParser().parse(arguments);
 
-        case TestCommand.COMMAND_WORD:
-            return new TestCommandParser().parse(arguments);
+        case SlideshowCommand.COMMAND_WORD:
+            return new SlideshowCommand();
+
+        case StopSlideshowCommand.COMMAND_WORD:
+            return new StopSlideshowCommand();
+
+        case NextSlideCommand.COMMAND_WORD:
+            return new NextSlideCommand();
+
+        case PreviousSlideCommand.COMMAND_WORD:
+            return new PreviousSlideCommand();
+
+        case AnswerCommand.COMMAND_WORD:
+            return new AnswerCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

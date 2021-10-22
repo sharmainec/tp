@@ -8,6 +8,7 @@ import lingogo.logic.commands.CommandResult;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.ReadOnlyFlashcardApp;
+import lingogo.model.ReadOnlySlideshowApp;
 import lingogo.model.flashcard.Flashcard;
 
 /**
@@ -32,6 +33,13 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of flashcards */
     ObservableList<Flashcard> getFilteredFlashcardList();
+
+    /**
+     * Returns the SlideshowApp.
+     *
+     * @see lingogo.model.Model#getSlideshowApp()
+     */
+    ReadOnlySlideshowApp getSlideshowApp();
 
     /**
      * Returns the user prefs' flashcard app file path.
