@@ -252,7 +252,7 @@ The find feature is facilitated by `ModelManager`. It extends `Model` implements
 
 The find feature relies on the `FindCommandParser` and `PhraseContainsKeywordsPredicate`. Multiple keywords can be given for both english and foreign phrases. `FindCommandParser` uses `PhraseContainsKeywordsPredicate` to select flashcards that matches the keywords.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a new find command:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
@@ -267,6 +267,30 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Only allow full match
   * Pros: Only exact match will be output, user will only see flashcards that are exactly the keyword.
   * Cons: Too restrictive, will not output phrases that contains more than the keyword.
+
+### List feature
+
+#### Implementation
+
+The list feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList`which returns an unmodifiable view of the flashcards in the GUI.
+
+In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the main list of flashcards.
+
+The sequence diagram below illustrates the execution of `ListCommand`.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Generating list of flashcards:**
+
+* **Alternative 1 (current choice):** Randomise the list of flashcards
+    * Pros: Users are able to use flashcards more effectively.
+    * Cons: Harder to implement and more difficult to test (due to random stream of `Index`).
+
+* **Alternative 2:** Output list up to `n`
+    * Pros: Easy to implement.
+    * Cons: Does not add value to the user's learning experience.
 
 
     
