@@ -1,7 +1,6 @@
 package lingogo.logic.commands;
 
 import lingogo.logic.commands.exceptions.CommandException;
-import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.Model;
 
 /**
@@ -16,5 +15,5 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model) throws CommandException, ParseException;
+    public abstract CommandResult execute(Model model) throws CommandException;
 }

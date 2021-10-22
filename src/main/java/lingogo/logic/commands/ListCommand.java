@@ -54,28 +54,26 @@ public class ListCommand extends Command {
         if (n > size || n <= 0) { // show all flashcards
             return new CommandResult(MESSAGE_SUCCESS);
         }
-        List<Flashcard> filteredList = null;
-        try {
-            filteredList = chooseRandomFlashcards(n, size, lastShownList);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        List<Flashcard> filteredList = chooseRandomFlashcards(n, size, lastShownList);
         assert filteredList != null;
         model.updateFilteredFlashcardList(new FlashcardInGivenFlashcardListPredicate(filteredList));
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS_SHUFFLED, model.getFilteredFlashcardList().size()));
     }
 
-    private List<Flashcard> chooseRandomFlashcards(int n, int size, List<Flashcard> flashcardList)
-            throws ParseException {
+    private List<Flashcard> chooseRandomFlashcards(int n, int size, List<Flashcard> flashcardList) {
         String indexString = new Random().ints(1, size + 1)
                 .distinct()
                 .limit(n)
                 .boxed()
                 .map(String::valueOf)
                 .collect(Collectors.joining(" "));
-        System.out.println(indexString);
-        List<Index> indexList = ParserUtil.parseIndices(indexString);
+        List<Index> indexList = null;
+        try {
+            indexList = ParserUtil.parseIndices(indexString);
+        } catch (ParseException e) {
+            assert false;
+        }
         return indexList.stream()
                 .map(index -> flashcardList.get(index.getZeroBased()))
                 .collect(Collectors.toList());
