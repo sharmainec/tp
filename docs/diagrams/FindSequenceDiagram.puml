@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FlashcardAppParser" as FlashcardAppParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
-participant "FindCommand" as FindCommand LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -20,6 +20,7 @@ activate LogicManager
 LogicManager -> FlashcardAppParser : parseCommand("find e/hello")
 activate FlashcardAppParser
 
+create FindCommandParser
 FlashcardAppParser -> FindCommandParser
 activate FindCommandParser
 
@@ -29,12 +30,14 @@ deactivate FindCommandParser
 FlashcardAppParser -> FindCommandParser : parse("e/hello")
 activate FindCommandParser
 
+create PhraseContainsKeywordsPredicate
 FindCommandParser -> PhraseContainsKeywordsPredicate
 activate PhraseContainsKeywordsPredicate
 
 PhraseContainsKeywordsPredicate --> FindCommandParser
 deactivate PhraseContainsKeywordsPredicate
 
+create FindCommand
 FindCommandParser -> FindCommand
 activate FindCommand
 
@@ -43,6 +46,8 @@ deactivate FindCommand
 
 FindCommandParser --> FlashcardAppParser : findCommand
 deactivate FindCommandParser
+FindCommandParser -[hidden]-> FlashcardAppParser
+destroy FindCommandParser
 
 FlashcardAppParser --> LogicManager : findCommand
 deactivate FlashcardAppParser
@@ -56,6 +61,7 @@ activate Model
 Model --> FindCommand
 deactivate Model
 
+create CommandResult
 FindCommand -> CommandResult
 activate CommandResult
 
@@ -64,6 +70,8 @@ deactivate CommandResult
 
 FindCommand --> LogicManager : result
 deactivate FindCommand
+FindCommand -[hidden]-> LogicManager
+destroy FindCommand
 
 [<--LogicManager
 deactivate LogicManager
