@@ -71,5 +71,4 @@ destroy ExportCommand
 
 [<--LogicManager
 deactivate LogicManager
-
 @enduml

@@ -71,5 +71,4 @@ destroy ImportCommand
 
 [<--LogicManager
 deactivate LogicManager
-
 @enduml
