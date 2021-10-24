@@ -40,11 +40,11 @@ New users can refer to the [Quick Start](#quick-start) guide for a quick set-up 
   * Command box
     * Type a command into the command box and press Enter to execute it.
     * Some example commands you can try (refer to the [Features](#features) section below for a full list of commands and their details):
-      * **`list`** : Lists all flashcards.
-      * **`add`**`l/Chinese e/Good Morning f/早安` : Adds a flashcard with the `Chinese` language, English phrase `Good Morning`, and corresponding foreign phrase `早安` to LingoGO!.
-      * **`delete`**`3` : Deletes the 3rd flashcard shown in the current displayed list.
-      * **`find`**`Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
-      * **`filter`**`l/Chinese` : Shows only the flashcards with the `Chinese` language in the current displayed list
+      * `list` : Lists all flashcards.
+      * `add l/Chinese e/Good Morning f/早安` : Adds a flashcard with the `Chinese` language, English phrase `Good Morning`, and corresponding foreign phrase `早安` to LingoGO!.
+      * `delete 3` : Deletes the 3rd flashcard shown in the current displayed list.
+      * `find Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
+      * `filter l/Chinese` : Shows only the flashcards with the `Chinese` language in the current displayed list
   * Command result
     * Shows a message after you execute a command.
   * Displayed flashcard list
@@ -207,7 +207,7 @@ Exports cards from LingoGO! to a CSV file.
 Format: `export FILE_NAME`
 
 * Provides a file name with .csv extension in which the flash cards will be stored and exported.
-* The exported file will be added to `data` folder in a CSV format.
+* The exported file will be added to the `data` folder in a CSV format.
 * The CSV file will have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
 
 Examples:
