@@ -8,7 +8,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 ## About LingoGO!
-LingoGO! is a **desktop app for university students who use English as their first language and are trying to learn a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared to using than traditional flashcards.
+LingoGO! is a **desktop app for university students who use English as their first language and are trying to learn a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared to using traditional flashcards.
 
 LingoGO! currently supports *all languages* that can be represented on your computer and has the following main features:
 * addition, deletion, and editing of flashcards
@@ -34,41 +34,38 @@ New users can refer to the [Quick Start](#quick-start) guide for a quick set-up 
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the
    app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
-
-    * **`list`** : Lists all flashcards.
-
-    * **`add`**`l/Chinese e/Good Morning f/早安` : Adds a flashcard with Language type `Chinese`, English phrase `Good Morning`, and corresponding foreign phrase `早安` to LingoGO!.
-
-    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current displayed list.
-
-    * **`find`**`Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
-
-    * **`filter`**`l/Chinese` : Shows only the flashcards with the language type `Chinese` in the current displayed list
-
-
-1. Refer to the [Features](#features) below for a full list of commands and their details.
+   ![Ui](images/Ui-explanation.png)
+  * Menu
+    * A clickable menu bar
+  * Command box
+    * Type a command into the command box and press Enter to execute it.
+    * Some example commands you can try (refer to the [Features](#features) section below for a full list of commands and their details):
+      * **`list`** : Lists all flashcards.
+      * **`add`**`l/Chinese e/Good Morning f/早安` : Adds a flashcard with the `Chinese` language, English phrase `Good Morning`, and corresponding foreign phrase `早安` to LingoGO!.
+      * **`delete`**`3` : Deletes the 3rd flashcard shown in the current displayed list.
+      * **`find`**`Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
+      * **`filter`**`l/Chinese` : Shows only the flashcards with the `Chinese` language in the current displayed list
+  * Command result
+    * Shows a message after you execute a command.
+  * Displayed flashcard list
+    * A list of your flashcards
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `LANGUAGE_TYPE`, `ENGLISH_PHRASE`, and `FOREIGN_PHRASE` are parameters which can be used as `add l/Chinese e/Good Morning f/早安`.
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+  e.g. in `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `LANGUAGE`, `ENGLISH_PHRASE`, and `FOREIGN_PHRASE` are parameters which can be used as `add l/Chinese e/Good Morning f/早安`.
 
 * Items in square brackets are optional.<br>
-  e.g. `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or as `edit 1 l/Chinese` or as `edit 1 f/早安` or as `edit 1 e/Good Morning`
+  e.g. `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or as `edit 1 l/Chinese` or as `edit 1 f/早安` or as `edit 1 e/Good Morning`
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `f/FOREIGN_PHRASE l/LANGUAGE_TYPE e/ENGLISH_PHRASE` is also acceptable.
+  e.g. if the command specifies `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `f/FOREIGN_PHRASE l/LANGUAGE e/ENGLISH_PHRASE` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `edit 2 e/Hi e/Hello`, only `e/Hello` will be taken.
@@ -93,7 +90,7 @@ Format: `help`
 
 Adds a flashcard to LingoGO!.
 
-Format: `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
+Format: `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
 
 Examples:
 * `add l/Chinese e/Good Morning f/早安`
@@ -109,7 +106,7 @@ Format: `list`
 
 Edits an existing flashcard in LingoGO!.
 
-Format: `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
+Format: `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 
 * Edits the flashcard at the specified `INDEX`. The index refers to the index number shown in the displayed flashcard
   list. The index **must be a positive integer** 1, 2, 3, …​
@@ -117,10 +114,10 @@ Format: `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 * Existing values will be updated to the input values.
 
 Examples:
-* `edit 1 l/German` Edits the Language type of the 1st flashcard to be `German`.
+* `edit 1 l/German` Edits the language of the 1st flashcard to be `German`.
 * `edit 1 e/Good Morning` Edits the English phrase of the 1st flashcard to be `Good Morning`.
 * `edit 2 f/Guten Morgen` Edits the foreign phrase of the 2nd flashcard to be `Guten Morgen`.
-* `edit 2 l/German e/Good Morning f/Guten Morgen` Edits the Language type, English phrase, and foreign phrase of the 2nd flashcard to be `German`, `Good Morning`, and `Guten Morgen` respectively.
+* `edit 2 l/German e/Good Morning f/Guten Morgen` Edits the language, English phrase, and foreign phrase of the 2nd flashcard to be `German`, `Good Morning`, and `Guten Morgen` respectively.
 
 ### Locating flashcards by keyword: `find`
 
@@ -147,18 +144,18 @@ Examples:
 
 Filters flashcards based on the specified condition(s).
 
-Format: `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]`
+Format: `filter [l/LANGUAGE] [i/INDEX_LIST]`
 
-* `LANGUAGE_TYPE` is not case-sensitive (e.g. "Chinese" matches "CHINESE").
+* `LANGUAGE` is not case-sensitive (e.g. "Chinese" matches "CHINESE").
 * `INDEX_LIST` is a list of space separated indices, that refer to the indices shown in the current displayed list.
 *  The indices **must be positive integers** 1, 2, 3, …
 
 Examples:
-* `filter l/Chinese` returns all flashcards of `Chinese` language type like `e/Good Morning f/早安`.
-* `filter l/German` returns all flashcards of `German` language type like `e/Good Morning f/Guten Morgen`.
+* `filter l/Chinese` returns all flashcards with the `Chinese` language like `e/Good Morning f/早安`.
+* `filter l/German` returns all flashcards with the `German` language like `e/Good Morning f/Guten Morgen`.
 * `filter i/1 2 3` returns flashcards in the current displayed list indexed at 1, 2 and 3.
-* `filter i/1 3 6 l/Tamil` returns all flashcards in the current displayed list indexed at 1, 3 and 6 that are also
-  of `Tamil` language type.
+* `filter i/1 3 6 l/Tamil` returns all flashcards in the current displayed list indexed at 1, 3 and 6 with the `Tamil`
+  language.
 
 
 ### Deleting a flashcard : `delete`
@@ -188,14 +185,15 @@ Imports cards to LingoGO! using a CSV file.
 Format: `import CSV_FILE_PATH`
 
 * The file path can be absolute or relative to the location of the LingoGO! file.
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about `CSV_FILE_PATH`:**<br>
 
-* Users who have no knowledge about file paths can just place the CSV file .<br>
-  e.g. in `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `LANGUAGE_TYPE`, `ENGLISH_PHRASE`, and `FOREIGN_PHRASE` are parameters which can be used as `add l/Chinese e/Good Morning f/早安`.
+* Users with no knowledge about file paths can just place the CSV file in the `data` folder, and type the file name as the `CSV_FILE_PATH`.
 
 </div>
+
 * The CSV file must have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
   ![sample CSV file](images/SampleCSVFile.png)
 
@@ -271,7 +269,7 @@ If your changes to the data file makes its format invalid, LingoGO! will discard
 A CSV file, short for comma-separated values, is a special text file that uses commas for formatting.
 
 ### File paths
-File paths specify the location of a file on the computer. They help to instruct the computer on how to find a specific file in its storage. An absolute file path instructs the computer on how to find the file from the root folder. A relative file path instructs the computer on how to find a file from the current folder that it is in. For more on file paths, you may want to visit [here](https://docs.oracle.com/javase/tutorial/essential/io/path.html).
+File paths specify the location of a file on the computer. They tell the computer how to find a specific file. An absolute file path tells the computer how to find the file from the root folder. A relative file path tells the computer how to find a file from the current folder that it is in. For more on file paths, you may want to visit [here](https://docs.oracle.com/javase/tutorial/essential/io/path.html).
 
 
 ## FAQ
@@ -285,11 +283,11 @@ File paths specify the location of a file on the computer. They help to instruct
 
 Action | Format | Example
 --------|------------------
-**Add** | `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` | `add l/Chinese e/Good Morning f/早安`
+**Add** | `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` | `add l/Chinese e/Good Morning f/早安`
 **Clear** | `clear` | `clear`
 **Delete** | `delete INDEX` | `delete 3`
-**Edit** | `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` | `edit 2 f/Guten Morgen`
-**Filter** | `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]` | `filter l/Chinese i/1 2 3`
+**Edit** | `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` | `edit 2 f/Guten Morgen`
+**Filter** | `filter [l/LANGUAGE] [i/INDEX_LIST]` | `filter l/Chinese i/1 2 3`
 **Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]` | `find e/Hello f/早`
 **List** | `list` | `list`
 **Import** | `import CSV_FILE_PATH` | `import ./dictionary.csv`
