@@ -3,16 +3,30 @@ layout: page
 title: User Guide
 ---
 
-LingoGO! is a **desktop app for university students who use English as their first language and are trying to learn a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared to using than traditional flashcards.
-
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## About LingoGO!
+LingoGO! is a **desktop app for university students who use English as their first language and are trying to learn a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared to using than traditional flashcards.
+
+LingoGO! currently supports *all languages* that can be represented on your computer and has the following main features:
+* addition, deletion, and editing of flashcards
+* finding and filtering of flashcards by keywords and conditions
+* importing and exporting of flashcards to be shared with others
+<!-- * slideshow mode -->
+
+Detailed information about these features can be found under the [Features](#features) section below.
+
+## Purpose of the user guide
+This user guide enables users to familiarise themselves with the commands of LingoGo! and use the application effectively.
+
+## How to use the user guide
+New users can refer to the [Quick Start](#quick-start) guide for a quick set-up tutorial. Experienced users can refer to the [Command Summary](#command-summary) for a quick overview of all the commands in LingoGo!. A detailed outline of the features can be found under [Features](#features). A [Table of Contents](#) with clickable links can be found above to help with navigating across the user guide quickly. A [Glossary](#glossary) is provided to help explain certain important terms used in this guide.
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer (you may download Java from [here](https://www.oracle.com/java/technologies/downloads/)).
 
 1. Download the latest `lingogo.jar` from [here](https://github.com/AY2122S1-CS2103T-T11-2/tp/releases).
 
@@ -26,34 +40,18 @@ LingoGO! is a **desktop app for university students who use English as their fir
    open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all flashcards.
+    * **`list`** : Lists all flashcards.
 
-   * **`add`**`l/Chinese e/Good Morning f/早安` : Adds a flashcard with Language type `Chinese`, English phrase `Good Morning`, and corresponding foreign phrase `早安` to LingoGO!.
+    * **`add`**`l/Chinese e/Good Morning f/早安` : Adds a flashcard with Language type `Chinese`, English phrase `Good Morning`, and corresponding foreign phrase `早安` to LingoGO!.
 
-   * **`delete`**`3` : Deletes the 3rd flashcard shown in the current displayed list.
+    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current displayed list.
 
-   * **`clear`** : Deletes all flashcards.
+    * **`find`**`Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
 
-   * **`edit`**`3`**`f/Guten Morgen`** : Edits the foreign phrase of the 3rd flashcard shown in the current displayed list to `Guten Morgen`.
-
-   * **`find`**`e/Hello f/早安` : Finds flashcards based on its english phrase `Hello` and foreign phrase `早安`.
-
-   * **`import`**`./dictionary.csv` : Imports cards from a CSV file to LingoGO!.
-
-   * **`export`**`myCards.csv` : Exports cards from LingoGO! to a CSV file in a file name `myCards.csv`.
-
-   * **`exit`** : Exits the app.
-
-   * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct English phrase.
-
-   * **`test`**`17`**`e/hello`**: Checks the 17th flashcard's English phrase against the word **`hello`** and then shows whether it is correct.
-
-   * **`find`**`Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
-   
-   * **`filter`**`l/Chinese i/1 2 3` : Filters and shows only the flashcards with the Language type `Chinese` and with indices 1, 2 and 3 in the current displayed list
+    * **`filter`**`l/Chinese` : Shows only the flashcards with the language type `Chinese` in the current displayed list
 
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for a full list of commands and their details.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -114,7 +112,7 @@ Edits an existing flashcard in LingoGO!.
 Format: `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 
 * Edits the flashcard at the specified `INDEX`. The index refers to the index number shown in the displayed flashcard
-    list. The index **must be a positive integer** 1, 2, 3, …​
+  list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -159,7 +157,7 @@ Examples:
 * `filter l/Chinese` returns all flashcards of `Chinese` language type like `e/Good Morning f/早安`.
 * `filter l/German` returns all flashcards of `German` language type like `e/Good Morning f/Guten Morgen`.
 * `filter i/1 2 3` returns flashcards in the current displayed list indexed at 1, 2 and 3.
-* `filter i/1 3 6 l/Tamil` returns all flashcards in the current displayed list indexed at 1, 3 and 6 that are also 
+* `filter i/1 3 6 l/Tamil` returns all flashcards in the current displayed list indexed at 1, 3 and 6 that are also
   of `Tamil` language type.
 
 
@@ -190,6 +188,14 @@ Imports cards to LingoGO! using a CSV file.
 Format: `import CSV_FILE_PATH`
 
 * The file path can be absolute or relative to the location of the LingoGO! file.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `CSV_FILE_PATH`:**<br>
+
+* Users who have no knowledge about file paths can just place the CSV file .<br>
+  e.g. in `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `LANGUAGE_TYPE`, `ENGLISH_PHRASE`, and `FOREIGN_PHRASE` are parameters which can be used as `add l/Chinese e/Good Morning f/早安`.
+
+</div>
 * The CSV file must have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
   ![sample CSV file](images/SampleCSVFile.png)
 
@@ -259,6 +265,15 @@ If your changes to the data file makes its format invalid, LingoGO! will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+### CSV
+A CSV file, short for comma-separated values, is a special text file that uses commas for formatting.
+
+### File paths
+File paths specify the location of a file on the computer. They help to instruct the computer on how to find a specific file in its storage. An absolute file path instructs the computer on how to find the file from the root folder. A relative file path instructs the computer on how to find a file from the current folder that it is in. For more on file paths, you may want to visit [here](https://docs.oracle.com/javase/tutorial/essential/io/path.html).
+
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -268,18 +283,19 @@ If your changes to the data file makes its format invalid, LingoGO! will discard
 
 ## Command summary
 
-Action | Format, Examples
+Action | Format | Example
 --------|------------------
-**Add** | `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` <br> e.g., `add l/Chinese e/Good Morning f/早安`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
-**Filter** | `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]`<br> e.g., `filter l/Chinese i/1 2 3`
-**Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`<br> e.g., `find e/Hello f/早`
-**List** | `list`
-**Import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
-**Export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
-**Help** | `help`
-**Flip** | `flip INDEX` <br> e.g.,  `flip 2`
-**Test** | `test INDEX e/ENGLISH_PHRASE` <br> e.g., `test 17 e/hello`
-**Exit** | `exit`
+**Add** | `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` | `add l/Chinese e/Good Morning f/早安`
+**Clear** | `clear` | `clear`
+**Delete** | `delete INDEX` | `delete 3`
+**Edit** | `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` | `edit 2 f/Guten Morgen`
+**Filter** | `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]` | `filter l/Chinese i/1 2 3`
+**Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]` | `find e/Hello f/早`
+**List** | `list` | `list`
+**Import** | `import CSV_FILE_PATH` | `import ./dictionary.csv`
+**Export** | `export FILE_NAME` | `export myCards.csv`
+**Help** | `help` | `help`
+**Flip** | `flip INDEX` | `flip 2`
+**Test** | `test INDEX e/ENGLISH_PHRASE` | `test 17 e/hello`
+**Exit** | `exit` | `exit`
+
