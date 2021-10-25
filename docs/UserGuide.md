@@ -44,7 +44,7 @@ New users can refer to the [Quick Start](#quick-start) guide for a quick set-up 
        * `list` : Lists all flashcards.
        * `add l/Chinese e/Good Morning f/早安` : Adds a flashcard with the `Chinese` language, English phrase `Good Morning`, and corresponding foreign phrase `早安` to LingoGO!.
        * `delete 3` : Deletes the 3rd flashcard shown in the current displayed list.
-       * `find Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`.
+       * `find e/Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`.
        * `filter l/Chinese` : Shows only the flashcards with the `Chinese` language in the current displayed list.
    * Command result
      * Shows a message after you execute a command.
@@ -124,22 +124,20 @@ Examples:
 
 Finds flashcards based on the keyword specified.
 
-Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORD]`
+Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`
 
 * The search is case-insensitive. e.g `HELLO` will match `Hello`
 * The order of the keywords does not matter. e.g. `Good morning` will match `Morning good`
-* Only full words will be matched e.g. `Hello` will not match `Helloooo` for English keywords
-* Non-full words match will be accepted for foreign keywords e.g. `早` with match `早安`
-* Flashcard(s) matching at least one keyword will be returned.
-  e.g. `e/Good Hello` will return `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`
+* Only full words will be matched for English keywords. e.g. `Hello` will not match `Helloooo` 
+* Non-full words match will be accepted for foreign keywords. e.g. `早` with match `早安`
+* Flashcard(s) matching at least one keyword will be displayed.
 * At least one of the optional fields must be provided.
 
 Examples:
-* `find e/Good` returns `e/Good Morning f/早安` and `e/Good Morning f/Guten Morgen`
-* `find e/Good Hello` returns `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`
-* `find f/早` return `e/Good Morning f/早安` and `e/Morning f/早晨`
-* `find f/安 好` return `e/Good Morning f/早安`, `e/Good Afternoon f/午安`, `e/Good Night f/晚安` and `e/Hello f/你好`
-* `find e/Hello f/早` return `e/Hello f/你好`, `e/Good Morning f/早安` and `e/Morning f/早晨`<br>
+* `find e/HELLO` returns `e/Hello f/你好`
+* `find f/早` returns `e/Good Morning f/早安` and `e/Morning f/早晨`
+* `find e/Hello f/早` returns `e/Hello f/你好`, `e/Good Morning f/早安` and `e/Morning f/早晨`
+  ![find foreign keywords](images/findMixedKeywords.png)<br>
 
 ### Filtering flashcards by condition(s): `filter`
 
@@ -181,7 +179,7 @@ Format: `clear`
 
 ### Importing cards : `import`
 
-Imports cards to LingoGO! using a CSV file.
+Imports flashcards to LingoGO! using a CSV file.
 
 Format: `import CSV_FILE_PATH`
 
@@ -195,7 +193,7 @@ Format: `import CSV_FILE_PATH`
 
 </div>
 
-* The CSV file must have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
+* The CSV file must have **2 columns**. The first column is for the English phrase, and the second column is for the foreign phrase.
   ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
@@ -240,7 +238,7 @@ Checks whether the English phrase of a flashcard matches a given phrase.
 Format: `test INDEX e/ENGLISH_PHRASE`
 
 * Checks the English phrase of the flashcard at the specified `INDEX` against the given `ENGLISH_PHRASE`.
-* The app will then show user the correct English phrase and tell the user whether he got it right.
+* The app will then show you the correct English phrase and tell you whether you got it right.
 * The index refers to the index number shown in the current displayed list.
 * The index **must be a positive integer** 1, 2, 3, …
 * Testing is only allowed for flashcards that are flipped down (i.e. the English phrase is hidden).
@@ -284,17 +282,17 @@ File paths specify the location of a file on the computer. They tell the compute
 
 Action | Format | Example
 --------|------------------
+**Help** | `help` | `help`
 **Add** | `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` | `add l/Chinese e/Good Morning f/早安`
-**Clear** | `clear` | `clear`
-**Delete** | `delete INDEX` | `delete 3`
-**Edit** | `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` | `edit 2 f/Guten Morgen`
-**Filter** | `filter [l/LANGUAGE] [i/INDEX_LIST]` | `filter l/Chinese i/1 2 3`
-**Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]` | `find e/Hello f/早`
 **List** | `list` | `list`
+**Edit** | `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` | `edit 2 f/Guten Morgen`
+**Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]` | `find e/Hello f/早`
+**Filter** | `filter [l/LANGUAGE] [i/INDEX_LIST]` | `filter l/Chinese i/1 2 3`
+**Delete** | `delete INDEX` | `delete 3`
+**Clear** | `clear` | `clear`
 **Import** | `import CSV_FILE_PATH` | `import ./dictionary.csv`
 **Export** | `export FILE_NAME` | `export myCards.csv`
-**Help** | `help` | `help`
+**Exit** | `exit` | `exit`
 **Flip** | `flip INDEX` | `flip 2`
 **Test** | `test INDEX e/ENGLISH_PHRASE` | `test 17 e/hello`
-**Exit** | `exit` | `exit`
 
