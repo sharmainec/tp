@@ -49,7 +49,7 @@ A [Glossary](#glossary) is provided to help explain certain important terms used
        * `list` : Lists all flashcards.
        * `add l/Chinese e/Good Morning f/早安` : Adds a flashcard with the `Chinese` language, English phrase `Good Morning`, and corresponding foreign phrase `早安` to LingoGO!.
        * `delete 3` : Deletes the 3rd flashcard shown in the current displayed list.
-       * `find Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`.
+       * `find e/Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`.
        * `filter l/Chinese` : Shows only the flashcards with the `Chinese` language in the current displayed list.
    * Command result
      * Shows a message after you execute a command.
@@ -198,9 +198,9 @@ Exits the program.
 Format: `exit`
 
 
-### Exporting cards : `export`
+### Exporting flashcards : `export`
 
-Exports cards from LingoGO! to a CSV file.
+Exports flashcards from LingoGO! to a CSV file.
 
 Format: `export FILE_NAME`
 
@@ -234,22 +234,20 @@ Examples:
 
 Finds flashcards based on the keyword(s) specified.
 
-Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORD]`
+Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`
 
-* The search is case-insensitive. e.g `HELLO` will match `Hello`.
-* The order of the keywords does not matter. e.g. `Good morning` will match `Morning good`.
-* Only full words will be matched e.g. `Hello` will not match `Helloooo` for English keywords.
-* Non-full words match will be accepted for foreign keywords e.g. `早` with match `早安`.
-* Flashcard(s) matching at least one keyword will be returned.
-  e.g. `e/Good Hello` will return `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`.
+* The search is case-insensitive. e.g `HELLO` will match `Hello`
+* The order of the keywords does not matter. e.g. `Good morning` will match `Morning good`
+* Only full words will be matched for English keywords. e.g. `Hello` will not match `Helloooo`
+* Non-full words match will be accepted for foreign keywords. e.g. `早` with match `早安`
+* Flashcard(s) matching at least one keyword will be displayed.
 * At least one of the optional fields must be provided.
 
 Examples:
-* `find e/Good` returns `e/Good Morning f/早安` and `e/Good Morning f/Guten Morgen`.
-* `find e/Good Hello` returns `e/Good Morning f/早安`, `e/Good Morning f/Guten Morgen` and `e/Hello f/你好`.
-* `find f/早` return `e/Good Morning f/早安` and `e/Morning f/早晨`.
-* `find f/安 好` return `e/Good Morning f/早安`, `e/Good Afternoon f/午安`, `e/Good Night f/晚安` and `e/Hello f/你好`.
-* `find e/Hello f/早` return `e/Hello f/你好`, `e/Good Morning f/早安` and `e/Morning f/早晨`.
+* `find e/HELLO` returns `e/Hello f/你好`
+* `find f/早` returns `e/Good Morning f/早安` and `e/Morning f/早晨`
+* `find e/Hello f/早` returns `e/Hello f/你好`, `e/Good Morning f/早安` and `e/Morning f/早晨`
+  ![find foreign keywords](images/findMixedKeywords.png)<br>
 
 
 ### Viewing help : `help`
@@ -262,9 +260,9 @@ for each command.
 Format: `help`
 
 
-### Importing cards : `import`
+### Importing flashcards : `import`
 
-Imports cards into LingoGO! using a CSV file.
+Imports flashcards to LingoGO! using a CSV file.
 
 Format: `import CSV_FILE_PATH`
 
@@ -275,7 +273,7 @@ Format: `import CSV_FILE_PATH`
 * Users with no knowledge about file paths can just place the CSV file in the `data` folder and fill the `CSV_FILE_PATH` parameter with the CSV file's name.
 </div>
 
-* The CSV file must have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
+* The CSV file must have **2 columns**. The first column is for the English phrase, and the second column is for the foreign phrase.
   ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
@@ -310,6 +308,12 @@ Switches to slideshow mode for you to test yourself with the flashcards shown in
 
 Format: `slideshow`
 
+* Checks the English phrase of the flashcard at the specified `INDEX` against the given `ENGLISH_PHRASE`.
+* The app will then show you the correct English phrase and tell you whether you got it right.
+* The index refers to the index number shown in the current displayed list.
+* The index **must be a positive integer** 1, 2, 3, …
+* Testing is only allowed for flashcards that are flipped down (i.e. the English phrase is hidden).
+* `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello").
 
 ### Exiting slideshow mode: `stop`
 

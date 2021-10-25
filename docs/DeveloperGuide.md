@@ -54,7 +54,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **Overall Design**
+
+This section gives an overview of the software architecture of the system, and details on how each major component functions.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -63,15 +65,15 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+The **Architecture Diagram** given below explains the high-level design of the App.
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+<img src="images/ArchitectureDiagram.png" width="280" />
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/MainApp.java). It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -104,13 +106,15 @@ The sections below give more details of each component.
 
 ### UI component
 
+The UI component contains the logic for the graphical user interface (GUI) that users see. 
+
 The **API** of this component is specified in
-[`Ui.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/ui/Ui.java), and the overall class diagram for this component can be found below.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`,
-`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+The UI component consists of a `MainWindow` that is made up of several sub-components (e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`,
+`StatusBarFooter`, etc.) which come together to make up the entire user interface. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
@@ -186,7 +190,7 @@ Classes used by multiple components are in the `lingogo.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Feature Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -226,7 +230,7 @@ the lifeline reaches the end of diagram.
 ![SetFilterReferenceSequenceDiagram](images/filterCommand/SetFilterReferenceSequenceDiagram.png)
 
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Number of filter conditions that users can input per command:**
 
@@ -291,7 +295,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to search in foreign language:**
 
