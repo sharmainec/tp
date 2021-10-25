@@ -7,9 +7,44 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **About LingoGO!**
+
+LingoGO! is a **desktop app for university students who use English as their first language and are trying to learn a
+new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a
+Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared
+to using traditional flashcards.
+
+LingoGO! currently supports *all languages* that can be represented on a computer and has the following main features:
+* Addition, deletion, and editing of flashcards.
+* Finding and filtering of flashcards by keywords and conditions.
+* Importing and exporting of flashcards to be shared with others.
+* Testing a user's knowledge on their flashcards.
+
+## **Purpose of the developer guide**
+
+This developer guide is meant for budding software developers who want to learn more about LingoGO!'s architecture,
+contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
+
+## **How to use the developer guide**
+
+* A [*Table of Contents*](#) with clickable links can be found above to help with navigating across the user guide quickly.
+* To set up your development environment, refer to the guide on [*Setting up and getting started*](#setting-up-getting-started).
+* For a high level overview of the design of the application, refer to the [*Design*](#design) section.
+* For a lower level, more in depth look at some of the features implemented in LingoGO!, refer to the [*Implementation*](#implementation) section.
+* To better understand the documentation practices of the project, refer to the [*Documentation guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Documentation.html).
+* To better understand the testing methods used in the project, refer to the [*Testing guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Testing.html).
+* To better understand the tools available to you as a developer, refer to the [*Logging guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Logging.html),
+  [*Configuration guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Configuration.html), and [*DevOps Guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/DevOps.html).
+* For a list of requirements that LingoGO! has to meet/is planning to meet, refer to the [*Requirements*](#appendix-requirements) section.
+* A [Glossary](#glossary) is provided to help explain certain important terms used in this guide.
+* For instructions on manual testing, refer to the [*Manual testing*](#appendix-instructions-for-manual-testing) section.
+
 ## **Acknowledgements**
 
-* This project was originally adapted from [AddressBook-Level3 (AB3)](https://se-education.org/addressbook-level3/)
+This project was originally adapted from [AddressBook-Level3 (AB3)](https://se-education.org/addressbook-level3/).
+
+Third party libraries used:
+* [OpenCSV](http://opencsv.sourceforge.net/) - Reading and writing CSV files.
 
 --------------------------------------------------------------------------------------------------------------------
 
