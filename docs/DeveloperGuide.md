@@ -282,68 +282,72 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix A: Product Scope**
 
-### Product scope
+### Target user profile:
 
-**Target user profile**:
-
-University students
+**University students**
 * whose first language is English
 * who are learning a new language
 
-**Value proposition**:
+### Value proposition:
 * Fast way to generate flashcards to learn new languages
 * Help students memorise words when learning a new language
 * Gamified features such as recording of scores and tracking of improvements to make learning engaging and encourage continued usage
 
-### User stories
+--------------------------------------------------------------------------------------------------------------------
 
-Categories: Usage pattern, user behaviours, general user, multiple language user, user learning style, user learning 'rate', level of experience, user collaboration
-Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely to have) - *
+## **Appendix B: User Stories**
+
+**Categories:** Usage pattern, user behaviours, general user, multiple language user, user learning style, user learning 'rate', level of experience, user collaboration<br>
+**Priorities:** High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+
 
 | Priority | Category | As a/an... | I want to... | So that I...
 | -------- | -------- | ---------- | ------------ | ----------------
-|*| Usage patterns | active user with hundred of cards already made | be automatically given a list of cards to test my memory | can efficiently expand my vocabulary
-|*| Usage patterns | frequent user | be able to jumble up my flashcards | am really testing my vocabulary instead of just memorising without really knowing the vocabulary
-|*| Usage patterns | forgetful user (who forgets about LingoGO!) | be reminded about using flashcards | can be actively learning new vocabularies instead of just cramming them at the last minute
-|*| Usage patterns | frequent user | be able to load up cards done x days ago | can test my memory retention of the words I learned that day
-|***| User behaviours | lazy user | automatically generate cards by typing in the vocabulary | don't have to spend time manually creating cards
-|*| User behaviours | user who seeks improvement | see the progress made in terms of scores | can visualize my improvement
-|*| User behaviours | organised user (who prepares flashcards based on languages) | I want to be able to combine different decks of flashcards | can prepare for my major exams (eg. mid-terms, finals)
-|*| User behaviours | mobile user | be able to access my cards wherever I am, on the go |
-|*| User behaviours | user who learns better when things are in hardcopy | have a convenient way to print out the flashcards | do not have to manually format the card design
-|*| General user | user | use the app in another language |
-|*| General user | user | see the summary statistics over a period of time | can track my progress
-|*| General user | user | be able to tag my flashcards under the categories I specify (e.g. easy, medium, for fun, nouns, etc.) | organise my flashcards easily
+|***| Level of experience | new user | be guided through the set-up process of a flashcard | can use LingoGo! Properly
 |***| General user | user | be able to add new flash cards |
+|***| General user | user | be able to delete my flashcards |
 |***| General user | user | be able to list my flashcards |
 |***| General user | user | be able to test myself and view my performance using flashcards |
-|***| General user | user | be able to delete my flashcards |
 |***| General user | user | be able to update my flashcards |
+|***| User behaviours | lazy user | automatically generate cards by typing in the vocabulary | don't have to spend time manually creating cards
+|**| Level of experience | experienced user | be able to delete multiple flashcards that are no longer relevant to me (multi-delete function) |
+|**| Level of experience | new user | have a basic set of flashcards available from the get go | can reduce the setup time or reduce the need for setup
+|**| Multiple language user | user who is learning multiple languages | be able to combine flashcards of the same question in different languages | can test myself in all the languages that I have learnt in one go
+|**| Usage patterns | frequent user | be able to jumble up my flashcards | am really testing my vocabulary instead of just memorising without really knowing the vocabulary
+|**| User collaboration | helpful user | be able to export and share my flashcards with my friends | can help them save time in generating their own set of flashcards (and they can help me too!)
+|*| General user | user | be able to tag my flashcards under the categories I specify (e.g. easy, medium, for fun, nouns, etc.) | organise my flashcards easily
+|*| General user | user | see the summary statistics over a period of time | can track my progress
+|*| General user | user | use the app in another language |
+|*| Level of experience | expert user | be able to set up questions in batches | can prepare flashcards faster
+|*| Level of experience | long-time user | be able to archive my flashcards that I may not have used for a long time | can retrieve them in future should I want to use them
+|*| Level of experience | long-time user | be able to delete flashcards that have not been used for over a year | only have the flashcards that are relevant to me
+|*| Level of experience | long-time user | be able to quickly search through my large library of cards easily and quickly |
+|*| Level of experience | new user | have intuitive UI and commands | can get started easily
 |*| Multiple language user | user who is learning multiple languages | be able to load different question sets and store my questions in different files |
-|*| Multiple language user | user who is learning multiple languages | be able to combine flashcards of the same question in different languages | can test myself in all the languages that I have learnt in one go
-|*| User learning style | auditory user | hear the vocabulary that I stored in the flashcard | can better memorize the words by sound
-|*| User learning style | visual learner | use pictures instead of words as the question part of my flashcard | can remember the vocabulary easier
-|*| User learning style | visual learner | color code my flashcards | can better memorize the words by category
+|*| Usage patterns | active user with hundred of cards already made | be automatically given a list of cards to test my memory | can efficiently expand my vocabulary
+|*| Usage patterns | forgetful user (who forgets about LingoGO!) | be reminded about using flashcards | can be actively learning new vocabularies instead of just cramming them at the last minute
+|*| Usage patterns | frequent user | be able to load up cards done x days ago | can test my memory retention of the words I learned that day
+|*| User behaviours | mobile user | be able to access my cards wherever I am, on the go |
+|*| User behaviours | organised user (who prepares flashcards based on languages) | I want to be able to combine different decks of flashcards | can prepare for my major exams (eg. mid-terms, finals)
+|*| User behaviours | user who learns better when things are in hardcopy | have a convenient way to print out the flashcards | do not have to manually format the card design
+|*| User behaviours | user who seeks improvement | see the progress made in terms of scores | can visualize my improvement
+|*| User collaboration | competitive user | be able to compete with my friends based on how fast and how mnay flashcards we can get correct | will be more motivated to learn
 |*| User learning 'rate' | slow/fast learner | adjust the frequency at which the cards will be tested | can better suit my pace of learning
 |*| User learning 'rate' | slow learner | have cards with words I don't remember to be shown more often to reinforce my learning |
-|*| Level of experience | long-time user | be able to delete flashcards that have not been used for over a year | only have the flashcards that are relevant to me
-|***| Level of experience | new user | be guided through the set-up process of a flashcard | can use LingoGo! Properly
-|*| Level of experience | new user | have intuitive UI and commands | can get started easily
-|*| Level of experience | new user | have a basic set of questions available from the get go | can reduce the setup time or reduce the need for setup
-|*| Level of experience | long-time user | be able to archive my flashcards that I may not have used for a long time | can retrieve them in future should I want to use them
-|*| Level of experience | long-time user | be able to quickly search through my large library of cards easily and quickly |
-|*| Level of experience | expert user | be able to set up questions in batches | can prepare flashcards faster
-|*| Level of experience | experienced user | be able to delete multiple flashcards that are no longer relevant to me (multi-delete function) |
-|*| User collaboration | helpful user | be able to export and share my flashcards with my friends | can help them save time in generating their own set of flashcards (and they can help me too!)
-|*| User collaboration | competitive user | be able to compete with my friends based on how fast and how mnay flashcards we can get correct | will be more motivated to learn
+|*| User learning style | auditory user | hear the vocabulary that I stored in the flashcard | can better memorize the words by sound
+|*| User learning style | visual learner | color code my flashcards | can better memorize the words by category
+|*| User learning style | visual learner | use pictures instead of words as the question part of my flashcard | can remember the vocabulary easier
 
-### Use cases
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix C: Use Cases**
 
 (For all use cases below, the **System** is `LingoGO!` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a flashcard**
+### Use Case: Add a Flashcard
 
 **Guarantees**
 * A flashcard is added only if all of its information is provided.
@@ -366,7 +370,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 
       Use case resumes at step 1.
 
-**Use case: Delete a flashcard**
+### Use Case: Delete a Flashcard
 
 **MSS**
 1. User requests to list out all flashcards.
@@ -386,7 +390,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 
       Use case resumes at step 2.
 
-**Use case: Edit a flashcard**
+### Use Case: Edit a Flashcard
 
 **Guarantees**
 * A flashcard will be edited only if the edited information provided is valid.
@@ -420,7 +424,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 
       Use case resumes at step 2.
 
-**Use case: Flip a flashcard**
+### Use Case: Flip a Flashcard
 
 **MSS**
 1. User requests to toggle whether a flashcard’s answer can be seen.
@@ -434,7 +438,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 
       Use case resumes at step 1.
 
-**Use case: Find a flashcard**
+### Use Case: Find a Flashcard
 
 **MSS**
 1. User requests to find a flashcard based on its English or Foreign value.
@@ -448,7 +452,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 
       Use case resumes at step 1.
 
-**Use case: Test a user**
+### Use Case: Test a User
 
 **Preconditions: Flashcard tested is not showing its answer.**
 
@@ -469,7 +473,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 
       Use case resumes at step 1.
 
-**Use case: Import flashcards**
+### Use Case: Import Flashcards
 
 **Guarantees**
 * Flashcards will only be imported if the information provided is complete.
@@ -496,7 +500,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 
       Use case resumes from step 3, with LingoGO! skipping the creation and addition of the duplicate flashcards.
 
-**Use case: Export flashcards**
+### Use Case: Export Flashcards
 
 **MSS**
 1. User requests to export all flashcards.
@@ -516,7 +520,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 
       Use case ends.
 
-**Use case: Request for help**
+### Use Case: Request for Help
 
 **MSS**
 1. User requests for help.
@@ -524,26 +528,27 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 
    Use case ends.
 
-### Non-Functional Requirements
+--------------------------------------------------------------------------------------------------------------------
+
+
+## **Appendix D: Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 flashcards without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be usable to someone who has never used flashcards before.
 
+--------------------------------------------------------------------------------------------------------------------
 
-
-### Glossary
+## **Appendix E: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Flashcard**: A memory aid that users can use to input a phrase or word in the language that they are learning
   along with a hidden translation
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+# **Appendix F: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -552,40 +557,39 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launch and Shutdown
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file <br> 
+       Expected: Shows the GUI with a set of sample flashcards. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file<br>
        Expected: The most recent window size and location is retained.
+   
 
-1. _{ more test cases …​ }_
+### Deleting a Flashcard
 
-### Deleting a person
+1. Deleting a flashcard while all flashcards are listed
 
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards are in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First flashcard is deleted from the list. Details of the deleted flashcard (e.g. Language type, English Phrase, Foreign Phrase) shown in the command result. Command box will be cleared.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No flashcard is deleted. Error details (e.g. Error type and Message Usage) shown in the command result. The `delete 0` command will remain in the command box.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
+<!---
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -593,3 +597,4 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+-->
