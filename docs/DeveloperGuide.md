@@ -9,16 +9,16 @@ title: Developer Guide
 
 ## **About LingoGO!**
 
-LingoGO! is a **desktop app for university students who use English as their first language and are trying to learn a
-new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a
-Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared
+LingoGO! is a **desktop app** for **university students who use English as their first language** and are trying to **learn a
+new language**, optimized for use via a **Command Line Interface (CLI)** while still having the **benefits of a
+Graphical User Interface (GUI)**. With digital flashcards, LingoGO! can make learning faster and more convenient compared
 to using traditional flashcards.
 
 LingoGO! currently supports *all languages* that can be represented on a computer and has the following main features:
 * Addition, deletion, and editing of flashcards.
 * Finding and filtering of flashcards by keywords and conditions.
 * Importing and exporting of flashcards to be shared with others.
-* Testing a user's knowledge on their flashcards.
+* Testing a user's knowledge in a questionnaire of flashcards.
 
 ## **Purpose of the developer guide**
 
@@ -26,18 +26,19 @@ This developer guide is meant for budding software developers who want to learn 
 contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
 
 ## **How to use the developer guide**
-
+<!-- CHANGE LINKS -->
 * A [*Table of Contents*](#) with clickable links can be found above to help with navigating across the user guide quickly.
 * To set up your development environment, refer to the guide on [*Setting up and getting started*](#setting-up-getting-started).
-* For a high level overview of the design of the application, refer to the [*Design*](#design) section.
-* For a lower level, more in depth look at some of the features implemented in LingoGO!, refer to the [*Implementation*](#implementation) section.
+* For a high level overview of the design of the application, refer to the [*Overall Design*](#overall-design) section.
+* For a lower level, more in depth look at some of the features implemented in LingoGO!, refer to the [*Feature Implementation*](#feature-implementation) section.
 * To better understand the documentation practices of the project, refer to the [*Documentation guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Documentation.html).
 * To better understand the testing methods used in the project, refer to the [*Testing guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Testing.html).
 * To better understand the tools available to you as a developer, refer to the [*Logging guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Logging.html),
   [*Configuration guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Configuration.html), and [*DevOps Guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/DevOps.html).
-* For a list of requirements that LingoGO! has to meet/is planning to meet, refer to the [*Requirements*](#appendix-requirements) section.
-* A [Glossary](#glossary) is provided to help explain certain important terms used in this guide.
-* For instructions on manual testing, refer to the [*Manual testing*](#appendix-instructions-for-manual-testing) section.
+* For a list of requirements that LingoGO! has to meet/is planning to meet, refer to [*Appendix B: User Stories*](#appendix-b-user-stories),
+  [*Appendix C: Use Cases*](#appendix-c-use-cases), and [*Appendix D: Non-Functional Requirements*](#appendix-d-non-functional-requirements).
+* A [Glossary](#appendix-e-glossary) is provided to help explain certain important terms used in this guide.
+* For instructions on manual testing, refer to the [*Manual testing*](#appendix-f-instructions-for-manual-testing) section.
 
 ## **Acknowledgements**
 
@@ -65,21 +66,23 @@ This section gives an overview of the software architecture of the system, and d
 
 ### Architecture
 
-The **Architecture Diagram** given below explains the high-level design of the App.
+The *Architecture Diagram* below explains the high-level design of the app.
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-Given below is a quick overview of main components and how they interact with each other.
-
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/MainApp.java). It is responsible for:
+Given below is a quick overview of the main components and how they interact with each other.
+
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/Main.java)
+and [`MainApp`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/MainApp.java).
+It has the following responsibilities:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the app consists of **four components**.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
@@ -93,96 +96,111 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Each of the four main components (also shown in the diagram above),
+Each of the four main components (also shown in the diagram above):
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* Defines its API in an interface with the same name as the component.
+* Implements its functionality using a concrete `{Component Name}Manager` class, which follows the corresponding API interface in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
+the `LogicManager.java` class, which follows the `Logic` interface. Other components interact with a given component
+through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component),
+
+We can see an illustration of this in the (partial) *Class Diagram* below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The sections below give more details of each component.
+The sections below give more details on each component.
 
 ### UI component
 
-The UI component contains the logic for the graphical user interface (GUI) that users see.
+**API** : [`Ui.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/ui/Ui.java)
 
-The **API** of this component is specified in
-[`Ui.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/ui/Ui.java), and the overall class diagram for this component can be found below.
+The `UI` component contains the logic for the graphical user interface (GUI) that users see.
+
+An overall *Class Diagram* for this component can be found below:
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI component consists of a `MainWindow` that is made up of several sub-components (e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`,
+The `UI` component consists of a `MainWindow` that is made up of several sub-components (e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`,
 `StatusBarFooter`, etc.) which come together to make up the entire user interface. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
 that are in the `src/main/resources/view` folder. For example, the layout of the
 [`MainWindow`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/ui/MainWindow.java)
-is specified in
-[`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `UI` component:
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Flashcard` objects residing in the `Model`.
+* Executes user commands using the `Logic` component.
+* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* Depends on some classes in the `Model` component, as it displays `Flashcard` objects residing in the `Model`.
 
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+The `Logic` component is responsible for the overall flow of the commands in LingoGO!, linking `UI`, `Model`, and `Storage` together.
+
+A (partial) *Class Diagram* of the `Logic` component can be found below:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `FlashcardAppParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This creates a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a flashcard).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated in a `CommandResult` object which is returned by `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The *Sequence Diagram* below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+Here are the other classes in `Logic` (omitted from the *Class Diagram* above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `FlashcardAppParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FlashcardAppParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `FlashcardAppParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`)
+* `XYZCommandParser` uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FlashcardAppParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible (e.g., during testing).
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/model/Model.java)
+
+The `Model` component holds the data of LingoGO! in memory while the app is running.
+
+A *Class Diagram* of the `Model` component can be found below:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+The `Model` component:
 
-The `Model` component,
-
-* stores the flashcard app data i.e., all `Flashcard` objects (which are contained in a `UniqueFlashcardList` object).
-* stores the currently 'selected' `Flashcard` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores the slideshow app data i.e., all `Flashcard` objects in the slideshow (which are contained in a `Slideshow` object).
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* Stores the flashcard app data i.e., all `Flashcard` objects (which are contained in a `UniqueFlashcardList` object).
+* Stores the currently 'selected' `Flashcard` objects (e.g., results of a search query) as a **separate filtered list** which is exposed as an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the `UI` can be bound to this list so that the `UI` automatically updates when the data in the list changes.
+* Stores the slideshow app data i.e., all `Flashcard` objects in the slideshow (which are contained in a `Slideshow` object).
+* Stores a `UserPref` object that represents the user’s preferences. This is exposed as a `ReadOnlyUserPref` object.
+* Does not depend on any of the other three components (as the `Model` represents data entities of the domain, it should make sense on its own without depending on other components).
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/storage/Storage.java)
 
+The `Storage` component stores all of LingoGO!'s data so that it can be saved and retrieved in subsequent runs of the app.
+
+A *Class Diagram* of the `Storage` component can be found below:
+
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `FlashcardAppStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+The `Storage` component:
+* Can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+* Inherits from both `FlashcardAppStorage` and `UserPrefStorage`, which means it can be treated as either one (if the functionality of only one is needed).
+* Depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -323,16 +341,17 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ## **Appendix A: Product Scope**
 
-### Target user profile:
+### Target user profile
 
-**University students**
-* whose first language is English
-* who are learning a new language
+University students
+* Whose first language is English
+* Who are learning a new language
 
-### Value proposition:
-* Fast way to generate flashcards to learn new languages
-* Help students memorise words when learning a new language
-* Gamified features such as recording of scores and tracking of improvements to make learning engaging and encourage continued usage
+### Value proposition
+
+* Fast way to generate flashcards to learn new languages.
+* Help students memorise words when learning a new language.
+* Gamified features such as recording of scores and tracking of improvements to make learning engaging and encourage continued usage.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -386,7 +405,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 (For all use cases below, the **System** is `LingoGO!` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use Case: Add a Flashcard
+### Add a flashcard
 
 **Guarantees**
 * A flashcard is added only if all of its information is provided.
@@ -409,7 +428,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
       Use case resumes at step 1.
 
-### Use Case: Delete a Flashcard
+### Delete a flashcard
 
 **MSS**
 1. User requests to list out all flashcards.
@@ -429,7 +448,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
       Use case resumes at step 2.
 
-### Use Case: Edit a Flashcard
+### Edit a flashcard
 
 **Guarantees**
 * A flashcard will be edited only if the edited information provided is valid.
@@ -463,21 +482,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
       Use case resumes at step 2.
 
-### Use Case: Flip a Flashcard
-
-**MSS**
-1. User requests to toggle whether a flashcard’s answer can be seen.
-2. LingoGO! toggles the visibility of the flashcard’s answer.
-
-   Use case ends.
-
-**Extensions**
-* 1a. The given index is invalid.
-    * 1a1. LingoGO! shows an error message.
-
-      Use case resumes at step 1.
-
-### Use Case: Find a Flashcard
+### Find a flashcard
 
 **MSS**
 1. User requests to find a flashcard based on its English or Foreign value.
@@ -491,28 +496,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
       Use case resumes at step 1.
 
-### Use Case: Test a User
-
-**Preconditions: Flashcard tested is not showing its answer.**
-
-**MSS**
-1. User provides an answer to a flashcard.
-2. LingoGO! shows the user whether their answer is correct or not.
-
-   Use case ends.
-
-**Extensions**
-* 1a. The given index is invalid.
-    * 1a1. LingoGO! shows an error message.
-
-      Use case resumes at step 1.
-
-* 1b. The user does not provide an answer.
-    * 1b1. LingoGO! shows an error message.
-
-      Use case resumes at step 1.
-
-### Use Case: Import Flashcards
+### Import flashcards
 
 **Guarantees**
 * Flashcards will only be imported if the information provided is complete.
@@ -539,7 +523,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
       Use case resumes from step 3, with LingoGO! skipping the creation and addition of the duplicate flashcards.
 
-### Use Case: Export Flashcards
+### Export flashcards
 
 **MSS**
 1. User requests to export all flashcards.
@@ -559,7 +543,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
       Use case ends.
 
-### Use Case: Request for Help
+### Getting help
 
 **MSS**
 1. User requests for help.
@@ -600,7 +584,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    2. Double-click the jar file <br>
        Expected: Shows the GUI with a set of sample flashcards. The window size may not be optimum.
@@ -627,6 +611,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+_{ more test cases to be added in future …​ }_
 
 <!---
 ### Saving data
