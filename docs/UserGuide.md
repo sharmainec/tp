@@ -205,8 +205,8 @@ Exports flashcards from LingoGO! to a CSV file.
 Format: `export FILE_NAME`
 
 * Provides a file name with .csv extension in which the flash cards will be stored and exported.
-* The exported file will be added to the `data` folder in a CSV format.
-* The CSV file will have 2 columns. The first column is for the English phrase, and the second column is for the foreign phrase.
+* The exported file will be added to the `data` folder (located in the same folder as the lingogo.jar file).
+* The CSV file will have 3 columns in the order of Language type, Foreign phrase, and English phrase.
 
 Examples:
 * `export myCards.csv` will save all cards in LingoGO! to a CSV file named `myCards.csv`.
@@ -270,14 +270,14 @@ Format: `import CSV_FILE_PATH`
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about `CSV_FILE_PATH`:**<br>
-* Users with no knowledge about file paths can just place the CSV file in the `data` folder and fill the `CSV_FILE_PATH` parameter with the CSV file's name.
+* Users with no knowledge about file paths can just place the CSV file in the `root` folder and fill the `CSV_FILE_PATH` parameter with the CSV file's name.
 </div>
 
-* The CSV file must have **2 columns**. The first column is for the English phrase, and the second column is for the foreign phrase.
+* The CSV file must have **3 columns** in the order of Language type, Foreign phrase, and English phrase.
   ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
-* `import ./dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
+* `import dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
 
 
 ### Listing all flashcards : `list`
