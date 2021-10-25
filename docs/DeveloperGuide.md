@@ -7,9 +7,44 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **About LingoGO!**
+
+LingoGO! is a **desktop app for university students who use English as their first language and are trying to learn a
+new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a
+Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared
+to using traditional flashcards.
+
+LingoGO! currently supports *all languages* that can be represented on a computer and has the following main features:
+* Addition, deletion, and editing of flashcards.
+* Finding and filtering of flashcards by keywords and conditions.
+* Importing and exporting of flashcards to be shared with others.
+* Testing a user's knowledge on their flashcards.
+
+## **Purpose of the developer guide**
+
+This developer guide is meant for budding software developers who want to learn more about LingoGO!'s architecture,
+contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
+
+## **How to use the developer guide**
+
+* A [*Table of Contents*](#) with clickable links can be found above to help with navigating across the user guide quickly.
+* To set up your development environment, refer to the guide on [*Setting up and getting started*](#setting-up-getting-started).
+* For a high level overview of the design of the application, refer to the [*Design*](#design) section.
+* For a lower level, more in depth look at some of the features implemented in LingoGO!, refer to the [*Implementation*](#implementation) section.
+* To better understand the documentation practices of the project, refer to the [*Documentation guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Documentation.html).
+* To better understand the testing methods used in the project, refer to the [*Testing guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Testing.html).
+* To better understand the tools available to you as a developer, refer to the [*Logging guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Logging.html),
+  [*Configuration guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Configuration.html), and [*DevOps Guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/DevOps.html).
+* For a list of requirements that LingoGO! has to meet/is planning to meet, refer to the [*Requirements*](#appendix-requirements) section.
+* A [Glossary](#glossary) is provided to help explain certain important terms used in this guide.
+* For instructions on manual testing, refer to the [*Manual testing*](#appendix-instructions-for-manual-testing) section.
+
 ## **Acknowledgements**
 
-* This project was originally adapted from [AddressBook-Level3 (AB3)](https://se-education.org/addressbook-level3/)
+This project was originally adapted from [AddressBook-Level3 (AB3)](https://se-education.org/addressbook-level3/).
+
+Third party libraries used:
+* [OpenCSV](http://opencsv.sourceforge.net/) - Reading and writing CSV files.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -19,7 +54,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **Overall Design**
+
+This section gives an overview of the software architecture of the system, and details on how each major component functions.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -28,15 +65,15 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+The **Architecture Diagram** given below explains the high-level design of the App.
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+<img src="images/ArchitectureDiagram.png" width="280" />
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/MainApp.java). It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +106,15 @@ The sections below give more details of each component.
 
 ### UI component
 
+The UI component contains the logic for the graphical user interface (GUI) that users see. 
+
 The **API** of this component is specified in
-[`Ui.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/ui/Ui.java), and the overall class diagram for this component can be found below.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`,
-`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+The UI component consists of a `MainWindow` that is made up of several sub-components (e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`,
+`StatusBarFooter`, etc.) which come together to make up the entire user interface. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
@@ -151,7 +190,7 @@ Classes used by multiple components are in the `lingogo.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Feature Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -191,7 +230,7 @@ the lifeline reaches the end of diagram.
 ![SetFilterReferenceSequenceDiagram](images/filterCommand/SetFilterReferenceSequenceDiagram.png)
 
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Number of filter conditions that users can input per command:**
 
@@ -256,7 +295,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to search in foreign language:**
 

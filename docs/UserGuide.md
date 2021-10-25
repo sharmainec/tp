@@ -11,7 +11,7 @@ title: User Guide
 LingoGO! is a **desktop app for university students who use English as their first language and are trying to learn a new language, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With digital flashcards, LingoGO! can make learning faster and more convenient compared to using traditional flashcards.
 
 LingoGO! currently supports *all languages* that can be represented on your computer and has the following main features:
-* Addition, deletion, and editing of flashcards
+* Addition, deletion, and editing of flashcards.
 * Finding and filtering of flashcards by keywords and conditions.
 * Importing and exporting of flashcards to be shared with others.
 * Testing your knowledge on your flashcards.
