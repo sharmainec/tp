@@ -59,20 +59,20 @@ New users can refer to the [Quick Start](#quick-start) guide for a quick set-up 
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `LANGUAGE`, `ENGLISH_PHRASE`, and `FOREIGN_PHRASE` are parameters which can be used as `add l/Chinese e/Good Morning f/早安`.
+* Words in `UPPER_CASE` are the parameters to be supplied by you.
+  * e.g. a usage of `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` could be `add l/Chinese e/Good Morning f/早安`.
 
-* Items in square brackets are optional.<br>
-  e.g. `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or as `edit 1 l/Chinese` or as `edit 1 f/早安` or as `edit 1 e/Good Morning`
+* Items in square brackets are optional.
+  * e.g. `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or `edit 1 e/Good Morning`.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `f/FOREIGN_PHRASE l/LANGUAGE e/ENGLISH_PHRASE` is also acceptable.
+* Parameters can be in any order.
+  * e.g. if the command specifies `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `add f/FOREIGN_PHRASE l/LANGUAGE e/ENGLISH_PHRASE` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `edit 2 e/Hi e/Hello`, only `e/Hello` will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.
+  * e.g. `edit 2 e/Hi e/Hello` is the same as `edit 2 e/Hello`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit`, and `clear`) will be ignored.
+  * e.g. `help 123` is the same as `help`.
 
 </div>
 
