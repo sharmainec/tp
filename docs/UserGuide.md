@@ -18,7 +18,7 @@ LingoGO! currently supports **all languages that can be represented on your comp
 * Addition, deletion, and editing of flashcards.
 * Finding and filtering of flashcards by keywords and conditions.
 * Importing and exporting of flashcards to be shared with others.
-* Testing your knowledge on your flashcards.
+* Testing your knowledge in a questionnaire of flashcards.
 
 Detailed information about these features can be found under the [Modes](#modes) and [Commands](#commands) sections below.
 
