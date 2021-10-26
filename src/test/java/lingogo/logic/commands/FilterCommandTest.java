@@ -8,7 +8,9 @@ import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static lingogo.logic.commands.FilterCommand.FilterBuilder;
 import static lingogo.testutil.TypicalFlashcards.AFTERNOON_CHINESE_FLASHCARD;
+import static lingogo.testutil.TypicalFlashcards.BYE_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.NIGHT_CHINESE_FLASHCARD;
+import static lingogo.testutil.TypicalFlashcards.SORRY_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.SUNRISE_TAMIL_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,15 +41,24 @@ public class FilterCommandTest {
     public void equals() {
 
         FilterBuilder firstFilterBuilder =
-            new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(VALID_LANGUAGE_TYPE_CHINESE).build();
+                new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(VALID_LANGUAGE_TYPE_CHINESE)
+                .withRange(2, 4).build();
         FilterBuilder firstFilterBuilderAgain =
-            new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(VALID_LANGUAGE_TYPE_CHINESE).build();
+                new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(VALID_LANGUAGE_TYPE_CHINESE)
+                .withRange(2, 4).build();
         FilterBuilder secondFilterBuilder =
-            new FilterBuilderBuilder().withIndexList(1).withLanguagePhrase(VALID_LANGUAGE_TYPE_TAMIL).build();
+                new FilterBuilderBuilder().withIndexList(1).withLanguagePhrase(VALID_LANGUAGE_TYPE_TAMIL)
+                .withRange(1, 3).build();
         FilterBuilder thirdFilterBuilder =
-            new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(VALID_LANGUAGE_TYPE_TAMIL).build();
+                new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(VALID_LANGUAGE_TYPE_TAMIL)
+                .withRange(2, 4).build();
         FilterBuilder fourthFilterBuilder =
-            new FilterBuilderBuilder().withIndexList(1).withLanguagePhrase(VALID_LANGUAGE_TYPE_CHINESE).build();
+                new FilterBuilderBuilder().withIndexList(1).withLanguagePhrase(VALID_LANGUAGE_TYPE_CHINESE)
+                .withRange(2, 4).build();
+        FilterBuilder fifthFilterBuilder =
+            new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(VALID_LANGUAGE_TYPE_CHINESE)
+                .withRange(1, 3).build();
+
 
         FilterCommand firstFilterCommand = new FilterCommand(firstFilterBuilder);
         FilterCommand secondFilterCommand = new FilterCommand(secondFilterBuilder);
@@ -73,8 +84,8 @@ public class FilterCommandTest {
         // null -> returns false
         assertFalse(firstFilterCommand.equals(null));
 
-        // different flashcard -> returns false
-        assertFalse(firstFilterCommand.equals(secondFilterCommand));
+        // different range field -> returns false
+        assertFalse(firstFilterCommand.equals(fifthFilterBuilder));
     }
 
     @Test
@@ -92,8 +103,16 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_failure() {
+    public void execute_invalidIndexInIndexList_failure() {
         FilterBuilder filterBuilder = new FilterBuilderBuilder().withIndexList(6).build();
+        FilterCommand command = new FilterCommand(filterBuilder);
+        assertCommandFailure(command, model, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+    }
+
+
+    @Test
+    public void execute_invalidIndexInRange_failure() {
+        FilterBuilder filterBuilder = new FilterBuilderBuilder().withIndexList(1, 1000).build();
         FilterCommand command = new FilterCommand(filterBuilder);
         assertCommandFailure(command, model, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
@@ -148,10 +167,27 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void execute_selectedIndicesAndLanguage_flashcardsFound() {
+    public void execute_selectedRange_flashcardsFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        FilterBuilder filterBuilder = new FilterBuilderBuilder().withRange(2, 4).build();
+        FilterCommand command = new FilterCommand(filterBuilder);
+        try {
+            expectedModel.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD),
+                model.getFilteredFlashcardList());
+    }
+
+
+
+    @Test
+    public void execute_selectedAllFields_flashcardsFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 1);
         FilterBuilder filterBuilder =
-            new FilterBuilderBuilder().withIndexList(1, 5).withLanguagePhrase("Chinese").build();
+                new FilterBuilderBuilder().withIndexList(1, 5).withLanguagePhrase("Chinese").withRange(1, 5).build();
         FilterCommand command = new FilterCommand(filterBuilder);
         try {
             expectedModel.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
@@ -161,4 +197,6 @@ public class FilterCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(AFTERNOON_CHINESE_FLASHCARD), model.getFilteredFlashcardList());
     }
+
+
 }
