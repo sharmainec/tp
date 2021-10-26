@@ -419,20 +419,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
     * 4b1. LingoGO! shows an error message.
 
       Use case resumes at step 2.
-
-**Use case: Flip a flashcard**
-
-**MSS**
-1. User requests to toggle whether a flashcard’s answer can be seen.
-2. LingoGO! toggles the visibility of the flashcard’s answer.
-
-   Use case ends.
-
-**Extensions**
-* 1a. The given index is invalid.
-    * 1a1. LingoGO! shows an error message.
-
-      Use case resumes at step 1.
+    
 
 **Use case: Find a flashcard**
 
@@ -447,28 +434,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
     * 1a1. LingoGO! shows an error message.
 
       Use case resumes at step 1.
-
-**Use case: Test a user**
-
-**Preconditions: Flashcard tested is not showing its answer.**
-
-**MSS**
-1. User provides an answer to a flashcard.
-2. LingoGO! shows the user whether their answer is correct or not.
-
-   Use case ends.
-
-**Extensions**
-* 1a. The given index is invalid.
-    * 1a1. LingoGO! shows an error message.
-
-      Use case resumes at step 1.
-
-* 1b. The user does not provide an answer.
-    * 1b1. LingoGO! shows an error message.
-
-      Use case resumes at step 1.
-
+    
 **Use case: Import flashcards**
 
 **Guarantees**

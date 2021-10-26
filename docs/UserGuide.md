@@ -43,11 +43,7 @@ LingoGO! is a **desktop app for university students who use English as their fir
    * **`export`**`myCards.csv` : Exports cards from LingoGO! to a CSV file in a file name `myCards.csv`.
 
    * **`exit`** : Exits the app.
-
-   * **`flip`**`2`: Toggles the 2nd flashcard to hide or show the correct English phrase.
-
-   * **`test`**`17`**`e/hello`**: Checks the 17th flashcard's English phrase against the word **`hello`** and then shows whether it is correct.
-
+   
    * **`find`**`Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
    
    * **`filter`**`l/Chinese i/1 2 3` : Filters and shows only the flashcards with the Language type `Chinese` and with indices 1, 2 and 3 in the current displayed list
@@ -215,35 +211,6 @@ Exits the program.
 
 Format: `exit`
 
-### Flipping a flashcard : `flip`
-
-Toggles the flashcard to either show or hide its English phrase.
-
-Format: `flip INDEX`
-
-* Toggles the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the current displayed list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `flip 3` followed by `flip 3` shows and then hides the English phrase for the 3rd flashcard in the current displayed list.
-
-### Testing with a flashcard : `test`
-
-Checks whether the English phrase of a flashcard matches a given phrase.
-
-Format: `test INDEX e/ENGLISH_PHRASE`
-
-* Checks the English phrase of the flashcard at the specified `INDEX` against the given `ENGLISH_PHRASE`.
-* The app will then show user the correct English phrase and tell the user whether he got it right.
-* The index refers to the index number shown in the current displayed list.
-* The index **must be a positive integer** 1, 2, 3, …
-* Testing is only allowed for flashcards that are flipped down (i.e. the English phrase is hidden).
-* `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello").
-
-Examples:
-* `test 4 e/hello` checks the 4th card on display to see if `hello` matches the English phrase of the flashcard.
-
 ### Saving the data
 
 LingoGO! data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -280,6 +247,4 @@ Action | Format, Examples
 **Import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
 **Export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
 **Help** | `help`
-**Flip** | `flip INDEX` <br> e.g.,  `flip 2`
-**Test** | `test INDEX e/ENGLISH_PHRASE` <br> e.g., `test 17 e/hello`
 **Exit** | `exit`
