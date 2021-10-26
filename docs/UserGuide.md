@@ -372,7 +372,7 @@ Action | Format | Example
 **Filter** | `filter [l/LANGUAGE] [i/INDEX_LIST]` | `filter l/Chinese i/1 2 3`
 **Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]` | `find e/Hello f/早`
 **Help** | `help` | `help`
-**Import** | `import CSV_FILE_PATH` | `import ./dictionary.csv`
+**Import** | `import CSV_FILE_PATH` | `import dictionary.csv`
 **List** | `list` | `list`
 **Next** | `next` | `next`
 **Previous** | `previous` | `previous`
