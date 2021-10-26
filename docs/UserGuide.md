@@ -46,7 +46,8 @@ LingoGO! is a **desktop app for university students who use English as their fir
    
    * **`find`**`Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`
    
-   * **`filter`**`l/Chinese i/1 2 3` : Filters and shows only the flashcards with the Language type `Chinese` and with indices 1, 2 and 3 in the current displayed list
+   * **`filter`**`l/Chinese r/1 4 i/1 2 3` : Filters and shows only the flashcards with the Language type `Chinese` and 
+     , within the range of index 1 to 4 and with indices 1, 2 and 3 in the current displayed list
 
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -145,19 +146,24 @@ Examples:
 
 Filters flashcards based on the specified condition(s).
 
-Format: `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]`
+Format: `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST] [r/INDEX_RANGE]`
 
 * `LANGUAGE_TYPE` is not case-sensitive (e.g. "Chinese" matches "CHINESE").
 * `INDEX_LIST` is a list of space separated indices, that refer to the indices shown in the current displayed list.
-*  The indices **must be positive integers** 1, 2, 3, …
+* `INDEX_RANGE` is a pair of space separated indices, that refer to the indices shown in the current displayed list. 
+  The first given index must be smaller or equal to the second given index. e.g. `1 2`, `3 14` are accepted but not `1 2 3` 
+  nor `3 1`.
+* The indices **must be positive integers** 1, 2, 3, …
 
 Examples:
 * `filter l/Chinese` returns all flashcards of `Chinese` language type like `e/Good Morning f/早安`.
 * `filter l/German` returns all flashcards of `German` language type like `e/Good Morning f/Guten Morgen`.
+* `filter r/2 4` returns all flashcards indexed from 2 to 4 in the current displayed list.
 * `filter i/1 2 3` returns flashcards in the current displayed list indexed at 1, 2 and 3.
 * `filter i/1 3 6 l/Tamil` returns all flashcards in the current displayed list indexed at 1, 3 and 6 that are also 
   of `Tamil` language type.
-
+* `filter l/Chinese r/1 4` returns all flashcards indexed from 1 to 4 in the current displayed list that are also of 
+  `Chinese` language type.
 
 ### Deleting a flashcard : `delete`
 
@@ -241,7 +247,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
-**Filter** | `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]`<br> e.g., `filter l/Chinese i/1 2 3`
+**Filter** | `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST] [r/INDEX_RANGE]`<br> e.g., `filter l/Chinese r/1 4 i/1 2 3`
 **Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`<br> e.g., `find e/Hello f/早`
 **List** | `list`
 **Import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
