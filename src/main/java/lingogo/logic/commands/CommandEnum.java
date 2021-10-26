@@ -8,7 +8,6 @@ public enum CommandEnum {
     EXIT,
     FILTER,
     FIND,
-    FLIP,
     HELP,
     LIST,
     IMPORT,

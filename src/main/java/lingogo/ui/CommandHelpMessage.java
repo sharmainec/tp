@@ -13,7 +13,6 @@ import lingogo.logic.commands.ExitCommand;
 import lingogo.logic.commands.ExportCommand;
 import lingogo.logic.commands.FilterCommand;
 import lingogo.logic.commands.FindCommand;
-import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ImportCommand;
 import lingogo.logic.commands.ListCommand;
@@ -74,10 +73,6 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
         case FILTER:
             this.setDisplayText(FilterCommand.COMMAND_WORD, FilterCommand.COMMAND_DESCRIPTION,
                     FilterCommand.COMMAND_USAGE, FilterCommand.COMMAND_EXAMPLES);
-            break;
-        case FLIP:
-            this.setDisplayText(FlipCommand.COMMAND_WORD, FlipCommand.COMMAND_DESCRIPTION, FlipCommand.COMMAND_USAGE,
-                    FlipCommand.COMMAND_EXAMPLES);
             break;
         case HELP:
             this.setDisplayText(HelpCommand.COMMAND_WORD, HelpCommand.COMMAND_DESCRIPTION, HelpCommand.COMMAND_USAGE,

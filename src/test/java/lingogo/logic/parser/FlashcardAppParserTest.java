@@ -28,7 +28,6 @@ import lingogo.logic.commands.ExitCommand;
 import lingogo.logic.commands.ExportCommand;
 import lingogo.logic.commands.FilterCommand;
 import lingogo.logic.commands.FindCommand;
-import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ListCommand;
 import lingogo.logic.parser.exceptions.ParseException;
@@ -137,13 +136,6 @@ public class FlashcardAppParserTest {
         ExportCommand command = (ExportCommand) parser.parseCommand(
                 ExportCommand.COMMAND_WORD + " " + csvFileName);
         assertEquals(new ExportCommand(csvFileName), command);
-    }
-
-    @Test
-    public void parseCommand_flip() throws Exception {
-        assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " 1") instanceof FlipCommand);
-        assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased())
-                instanceof FlipCommand);
     }
 
     @Test
