@@ -16,5 +16,7 @@ public class Messages {
             + " active!";
     public static final String MESSAGE_FLASHCARD_ALREADY_ANSWERED = "This flashcard has already been answered!";
     public static final String MESSAGE_INDEX_IS_NOT_NON_ZERO_UNSIGNED_INT = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_N = "Input n has to be an integer that is greater than 0 but less than "
+            + "the total number of flashcards in the list";
 
 }

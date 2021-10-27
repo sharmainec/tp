@@ -2,7 +2,9 @@ package lingogo.logic.parser;
 
 import static lingogo.commons.util.StringUtil.isNonZeroUnsignedInteger;
 
+import lingogo.commons.core.Messages;
 import lingogo.logic.commands.ListCommand;
+import lingogo.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new ListCommand object
@@ -13,10 +15,14 @@ public class ListCommandParser implements Parser<ListCommand> {
      * and returns a ListCommand object for execution.
      * @throws NumberFormatException if the user input does not conform the expected format
      */
-    public ListCommand parse(String args) {
+    public ListCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+        System.out.println(trimmedArgs.isEmpty());
+        if (trimmedArgs.isEmpty()) {
+            return new ListCommand(Integer.MAX_VALUE);
+        }
         if (!isNonZeroUnsignedInteger(trimmedArgs)) {
-            return new ListCommand();
+            throw new ParseException(Messages.MESSAGE_INVALID_N);
         }
         int n = Integer.parseInt(trimmedArgs);
         return new ListCommand(n);

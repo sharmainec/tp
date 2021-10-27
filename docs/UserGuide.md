@@ -286,8 +286,8 @@ Action | Format, Examples
 **Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`<br> e.g., `find e/Hello f/早`
 **Filter** | `filter l/LANGUAGE_TYPE`<br> e.g., `filter l/Chinese`
 **List** | `list [NUMBER_OF_FLASHCARDS]` <br> e.g., `list 2`
-**import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
-**export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
+**Import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
+**Export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
 **Help** | `help`
 **Flip** | `flip INDEX` <br> e.g.,  `flip 2`
 **Test** | `test INDEX e/ENGLISH_PHRASE` <br> e.g., `test 17 e/hello`

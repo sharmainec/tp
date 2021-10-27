@@ -2,9 +2,7 @@ package lingogo.logic.commands;
 
 import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static lingogo.logic.commands.CommandTestUtil.showFlashcardAtIndex;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
-import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,15 +27,16 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
+    public void execute_listWithNoIndex_showsSameList() {
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-        assertCommandSuccess(new ListCommand(0), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
-        showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_listWithInvalidIndex_throwsCommandException() {
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_N);
+
+        assertCommandFailure(new ListCommand(0), model, expectedMessage);
+        assertCommandFailure(new ListCommand(-1), model, expectedMessage);
     }
 
     @Test

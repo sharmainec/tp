@@ -355,7 +355,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 * 1a. The given user input is invalid (e.g. `list abc` or `list -1`)
     * 1a1. Lists all flashcards.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 **Use case: Add a flashcard**
 
