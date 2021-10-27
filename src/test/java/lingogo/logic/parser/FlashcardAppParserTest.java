@@ -142,7 +142,7 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_import() throws Exception {
-        String csvFilePath = "src/test/data/SampleCsvFiles/myCards.csv";
+        String csvFilePath = "src/test/data/SampleCsvFiles/exportTest.csv";
         ImportCommand command = (ImportCommand) parser.parseCommand(
                 ImportCommand.COMMAND_WORD + " " + csvFilePath);
         assertEquals(new ImportCommand(csvFilePath), command);
