@@ -9,7 +9,7 @@
     <VBox>
       <StackPane fx:id="flashcardHeaderBarPlaceholder" VBox.vgrow="ALWAYS" styleClass="pane-with-border" />
       <VBox>
-        <ListView fx:id="flashcardListView" VBox.vgrow="ALWAYS" />
+        <ListView fx:id="flashcardListView" VBox.vgrow="ALWAYS" prefHeight="600"/>
       </VBox>
     </VBox>
   </StackPane>
