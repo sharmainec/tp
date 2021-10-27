@@ -3,7 +3,7 @@ package lingogo.logic.commands;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -66,9 +66,8 @@ public class ExportCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         try {
             byte[] generatedCsv = Files.readAllBytes(Path.of("data/" + fileName));
-            byte[] expectedCsv = Files.readAllBytes(Path.of("data/" + fileName));
-            //"src/test/data/SampleCsvFiles/" + fileName));
-            assertArrayEquals(generatedCsv, expectedCsv);
+            byte[] expectedCsv = Files.readAllBytes(Path.of("src/test/data/SampleCsvFiles/" + fileName));
+            assertEquals(new String(generatedCsv), new String(expectedCsv));
         } catch (Exception e) {
             fail("Exception not expected");
         }
