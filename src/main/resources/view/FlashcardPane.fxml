@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS" prefHeight="60" alignment="CENTER" gridLinesVisible="true">
+  <GridPane id="cardGridPane" HBox.hgrow="ALWAYS" prefHeight="60" alignment="CENTER">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="10" halignment="CENTER" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="20" halignment="CENTER" />
@@ -18,22 +18,24 @@
     <rowConstraints>
       <RowConstraints vgrow="SOMETIMES" prefHeight="60" />
     </rowConstraints>
-    <Label fx:id="id" text="ID" GridPane.columnIndex="0">
+    <Label fx:id="id" text="ID" GridPane.columnIndex="0" style="-fx-font-family: 'Open Sans'">
       <padding>
         <Insets left="5.0" right="5.0" />
       </padding>
     </Label>
-    <Label fx:id="language" text="Language" GridPane.columnIndex="1">
+    <Label fx:id="language" text="Language" GridPane.columnIndex="1" style="-fx-font-family: 'Open Sans'">
       <padding>
         <Insets left="5.0" right="5.0" />
       </padding>
     </Label>
-    <Label fx:id="foreignPhrase" text="Foreign Phrase" GridPane.columnIndex="2" wrapText="true">
+    <Label fx:id="foreignPhrase" text="Foreign Phrase" GridPane.columnIndex="2" wrapText="true"
+           style="-fx-font-family: 'Open Sans'">
       <padding>
         <Insets left="5.0" right="5.0" />
       </padding>
     </Label>
-    <Label fx:id="englishPhrase" text="English Phrase" GridPane.columnIndex="3" wrapText="true">
+    <Label fx:id="englishPhrase" text="English Phrase" GridPane.columnIndex="3" wrapText="true"
+           style="-fx-font-family: 'Open Sans'">
       <padding>
         <Insets left="5.0" right="5.0" />
       </padding>

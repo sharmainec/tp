@@ -7,19 +7,20 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="LingoGO!" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="600" minWidth="600" onCloseRequest="#handleExit" title="LingoGO!" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/lingogo_logo.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@Fonts.css"/>
-        <URL value="@DarkTheme.css" />
+        <URL value="@Fonts.css" />
+        <URL value="@LightTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -32,24 +33,29 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+        <StackPane fx:id="logoPlaceholder" VBox.vgrow="NEVER">
+            <ImageView fx:id="logoImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER" style="-fx-background-color: #eaf3fc">
+               <image>
+                  <Image url="@../images/lingogo_logo_text.png" />
+               </image>
+            </ImageView>
+        </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="15" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="120" minHeight="120" prefHeight="120" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="20" left="10" right="10" top="10" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="ALWAYS" fx:id="flashcardListPlaceholder" styleClass="pane-with-border"
-                   minHeight="150" prefHeight="350">
+        <StackPane fx:id="flashcardListPlaceholder" minHeight="150" prefHeight="350" VBox.vgrow="ALWAYS">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
