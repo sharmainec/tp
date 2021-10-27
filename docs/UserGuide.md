@@ -231,9 +231,9 @@ Format: `filter [l/LANGUAGE] [i/INDEX_LIST] [r/INDEX_RANGE]`
 
 * `LANGUAGE` is not **case-sensitive** (e.g. "Chinese" matches "CHINESE").
 * `INDEX_LIST` is a list of space separated indices, that refer to the indices shown in the current displayed list.
-* `INDEX_RANGE` is a pair of space separated indices, that refer to the indices shown in the current displayed list. 
-  The first given index must be smaller or equal to the second given index. e.g. `1 2`, `3 14` are accepted but not `1 2 3` 
-  nor `3 1`.
+* `INDEX_RANGE` is a pair of space separated indices, that refer to the indices shown in the current displayed list.
+  The given range is inclusive, that is `1 3` would refer to the flashcards at indices 1, 2 and 3. Also the first given
+  index must be smaller or equal to the second given index. e.g. `1 2`, `3 14` are accepted but not `1 2 3` nor `3 1`.
 * The indices **must be positive integers** 1, 2, 3, …
 
 Examples:

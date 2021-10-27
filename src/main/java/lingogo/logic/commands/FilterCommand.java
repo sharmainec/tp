@@ -181,7 +181,7 @@ public class FilterCommand extends Command {
 
         @Override
         public int hashCode() {
-            return Objects.hash(languageType, indexList);
+            return Objects.hash(languageType, indexList, indexRangePair);
         }
     }
 }
