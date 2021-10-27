@@ -136,24 +136,84 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `FlashcardAppStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `lingogo.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Filter feature
+
+#### Description
+The filter feature allows users to quickly select a group of flashcards to be shown in the displayed flashcards list 
+of the GUI. This effectively enables users to "prepare" a batch of flashcards for a test session. The command 
+accepts various conditions from the user to filter the flashcards with. (e.g. what type of 
+language, which card indexes).
+
+#### Implementation
+
+The filter feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList` 
+which returns an unmodifiable view of filtered flashcards in the GUI.
+
+The filter feature also relies on a nested `FilterBuilder` class within `FilterCommand`. Multiple filters can be 
+given by the user in one command, however only one predicate (filter) can be accepted by 
+`Model::updateFilteredFlashList` to produce the filtered flashcards. `FilterBuilder` helps by combining multiple 
+predicates into a single predicate.
+
+`FilterBuilder` is also a mutable class which allows processed user inputs to be directly set as variables within a 
+`FilterBuilder` instance. A mutable design is acceptable for `FilterBuilder` since it only has a one-time usage within 
+`FilterCommand`. Furthermore, set-variable methods in `FilterBuilder` reduces the need to add unnecessarily 
+complex constructors or factory methods when more types of filters are added. 
+
+
+The following sequence diagrams shows how the filter operation works:
+
+![FilterSequenceDiagram](images/filterCommand/FilterSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterCommand`, 
+`FilterCommandParser` and `FilterBuilder`should end at the destroy marker (X) but due to a limitation of PlantUML, 
+the lifeline reaches the end of diagram.
+</div>
+
+![SetFilterReferenceSequenceDiagram](images/filterCommand/SetFilterReferenceSequenceDiagram.png)
+
+
+#### Design considerations:
+
+**Aspect: Number of filter conditions that users can input per command:**
+
+* **Alternative 1 (current choice):** Accept multiple conditions per command.
+  * Pros: More convenient for users, creating a better user experience.
+  * Cons: Harder to implement and more difficult to test (due to large permutations of different conditions to 
+    consider).
+
+* **Alternative 2:** Only accept one condition per command.
+  * Pros: Easier to implement.
+  * Cons: Less convenient for users.
+  
+**Aspect: Mutability of `FilterBuilder`**
+
+* **Alternative 1 (current choice):** Make it mutable.
+    * Pros: No need for complex constructors and easier for more types of filters to be added in the future.
+    * Cons: Less defensive code and easier for bugs to arise due to programmer error.
+
+* **Alternative 2:** Make it immutable.
+    * Pros: More defensive code.
+    * Cons: There is a need for multiple constructors to handle optional user inputs due to a lack of set-variable
+      methods. Furthermore `FilterCommandParser` may become needlessly complex.
 
 ### Export feature
 
@@ -208,6 +268,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Only exact match will be output, user will only see flashcards that are exactly the keyword.
   * Cons: Too restrictive, will not output phrases that contains more than the keyword.
 
+
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
