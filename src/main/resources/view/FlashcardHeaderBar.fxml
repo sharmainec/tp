@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <HBox fx:id="flashcardHeaderBar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS" minHeight="30" prefHeight="30" maxHeight="30"
-              alignment="CENTER" gridLinesVisible="false">
+    <GridPane HBox.hgrow="ALWAYS" minHeight="30" prefHeight="30" maxHeight="30" alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="10" halignment="CENTER" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" percentWidth="20" halignment="CENTER" />
@@ -29,12 +28,14 @@
                 <Insets left="5.0" right="5.0" />
             </padding>
         </Label>
-        <Label styleClass="label-bright" fx:id="foreignPhrase" text="Foreign Phrase" GridPane.columnIndex="2" wrapText="true">
+        <Label styleClass="label-bright" fx:id="foreignPhrase" text="Foreign Phrase" GridPane.columnIndex="2" 
+               wrapText="true">
             <padding>
                 <Insets left="5.0" right="5.0" />
             </padding>
         </Label>
-        <Label styleClass="label-bright" fx:id="englishPhrase" text="English Phrase" GridPane.columnIndex="3" wrapText="true">
+        <Label styleClass="label-bright" fx:id="englishPhrase" text="English Phrase" GridPane.columnIndex="3" 
+               wrapText="true">
             <padding>
                 <Insets left="5.0" right="5.0" />
             </padding>
