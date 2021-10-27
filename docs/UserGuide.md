@@ -66,13 +66,9 @@ This user guide aims to help users familiarise themselves with the commands of L
 
 ## Modes
 
-<<<<<<< HEAD
-   * **`list`**`3` : Randomly selects 3 flashcards to be shown in the current displayed list.
-=======
 LingoGO! has 2 modes:
 1. [List mode](#list-mode)
 1. [Slideshow mode](#slideshow-mode)
->>>>>>> 61b7793de97cc35288b1f92cdcd367eaea72fb21
 
 ### List mode
 
@@ -163,19 +159,6 @@ Examples:
 * `answer e/hello` checks the English phrase of the flashcard on display to see if `hello` matches it.
 
 
-<<<<<<< HEAD
-Shows a list of flashcards in LingoGO!.
-
-Format: `list [NUMBER_OF_FLASHCARDS]`
-
-* Lists all flashcards in LingoGO!. 
-* If `[NUMBER_OF_FLASHCARDS]` is present, randomly select `[NUMBER_OF_FLASHCARDS]` flashcards to be shown in the current displayed list. The `[NUMBER_OF_FLASHCARDS]` **must be a positive integer** 1, 2, 3, …
-* If `[NUMBER_OF_FLASHCARDS]` is larger than the size of the current displayed list, list all flashcards in LingGO!.
-
-Examples:
-* `list`
-* `list 4`
-=======
 ### Clearing all flashcards : `clear`
 
 Clears all flashcards from LingoGO!.
@@ -197,7 +180,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd flashcard in LingoGO!.
 * `find Hello` followed by `delete 1` deletes the 1st flashcard from the results of the `find` command.
 
->>>>>>> 61b7793de97cc35288b1f92cdcd367eaea72fb21
 
 ### Editing a flashcard : `edit`
 
@@ -314,11 +296,19 @@ Examples:
 * `import dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
 
 
-### Listing all flashcards : `list`
+### Listing all flashcards : `list [INDEX]`
 
-Shows a list of all flashcards in LingoGO!.
+Shows a list of flashcards in LingoGO!.
 
-Format: `list`
+Format: `list [NUMBER_OF_FLASHCARDS]`
+
+* Lists all flashcards in LingoGO! if `[NUMBER_OF_FLASHCARDS]` is not provided
+* Randomly select `[NUMBER_OF_FLASHCARDS]` flashcards to be shown in the [list mode](#list-mode)
+* The `[NUMBER_OF_FLASHCARDS]` **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` returns all flashcards in LingoGO!.
+* `list 3` returns 3 randomly selected flashcards in LingoGO!
 
 
 ### Moving to the next flashcard in slideshow mode : `next`
@@ -387,24 +377,6 @@ For more on file paths, you may want to visit [here](https://docs.oracle.com/jav
 
 ## Command summary
 
-<<<<<<< HEAD
-Action | Format, Examples
---------|------------------
-**Add** | `add l/LANGUAGE_TYPE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` <br> e.g., `add l/Chinese e/Good Morning f/早安`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`<br> e.g.,`edit 2 f/Guten Morgen`
-**Filter** | `filter [l/LANGUAGE_TYPE] [i/INDEX_LIST]`<br> e.g., `filter l/Chinese i/1 2 3`
-**Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`<br> e.g., `find e/Hello f/早`
-**Filter** | `filter l/LANGUAGE_TYPE`<br> e.g., `filter l/Chinese`
-**List** | `list [NUMBER_OF_FLASHCARDS]` <br> e.g., `list 2`
-**Import** | `import CSV_FILE_PATH`<br> e.g., `import ./dictionary.csv`
-**Export** | `export FILE_NAME`<br> e.g., `export myCards.csv`
-**Help** | `help`
-**Flip** | `flip INDEX` <br> e.g.,  `flip 2`
-**Test** | `test INDEX e/ENGLISH_PHRASE` <br> e.g., `test 17 e/hello`
-**Exit** | `exit`
-=======
 Action | Format | Example
 --------|----------|--------
 **Add** | `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` | `add l/Chinese e/Good Morning f/早安`
@@ -418,9 +390,8 @@ Action | Format | Example
 **Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]` | `find e/Hello f/早`
 **Help** | `help` | `help`
 **Import** | `import CSV_FILE_PATH` | `import dictionary.csv`
-**List** | `list` | `list`
+**List** | `list [NUMBER_OF_FLASHCARDS]` | `list 4`
 **Next** | `next` | `next`
 **Previous** | `previous` | `previous`
 **Slideshow** | `slideshow` | `slideshow`
 **Stop** | `stop` | `stop`
->>>>>>> 61b7793de97cc35288b1f92cdcd367eaea72fb21

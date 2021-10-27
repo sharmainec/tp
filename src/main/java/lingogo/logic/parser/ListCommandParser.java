@@ -19,7 +19,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         String trimmedArgs = args.trim();
         System.out.println(trimmedArgs.isEmpty());
         if (trimmedArgs.isEmpty()) {
-            return new ListCommand(Integer.MAX_VALUE);
+            return new ListCommand();
         }
         if (!isNonZeroUnsignedInteger(trimmedArgs)) {
             throw new ParseException(Messages.MESSAGE_INVALID_N);

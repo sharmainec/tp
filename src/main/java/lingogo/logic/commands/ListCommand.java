@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static lingogo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -27,14 +28,14 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all flashcards";
     public static final String MESSAGE_SUCCESS_SHUFFLED = "Randomly selected %1$d flashcard(s) to be listed";
 
-    private final int n;
+    private final Optional<Integer> input;
 
     public ListCommand() {
-        this.n = Integer.MAX_VALUE;
+        this.input = Optional.empty();
     }
 
     public ListCommand(int n) {
-        this.n = n;
+        this.input = Optional.of(n);
     }
 
     @Override
@@ -48,17 +49,19 @@ public class ListCommand extends Command {
 
         List<Flashcard> lastShownList = model.getFilteredFlashcardList();
         int size = lastShownList.size();
-        if (n == Integer.MAX_VALUE) {
+        if (input.isEmpty()) {
             return new CommandResult(MESSAGE_SUCCESS);
+        } else {
+            int n = input.get();
+            if (n > size || n <= 0) { // show all flashcards
+                throw new CommandException(Messages.MESSAGE_INVALID_N);
+            }
+            List<Flashcard> filteredList = chooseRandomFlashcards(n, size, lastShownList);
+            assert filteredList != null;
+            model.updateFilteredFlashcardList(new FlashcardInGivenFlashcardListPredicate(filteredList));
+            return new CommandResult(
+                    String.format(MESSAGE_SUCCESS_SHUFFLED, model.getFilteredFlashcardList().size()));
         }
-        if (n > size || n <= 0) { // show all flashcards
-            throw new CommandException(Messages.MESSAGE_INVALID_N);
-        }
-        List<Flashcard> filteredList = chooseRandomFlashcards(n, size, lastShownList);
-        assert filteredList != null;
-        model.updateFilteredFlashcardList(new FlashcardInGivenFlashcardListPredicate(filteredList));
-        return new CommandResult(
-                String.format(MESSAGE_SUCCESS_SHUFFLED, model.getFilteredFlashcardList().size()));
     }
 
     private List<Flashcard> chooseRandomFlashcards(int n, int size, List<Flashcard> flashcardList) {

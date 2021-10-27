@@ -405,7 +405,6 @@ University students
 
 (For all use cases below, the **System** is `LingoGO!` and the **Actor** is the `user`, unless specified otherwise)
 
-<<<<<<< HEAD
 **Use case: List flashcards**
 
 **MSS**
@@ -421,9 +420,6 @@ University students
       Use case ends.
 
 **Use case: Add a flashcard**
-=======
-### Add a flashcard
->>>>>>> 61b7793de97cc35288b1f92cdcd367eaea72fb21
 
 **Guarantees**
 * A flashcard is added only if all of its information is provided.
