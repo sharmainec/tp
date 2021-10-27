@@ -161,9 +161,13 @@ public class FilterCommand extends Command {
             Predicate<Flashcard> languageTypeFilter = buildLanguageTypeFilter();
             Predicate<Flashcard> indexFilter = buildIndexFilter(model);
             Predicate<Flashcard> rangeFilter = buildRangeFilter(model);
+            // filters out flashcards that are not in the current displayed flashcards list
+            Predicate<Flashcard> currentDisplayedListFilter =
+                    new FlashcardInGivenFlashcardListPredicate(model.getFilteredFlashcardList());
+
 
             return flashcard -> languageTypeFilter.test(flashcard) && indexFilter.test(flashcard)
-                    && rangeFilter.test(flashcard);
+                    && rangeFilter.test(flashcard) && currentDisplayedListFilter.test(flashcard);
         }
 
         @Override
