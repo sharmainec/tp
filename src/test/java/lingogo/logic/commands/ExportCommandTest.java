@@ -55,7 +55,7 @@ public class ExportCommandTest {
 
     @Test
     public void execute_exportTypicalFlashcards_successfulExport() {
-        String fileName = "myCards.csv";
+        String fileName = "exportTest.csv";
         String expectedMessage = String.format(ExportCommand.MESSAGE_SUCCESS, fileName);
         ExportCommand command = new ExportCommand(fileName);
         try {
