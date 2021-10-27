@@ -373,3 +373,9 @@
     -fx-border-width: 2px;
     -fx-text-fill: #282e3e;
 }
+
+#logoPlaceholder {
+    -fx-background-color: #eaf3fc;
+    -fx-alignment: center;
+    -fx-padding: 10;
+}
