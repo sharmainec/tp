@@ -9,6 +9,9 @@ import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static lingogo.logic.commands.FilterCommand.FilterBuilder;
 import static lingogo.testutil.TypicalFlashcards.AFTERNOON_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.BYE_CHINESE_FLASHCARD;
+import static lingogo.testutil.TypicalFlashcards.HAPPY_ANNIVERSARY_CHINESE;
+import static lingogo.testutil.TypicalFlashcards.HAPPY_BIRTHDAY;
+import static lingogo.testutil.TypicalFlashcards.HAPPY_BIRTHDAY_JAPANESE;
 import static lingogo.testutil.TypicalFlashcards.NIGHT_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.SORRY_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.SUNRISE_TAMIL_FLASHCARD;
@@ -18,19 +21,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import lingogo.commons.core.Messages;
+import lingogo.model.FlashcardApp;
 import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
+import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.testutil.FilterBuilderBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FilterCommand}.
+ * Contains integration tests (interaction with the Model and Find) for {@code FilterCommand}.
  */
 public class FilterCommandTest {
 
@@ -197,6 +204,48 @@ public class FilterCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(AFTERNOON_CHINESE_FLASHCARD), model.getFilteredFlashcardList());
     }
+
+    @Test
+    public void execute_filterFoundFlashcards_flashcardsFound() {
+        FlashcardApp flashcardApp = getTypicalFlashcardApp();
+        flashcardApp.addFlashcard(HAPPY_ANNIVERSARY_CHINESE);
+        flashcardApp.addFlashcard(HAPPY_BIRTHDAY);
+        flashcardApp.addFlashcard(HAPPY_BIRTHDAY_JAPANESE);
+
+        // instantiate test and expected models
+        Model testModel = new ModelManager(flashcardApp, new UserPrefs());
+        Model expectedResultModel = new ModelManager(flashcardApp, new UserPrefs());
+
+        // instantiate expected test messages
+        String firstExpectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        String secondExpectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
+
+        List<String> keywords = new ArrayList<>();
+        keywords.add("happy");
+        FindCommand findCommand = new FindCommand(new EnglishPhraseContainsKeywordsPredicate(keywords));
+        expectedResultModel.updateFilteredFlashcardList(new EnglishPhraseContainsKeywordsPredicate(keywords));
+
+        // test find
+        assertCommandSuccess(findCommand, testModel, firstExpectedMessage, expectedResultModel);
+        assertEquals(Arrays.asList(HAPPY_ANNIVERSARY_CHINESE, HAPPY_BIRTHDAY, HAPPY_BIRTHDAY_JAPANESE),
+                testModel.getFilteredFlashcardList());
+
+
+        FilterBuilder filterBuilder =
+                new FilterBuilderBuilder().withLanguagePhrase("Chinese").build();
+        FilterCommand command = new FilterCommand(filterBuilder);
+        try {
+            expectedResultModel.updateFilteredFlashcardList(filterBuilder.buildFilter(testModel));
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+
+        // test filter
+        assertCommandSuccess(command, testModel, secondExpectedMessage, expectedResultModel);
+        assertEquals(Arrays.asList(HAPPY_ANNIVERSARY_CHINESE, HAPPY_BIRTHDAY),
+                testModel.getFilteredFlashcardList());
+    }
+
 
 
 }
