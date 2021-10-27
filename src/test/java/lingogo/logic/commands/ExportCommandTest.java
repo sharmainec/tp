@@ -2,17 +2,13 @@ package lingogo.logic.commands;
 
 import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static lingogo.testutil.TypicalFlashcards.getEmptyFlashcardApp;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.File;
-//import java.nio.file.Files;
-//import java.nio.file.Path;
-
-import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
 import lingogo.commons.core.Messages;
@@ -24,6 +20,7 @@ public class ExportCommandTest {
 
     private Model model = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
+    private Model emptyModel = new ModelManager(getEmptyFlashcardApp(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -67,12 +64,8 @@ public class ExportCommandTest {
         }
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         try {
-            File generatedCsv = new File("data/" + fileName);
-            File expectedCsv = new File("src/test/data/SampleCsvFiles/" + fileName);
-            assertTrue(FileUtils.contentEquals(generatedCsv, expectedCsv));
-            //byte[] generatedCsv = Files.readAllBytes(Path.of("data/" + fileName));
-            //byte[] expectedCsv = Files.readAllBytes(Path.of("src/test/data/SampleCsvFiles/" + fileName));
-            //assertEquals(new String(generatedCsv), new String(expectedCsv));
+            emptyModel.importFlashCards("data/" + fileName);
+            assertEquals(expectedModel.getFilteredFlashcardList(), emptyModel.getFilteredFlashcardList());
         } catch (Exception e) {
             fail("Exception not expected");
         }
