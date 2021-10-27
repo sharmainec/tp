@@ -150,7 +150,6 @@
 
 .pane-with-border {
     -fx-background-color: #ffffff;
-    -fx-border-top-width: 1px;
 }
 
 .status-bar {
@@ -377,5 +376,5 @@
 #logoPlaceholder {
     -fx-background-color: #eaf3fc;
     -fx-alignment: center;
-    -fx-padding: 10;
+    -fx-padding: 0 0 10 0;
 }
