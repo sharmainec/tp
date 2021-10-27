@@ -37,7 +37,7 @@ import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.testutil.FilterBuilderBuilder;
 
 /**
- * Contains integration tests (interaction with the Model and Find) for {@code FilterCommand}.
+ * Contains integration tests (interaction with the Model and FindCommand) for {@code FilterCommand}.
  */
 public class FilterCommandTest {
 
