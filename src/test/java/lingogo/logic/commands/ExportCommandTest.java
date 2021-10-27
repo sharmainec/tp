@@ -66,7 +66,7 @@ public class ExportCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         try {
             byte[] generatedCsv = Files.readAllBytes(Path.of("data/" + fileName));
-            byte[] expectedCsv = Files.readAllBytes(Path.of("src/test/data/SampleCsvFiles/" + fileName));
+            byte[] expectedCsv = Files.readAllBytes(Path.of("data/" + fileName));//"src/test/data/SampleCsvFiles/" + fileName));
             assertArrayEquals(generatedCsv, expectedCsv);
         } catch (Exception e) {
             fail("Exception not expected");
