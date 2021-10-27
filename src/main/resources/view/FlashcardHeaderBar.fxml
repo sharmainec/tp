@@ -28,13 +28,13 @@
                 <Insets left="5.0" right="5.0" />
             </padding>
         </Label>
-        <Label styleClass="label-bright" fx:id="foreignPhrase" text="Foreign Phrase" GridPane.columnIndex="2" 
+        <Label styleClass="label-bright" fx:id="foreignPhrase" text="Foreign Phrase" GridPane.columnIndex="2"
                wrapText="true">
             <padding>
                 <Insets left="5.0" right="5.0" />
             </padding>
         </Label>
-        <Label styleClass="label-bright" fx:id="englishPhrase" text="English Phrase" GridPane.columnIndex="3" 
+        <Label styleClass="label-bright" fx:id="englishPhrase" text="English Phrase" GridPane.columnIndex="3"
                wrapText="true">
             <padding>
                 <Insets left="5.0" right="5.0" />
