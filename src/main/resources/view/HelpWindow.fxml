@@ -44,7 +44,7 @@
               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </padding>
           </HBox>
-          <Accordion fx:id="helpAccordion" />
+          <Accordion fx:id="helpAccordion" maxWidth="600" />
         </children>
       </VBox>
     </Scene>

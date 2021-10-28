@@ -47,78 +47,90 @@ public class CommandHelpMessage extends UiPart<TitledPane> {
         this.getRoot().heightProperty().addListener((obs, oldHeight, newHeight) -> helpWindow.getRoot().sizeToScene());
         switch (command) {
         case ADD:
-            this.setDisplayText(AddCommand.COMMAND_WORD, AddCommand.COMMAND_DESCRIPTION, AddCommand.COMMAND_USAGE,
-                    AddCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(AddCommand.COMMAND_WORD, AddCommand.COMMAND_DESCRIPTION,
+                    AddCommand.COMMAND_PARAMETERS, AddCommand.COMMAND_EXAMPLES);
             break;
         case CLEAR:
-            this.setDisplayText(ClearCommand.COMMAND_WORD, ClearCommand.COMMAND_DESCRIPTION, ClearCommand.COMMAND_USAGE,
-                    ClearCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(ClearCommand.COMMAND_WORD, ClearCommand.COMMAND_DESCRIPTION,
+                    ClearCommand.COMMAND_PARAMETERS, ClearCommand.COMMAND_EXAMPLES);
             break;
         case DELETE:
             this.setDisplayText(DeleteCommand.COMMAND_WORD, DeleteCommand.COMMAND_DESCRIPTION,
-                    DeleteCommand.COMMAND_USAGE, DeleteCommand.COMMAND_EXAMPLES);
+                    DeleteCommand.COMMAND_PARAMETERS, DeleteCommand.COMMAND_EXAMPLES);
             break;
         case EDIT:
-            this.setDisplayText(EditCommand.COMMAND_WORD, EditCommand.COMMAND_DESCRIPTION, EditCommand.COMMAND_USAGE,
-                    EditCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(EditCommand.COMMAND_WORD, EditCommand.COMMAND_DESCRIPTION,
+                    EditCommand.COMMAND_PARAMETERS, EditCommand.COMMAND_EXAMPLES);
             break;
         case EXIT:
-            this.setDisplayText(ExitCommand.COMMAND_WORD, ExitCommand.COMMAND_DESCRIPTION, ExitCommand.COMMAND_USAGE,
-                    ExitCommand.COMMAND_EXAMPLES);
-            break;
-        case FIND:
-            this.setDisplayText(FindCommand.COMMAND_WORD, FindCommand.COMMAND_DESCRIPTION, FindCommand.COMMAND_USAGE,
-                    FindCommand.COMMAND_EXAMPLES);
-            break;
-        case FILTER:
-            this.setDisplayText(FilterCommand.COMMAND_WORD, FilterCommand.COMMAND_DESCRIPTION,
-                    FilterCommand.COMMAND_USAGE, FilterCommand.COMMAND_EXAMPLES);
-            break;
-        case HELP:
-            this.setDisplayText(HelpCommand.COMMAND_WORD, HelpCommand.COMMAND_DESCRIPTION, HelpCommand.COMMAND_USAGE,
-                    HelpCommand.COMMAND_EXAMPLES);
-            break;
-        case LIST:
-            this.setDisplayText(ListCommand.COMMAND_WORD, ListCommand.COMMAND_DESCRIPTION, ListCommand.COMMAND_USAGE,
-                    ListCommand.COMMAND_EXAMPLES);
+            this.setDisplayText(ExitCommand.COMMAND_WORD, ExitCommand.COMMAND_DESCRIPTION,
+                    ExitCommand.COMMAND_PARAMETERS, ExitCommand.COMMAND_EXAMPLES);
             break;
         case EXPORT:
             this.setDisplayText(ExportCommand.COMMAND_WORD, ExportCommand.COMMAND_DESCRIPTION,
-                    ExportCommand.COMMAND_USAGE, ExportCommand.COMMAND_EXAMPLES);
+                    ExportCommand.COMMAND_PARAMETERS, ExportCommand.COMMAND_EXAMPLES);
+            break;
+        case FILTER:
+            this.setDisplayText(FilterCommand.COMMAND_WORD, FilterCommand.COMMAND_DESCRIPTION,
+                    FilterCommand.COMMAND_PARAMETERS, FilterCommand.COMMAND_EXAMPLES);
+            break;
+        case FIND:
+            this.setDisplayText(FindCommand.COMMAND_WORD, FindCommand.COMMAND_DESCRIPTION,
+                    FindCommand.COMMAND_PARAMETERS, FindCommand.COMMAND_EXAMPLES);
+            break;
+        case HELP:
+            this.setDisplayText(HelpCommand.COMMAND_WORD, HelpCommand.COMMAND_DESCRIPTION,
+                    HelpCommand.COMMAND_PARAMETERS, HelpCommand.COMMAND_EXAMPLES);
             break;
         case IMPORT:
             this.setDisplayText(ImportCommand.COMMAND_WORD, ImportCommand.COMMAND_DESCRIPTION,
-                    ImportCommand.COMMAND_USAGE, ImportCommand.COMMAND_EXAMPLES);
+                    ImportCommand.COMMAND_PARAMETERS, ImportCommand.COMMAND_EXAMPLES);
             break;
+        case LIST:
+            this.setDisplayText(ListCommand.COMMAND_WORD, ListCommand.COMMAND_DESCRIPTION,
+                    ListCommand.COMMAND_PARAMETERS, ListCommand.COMMAND_EXAMPLES);
+            break;
+
+        // Slideshow commands
         case ANSWER:
             this.setDisplayText(AnswerCommand.COMMAND_WORD, AnswerCommand.COMMAND_DESCRIPTION,
-                    AnswerCommand.COMMAND_USAGE, AnswerCommand.COMMAND_EXAMPLES);
+                    AnswerCommand.COMMAND_PARAMETERS, AnswerCommand.COMMAND_EXAMPLES);
             break;
         case NEXT:
             this.setDisplayText(NextSlideCommand.COMMAND_WORD, NextSlideCommand.COMMAND_DESCRIPTION,
-                    NextSlideCommand.COMMAND_USAGE, NextSlideCommand.COMMAND_EXAMPLES);
+                    NextSlideCommand.COMMAND_PARAMETERS, NextSlideCommand.COMMAND_EXAMPLES);
             break;
         case PREVIOUS:
             this.setDisplayText(PreviousSlideCommand.COMMAND_WORD, PreviousSlideCommand.COMMAND_DESCRIPTION,
-                    PreviousSlideCommand.COMMAND_USAGE, PreviousSlideCommand.COMMAND_EXAMPLES);
+                    PreviousSlideCommand.COMMAND_PARAMETERS, PreviousSlideCommand.COMMAND_EXAMPLES);
             break;
         case SLIDESHOW:
             this.setDisplayText(SlideshowCommand.COMMAND_WORD, SlideshowCommand.COMMAND_DESCRIPTION,
-                    SlideshowCommand.COMMAND_USAGE, SlideshowCommand.COMMAND_EXAMPLES);
+                    SlideshowCommand.COMMAND_PARAMETERS, SlideshowCommand.COMMAND_EXAMPLES);
             break;
         case STOP:
             this.setDisplayText(StopSlideshowCommand.COMMAND_WORD, StopSlideshowCommand.COMMAND_DESCRIPTION,
-                    StopSlideshowCommand.COMMAND_USAGE, StopSlideshowCommand.COMMAND_EXAMPLES);
+                    StopSlideshowCommand.COMMAND_PARAMETERS, StopSlideshowCommand.COMMAND_EXAMPLES);
             break;
         default:
             assert false : "CommandHelpMessage: Invalid command";
         }
     }
 
-    private void setDisplayText(String command, String description, String usage, String examples) {
+    private void setDisplayText(String command, String description, String[] parameters, String[] examples) {
         this.getRoot().setText(command);
         this.description.setText(description);
-        this.usage.setText(usage);
-        this.examples.setText(examples);
+
+        StringBuilder commandParameters = new StringBuilder(command);
+        for (String parameter : parameters) {
+            commandParameters.append(" ").append(parameter);
+        }
+        this.usage.setText(commandParameters.toString());
+
+        StringBuilder commandExamples = new StringBuilder();
+        for (String example : examples) {
+            commandExamples.append(example).append("\n");
+        }
+        this.examples.setText(commandExamples.toString().trim());
     }
 }
