@@ -3,16 +3,19 @@ layout: page
 title: User Guide
 ---
 
-* Table of Contents
-{:toc}
+<div style="text-align:center;">
+<img src="images/lingogo_logo_text.png">
+</div>
 
---------------------------------------------------------------------------------------------------------------------
+<br/>
 
-## About LingoGO!
+
 LingoGO! is a **desktop app** for **university students who use English as their first language** and are trying to **learn a
-new language**, optimized for use via a **Command Line Interface (CLI)** while still having the **benefits of a
-Graphical User Interface (GUI)**. With digital flashcards, LingoGO! can make learning faster and more convenient compared
-to using traditional flashcards.
+new language**. Founded on the widely established learning technique of **spaced-repetition**, LingoGO! takes all the
+benefits of pen-and-paper flashcards in learning, and brings them to the next level with our **powerful indexing** and **sharing
+features** -- *without the hassle* of managing actual physical ones. Coupled with our unique **Command Line Interface (CLI)** and
+an elegant **Graphical User Interface (GUI)** to accompany it, LingoGO! is sure to delight you, and empower you on your
+journey in mastering the new language you *have always wanted*.
 
 LingoGO! currently supports **all languages that can be represented on your computer** and has the following main features:
 * Addition, deletion, and editing of flashcards.
@@ -20,7 +23,16 @@ LingoGO! currently supports **all languages that can be represented on your comp
 * Importing and exporting of flashcards to be shared with others.
 * Testing your knowledge in a questionnaire of flashcards.
 
-Detailed information about these features can be found under the [Modes](#modes) and [Commands](#commands) sections below.
+Detailed information about these features can be found under the [Modes](#modes) and [Commands](#commands) sections in this user guide.
+
+<hr/>
+
+<h2>Table of Contents</h2>
+
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Purpose of the user guide
 This user guide aims to help users familiarise themselves with the commands of LingoGO! and use the application effectively.
@@ -43,13 +55,15 @@ This user guide aims to help users familiarise themselves with the commands of L
 
 1. Copy the file to the folder you want to use as the home folder for LingoGO!.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the
+1. Double-click the file to start the app. The following GUI should appear in a few seconds. Note how the
    app contains some sample data.
+
    ![Ui](images/Ui-explanation.png)
 
-   * Menu
+    Below is an overview of the GUI, with the corresponding number label:
+   1. <u>Menu</u>
      * A clickable menu bar.
-   * Command box
+   1. <u>Command box</u>
      * Type a command into the command box and press Enter to execute it.
      * Some example commands you can try (refer to the [Commands](#commands) section below for a full list of commands and their details):
        * `list` : Lists all flashcards.
@@ -57,18 +71,21 @@ This user guide aims to help users familiarise themselves with the commands of L
        * `delete 3` : Deletes the 3rd flashcard shown in the current displayed list.
        * `find e/Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`.
        * `filter l/Chinese` : Shows only the flashcard(s) with the `Chinese` language in the current displayed list.
-   * Command result
+   1. <u>Command result</u>
      * Shows a message after you execute a command.
-   * Displayed flashcard list
+   1. <u>Displayed flashcard list</u>
      * Shows a list of your flashcards.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Modes
 
-LingoGO! has 2 modes:
-1. [List mode](#list-mode)
-1. [Slideshow mode](#slideshow-mode)
+Before diving into the specific commands, let's have an overview of the different modes in LingoGO!.
+
+LingoGO! has two main modes, [List mode](#list-mode) and [Slideshow mode](#slideshow-mode), through which users can interact with
+the application. At a high level, List mode provides an intuitive table overview to manage flashcards with our powerful and flexible indexing features. In contrast, Slideshow mode allows users to test their knowledge on selected flashcards one by one in a questionnaire-style interface while retaining the feel and look of traditional flashcards.
+
+The following two sections will describe these modes in further detail.
 
 ### List mode
 
@@ -96,19 +113,16 @@ Below is an example of what LingoGO! looks like in slideshow mode.
 Slideshow mode tests your knowledge by showing you flashcards one at a time. The flashcards shown to you are the ones
 displayed in list mode.
 
+To enter and exit slideshow mode, use the [`slideshow`](#testing-with-a-set-of-flashcards--slideshow) and [`stop`](#exiting-slideshow-mode-stop) commands respectively.
+
 In slideshow mode, you can:
 * Move to [`next`](#moving-to-the-next-flashcard-in-slideshow-mode--next) or
   [`previous`](#moving-to-the-previous-flashcard-in-slideshow-mode--previous) flashcards
 * Enter an [`answer`](#answering-a-flashcard--answer) for a flashcard
 
-### Navigating between modes
-
-LingoGO!'s default mode is list mode.
-* To enter slideshow mode, use the [`slideshow`](#testing-with-a-set-of-flashcards--slideshow) command.
-* To exit slideshow mode, use the [`stop`](#exiting-slideshow-mode-stop) command.
-
-
 ## Commands
+
+The following section gives an indepth overview of each command in the application, and provides some examples on their usages.
 
 <div markdown="block" class="alert alert-info">
 
@@ -262,6 +276,7 @@ Examples:
 * `find e/HELLO` returns `e/Hello f/你好`
 * `find f/早` returns `e/Good Morning f/早安` and `e/Morning f/早晨`
 * `find e/Hello f/早` returns `e/Hello f/你好`, `e/Good Morning f/早安` and `e/Morning f/早晨`
+
   ![find foreign keywords](images/findMixedKeywords.png)<br>
 
 
