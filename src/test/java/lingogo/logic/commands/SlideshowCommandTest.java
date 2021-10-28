@@ -2,6 +2,7 @@ package lingogo.logic.commands;
 
 import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static lingogo.logic.commands.SlideshowCommand.MESSAGE_EMPTY_SLIDESHOW;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,6 +37,13 @@ public class SlideshowCommandTest {
         model.startSlideshow();
 
         assertCommandFailure(new SlideshowCommand(), model, Messages.MESSAGE_IN_SLIDESHOW_MODE);
+    }
+
+    @Test
+    public void execute_emptySlideshow_throwsCommandException() {
+        model = new ModelManager();
+
+        assertCommandFailure(new SlideshowCommand(), model, MESSAGE_EMPTY_SLIDESHOW);
     }
 
 }
