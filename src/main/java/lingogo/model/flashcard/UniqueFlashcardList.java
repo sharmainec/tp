@@ -5,8 +5,13 @@ import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_FORMAT;
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
 import static lingogo.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +19,7 @@ import java.util.List;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvValidationException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -113,9 +119,15 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
      * {@code fileName} must be a valid file name with .csv extension.
      */
     public void exportFlashcards(String fileName) throws CommandException {
-        String filePath = "./data/" + fileName;
+        String directoryName = "data";
+        File directory = new File(directoryName);
+        String filePath = directoryName + "/" + fileName;
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter(filePath));
+            CSVWriter writer = new CSVWriter(
+                    new OutputStreamWriter(new FileOutputStream(filePath), StandardCharsets.UTF_8));
             writer.writeNext(csvHeaders);
             String[] line;
             for (Flashcard card : internalList) {
@@ -135,13 +147,14 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
      */
     public void importFlashcards(String filePath) throws CommandException {
         try {
-            CSVReader reader = new CSVReaderBuilder(new FileReader(filePath)).build();
+            CSVReader reader = new CSVReaderBuilder(
+                    new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8)).build();
             String[] line = reader.readNext();
             if (!Arrays.toString(line).equals(Arrays.toString(csvHeaders))) {
                 throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, filePath));
             }
             while ((line = reader.readNext()) != null) {
-                if (line.length != 3) {
+                if (line.length != 3 || line[0].isBlank() || line[1].isBlank() || line[2].isBlank()) {
                     throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, filePath));
                 }
                 Flashcard card = new Flashcard(new Phrase(line[0]), new Phrase(line[2]), new Phrase(line[1]));
@@ -149,7 +162,9 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
                     internalList.add(card);
                 }
             }
-        } catch (Exception ioe) {
+        } catch (CsvValidationException e) {
+            throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, filePath));
+        } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
     }

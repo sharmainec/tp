@@ -30,6 +30,7 @@ import lingogo.logic.commands.FilterCommand;
 import lingogo.logic.commands.FindCommand;
 import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
+import lingogo.logic.commands.ImportCommand;
 import lingogo.logic.commands.ListCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
@@ -137,6 +138,14 @@ public class FlashcardAppParserTest {
         ExportCommand command = (ExportCommand) parser.parseCommand(
                 ExportCommand.COMMAND_WORD + " " + csvFileName);
         assertEquals(new ExportCommand(csvFileName), command);
+    }
+
+    @Test
+    public void parseCommand_import() throws Exception {
+        String csvFilePath = "src/test/data/SampleCsvFiles/exportTest.csv";
+        ImportCommand command = (ImportCommand) parser.parseCommand(
+                ImportCommand.COMMAND_WORD + " " + csvFilePath);
+        assertEquals(new ImportCommand(csvFilePath), command);
     }
 
     @Test
