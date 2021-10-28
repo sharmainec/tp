@@ -23,11 +23,11 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String COMMAND_DESCRIPTION = "Lists either all flashcards or a random number of flashcards.";
     public static final String[] COMMAND_PARAMETERS = new String[] {
-            "[" + Parameter.NUMBER_OF_FLASHCARDS + "]"
+        "[" + Parameter.NUMBER_OF_FLASHCARDS + "]"
     };
     public static final String[] COMMAND_EXAMPLES = new String[] {
-            COMMAND_WORD,
-            COMMAND_WORD + " 4"
+        COMMAND_WORD,
+        COMMAND_WORD + " 4"
     };
 
     public static final String MESSAGE_SUCCESS = "Listed all flashcards";

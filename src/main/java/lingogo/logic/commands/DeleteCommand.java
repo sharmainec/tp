@@ -16,12 +16,13 @@ import lingogo.model.flashcard.Flashcard;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
-    public static final String COMMAND_DESCRIPTION = "Deletes a flashcard identified by the index number used in the displayed flashcard list.";
+    public static final String COMMAND_DESCRIPTION =
+            "Deletes a flashcard identified by the index number used in the displayed flashcard list.";
     public static final String[] COMMAND_PARAMETERS = new String[] {
-            Parameter.INDEX.withCondition("must be a positive integer")
+        Parameter.INDEX.withCondition("must be a positive integer")
     };
     public static final String[] COMMAND_EXAMPLES = new String[] {
-            COMMAND_WORD + " 3"
+        COMMAND_WORD + " 3"
     };
 
     public static final String MESSAGE_USAGE = getUsageMessage();

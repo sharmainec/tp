@@ -15,10 +15,10 @@ public class ExportCommand extends Command {
     public static final String COMMAND_DESCRIPTION =
             "Exports flashcards to a CSV file in where your data folder is located.";
     public static final String[] COMMAND_PARAMETERS = new String[] {
-            Parameter.FILE_NAME.withCondition("must have a valid file name with .csv extension")
+        Parameter.FILE_NAME.withCondition("must have a valid file name with .csv extension")
     };
     public static final String[] COMMAND_EXAMPLES = new String[] {
-            COMMAND_WORD + " myCards.csv"
+        COMMAND_WORD + " myCards.csv"
     };
 
     public static final String MESSAGE_USAGE = getUsageMessage();

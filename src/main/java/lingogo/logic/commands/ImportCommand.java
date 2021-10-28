@@ -15,10 +15,10 @@ public class ImportCommand extends Command {
     public static final String COMMAND_DESCRIPTION = "Imports flashcards from a CSV file into LingoGO!";
 
     public static final String[] COMMAND_PARAMETERS = new String[] {
-            Parameter.CSV_FILE_PATH.withCondition("must have a valid file name with .csv extension")
+        Parameter.CSV_FILE_PATH.withCondition("must have a valid file name with .csv extension")
     };
     public static final String[] COMMAND_EXAMPLES = new String[] {
-            COMMAND_WORD + " data/dictionary.csv"
+        COMMAND_WORD + " data/dictionary.csv"
     };
 
     public static final String MESSAGE_USAGE = getUsageMessage();

@@ -20,13 +20,13 @@ public class FindCommand extends Command {
     public static final String COMMAND_DESCRIPTION = "Finds all flashcards whose English or foreign phrases contain "
             + "any of the specified keywords (case-insensitive) and displays them in the displayed flashcard list.";
     public static final String[] COMMAND_PARAMETERS = new String[] {
-            "[" + PREFIX_ENGLISH_PHRASE + Parameter.ENGLISH_PHRASE  + "]",
-            "[" + PREFIX_FOREIGN_PHRASE + Parameter.ENGLISH_KEYWORD + "]"
+        "[" + PREFIX_ENGLISH_PHRASE + Parameter.ENGLISH_PHRASE + "]",
+        "[" + PREFIX_FOREIGN_PHRASE + Parameter.ENGLISH_KEYWORD + "]"
     };
     public static final String[] COMMAND_EXAMPLES = new String[] {
-            COMMAND_WORD + " " + PREFIX_ENGLISH_PHRASE + "Good morning " + PREFIX_FOREIGN_PHRASE + "你",
-            COMMAND_WORD + " " + PREFIX_ENGLISH_PHRASE + "Good morning",
-            COMMAND_WORD + " " + PREFIX_FOREIGN_PHRASE + "你"
+        COMMAND_WORD + " " + PREFIX_ENGLISH_PHRASE + "Good morning " + PREFIX_FOREIGN_PHRASE + "你",
+        COMMAND_WORD + " " + PREFIX_ENGLISH_PHRASE + "Good morning",
+        COMMAND_WORD + " " + PREFIX_FOREIGN_PHRASE + "你"
     };
 
     public static final String MESSAGE_USAGE = getUsageMessage();

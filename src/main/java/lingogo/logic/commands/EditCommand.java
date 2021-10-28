@@ -26,20 +26,20 @@ public class EditCommand extends Command {
     public static final String COMMAND_DESCRIPTION =
             "Edits a flashcard identified by the index number shown in the displayed flashcard list.";
     public static final String[] COMMAND_PARAMETERS = new String[] {
-            Parameter.INDEX.withCondition("must be a positive integer"),
-            "[" + PREFIX_LANGUAGE_TYPE + Parameter.LANGUAGE.toString() + "]",
-            "[" + PREFIX_ENGLISH_PHRASE + Parameter.ENGLISH_PHRASE.toString() + "]",
-            "[" + PREFIX_FOREIGN_PHRASE + Parameter.FOREIGN_PHRASE.toString() + "]"
+        Parameter.INDEX.withCondition("must be a positive integer"),
+        "[" + PREFIX_LANGUAGE_TYPE + Parameter.LANGUAGE.toString() + "]",
+        "[" + PREFIX_ENGLISH_PHRASE + Parameter.ENGLISH_PHRASE.toString() + "]",
+        "[" + PREFIX_FOREIGN_PHRASE + Parameter.FOREIGN_PHRASE.toString() + "]"
     };
     public static final String[] COMMAND_EXAMPLES = new String[] {
-            COMMAND_WORD + " 1 "
+        COMMAND_WORD + " 1 "
                     + PREFIX_LANGUAGE_TYPE + "Chinese "
                     + PREFIX_ENGLISH_PHRASE + "Hello "
                     + PREFIX_FOREIGN_PHRASE + "你好",
-            COMMAND_WORD + " 1 "
+        COMMAND_WORD + " 1 "
                     + PREFIX_LANGUAGE_TYPE + "German "
                     + PREFIX_ENGLISH_PHRASE + "Hello ",
-            COMMAND_WORD + " 1 "
+        COMMAND_WORD + " 1 "
                     + PREFIX_FOREIGN_PHRASE + "Guten Morgen"
     };
 

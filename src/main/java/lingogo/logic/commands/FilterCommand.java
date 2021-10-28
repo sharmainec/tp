@@ -32,16 +32,16 @@ public class FilterCommand extends Command {
     public static final String COMMAND_DESCRIPTION =
             "Filters flashcards in the displayed flashcard list by a given filter.";
     public static final String[] COMMAND_PARAMETERS = new String[] {
-            "[" + PREFIX_LANGUAGE_TYPE + Parameter.LANGUAGE.toString() + "]",
-            "[" + PREFIX_INDEX_LIST + Parameter.INDEX_LIST.toString() + "]",
-            "[" + PREFIX_INDEX_RANGE + Parameter.INDEX_RANGE.toString() + "]"
+        "[" + PREFIX_LANGUAGE_TYPE + Parameter.LANGUAGE.toString() + "]",
+        "[" + PREFIX_INDEX_LIST + Parameter.INDEX_LIST.toString() + "]",
+        "[" + PREFIX_INDEX_RANGE + Parameter.INDEX_RANGE.toString() + "]"
     };
     public static final String[] COMMAND_EXAMPLES = new String[] {
-            COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + "Chinese",
-            COMMAND_WORD + " " + PREFIX_INDEX_LIST + "1 2 3",
-            COMMAND_WORD + " " + PREFIX_INDEX_RANGE + "1 4",
-            COMMAND_WORD + " " +  PREFIX_LANGUAGE_TYPE + "Chinese" + PREFIX_INDEX_LIST + "1 2 3",
-            COMMAND_WORD + " " +  PREFIX_LANGUAGE_TYPE + "Chinese" + PREFIX_INDEX_RANGE + "1 4"
+        COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + "Chinese",
+        COMMAND_WORD + " " + PREFIX_INDEX_LIST + "1 2 3",
+        COMMAND_WORD + " " + PREFIX_INDEX_RANGE + "1 4",
+        COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + "Chinese " + PREFIX_INDEX_LIST + "1 2 3",
+        COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + "Chinese " + PREFIX_INDEX_RANGE + "1 4"
     };
 
     public static final String MESSAGE_USAGE = getUsageMessage();

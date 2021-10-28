@@ -18,12 +18,12 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String COMMAND_DESCRIPTION = "Adds a flashcard.";
     public static final String[] COMMAND_PARAMETERS = new String[] {
-            PREFIX_LANGUAGE_TYPE + Parameter.LANGUAGE.toString(),
-            PREFIX_ENGLISH_PHRASE + Parameter.ENGLISH_PHRASE.toString(),
-            PREFIX_FOREIGN_PHRASE + Parameter.FOREIGN_PHRASE.toString()
+        PREFIX_LANGUAGE_TYPE + Parameter.LANGUAGE.toString(),
+        PREFIX_ENGLISH_PHRASE + Parameter.ENGLISH_PHRASE.toString(),
+        PREFIX_FOREIGN_PHRASE + Parameter.FOREIGN_PHRASE.toString()
     };
     public static final String[] COMMAND_EXAMPLES = new String[] {
-            COMMAND_WORD + " "
+        COMMAND_WORD + " "
                     + PREFIX_LANGUAGE_TYPE + "Chinese "
                     + PREFIX_ENGLISH_PHRASE + "Good Morning "
                     + PREFIX_FOREIGN_PHRASE + "早安"

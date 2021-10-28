@@ -2,8 +2,6 @@ package lingogo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
-import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
-import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 
 import lingogo.commons.core.Messages;
 import lingogo.logic.commands.exceptions.CommandException;
@@ -22,10 +20,10 @@ public class AnswerCommand extends Command {
     public static final String COMMAND_DESCRIPTION =
             "Checks whether the English phrase of the displayed flashcard in the slideshow matches the given phrase.";
     public static final String[] COMMAND_PARAMETERS = new String[] {
-            PREFIX_ENGLISH_PHRASE + Parameter.ENGLISH_PHRASE.toString()
+        PREFIX_ENGLISH_PHRASE + Parameter.ENGLISH_PHRASE.toString()
     };
     public static final String[] COMMAND_EXAMPLES = new String[] {
-            COMMAND_WORD + " " + PREFIX_ENGLISH_PHRASE + "hello"
+        COMMAND_WORD + " " + PREFIX_ENGLISH_PHRASE + "hello"
     };
 
     public static final String MESSAGE_USAGE = getUsageMessage();
