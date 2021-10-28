@@ -30,7 +30,7 @@ public class FlashcardHeaderBar extends UiPart<Region> {
         super(FXML);
         id.setText("No.");
         language.setText("Language");
-        foreignPhrase.setText("Foreign phrase");
-        englishPhrase.setText("English phrase");
+        foreignPhrase.setText("Foreign Phrase");
+        englishPhrase.setText("English Phrase");
     }
 }

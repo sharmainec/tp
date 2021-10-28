@@ -18,4 +18,7 @@ public class Messages {
     public static final String MESSAGE_INDEX_IS_NOT_NON_ZERO_UNSIGNED_INT = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_INDEX_RANGE = "The index range provided is invalid, exactly 2 indices "
         + "must be given where the second given index is larger or equal to the first index";
+    public static final String MESSAGE_INVALID_N = "Input n has to be an integer that is greater than 0 but less than "
+            + "the total number of flashcards in the list";
+
 }

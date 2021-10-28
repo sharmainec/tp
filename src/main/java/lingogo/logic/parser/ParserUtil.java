@@ -43,7 +43,7 @@ public class ParserUtil {
         String[] splitIndices = indices.trim().split(" ");
         List<Index> indexList = new ArrayList<>();
         for (String index
-            : splitIndices) {
+                : splitIndices) {
             if (!StringUtil.isNonZeroUnsignedInteger(index)) {
                 throw new ParseException(MESSAGE_INDEX_IS_NOT_NON_ZERO_UNSIGNED_INT);
             }
