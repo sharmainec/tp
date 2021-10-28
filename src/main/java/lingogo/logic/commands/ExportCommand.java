@@ -21,7 +21,8 @@ public class ExportCommand extends Command {
         COMMAND_WORD + " myCards.csv"
     };
 
-    public static final String MESSAGE_USAGE = getUsageMessage();
+    public static final String MESSAGE_USAGE =
+            getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
 
     public static final String MESSAGE_SUCCESS = "All existing flashcards have been saved in %1$s";
 
@@ -34,23 +35,6 @@ public class ExportCommand extends Command {
         requireNonNull(fileName);
 
         this.fileName = fileName;
-    }
-
-    private static String getUsageMessage() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(COMMAND_WORD).append(": ");
-        sb.append(COMMAND_DESCRIPTION);
-        sb.append("\n");
-        sb.append("Parameters:");
-        for (String parameter : COMMAND_PARAMETERS) {
-            sb.append(" ").append(parameter);
-        }
-        sb.append("\n");
-        sb.append("Examples:");
-        for (String example : COMMAND_EXAMPLES) {
-            sb.append(" ").append(example);
-        }
-        return sb.toString();
     }
 
     @Override

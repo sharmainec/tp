@@ -43,7 +43,8 @@ public class EditCommand extends Command {
                     + PREFIX_FOREIGN_PHRASE + "Guten Morgen"
     };
 
-    public static final String MESSAGE_USAGE = getUsageMessage();
+    public static final String MESSAGE_USAGE =
+            getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
 
     public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited Flashcard: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -88,23 +89,6 @@ public class EditCommand extends Command {
         model.setFlashcard(flashcardToEdit, editedFlashcard);
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard));
-    }
-
-    private static String getUsageMessage() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(COMMAND_WORD).append(": ");
-        sb.append(COMMAND_DESCRIPTION);
-        sb.append("\n");
-        sb.append("Parameters:");
-        for (String parameter : COMMAND_PARAMETERS) {
-            sb.append(" ").append(parameter);
-        }
-        sb.append("\n");
-        sb.append("Examples:");
-        for (String example : COMMAND_EXAMPLES) {
-            sb.append(" ").append(example);
-        }
-        return sb.toString();
     }
 
     /**

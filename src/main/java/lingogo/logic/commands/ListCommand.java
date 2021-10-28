@@ -30,6 +30,9 @@ public class ListCommand extends Command {
         COMMAND_WORD + " 4"
     };
 
+    public static final String MESSAGE_USAGE =
+            getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
+
     public static final String MESSAGE_SUCCESS = "Listed all flashcards";
     public static final String MESSAGE_SUCCESS_SHUFFLED = "Randomly selected %1$d flashcard(s) to be listed";
 

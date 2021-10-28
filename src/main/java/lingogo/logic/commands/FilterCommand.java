@@ -44,7 +44,8 @@ public class FilterCommand extends Command {
         COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + "Chinese " + PREFIX_INDEX_RANGE + "1 4"
     };
 
-    public static final String MESSAGE_USAGE = getUsageMessage();
+    public static final String MESSAGE_USAGE =
+            getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
 
     private final FilterBuilder filterBuilder;
 
@@ -63,23 +64,6 @@ public class FilterCommand extends Command {
         model.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
         return new CommandResult(
                 String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
-    }
-
-    private static String getUsageMessage() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(COMMAND_WORD).append(": ");
-        sb.append(COMMAND_DESCRIPTION);
-        sb.append("\n");
-        sb.append("Parameters:");
-        for (String parameter : COMMAND_PARAMETERS) {
-            sb.append(" ").append(parameter);
-        }
-        sb.append("\n");
-        sb.append("Examples:");
-        for (String example : COMMAND_EXAMPLES) {
-            sb.append(" ").append(example);
-        }
-        return sb.toString();
     }
 
     @Override

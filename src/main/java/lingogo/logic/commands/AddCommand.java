@@ -29,7 +29,8 @@ public class AddCommand extends Command {
                     + PREFIX_FOREIGN_PHRASE + "早安"
     };
 
-    public static final String MESSAGE_USAGE = getUsageMessage();
+    public static final String MESSAGE_USAGE =
+            getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
 
     public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in the flashcard app";
@@ -58,23 +59,6 @@ public class AddCommand extends Command {
 
         model.addFlashcard(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    private static String getUsageMessage() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(COMMAND_WORD).append(": ");
-        sb.append(COMMAND_DESCRIPTION);
-        sb.append("\n");
-        sb.append("Parameters:");
-        for (String parameter : COMMAND_PARAMETERS) {
-            sb.append(" ").append(parameter);
-        }
-        sb.append("\n");
-        sb.append("Examples:");
-        for (String example : COMMAND_EXAMPLES) {
-            sb.append(" ").append(example);
-        }
-        return sb.toString();
     }
 
     @Override

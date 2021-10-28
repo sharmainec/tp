@@ -26,7 +26,8 @@ public class AnswerCommand extends Command {
         COMMAND_WORD + " " + PREFIX_ENGLISH_PHRASE + "hello"
     };
 
-    public static final String MESSAGE_USAGE = getUsageMessage();
+    public static final String MESSAGE_USAGE =
+            getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
 
     public static final String COMPARISON_TEXT = "Foreign phrase: %1$s\n" + "Expected answer: %2$s\n"
         + "Your answer: %3$s";
@@ -46,22 +47,6 @@ public class AnswerCommand extends Command {
         this.predicate = new EnglishPhraseMatchesGivenPhrasePredicate(givenPhrase);
         this.givenPhrase = givenPhrase;
     }
-
-    private static String getUsageMessage() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(COMMAND_WORD).append(": ");
-        sb.append(COMMAND_DESCRIPTION);
-        sb.append("Parameters:");
-        for (String parameter : COMMAND_PARAMETERS) {
-            sb.append(" ").append(parameter);
-        }
-        sb.append("\n");
-        sb.append("Examples:");
-        for (String example : COMMAND_EXAMPLES) {
-            sb.append(" ").append(example);
-        }
-        return sb.toString();
-    };
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
