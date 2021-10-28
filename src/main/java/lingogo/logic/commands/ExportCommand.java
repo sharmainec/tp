@@ -12,13 +12,17 @@ import lingogo.model.Model;
 public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
-    public static final String COMMAND_DESCRIPTION = "Exports flashcards to a CSV file";
-    public static final String COMMAND_USAGE = "export FILE_NAME";
-    public static final String COMMAND_EXAMPLES = "export myCards.csv";
+    public static final String COMMAND_DESCRIPTION =
+            "Exports flashcards to a CSV file in where your data folder is located.";
+    public static final String[] COMMAND_PARAMETERS = new String[] {
+        Parameter.FILE_NAME.withCondition("must have a valid file name with .csv extension")
+    };
+    public static final String[] COMMAND_EXAMPLES = new String[] {
+        COMMAND_WORD + " myCards.csv"
+    };
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports cards from LingoGO! to a CSV file. "
-            + "Parameters: FILE_NAME (must have a valid file name with .csv extension)\n"
-            + "Example: " + COMMAND_WORD + " myCards.csv";
+    public static final String MESSAGE_USAGE =
+            getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
 
     public static final String MESSAGE_SUCCESS = "All existing flashcards have been saved in %1$s";
 

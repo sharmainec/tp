@@ -1,6 +1,7 @@
 package lingogo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 
 import lingogo.commons.core.Messages;
 import lingogo.logic.commands.exceptions.CommandException;
@@ -16,16 +17,17 @@ import lingogo.model.slideshow.exceptions.SlideAlreadyAnsweredException;
 public class AnswerCommand extends Command {
 
     public static final String COMMAND_WORD = "answer";
-    public static final String COMMAND_DESCRIPTION = "Checks whether the given English phrase matches the English"
-            + " phrase of the current displayed flashcard in the slideshow";
-    public static final String COMMAND_USAGE = "answer e/ENGLISH_PHRASE";
-    public static final String COMMAND_EXAMPLES = "answer e/hello";
+    public static final String COMMAND_DESCRIPTION =
+            "Checks whether the English phrase of the displayed flashcard in the slideshow matches the given phrase.";
+    public static final String[] COMMAND_PARAMETERS = new String[] {
+        PREFIX_ENGLISH_PHRASE + Parameter.ENGLISH_PHRASE.toString()
+    };
+    public static final String[] COMMAND_EXAMPLES = new String[] {
+        COMMAND_WORD + " " + PREFIX_ENGLISH_PHRASE + "hello"
+    };
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Checks whether the English phrase of the current displayed flashcard in the slideshow matches the"
-            + " given phrase.\n"
-            + "Parameters: e/ENGLISH_PHRASE\n"
-            + "Example: " + COMMAND_EXAMPLES;
+    public static final String MESSAGE_USAGE =
+            getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
 
     public static final String COMPARISON_TEXT = "Foreign phrase: %1$s\n" + "Expected answer: %2$s\n"
         + "Your answer: %3$s";

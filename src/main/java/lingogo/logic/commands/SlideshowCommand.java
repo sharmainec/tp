@@ -10,10 +10,11 @@ import lingogo.model.slideshow.exceptions.EmptySlideshowException;
 public class SlideshowCommand extends Command {
 
     public static final String COMMAND_WORD = "slideshow";
-    public static final String COMMAND_DESCRIPTION = "Starts the slideshow with the current filtered list of"
-            + " flashcards";
-    public static final String COMMAND_USAGE = "slideshow";
-    public static final String COMMAND_EXAMPLES = "slideshow";
+    public static final String COMMAND_DESCRIPTION =
+            "Starts the slideshow with the current filtered list of flashcards.";
+    public static final String[] COMMAND_PARAMETERS = new String[0];
+    public static final String[] COMMAND_EXAMPLES = new String[] { COMMAND_WORD };
+
     public static final String MESSAGE_SUCCESS = "Slideshow started!";
     public static final String MESSAGE_EMPTY_SLIDESHOW = "An empty slideshow cannot be started!";
 

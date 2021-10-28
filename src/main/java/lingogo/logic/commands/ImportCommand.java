@@ -12,15 +12,19 @@ import lingogo.model.Model;
 public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
-    public static final String COMMAND_DESCRIPTION = "Imports flashcards to a CSV file";
-    public static final String COMMAND_USAGE = "import FILE_PATH";
-    public static final String COMMAND_EXAMPLES = "import ./dictionary.csv";
+    public static final String COMMAND_DESCRIPTION = "Imports flashcards from a CSV file into LingoGO!";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports cards from a CSV file to LingoGO! "
-            + "Parameters: FILE_PATH (must be a valid file path with .csv extension)\n"
-            + "Example: " + COMMAND_WORD + " ./dictionary.csv";
+    public static final String[] COMMAND_PARAMETERS = new String[] {
+        Parameter.CSV_FILE_PATH.withCondition("must have a valid file name with .csv extension")
+    };
+    public static final String[] COMMAND_EXAMPLES = new String[] {
+        COMMAND_WORD + " data/dictionary.csv"
+    };
 
-    public static final String MESSAGE_SUCCESS = "LingoGO! now have been updated with all the cards from %1$s";
+    public static final String MESSAGE_USAGE =
+            getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
+
+    public static final String MESSAGE_SUCCESS = "LingoGO! has been updated with all the flashcards from %1$s";
 
     private final String filePath;
 

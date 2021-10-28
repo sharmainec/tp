@@ -9,6 +9,27 @@ import lingogo.model.Model;
 public abstract class Command {
 
     /**
+     * Contains parameters that each command uses.
+     */
+    public enum Parameter {
+        ENGLISH_PHRASE,
+        FOREIGN_PHRASE,
+        LANGUAGE,
+        ENGLISH_KEYWORD,
+        FOREIGN_KEYWORD,
+        NUMBER_OF_FLASHCARDS,
+        INDEX,
+        INDEX_LIST,
+        INDEX_RANGE,
+        FILE_NAME,
+        CSV_FILE_PATH;
+
+        public String withCondition(String condition) {
+            return toString() + " (" + condition + ")";
+        }
+    }
+
+    /**
      * Executes the command and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.
@@ -16,4 +37,29 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute(Model model) throws CommandException;
+
+    /**
+     *
+     */
+    public static String getMessageUsage(String commandWord, String commandDescription, String[] commandParameters,
+                                  String[] commandExamples) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(commandWord).append(": ");
+        sb.append(commandDescription);
+        sb.append("\n");
+        sb.append("Parameters:");
+        if (commandParameters.length == 0) {
+            sb.append(" None");
+        } else {
+            for (String parameter : commandParameters) {
+                sb.append(" ").append(parameter);
+            }
+        }
+        sb.append("\n");
+        sb.append("Examples:");
+        for (String example : commandExamples) {
+            sb.append(" ").append(example);
+        }
+        return sb.toString();
+    }
 }

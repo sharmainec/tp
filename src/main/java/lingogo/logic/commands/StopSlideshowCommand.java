@@ -9,9 +9,10 @@ import lingogo.model.Model;
 public class StopSlideshowCommand extends Command {
 
     public static final String COMMAND_WORD = "stop";
-    public static final String COMMAND_DESCRIPTION = "Stops the current slideshow in progress";
-    public static final String COMMAND_USAGE = "stop";
-    public static final String COMMAND_EXAMPLES = "stop";
+    public static final String COMMAND_DESCRIPTION = "Stops the slideshow in progress.";
+    public static final String[] COMMAND_PARAMETERS = new String[0];
+    public static final String[] COMMAND_EXAMPLES = new String[] { COMMAND_WORD };
+
     public static final String MESSAGE_SUCCESS = "Slideshow stopped!";
 
     @Override

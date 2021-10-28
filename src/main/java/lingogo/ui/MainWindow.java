@@ -47,9 +47,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane resultDisplayPlaceholder;
 
-    @FXML
-    private StackPane statusbarPlaceholder;
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -118,9 +115,6 @@ public class MainWindow extends UiPart<Stage> {
 
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList(), logic.getSlideshowApp());
         flashcardListPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getFlashcardAppFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
     /**

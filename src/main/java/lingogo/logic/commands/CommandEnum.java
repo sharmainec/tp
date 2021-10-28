@@ -6,12 +6,12 @@ public enum CommandEnum {
     DELETE,
     EDIT,
     EXIT,
+    EXPORT,
     FILTER,
     FIND,
     HELP,
-    LIST,
     IMPORT,
-    EXPORT,
+    LIST,
 
     // Slideshow commands
     ANSWER,

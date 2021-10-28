@@ -24,7 +24,7 @@
                         </padding>
                     </Label>
                 </AnchorPane>
-                <Label fx:id="description">
+                <Label fx:id="description" wrapText="true">
                     <padding>
                         <Insets left="10.0" right="10.0" top="5.0" bottom="5.0" />
                     </padding>
@@ -38,7 +38,7 @@
                         </padding>
                     </Label>
                 </AnchorPane>
-                <Label fx:id="usage">
+                <Label fx:id="usage" wrapText="true">
                     <padding>
                         <Insets left="10.0" right="10.0" top="5.0" bottom="5.0" />
                     </padding>
@@ -52,7 +52,7 @@
                         </padding>
                     </Label>
                 </AnchorPane>
-                <Label fx:id="examples">
+                <Label fx:id="examples" wrapText="true">
                     <padding>
                         <Insets left="10.0" right="10.0" top="5.0" bottom="5.0" />
                     </padding>

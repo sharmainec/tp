@@ -29,19 +29,23 @@ import lingogo.model.flashcard.Phrase;
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
-    public static final String COMMAND_DESCRIPTION = "Filters all flashcards by a given filter";
-    public static final String COMMAND_USAGE = "filter [l/LANGUAGE_TYPE] [i/INDEX_LIST] [r/INDEX_RANGE]";
-    public static final String COMMAND_EXAMPLES = "filter l/Chinese\nfilter i/1 2 3\nfilter r/1 4\n"
-        + "filter l/Chinese i/1 2 3\n"
-        + "filter l/Chinese r/1 4";
+    public static final String COMMAND_DESCRIPTION =
+            "Filters flashcards in the displayed flashcard list by a given filter.";
+    public static final String[] COMMAND_PARAMETERS = new String[] {
+        "[" + PREFIX_LANGUAGE_TYPE + Parameter.LANGUAGE.toString() + "]",
+        "[" + PREFIX_INDEX_LIST + Parameter.INDEX_LIST.toString() + "]",
+        "[" + PREFIX_INDEX_RANGE + Parameter.INDEX_RANGE.toString() + "]"
+    };
+    public static final String[] COMMAND_EXAMPLES = new String[] {
+        COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + "Chinese",
+        COMMAND_WORD + " " + PREFIX_INDEX_LIST + "1 2 3",
+        COMMAND_WORD + " " + PREFIX_INDEX_RANGE + "1 4",
+        COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + "Chinese " + PREFIX_INDEX_LIST + "1 2 3",
+        COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + "Chinese " + PREFIX_INDEX_RANGE + "1 4"
+    };
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Filters all flashcards by a given filter.\n"
-            + "Parameters: "
-            + "[" + PREFIX_LANGUAGE_TYPE + "LANGUAGE_TYPE] "
-            + "[" + PREFIX_INDEX_LIST + "INDEX_LIST] "
-            + "[" + PREFIX_INDEX_RANGE + "INDEX_RANGE] "
-            + "Example: " + COMMAND_EXAMPLES;
+    public static final String MESSAGE_USAGE =
+            getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
 
     private final FilterBuilder filterBuilder;
 
