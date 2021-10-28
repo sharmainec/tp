@@ -429,19 +429,32 @@ University students
 
 (For all use cases below, the **System** is `LingoGO!` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use case: List flashcards
+### Use case: List all flashcards
 
 **MSS**
-1. User requests to list out flashcards.
-2. LingoGO! shows a list of flashcards.
+1. User requests to list out all flashcards.
+2. LingoGO! shows a list of all the flashcards.
+
+   Use case ends.
+
+### Use case: List n flashcards
+
+**MSS**
+1. User requests to list out n number of flashcards.
+2. LingoGO! randomly selects n number of flashcards to be shown in the list of flashcards.
 
    Use case ends.
 
 **Extensions**
 * 1a. The given user input is invalid (e.g. `list abc` or `list -1`)
-    * 1a1. Lists all flashcards.
+    * 1a1. LingoGO! shows an error message.
 
-      Use case ends.
+      Use case resumes at step 1.
+
+* 1b. The given user input is larger than the total flashcards
+    * 1b1. LingoGO! shows an error message.
+
+      Use case resumes at step 1.
 
 ### Use case: Add a flashcard
 

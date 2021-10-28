@@ -10,6 +10,7 @@ participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant ":FlashcardInGivenFlashcardListPredicate" as FlashcardInGivenFlashcardListPredicate MODEL_COLOR
 participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
 
@@ -26,26 +27,33 @@ activate ListCommandParser
 ListCommandParser --> FlashCardAppParser
 deactivate ListCommandParser
 
-FlashCardAppParser -> ListCommandParser
+FlashCardAppParser -> ListCommandParser:parse("4")
 activate ListCommandParser
 
 create ListCommand
 ListCommandParser -> ListCommand:ListCommand(4)
 activate ListCommand
 
-ListCommand --> ListCommandParser : listCommand()
+ListCommand --> ListCommandParser : listCommand
 deactivate ListCommand
 
-ListCommandParser --> FlashCardAppParser : listCommand()
+ListCommandParser --> FlashCardAppParser : listCommand
 deactivate ListCommandParser
 ListCommandParser -[hidden]-> FlashCardAppParser
 destroy ListCommandParser
 
-FlashCardAppParser --> LogicManager : listCommand()
+FlashCardAppParser --> LogicManager : listCommand
 deactivate FlashCardAppParser
 
 LogicManager -> ListCommand : execute()
 activate ListCommand
+
+create FlashcardInGivenFlashcardListPredicate
+ListCommand -> FlashcardInGivenFlashcardListPredicate:
+activate FlashcardInGivenFlashcardListPredicate
+
+FlashcardInGivenFlashcardListPredicate --> ListCommand
+deactivate FlashcardInGivenFlashcardListPredicate
 
 ListCommand -> ModelManager : updateFilteredFlashcardList(predicate)
 activate ModelManager
