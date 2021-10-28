@@ -17,19 +17,19 @@ import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
-    public static final String COMMAND_DESCRIPTION = "Finds flashcard(s) that have a matching phrase";
-    public static final String COMMAND_USAGE = "find [e/ENGLISH_KEYWORD] [f/FOREIGN_KEYWORD]";
-    public static final String COMMAND_EXAMPLES = "find e/Good Morning f/你\nfind e/Good Morning\nfind f/你";
+    public static final String COMMAND_DESCRIPTION = "Finds all flashcards whose English or foreign phrases contain "
+            + "any of the specified keywords (case-insensitive) and displays them in the displayed flashcard list.";
+    public static final String[] COMMAND_PARAMETERS = new String[] {
+            "[" + PREFIX_ENGLISH_PHRASE + Parameter.ENGLISH_PHRASE  + "]",
+            "[" + PREFIX_FOREIGN_PHRASE + Parameter.ENGLISH_KEYWORD + "]"
+    };
+    public static final String[] COMMAND_EXAMPLES = new String[] {
+            COMMAND_WORD + " " + PREFIX_ENGLISH_PHRASE + "Good morning " + PREFIX_FOREIGN_PHRASE + "你",
+            COMMAND_WORD + " " + PREFIX_ENGLISH_PHRASE + "Good morning",
+            COMMAND_WORD + " " + PREFIX_FOREIGN_PHRASE + "你"
+    };
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all flashcards whose english or foreign phrases contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: "
-            + "[" + PREFIX_ENGLISH_PHRASE + "ENGLISH_KEYWORD] "
-            + "[" + PREFIX_FOREIGN_PHRASE + "FOREIGN_KEYWORD] "
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ENGLISH_PHRASE + "Hello "
-            + PREFIX_FOREIGN_PHRASE + "你";
+    public static final String MESSAGE_USAGE = getUsageMessage();
 
     private final PhraseContainsKeywordsPredicate predicate;
 
@@ -48,6 +48,23 @@ public class FindCommand extends Command {
         model.updateFilteredFlashcardList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
+    }
+
+    private static String getUsageMessage() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(COMMAND_WORD).append(": ");
+        sb.append(COMMAND_DESCRIPTION);
+        sb.append("\n");
+        sb.append("Parameters:");
+        for (String parameter : COMMAND_PARAMETERS) {
+            sb.append(" ").append(parameter);
+        }
+        sb.append("\n");
+        sb.append("Examples:");
+        for (String example : COMMAND_EXAMPLES) {
+            sb.append(" ").append(example);
+        }
+        return sb.toString();
     }
 
     @Override

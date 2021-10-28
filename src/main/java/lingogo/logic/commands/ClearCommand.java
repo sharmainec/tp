@@ -13,9 +13,9 @@ import lingogo.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String COMMAND_DESCRIPTION = "Clears all flashcards";
-    public static final String COMMAND_USAGE = "clear";
-    public static final String COMMAND_EXAMPLES = "clear";
+    public static final String COMMAND_DESCRIPTION = "Clears all flashcards.";
+    public static final String[] COMMAND_PARAMETERS = new String[0];
+    public static final String[] COMMAND_EXAMPLES = new String[] { COMMAND_WORD };
     public static final String MESSAGE_SUCCESS = "All your flashcards have been cleared!";
 
 

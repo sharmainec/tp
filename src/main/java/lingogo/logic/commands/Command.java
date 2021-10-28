@@ -9,6 +9,27 @@ import lingogo.model.Model;
 public abstract class Command {
 
     /**
+     * Contains parameters that each command uses.
+     */
+    public enum Parameter {
+        ENGLISH_PHRASE,
+        FOREIGN_PHRASE,
+        LANGUAGE,
+        ENGLISH_KEYWORD,
+        FOREIGN_KEYWORD,
+        NUMBER_OF_FLASHCARDS,
+        INDEX,
+        INDEX_LIST,
+        INDEX_RANGE,
+        FILE_NAME,
+        CSV_FILE_PATH;
+
+        public String withCondition(String condition) {
+            return toString() + " (" + condition + ")";
+        }
+    }
+
+    /**
      * Executes the command and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.

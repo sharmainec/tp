@@ -23,22 +23,27 @@ import lingogo.model.flashcard.Phrase;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-    public static final String COMMAND_DESCRIPTION = "Edits a flashcard";
-    public static final String COMMAND_USAGE = "edit INDEX [l/LANGUAGE_TYPE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]";
-    public static final String COMMAND_EXAMPLES =
-            "edit 1 l/Spanish e/Hi f/Hola\nedit 1 l/German e/Hello\nedit 1 f/Guten Morgen";
+    public static final String COMMAND_DESCRIPTION =
+            "Edits a flashcard identified by the index number shown in the displayed flashcard list.";
+    public static final String[] COMMAND_PARAMETERS = new String[] {
+            Parameter.INDEX.withCondition("must be a positive integer"),
+            "[" + PREFIX_LANGUAGE_TYPE + Parameter.LANGUAGE.toString() + "]",
+            "[" + PREFIX_ENGLISH_PHRASE + Parameter.ENGLISH_PHRASE.toString() + "]",
+            "[" + PREFIX_FOREIGN_PHRASE + Parameter.FOREIGN_PHRASE.toString() + "]"
+    };
+    public static final String[] COMMAND_EXAMPLES = new String[] {
+            COMMAND_WORD + " 1 "
+                    + PREFIX_LANGUAGE_TYPE + "Chinese "
+                    + PREFIX_ENGLISH_PHRASE + "Hello "
+                    + PREFIX_FOREIGN_PHRASE + "你好",
+            COMMAND_WORD + " 1 "
+                    + PREFIX_LANGUAGE_TYPE + "German "
+                    + PREFIX_ENGLISH_PHRASE + "Hello ",
+            COMMAND_WORD + " 1 "
+                    + PREFIX_FOREIGN_PHRASE + "Guten Morgen"
+    };
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the flashcard identified "
-            + "by the index number used in the displayed flashcard list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_LANGUAGE_TYPE + "LANGUAGE_TYPE] "
-            + "[" + PREFIX_ENGLISH_PHRASE + "ENGLISH_PHRASE] "
-            + "[" + PREFIX_FOREIGN_PHRASE + "FOREIGN_PHRASE] "
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_LANGUAGE_TYPE + "Chinese "
-            + PREFIX_ENGLISH_PHRASE + "Hello "
-            + PREFIX_FOREIGN_PHRASE + "你好";
+    public static final String MESSAGE_USAGE = getUsageMessage();
 
     public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited Flashcard: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -83,6 +88,23 @@ public class EditCommand extends Command {
         model.setFlashcard(flashcardToEdit, editedFlashcard);
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard));
+    }
+
+    private static String getUsageMessage() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(COMMAND_WORD).append(": ");
+        sb.append(COMMAND_DESCRIPTION);
+        sb.append("\n");
+        sb.append("Parameters:");
+        for (String parameter : COMMAND_PARAMETERS) {
+            sb.append(" ").append(parameter);
+        }
+        sb.append("\n");
+        sb.append("Examples:");
+        for (String example : COMMAND_EXAMPLES) {
+            sb.append(" ").append(example);
+        }
+        return sb.toString();
     }
 
     /**

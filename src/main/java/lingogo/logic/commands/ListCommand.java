@@ -21,9 +21,13 @@ import lingogo.model.flashcard.FlashcardInGivenFlashcardListPredicate;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
-    public static final String COMMAND_DESCRIPTION = "Lists flashcards";
-    public static final String COMMAND_USAGE = "list [NUMBER_OF_FLASHCARDS]";
-    public static final String COMMAND_EXAMPLES = "list\nlist 4";
+    public static final String[] COMMAND_PARAMETERS = new String[] {
+            "[" + Parameter.NUMBER_OF_FLASHCARDS + "]"
+    };
+    public static final String[] COMMAND_EXAMPLES = new String[] {
+            COMMAND_WORD,
+            COMMAND_WORD + " 4"
+    };
 
     public static final String MESSAGE_SUCCESS = "Listed all flashcards";
     public static final String MESSAGE_SUCCESS_SHUFFLED = "Randomly selected %1$d flashcard(s) to be listed";

@@ -12,15 +12,18 @@ import lingogo.model.Model;
 public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
-    public static final String COMMAND_DESCRIPTION = "Imports flashcards to a CSV file";
-    public static final String COMMAND_USAGE = "import FILE_PATH";
-    public static final String COMMAND_EXAMPLES = "import ./dictionary.csv";
+    public static final String COMMAND_DESCRIPTION = "Imports flashcards from a CSV file into LingoGO!";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports cards from a CSV file to LingoGO! "
-            + "Parameters: FILE_PATH (must be a valid file path with .csv extension)\n"
-            + "Example: " + COMMAND_WORD + " ./dictionary.csv";
+    public static final String[] COMMAND_PARAMETERS = new String[] {
+            Parameter.CSV_FILE_PATH.withCondition("must have a valid file name with .csv extension")
+    };
+    public static final String[] COMMAND_EXAMPLES = new String[] {
+            COMMAND_WORD + " data/dictionary.csv"
+    };
 
-    public static final String MESSAGE_SUCCESS = "LingoGO! now have been updated with all the cards from %1$s";
+    public static final String MESSAGE_USAGE = getUsageMessage();
+
+    public static final String MESSAGE_SUCCESS = "LingoGO! has been updated with all the flashcards from %1$s";
 
     private final String filePath;
 
@@ -43,6 +46,23 @@ public class ImportCommand extends Command {
 
         model.importFlashCards(filePath);
         return new CommandResult(String.format(MESSAGE_SUCCESS, filePath));
+    }
+
+    private static String getUsageMessage() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(COMMAND_WORD).append(": ");
+        sb.append(COMMAND_DESCRIPTION);
+        sb.append("\n");
+        sb.append("Parameters:");
+        for (String parameter : COMMAND_PARAMETERS) {
+            sb.append(" ").append(parameter);
+        }
+        sb.append("\n");
+        sb.append("Examples:");
+        for (String example : COMMAND_EXAMPLES) {
+            sb.append(" ").append(example);
+        }
+        return sb.toString();
     }
 
     @Override
