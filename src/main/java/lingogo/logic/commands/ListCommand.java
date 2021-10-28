@@ -53,7 +53,7 @@ public class ListCommand extends Command {
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
             int n = input.get();
-            if (n > size || n <= 0) { // show all flashcards
+            if (n > size || n <= 0) {
                 throw new CommandException(Messages.MESSAGE_INVALID_N);
             }
             List<Flashcard> filteredList = chooseRandomFlashcards(n, size, lastShownList);

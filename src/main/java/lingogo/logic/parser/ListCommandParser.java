@@ -17,7 +17,6 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public ListCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        System.out.println(trimmedArgs.isEmpty());
         if (trimmedArgs.isEmpty()) {
             return new ListCommand();
         }
