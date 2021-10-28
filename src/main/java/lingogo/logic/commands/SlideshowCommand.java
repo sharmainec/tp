@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import lingogo.commons.core.Messages;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
+import lingogo.model.slideshow.exceptions.EmptySlideshowException;
 
 public class SlideshowCommand extends Command {
 
@@ -14,6 +15,7 @@ public class SlideshowCommand extends Command {
     public static final String COMMAND_USAGE = "slideshow";
     public static final String COMMAND_EXAMPLES = "slideshow";
     public static final String MESSAGE_SUCCESS = "Slideshow started!";
+    public static final String MESSAGE_EMPTY_SLIDESHOW = "An empty slideshow cannot be started!";
 
 
     @Override
@@ -24,7 +26,12 @@ public class SlideshowCommand extends Command {
             throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
         }
 
-        model.startSlideshow();
+        try {
+            model.startSlideshow();
+        } catch (EmptySlideshowException e) {
+            throw new CommandException(MESSAGE_EMPTY_SLIDESHOW);
+        }
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
