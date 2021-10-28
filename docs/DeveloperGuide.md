@@ -326,6 +326,30 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: Too restrictive, will not output phrases that contains more than the keyword.
 
 
+### List feature
+
+#### Implementation
+
+The list feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList`which returns an unmodifiable view of the flashcards in the GUI.
+
+In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the main list of flashcards.
+
+The sequence diagram below illustrates the execution of `ListCommand`.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Generating list of flashcards:**
+
+* **Alternative 1 (current choice):** Randomise the list of flashcards
+    * Pros: Users are able to use flashcards more effectively.
+    * Cons: Harder to implement and more difficult to test (due to random stream of `Index`).
+
+* **Alternative 2:** Output list up to `n`
+    * Pros: Easy to implement.
+    * Cons: Does not add value to the user's learning experience.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -405,7 +429,34 @@ University students
 
 (For all use cases below, the **System** is `LingoGO!` and the **Actor** is the `user`, unless specified otherwise)
 
-### Add a flashcard
+### Use case: List all flashcards
+
+**MSS**
+1. User requests to list out all flashcards.
+2. LingoGO! shows a list of all the flashcards.
+
+   Use case ends.
+
+### Use case: List n flashcards
+
+**MSS**
+1. User requests to list out n number of flashcards.
+2. LingoGO! randomly selects n number of flashcards to be shown in the list of flashcards.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given user input is invalid (e.g. `list abc` or `list -1`)
+    * 1a1. LingoGO! shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The given user input is larger than the total flashcards
+    * 1b1. LingoGO! shows an error message.
+
+      Use case resumes at step 1.
+
+### Use case: Add a flashcard
 
 **Guarantees**
 * A flashcard is added only if all of its information is provided.

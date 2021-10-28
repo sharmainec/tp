@@ -296,11 +296,19 @@ Examples:
 * `import dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
 
 
-### Listing all flashcards : `list`
+### Listing all flashcards : `list [NUMBER_OF_FLASHCARDS]`
 
-Shows a list of all flashcards in LingoGO!.
+Shows a list of flashcards in LingoGO!.
 
-Format: `list`
+Format: `list [NUMBER_OF_FLASHCARDS]`
+
+* Lists all flashcards in LingoGO! if `[NUMBER_OF_FLASHCARDS]` is not provided
+* Randomly select `[NUMBER_OF_FLASHCARDS]` flashcards to be shown in the [list mode](#list-mode)
+* The `[NUMBER_OF_FLASHCARDS]` **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` returns all flashcards in LingoGO!.
+* `list 3` returns 3 randomly selected flashcards in LingoGO!
 
 
 ### Moving to the next flashcard in slideshow mode : `next`
@@ -382,7 +390,7 @@ Action | Format | Example
 **Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]` | `find e/Hello f/早`
 **Help** | `help` | `help`
 **Import** | `import CSV_FILE_PATH` | `import dictionary.csv`
-**List** | `list` | `list`
+**List** | `list [NUMBER_OF_FLASHCARDS]` | `list 4`
 **Next** | `next` | `next`
 **Previous** | `previous` | `previous`
 **Slideshow** | `slideshow` | `slideshow`
