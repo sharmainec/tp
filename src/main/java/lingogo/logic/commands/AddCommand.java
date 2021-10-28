@@ -24,9 +24,9 @@ public class AddCommand extends Command {
     };
     public static final String[] COMMAND_EXAMPLES = new String[] {
         COMMAND_WORD + " "
-                    + PREFIX_LANGUAGE_TYPE + "Chinese "
-                    + PREFIX_ENGLISH_PHRASE + "Good Morning "
-                    + PREFIX_FOREIGN_PHRASE + "早安"
+                + PREFIX_LANGUAGE_TYPE + "Chinese "
+                + PREFIX_ENGLISH_PHRASE + "Good Morning "
+                + PREFIX_FOREIGN_PHRASE + "早安"
     };
 
     public static final String MESSAGE_USAGE =

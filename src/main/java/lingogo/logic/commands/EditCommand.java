@@ -33,14 +33,14 @@ public class EditCommand extends Command {
     };
     public static final String[] COMMAND_EXAMPLES = new String[] {
         COMMAND_WORD + " 1 "
-                    + PREFIX_LANGUAGE_TYPE + "Chinese "
-                    + PREFIX_ENGLISH_PHRASE + "Hello "
-                    + PREFIX_FOREIGN_PHRASE + "你好",
+                + PREFIX_LANGUAGE_TYPE + "Chinese "
+                + PREFIX_ENGLISH_PHRASE + "Hello "
+                + PREFIX_FOREIGN_PHRASE + "你好",
         COMMAND_WORD + " 1 "
-                    + PREFIX_LANGUAGE_TYPE + "German "
-                    + PREFIX_ENGLISH_PHRASE + "Hello ",
+                + PREFIX_LANGUAGE_TYPE + "German "
+                + PREFIX_ENGLISH_PHRASE + "Hello ",
         COMMAND_WORD + " 1 "
-                    + PREFIX_FOREIGN_PHRASE + "Guten Morgen"
+                + PREFIX_FOREIGN_PHRASE + "Guten Morgen"
     };
 
     public static final String MESSAGE_USAGE =
