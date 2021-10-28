@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.util.Pair;
 import lingogo.commons.core.index.Index;
 import lingogo.logic.commands.FilterCommand.FilterBuilder;
 import lingogo.model.flashcard.Phrase;
@@ -56,6 +57,23 @@ public class FilterBuilderBuilder {
                 Collectors.toList()));
         return this;
     }
+
+    /**
+     * Sets the {@code indexRangePair} of the {@code FilterBuilder} that we are building.
+     */
+    public FilterBuilderBuilder withRange(Integer... pair) {
+        Pair<Index, Index> temp = new Pair<>(Index.fromOneBased(pair[0]), Index.fromOneBased(pair[1]));
+        return withRange(temp);
+    }
+
+    /**
+     * Sets the {@code indexRangePair} of the {@code FilterBuilder} that we are building.
+     */
+    public FilterBuilderBuilder withRange(Pair<Index, Index> pair) {
+        filterBuilder.setIndexRangePair(pair);
+        return this;
+    }
+
 
     public FilterBuilder build() {
         return filterBuilder;

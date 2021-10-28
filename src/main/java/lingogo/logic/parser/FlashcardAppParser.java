@@ -16,7 +16,6 @@ import lingogo.logic.commands.ExitCommand;
 import lingogo.logic.commands.ExportCommand;
 import lingogo.logic.commands.FilterCommand;
 import lingogo.logic.commands.FindCommand;
-import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ImportCommand;
 import lingogo.logic.commands.ListCommand;
@@ -85,10 +84,6 @@ public class FlashcardAppParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        // TODO: Remove flip command
-        case FlipCommand.COMMAND_WORD:
-            return new FlipCommandParser().parse(arguments);
 
         case SlideshowCommand.COMMAND_WORD:
             return new SlideshowCommand();

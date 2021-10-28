@@ -3,6 +3,7 @@ package lingogo.logic.parser;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static lingogo.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static lingogo.logic.commands.CommandTestUtil.INDICES_DESC_DESC_ONE_TWO;
+import static lingogo.logic.commands.CommandTestUtil.RANGE_DESC_TWO_FOUR;
 import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.VALID_LANGUAGE_TYPE_TAMIL;
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
@@ -28,7 +29,6 @@ import lingogo.logic.commands.ExitCommand;
 import lingogo.logic.commands.ExportCommand;
 import lingogo.logic.commands.FilterCommand;
 import lingogo.logic.commands.FindCommand;
-import lingogo.logic.commands.FlipCommand;
 import lingogo.logic.commands.HelpCommand;
 import lingogo.logic.commands.ImportCommand;
 import lingogo.logic.commands.ListCommand;
@@ -113,11 +113,11 @@ public class FlashcardAppParserTest {
         Phrase givenPhrase = new Phrase(VALID_LANGUAGE_TYPE_TAMIL);
         FilterCommand command = (FilterCommand) parser.parseCommand(
                 FilterCommand.COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + VALID_LANGUAGE_TYPE_TAMIL
-                + INDICES_DESC_DESC_ONE_TWO);
+                + INDICES_DESC_DESC_ONE_TWO + RANGE_DESC_TWO_FOUR);
 
         assertEquals(
                 new FilterCommand(new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(givenPhrase)
-                .build()), command);
+                .withRange(2, 4).build()), command);
     }
 
     @Test
@@ -146,13 +146,6 @@ public class FlashcardAppParserTest {
         ImportCommand command = (ImportCommand) parser.parseCommand(
                 ImportCommand.COMMAND_WORD + " " + csvFilePath);
         assertEquals(new ImportCommand(csvFilePath), command);
-    }
-
-    @Test
-    public void parseCommand_flip() throws Exception {
-        assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " 1") instanceof FlipCommand);
-        assertTrue(parser.parseCommand(FlipCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased())
-                instanceof FlipCommand);
     }
 
     @Test

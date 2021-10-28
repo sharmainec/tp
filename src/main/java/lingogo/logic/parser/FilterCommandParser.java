@@ -3,10 +3,12 @@ package lingogo.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static lingogo.logic.parser.CliSyntax.PREFIX_INDEX_LIST;
+import static lingogo.logic.parser.CliSyntax.PREFIX_INDEX_RANGE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 
 import java.util.List;
 
+import javafx.util.Pair;
 import lingogo.commons.core.index.Index;
 import lingogo.logic.commands.FilterCommand;
 import lingogo.logic.commands.FilterCommand.FilterBuilder;
@@ -28,7 +30,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     @Override
     public FilterCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LANGUAGE_TYPE, PREFIX_INDEX_LIST);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LANGUAGE_TYPE, PREFIX_INDEX_LIST,
+                PREFIX_INDEX_RANGE);
 
         FilterBuilder filterBuilder = new FilterBuilder();
 
@@ -43,6 +46,13 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             List<Index> indexList = ParserUtil.parseIndices(argMultimap.getValue(PREFIX_INDEX_LIST).get());
             filterBuilder.setIndexList(indexList);
         }
+
+        if (argMultimap.getValue(PREFIX_INDEX_RANGE).isPresent()) {
+            Pair<Index, Index> indexRangePair = ParserUtil.parseIndexPair(argMultimap
+                    .getValue(PREFIX_INDEX_RANGE).get());
+            filterBuilder.setIndexRangePair(indexRangePair);
+        }
+
 
         if (!filterBuilder.isAnyFieldFiltered()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));

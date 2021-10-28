@@ -32,7 +32,10 @@ public class TypicalFlashcards {
             .withEnglishPhrase("Thank You").withForeignPhrase("谢谢").build();
     public static final Flashcard HAPPY_BIRTHDAY = new FlashcardBuilder().withLanguageType("Chinese")
             .withEnglishPhrase("Happy Birthday").withForeignPhrase("生日快乐").build();
-
+    public static final Flashcard HAPPY_ANNIVERSARY_CHINESE = new FlashcardBuilder().withLanguageType("Chinese")
+            .withEnglishPhrase("Happy Anniversary").withForeignPhrase("周年快乐").build();
+    public static final Flashcard HAPPY_BIRTHDAY_JAPANESE = new FlashcardBuilder().withLanguageType("Japanese")
+        .withEnglishPhrase("Happy Birthday").withForeignPhrase("誕生日おめでとう").build();
 
     // Flashcard's details found in {@code CommandTestUtil}
     public static final Flashcard GOOD_MORNING_CHINESE_FLASHCARD =

@@ -2,10 +2,12 @@ package lingogo.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static lingogo.commons.core.Messages.MESSAGE_INDEX_IS_NOT_NON_ZERO_UNSIGNED_INT;
+import static lingogo.commons.core.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.util.Pair;
 import lingogo.commons.core.index.Index;
 import lingogo.commons.util.StringUtil;
 import lingogo.logic.parser.exceptions.ParseException;
@@ -16,6 +18,20 @@ import lingogo.model.flashcard.Phrase;
  */
 public class ParserUtil {
 
+
+    /**
+     * Parses {@code indexPair} into an {Index} pair and returns it.
+     *
+     * @throws ParseException if an index pair is not given of if indices given are invalid
+     */
+    public static Pair<Index, Index> parseIndexPair(String indexPair) throws ParseException {
+        List<Index> indexList = parseIndices(indexPair);
+
+        if (indexList.size() != 2 || indexList.get(0).getZeroBased() > indexList.get(1).getZeroBased()) {
+            throw new ParseException(MESSAGE_INVALID_INDEX_RANGE);
+        }
+        return new Pair<>(indexList.get(0), indexList.get(1));
+    }
 
 
     /**

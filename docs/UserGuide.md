@@ -227,18 +227,23 @@ Examples:
 
 Filters flashcards based on the specified condition(s).
 
-Format: `filter [l/LANGUAGE] [i/INDEX_LIST]`
+Format: `filter [l/LANGUAGE] [i/INDEX_LIST] [r/INDEX_RANGE]`
 
 * `LANGUAGE` is not **case-sensitive** (e.g. "Chinese" matches "CHINESE").
 * `INDEX_LIST` is a list of space separated indices, that refer to the indices shown in the current displayed list.
-*  The indices **must be positive integers** 1, 2, 3, …
+* `INDEX_RANGE` is a pair of space separated indices, that refer to the indices shown in the current displayed list.
+  The given range is inclusive, that is `1 3` would refer to the flashcards at indices 1, 2 and 3. Also the first given
+  index must be smaller or equal to the second given index. e.g. `1 2`, `3 14` are accepted but not `1 2 3` nor `3 1`.
+* The indices **must be positive integers** 1, 2, 3, …
 
 Examples:
 * `filter l/Chinese` returns all flashcards with the `Chinese` language like `e/Good Morning f/早安`.
 * `filter i/1 2 3` returns the flashcards in [list mode](#list-mode) indexed at 1, 2 and 3.
+* `filter r/2 4` returns all the flashcards in [list mode](#list-mode) indexed from 2 to 4.
 * `filter i/1 3 6 l/Tamil` returns all the flashcards in [list mode](#list-mode) indexed at 1, 3 and 6 with the `Tamil`
   language.
-
+* `filter l/Chinese r/1 4` returns all the flashcards in [list mode](#list-mode) indexed from 1 to 4 with the 
+  `Chinese` language.
 
 ### Locating flashcards by keyword(s): `find`
 
@@ -386,7 +391,7 @@ Action | Format | Example
 **Edit** | `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` | `edit 2 f/Guten Morgen`
 **Exit** | `exit` | `exit`
 **Export** | `export FILE_NAME` | `export myCards.csv`
-**Filter** | `filter [l/LANGUAGE] [i/INDEX_LIST]` | `filter l/Chinese i/1 2 3`
+**Filter** | `filter [l/LANGUAGE] [i/INDEX_LIST] [r/INDEX_RANGE]` | `filter l/Chinese r/1 4 i/1 2 3`
 **Find** | `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]` | `find e/Hello f/早`
 **Help** | `help` | `help`
 **Import** | `import CSV_FILE_PATH` | `import dictionary.csv`

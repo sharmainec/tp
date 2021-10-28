@@ -3,6 +3,7 @@ package lingogo.logic.commands;
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_INDEX_LIST;
+import static lingogo.logic.parser.CliSyntax.PREFIX_INDEX_RANGE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 import static lingogo.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,6 +37,7 @@ public class CommandTestUtil {
     public static final String VALID_TAMIL_PHRASE_SUNRISE = "சூரிய உதயம்";
     public static final String VALID_INDICES_ONE_TWO = "1 2";
     public static final String VALID_INDICES_DUPLICATE_ONES = "1 1";
+    public static final String VALID_RANGE_TWO_FOUR = "2 4";
 
 
 
@@ -58,6 +60,8 @@ public class CommandTestUtil {
     public static final String INDICES_DESC_DESC_ONE_TWO = " " + PREFIX_INDEX_LIST + VALID_INDICES_ONE_TWO;
     public static final String INDICES_DESC_DESC_DUPLICATE_ONES = " " + PREFIX_INDEX_LIST
             + VALID_INDICES_DUPLICATE_ONES;
+    public static final String RANGE_DESC_TWO_FOUR = " " + PREFIX_INDEX_RANGE + VALID_RANGE_TWO_FOUR;
+
 
 
 
@@ -73,6 +77,11 @@ public class CommandTestUtil {
 
     public static final String INVALID_VERY_LARGE_INDICES_DESC = " " + PREFIX_INDEX_LIST
         + "1000000000000000000000000000000000000000000000 999999999999999999999999999999999999999999";
+    public static final String INVALID_NON_PAIR_RANGE = " " + PREFIX_INDEX_RANGE + "2";
+    public static final String INVALID_REVERSED_RANGE = " " + PREFIX_INDEX_RANGE + "4 2";
+    public static final String INVALID_INDEX_RANGE = " " + PREFIX_INDEX_RANGE + "-1 1";
+
+
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
