@@ -19,8 +19,15 @@ public class ImportCommandParserTest {
     }
 
     @Test
+    public void parse_nonExistentFile_throwsParseException() {
+        String userInput = "./x.csv";
+        assertParseFailure(parser, userInput,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_nonExistentPath_throwsParseException() {
-        String userInput = "non/exist/path.csv";
+        String userInput = "sub/directory/x.csv";
         assertParseFailure(parser, userInput,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
     }

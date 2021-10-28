@@ -154,7 +154,7 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
                 throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, filePath));
             }
             while ((line = reader.readNext()) != null) {
-                if (line[0].isBlank() || line[1].isBlank() || line[2].isBlank()) {
+                if (line.length != 3 || line[0].isBlank() || line[1].isBlank() || line[2].isBlank()) {
                     throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, filePath));
                 }
                 Flashcard card = new Flashcard(new Phrase(line[0]), new Phrase(line[2]), new Phrase(line[1]));

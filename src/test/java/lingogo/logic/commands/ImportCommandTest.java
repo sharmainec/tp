@@ -90,11 +90,11 @@ public class ImportCommandTest {
         ImportCommand command = new ImportCommand(filePath);
         Flashcard newlyAdded = new Flashcard(new Phrase("Korean"), new Phrase("Hello"), new Phrase("안녕"));
         try {
-            expectedModel.importFlashCards(filePath);
+            model.importFlashCards(filePath);
         } catch (Exception e) {
             fail("Exception not expected");
         }
-        model.addFlashcard(newlyAdded);
+        expectedModel.addFlashcard(newlyAdded);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(expectedModel.getFilteredFlashcardList(), model.getFilteredFlashcardList());
     }

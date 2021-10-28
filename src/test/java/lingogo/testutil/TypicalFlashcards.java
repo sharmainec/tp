@@ -62,13 +62,6 @@ public class TypicalFlashcards {
         return fa;
     }
 
-    /**
-     * Returns an {@code FlashcardApp} with empty list of flashcards.
-     */
-    public static FlashcardApp getEmptyFlashcardApp() {
-        return new FlashcardApp();
-    }
-
     public static List<Flashcard> getTypicalFlashcards() {
         return new ArrayList<>(
             Arrays.asList(AFTERNOON_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD,
