@@ -6,6 +6,8 @@ import static lingogo.testutil.TypicalFlashcards.AFTERNOON_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.NIGHT_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.SORRY_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,6 +71,23 @@ public class ListCommandTest {
 
     @Test
     public void equals() {
+        ListCommand listAllCommand = new ListCommand();
+        ListCommand listRandomThreeCommand = new ListCommand(3);
 
+        // same object -> returns true
+        assertTrue(listAllCommand.equals(listAllCommand));
+
+        // same values -> returns true
+        ListCommand listRandomThreeCommandCopy = new ListCommand(3);
+        assertTrue(listRandomThreeCommand.equals(listRandomThreeCommandCopy));
+
+        // different types -> returns false
+        assertFalse(listRandomThreeCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(listRandomThreeCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(listAllCommand.equals(listRandomThreeCommand));
     }
 }

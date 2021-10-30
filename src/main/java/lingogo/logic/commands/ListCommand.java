@@ -98,4 +98,11 @@ public class ListCommand extends Command {
                 .map(index -> flashcardList.get(index.getZeroBased()))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand // instanceof handles nulls
+                && input.equals(((ListCommand) other).input));
+    }
 }
