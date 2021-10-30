@@ -1,5 +1,6 @@
 package lingogo;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -50,6 +51,12 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing LingoGO! ]===========================");
         super.init();
+
+        logger.info("=============================[ Creating Data folder ]===========================");
+        File data = new File("data");
+        if (!data.exists()) {
+            data.mkdir();
+        }
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
