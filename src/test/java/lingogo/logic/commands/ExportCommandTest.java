@@ -8,6 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 import org.junit.jupiter.api.Test;
 
 import lingogo.commons.core.Messages;
@@ -57,17 +63,27 @@ public class ExportCommandTest {
     @Test
     public void execute_exportTypicalFlashcards_successfulExport() {
         String fileName = "exportTest.csv";
+        try {
+            createCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
         String expectedMessage = String.format(ExportCommand.MESSAGE_SUCCESS, fileName);
         ExportCommand command = new ExportCommand(fileName);
         try {
-            expectedModel.exportFlashCards(fileName);
+            command.exportHelper(expectedModel);
         } catch (Exception e) {
             fail("Exception not expected");
         }
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         try {
-            emptyModel.importFlashCards("data/" + fileName);
+            new ImportCommand(fileName).importHelper(emptyModel);
             assertEquals(expectedModel.getFilteredFlashcardList(), emptyModel.getFilteredFlashcardList());
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+        try {
+            deleteCopyInDataFolder(fileName);
         } catch (Exception e) {
             fail("Exception not expected");
         }
@@ -75,21 +91,36 @@ public class ExportCommandTest {
 
     @Test
     public void execute_overwriteExportTestCsvFile_successfulExport() {
-        // after the previous test, "exportTest.csv" only has TypicalFlashcards.
         String fileName = "exportTest.csv";
+        try {
+            createCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
         Flashcard newlyAdded = new Flashcard(new Phrase("Korean"), new Phrase("Hello"), new Phrase("안녕"));
         model.addFlashcard(newlyAdded);
         try {
-            model.exportFlashCards(fileName);
+            new ExportCommand(fileName).exportHelper(model);
         } catch (Exception e) {
             fail("Exception not expected");
         }
         expectedModel.addFlashcard(newlyAdded);
         try {
-            emptyModel.importFlashCards("data/" + fileName);
+            new ImportCommand(fileName).importHelper(emptyModel);
             assertEquals(expectedModel.getFilteredFlashcardList(), emptyModel.getFilteredFlashcardList());
         } catch (Exception e) {
             fail("Exception not expected");
         }
+    }
+
+    public void createCopyInDataFolder(String fileName) throws Exception {
+        Path srcFile = Paths.get("src/test/data/SampleCsvFiles/" + fileName);
+        Path destFile = Paths.get("data/" + fileName);
+        Files.copy(srcFile, destFile, StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    public void deleteCopyInDataFolder(String fileName) throws Exception {
+        File file = new File("data/" + fileName);
+        file.delete();
     }
 }

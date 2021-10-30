@@ -19,14 +19,14 @@ public class ImportCommandParser implements Parser<ImportCommand> {
      */
     @Override
     public ImportCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
+        String fileName = args.trim();
 
-        File f = new File(trimmedArgs);
-        if (!trimmedArgs.endsWith(".csv") || !f.exists()) {
+        File f = new File("data/" + fileName);
+        if (!fileName.endsWith(".csv") || !f.exists()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
         }
 
-        return new ImportCommand(trimmedArgs);
+        return new ImportCommand(fileName);
     }
 }

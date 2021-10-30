@@ -134,7 +134,7 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_export() throws Exception {
-        String csvFileName = "test.csv";
+        String csvFileName = "myCards.csv";
         ExportCommand command = (ExportCommand) parser.parseCommand(
                 ExportCommand.COMMAND_WORD + " " + csvFileName);
         assertEquals(new ExportCommand(csvFileName), command);
@@ -142,10 +142,10 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_import() throws Exception {
-        String csvFilePath = "src/test/data/SampleCsvFiles/exportTest.csv";
+        String csvFileName = "myCards.csv";
         ImportCommand command = (ImportCommand) parser.parseCommand(
-                ImportCommand.COMMAND_WORD + " " + csvFilePath);
-        assertEquals(new ImportCommand(csvFilePath), command);
+                ImportCommand.COMMAND_WORD + " " + csvFileName);
+        assertEquals(new ImportCommand(csvFileName), command);
     }
 
     @Test

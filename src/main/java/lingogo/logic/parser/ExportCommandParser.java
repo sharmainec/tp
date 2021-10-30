@@ -18,11 +18,11 @@ public class ExportCommandParser implements Parser<ExportCommand> {
      */
     @Override
     public ExportCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (!FileUtil.isValidCsvFileName(trimmedArgs)) {
+        String fileName = args.trim();
+        if (!FileUtil.isValidCsvFileName(fileName)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE));
         }
-        return new ExportCommand(trimmedArgs);
+        return new ExportCommand(fileName);
     }
 }

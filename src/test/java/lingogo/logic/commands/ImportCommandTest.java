@@ -9,6 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 import org.junit.jupiter.api.Test;
 
 import lingogo.commons.core.Messages;
@@ -55,47 +61,98 @@ public class ImportCommandTest {
 
     @Test
     public void execute_importInvalidHeaders_throwsCommandException() {
-        String filePath = "src/test/data/SampleCsvFiles/invalidHeaders.csv";
-        String expectedMessage = String.format(MESSAGE_INVALID_CSV_FORMAT, filePath);
-        ImportCommand command = new ImportCommand(filePath);
+        String fileName = "invalidHeaders.csv";
+        try {
+            createCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+        String expectedMessage = String.format(MESSAGE_INVALID_CSV_FORMAT, fileName);
+        ImportCommand command = new ImportCommand(fileName);
         assertCommandFailure(command, model, expectedMessage);
+        try {
+            deleteCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
     }
 
     @Test
     public void execute_importInvalidContent_throwsCommandException() {
-        String filePath = "src/test/data/SampleCsvFiles/invalidContent.csv";
-        String expectedMessage = String.format(MESSAGE_INVALID_CSV_FORMAT, filePath);
-        ImportCommand command = new ImportCommand(filePath);
+        String fileName = "invalidContent.csv";
+        try {
+            createCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+        String expectedMessage = String.format(MESSAGE_INVALID_CSV_FORMAT, fileName);
+        ImportCommand command = new ImportCommand(fileName);
         assertCommandFailure(command, model, expectedMessage);
+        try {
+            deleteCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
     }
 
     @Test
     public void execute_importDuplicateContent_noNewFlashcards() {
-        String filePath = "src/test/data/SampleCsvFiles/duplicateContent.csv";
-        String expectedMessage = String.format(ImportCommand.MESSAGE_SUCCESS, filePath);
-        ImportCommand command = new ImportCommand(filePath);
+        String fileName = "duplicateContent.csv";
         try {
-            expectedModel.importFlashCards(filePath);
+            createCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+        String expectedMessage = String.format(ImportCommand.MESSAGE_SUCCESS, fileName);
+        ImportCommand command = new ImportCommand(fileName);
+        try {
+            command.importHelper(expectedModel);
         } catch (Exception e) {
             fail("Exception not expected");
         }
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(expectedModel.getFilteredFlashcardList(), model.getFilteredFlashcardList());
+        try {
+            deleteCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
     }
 
     @Test
     public void execute_importNewContent_newFlashcard() {
-        String filePath = "src/test/data/SampleCsvFiles/newContent.csv";
-        String expectedMessage = String.format(ImportCommand.MESSAGE_SUCCESS, filePath);
-        ImportCommand command = new ImportCommand(filePath);
+        String fileName = "newContent.csv";
+        try {
+            createCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+        String expectedMessage = String.format(ImportCommand.MESSAGE_SUCCESS, fileName);
+        ImportCommand command = new ImportCommand(fileName);
         Flashcard newlyAdded = new Flashcard(new Phrase("Korean"), new Phrase("Hello"), new Phrase("안녕"));
         try {
-            model.importFlashCards(filePath);
+            command.importHelper(model);
         } catch (Exception e) {
             fail("Exception not expected");
         }
         expectedModel.addFlashcard(newlyAdded);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(expectedModel.getFilteredFlashcardList(), model.getFilteredFlashcardList());
+        try {
+            deleteCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+    }
+
+    public void createCopyInDataFolder(String fileName) throws Exception {
+        Path srcFile = Paths.get("src/test/data/SampleCsvFiles/" + fileName);
+        Path destFile = Paths.get("data/" + fileName);
+        Files.copy(srcFile, destFile, StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    public void deleteCopyInDataFolder(String fileName) throws Exception {
+        File file = new File("data/" + fileName);
+        file.delete();
     }
 }

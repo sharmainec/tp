@@ -292,18 +292,14 @@ Format: `help`
 
 ### Importing flashcards : `import`
 
-Imports flashcards to LingoGO! using a CSV file.
+Imports flashcards from a CSV file and adds them to the existing list in LingoGO!
+(instead of replacing the current list)
 
-Format: `import CSV_FILE_PATH`
+Format: `import CSV_FILE_NAME`
 
-* The file path can be absolute or relative to the location of the LingoGO! file.
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Notes about `CSV_FILE_PATH`:**<br>
-* Users with no knowledge about file paths can just place the CSV file in the same folder that LingoGO! is located in
-  and fill the `CSV_FILE_PATH` parameter with the CSV file's name.
-</div>
-
+* Place the CSV file that you wish to import in the *data* folder
+ (located in the same folder as the *lingogo.jar* file).
+* The CSV file must have headers "Language", "Foreign", "English".
 * The CSV file must have **3 columns** in this order from left to right:
   1. Language
   2. Foreign phrase
