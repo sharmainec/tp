@@ -16,7 +16,7 @@ import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.FlashcardInGivenFlashcardListPredicate;
 
 /**
- * Lists flashcards in the flashcard app to the user.
+ * Lists either all flashcards or a random number of flashcards in the flashcard app to the user.
  */
 public class ListCommand extends Command {
 
@@ -37,13 +37,30 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS_SHUFFLED = "Randomly selected %1$d flashcard(s) to be listed";
 
     private final Optional<Integer> input;
+    private final Optional<Random> random;
 
+    /**
+     * Constructs a ListCommand that lists all flashcards.
+     */
     public ListCommand() {
         this.input = Optional.empty();
+        this.random = Optional.empty();
     }
 
+    /**
+     * Constructs a ListCommand with a specified number of flashcards to randomly list.
+     */
     public ListCommand(int n) {
         this.input = Optional.of(n);
+        this.random = Optional.of(new Random());
+    }
+
+    /**
+     * Constructs a ListCommand with a seed for its random flashcard selector.
+     */
+    public ListCommand(int n, int seed) {
+        this.input = Optional.of(n);
+        this.random = Optional.of(new Random(seed));
     }
 
     @Override
@@ -73,7 +90,7 @@ public class ListCommand extends Command {
     }
 
     private List<Flashcard> chooseRandomFlashcards(int n, int size, List<Flashcard> flashcardList) {
-        return new Random().ints(0, size)
+        return random.get().ints(0, size)
                 .distinct()
                 .limit(n)
                 .boxed()

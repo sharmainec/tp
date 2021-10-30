@@ -5,21 +5,38 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * A {@code Predicate} which tests whether a given {@code Flashcard}'s Language type matches the given phrase.
+ * A {@code Predicate} which tests whether a given {@code Flashcard} is contained in a specified list of flashcards.
  */
 public class FlashcardInGivenFlashcardListPredicate implements Predicate<Flashcard> {
 
+    /**
+     * A hashset is used for improved time complexity when testing if
+     * a given flashcard is contained in the given set of flashcards.
+     */
     private final HashSet<Flashcard> givenFlashcardSet;
 
     /**
-     * Converts {@code givenFlashcardList} into a hashset for improved time complexity when testing against given
-     * flashcards
-     * @param givenFlashcardList
+     * Constructs a predicate that will check if a specified flashcard
+     * is in the list of specified flashcards.
+     * @param givenFlashcardList The list of specified flashcards.
      */
     public FlashcardInGivenFlashcardListPredicate(List<Flashcard> givenFlashcardList) {
 
         HashSet<Flashcard> tempSet = new HashSet<>();
         givenFlashcardList.forEach(flashcard -> tempSet.add(flashcard));
+        this.givenFlashcardSet = tempSet;
+    }
+
+    /**
+     * Constructs a predicate that will check if a specified flashcard
+     * is in the list of specified flashcards.
+     * @param flashcards The list of specified flashcards.
+     */
+    public FlashcardInGivenFlashcardListPredicate(Flashcard... flashcards) {
+        HashSet<Flashcard> tempSet = new HashSet<>();
+        for (Flashcard flashcard : flashcards) {
+            tempSet.add(flashcard);
+        }
         this.givenFlashcardSet = tempSet;
     }
 
