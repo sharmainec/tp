@@ -13,6 +13,11 @@ import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -142,10 +147,15 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_import() throws Exception {
-        String csvFileName = "myCards.csv";
+        String csvFileName = "newContent.csv";
+        Path srcFile = Paths.get("src/test/data/SampleCsvFiles/" + csvFileName);
+        Path destFile = Paths.get("data/" + csvFileName);
+        Files.copy(srcFile, destFile, StandardCopyOption.REPLACE_EXISTING);
         ImportCommand command = (ImportCommand) parser.parseCommand(
                 ImportCommand.COMMAND_WORD + " " + csvFileName);
         assertEquals(new ImportCommand(csvFileName), command);
+        File file = new File("data/" + csvFileName);
+        file.delete();
     }
 
     @Test
