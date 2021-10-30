@@ -9,10 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import org.junit.jupiter.api.Test;
 
@@ -63,11 +59,6 @@ public class ExportCommandTest {
     @Test
     public void execute_exportTypicalFlashcards_successfulExport() {
         String fileName = "exportTest.csv";
-        try {
-            createCopyInDataFolder(fileName);
-        } catch (Exception e) {
-            fail("Exception not expected");
-        }
         String expectedMessage = String.format(ExportCommand.MESSAGE_SUCCESS, fileName);
         ExportCommand command = new ExportCommand(fileName);
         try {
@@ -92,11 +83,6 @@ public class ExportCommandTest {
     @Test
     public void execute_overwriteExportTestCsvFile_successfulExport() {
         String fileName = "exportTest.csv";
-        try {
-            createCopyInDataFolder(fileName);
-        } catch (Exception e) {
-            fail("Exception not expected");
-        }
         Flashcard newlyAdded = new Flashcard(new Phrase("Korean"), new Phrase("Hello"), new Phrase("안녕"));
         model.addFlashcard(newlyAdded);
         try {
@@ -111,12 +97,11 @@ public class ExportCommandTest {
         } catch (Exception e) {
             fail("Exception not expected");
         }
-    }
-
-    public void createCopyInDataFolder(String fileName) throws Exception {
-        Path srcFile = Paths.get("src/test/data/SampleCsvFiles/" + fileName);
-        Path destFile = Paths.get("data/" + fileName);
-        Files.copy(srcFile, destFile, StandardCopyOption.REPLACE_EXISTING);
+        try {
+            deleteCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
     }
 
     public void deleteCopyInDataFolder(String fileName) throws Exception {

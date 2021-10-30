@@ -70,7 +70,6 @@ public class ExportCommand extends Command {
                 && fileName.equals(((ExportCommand) other).fileName)); // state check
     }
 
-
     /**
      * Uses CSVWriter to export the contents of internalList to {@code fileName}.
      * @param model allows access to the current list of flashcards
