@@ -21,6 +21,7 @@ import static lingogo.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import org.junit.jupiter.api.Test;
 
 import lingogo.logic.commands.FilterCommand;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 import lingogo.testutil.FilterBuilderBuilder;
 
@@ -102,18 +103,18 @@ public class FilterCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         String userInput = LANGUAGE_TYPE_DESC_CHINESE + INDICES_DESC_DESC_ONE_TWO + RANGE_DESC_TWO_FOUR;
-        Phrase givenPhrase = new Phrase(VALID_LANGUAGE_TYPE_CHINESE);
+        LanguageType givenLanguageType = new LanguageType(VALID_LANGUAGE_TYPE_CHINESE);
         FilterCommand expectedCommand = new FilterCommand(new FilterBuilderBuilder()
-                .withLanguagePhrase(givenPhrase).withIndexList(1, 2).withRange(2, 4).build());
+                .withLanguageType(givenLanguageType).withIndexList(1, 2).withRange(2, 4).build());
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_languageFieldSpecified_success() {
         String userInput = LANGUAGE_TYPE_DESC_CHINESE;
-        Phrase givenPhrase = new Phrase(VALID_LANGUAGE_TYPE_CHINESE);
+        LanguageType givenLanguageType = new LanguageType(VALID_LANGUAGE_TYPE_CHINESE);
         FilterCommand expectedCommand =
-                new FilterCommand(new FilterBuilderBuilder().withLanguagePhrase(givenPhrase).build());
+                new FilterCommand(new FilterBuilderBuilder().withLanguageType(givenLanguageType).build());
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

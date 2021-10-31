@@ -1,7 +1,6 @@
 package lingogo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static lingogo.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
@@ -10,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import com.opencsv.CSVWriter;
 
 import lingogo.commons.core.Messages;
+import lingogo.logic.LogicManager;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
@@ -57,7 +57,7 @@ public class ExportCommand extends Command {
         try {
             exportHelper(model);
         } catch (Exception ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            throw new CommandException(String.format(LogicManager.EXPORT_IOEXCEPTION, fileName));
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));

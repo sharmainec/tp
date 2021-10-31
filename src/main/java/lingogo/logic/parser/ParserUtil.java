@@ -11,6 +11,7 @@ import javafx.util.Pair;
 import lingogo.commons.core.index.Index;
 import lingogo.commons.util.StringUtil;
 import lingogo.logic.parser.exceptions.ParseException;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 
 /**
@@ -79,5 +80,20 @@ public class ParserUtil {
             throw new ParseException(Phrase.MESSAGE_CONSTRAINTS);
         }
         return new Phrase(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String languageType} into a {@code LanguageType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code languageType} is invalid.
+     */
+    public static LanguageType parseLanguageType(String languageType) throws ParseException {
+        requireNonNull(languageType);
+        String trimmedName = languageType.trim();
+        if (!Phrase.isValidPhrase(trimmedName)) {
+            throw new ParseException(Phrase.MESSAGE_CONSTRAINTS);
+        }
+        return new LanguageType(trimmedName);
     }
 }

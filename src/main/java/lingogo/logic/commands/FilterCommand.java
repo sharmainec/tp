@@ -20,8 +20,8 @@ import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.FlashcardInGivenFlashcardListPredicate;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.LanguageTypeMatchesGivenPhrasePredicate;
-import lingogo.model.flashcard.Phrase;
 
 /**
  * Filters all flashcards in the flashcard app by its Language type.
@@ -78,7 +78,7 @@ public class FilterCommand extends Command {
      */
     public static class FilterBuilder {
 
-        private Phrase languageType;
+        private LanguageType languageType;
         private List<Index> indexList;
         private Pair<Index, Index> indexRangePair;
 
@@ -94,7 +94,7 @@ public class FilterCommand extends Command {
             return CollectionUtil.isAnyNonNull(languageType, indexList, indexRangePair);
         }
 
-        public void setLanguageType(Phrase languageType) {
+        public void setLanguageType(LanguageType languageType) {
             this.languageType = languageType;
         }
 

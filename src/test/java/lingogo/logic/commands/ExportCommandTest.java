@@ -18,6 +18,7 @@ import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 
 public class ExportCommandTest {
@@ -85,7 +86,7 @@ public class ExportCommandTest {
     public void execute_overwriteExportTestCsvFile_successfulExport() {
         createDataFolder();
         String fileName = "exportTest.csv";
-        Flashcard newlyAdded = new Flashcard(new Phrase("Korean"), new Phrase("Hello"), new Phrase("안녕"));
+        Flashcard newlyAdded = new Flashcard(new LanguageType("Korean"), new Phrase("Hello"), new Phrase("안녕"));
         model.addFlashcard(newlyAdded);
         try {
             new ExportCommand(fileName).exportHelper(model);

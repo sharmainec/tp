@@ -1,23 +1,26 @@
 package lingogo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_FORMAT;
-import static lingogo.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
+import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_CONTENT;
+import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_HEADERS;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
 import lingogo.commons.core.Messages;
+import lingogo.logic.LogicManager;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 
 /**
@@ -40,7 +43,10 @@ public class ImportCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "LingoGO! has been updated with all the flashcards from %1$s";
 
+    public static final String MESSAGE_NOT_UPDATED = "%1$s has the same flashcards as those in LingoGO! now";
+
     private static final String[] csvHeaders = {"Language", "Foreign", "English"};
+    private static boolean isUpdated;
     private final String fileName;
 
     /**
@@ -63,12 +69,15 @@ public class ImportCommand extends Command {
         try {
             importHelper(model);
         } catch (CsvValidationException e) {
-            throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, fileName));
+            throw new CommandException(String.format(MESSAGE_INVALID_CSV_CONTENT, fileName));
         } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            throw new CommandException(String.format(LogicManager.IMPORT_IOEXCEPTION, fileName));
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
+        if (isUpdated) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
+        }
+        return new CommandResult(String.format(MESSAGE_NOT_UPDATED, fileName));
     }
 
     @Override
@@ -91,16 +100,22 @@ public class ImportCommand extends Command {
                 new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)).build();
         String[] line = reader.readNext();
         if (!Arrays.toString(line).equals(Arrays.toString(csvHeaders))) {
-            throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, fileName));
+            throw new CommandException(String.format(MESSAGE_INVALID_CSV_HEADERS, fileName));
         }
+        LinkedList<Flashcard> newFlashcards = new LinkedList<>();
+        isUpdated = false;
         while ((line = reader.readNext()) != null) {
             if (line.length != 3 || line[0].isBlank() || line[1].isBlank() || line[2].isBlank()) {
-                throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, fileName));
+                throw new CommandException(String.format(MESSAGE_INVALID_CSV_CONTENT, fileName));
             }
-            Flashcard card = new Flashcard(new Phrase(line[0]), new Phrase(line[2]), new Phrase(line[1]));
+            Flashcard card = new Flashcard(new LanguageType(line[0]), new Phrase(line[2]), new Phrase(line[1]));
             if (!model.hasFlashcard(card)) {
-                model.addFlashcard(card);
+                isUpdated = true;
+                newFlashcards.add(card);
             }
+        }
+        for (Flashcard card : newFlashcards) {
+            model.addFlashcard(card);
         }
         reader.close();
     }

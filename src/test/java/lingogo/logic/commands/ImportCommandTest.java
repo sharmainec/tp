@@ -1,6 +1,7 @@
 package lingogo.logic.commands;
 
-import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_FORMAT;
+import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_CONTENT;
+import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_HEADERS;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
@@ -21,8 +22,6 @@ import lingogo.commons.core.Messages;
 import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
-import lingogo.model.flashcard.Flashcard;
-import lingogo.model.flashcard.Phrase;
 
 public class ImportCommandTest {
 
@@ -32,9 +31,9 @@ public class ImportCommandTest {
     @Test
     public void equals() {
 
-        ImportCommand firstImportCommand = new ImportCommand("data/same.csv");
-        ImportCommand secondImportCommand = new ImportCommand("data/same.csv");
-        ImportCommand thirdImportCommand = new ImportCommand("data/different.csv");
+        ImportCommand firstImportCommand = new ImportCommand("same.csv");
+        ImportCommand secondImportCommand = new ImportCommand("same.csv");
+        ImportCommand thirdImportCommand = new ImportCommand("different.csv");
 
         // same object -> returns true
         assertTrue(firstImportCommand.equals(firstImportCommand));
@@ -68,7 +67,7 @@ public class ImportCommandTest {
         } catch (Exception e) {
             fail("Exception not expected");
         }
-        String expectedMessage = String.format(MESSAGE_INVALID_CSV_FORMAT, fileName);
+        String expectedMessage = String.format(MESSAGE_INVALID_CSV_HEADERS, fileName);
         ImportCommand command = new ImportCommand(fileName);
         assertCommandFailure(command, model, expectedMessage);
         try {
@@ -87,7 +86,7 @@ public class ImportCommandTest {
         } catch (Exception e) {
             fail("Exception not expected");
         }
-        String expectedMessage = String.format(MESSAGE_INVALID_CSV_FORMAT, fileName);
+        String expectedMessage = String.format(MESSAGE_INVALID_CSV_CONTENT, fileName);
         ImportCommand command = new ImportCommand(fileName);
         assertCommandFailure(command, model, expectedMessage);
         try {
@@ -106,7 +105,7 @@ public class ImportCommandTest {
         } catch (Exception e) {
             fail("Exception not expected");
         }
-        String expectedMessage = String.format(ImportCommand.MESSAGE_SUCCESS, fileName);
+        String expectedMessage = String.format(ImportCommand.MESSAGE_NOT_UPDATED, fileName);
         ImportCommand command = new ImportCommand(fileName);
         try {
             command.importHelper(expectedModel);
@@ -133,13 +132,11 @@ public class ImportCommandTest {
         }
         String expectedMessage = String.format(ImportCommand.MESSAGE_SUCCESS, fileName);
         ImportCommand command = new ImportCommand(fileName);
-        Flashcard newlyAdded = new Flashcard(new Phrase("Korean"), new Phrase("Hello"), new Phrase("안녕"));
         try {
-            command.importHelper(model);
+            new ImportCommand(fileName).importHelper(expectedModel);
         } catch (Exception e) {
             fail("Exception not expected");
         }
-        expectedModel.addFlashcard(newlyAdded);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(expectedModel.getFilteredFlashcardList(), model.getFilteredFlashcardList());
         try {

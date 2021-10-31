@@ -6,9 +6,9 @@ import java.util.function.Predicate;
  * A {@code Predicate} which tests whether a given {@code Flashcard}'s Language type matches the given phrase.
  */
 public class LanguageTypeMatchesGivenPhrasePredicate implements Predicate<Flashcard> {
-    private final Phrase givenPhrase;
+    private final LanguageType givenPhrase;
 
-    public LanguageTypeMatchesGivenPhrasePredicate(Phrase givenPhrase) {
+    public LanguageTypeMatchesGivenPhrasePredicate(LanguageType givenPhrase) {
         this.givenPhrase = givenPhrase;
     }
 

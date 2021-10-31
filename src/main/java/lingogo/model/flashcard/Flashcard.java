@@ -11,11 +11,11 @@ import java.util.Objects;
  */
 public class Flashcard {
     // Empty flashcard
-    public static final Flashcard EMPTY_FLASHCARD = new Flashcard(new Phrase("empty"),
+    public static final Flashcard EMPTY_FLASHCARD = new Flashcard(new LanguageType("empty"),
             new Phrase("empty english phrase"), new Phrase("empty foreign phrase"));
 
     // Data fields
-    private final Phrase languageType; // to update UML diagram multiplicity if languageType is no longer Phrase
+    private final LanguageType languageType; // to update UML diagram multiplicity if languageType is no longer Phrase
     private final Phrase englishPhrase;
     private final Phrase foreignPhrase;
     private final Boolean isFlipped;
@@ -23,7 +23,7 @@ public class Flashcard {
     /**
      * Every field must be present and not null. {@code isFlipped} set to false by default.
      */
-    public Flashcard(Phrase languageType, Phrase englishPhrase, Phrase foreignPhrase) {
+    public Flashcard(LanguageType languageType, Phrase englishPhrase, Phrase foreignPhrase) {
         requireAllNonNull(englishPhrase, foreignPhrase);
         this.languageType = languageType;
         this.englishPhrase = englishPhrase;
@@ -34,7 +34,7 @@ public class Flashcard {
     /**
      * Every field must be present and not null.
      */
-    public Flashcard(Phrase languageType, Phrase englishPhrase, Phrase foreignPhrase, Boolean isFlipped) {
+    public Flashcard(LanguageType languageType, Phrase englishPhrase, Phrase foreignPhrase, Boolean isFlipped) {
         requireAllNonNull(englishPhrase, foreignPhrase, isFlipped);
         this.languageType = languageType;
         this.englishPhrase = englishPhrase;
@@ -53,7 +53,7 @@ public class Flashcard {
         this.isFlipped = toCopy.isFlipped;
     }
 
-    public Phrase getLanguageType() {
+    public LanguageType getLanguageType() {
         return languageType;
     }
 

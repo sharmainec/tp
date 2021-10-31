@@ -13,7 +13,7 @@ import lingogo.commons.core.index.Index;
 import lingogo.logic.commands.FilterCommand;
 import lingogo.logic.commands.FilterCommand.FilterBuilder;
 import lingogo.logic.parser.exceptions.ParseException;
-import lingogo.model.flashcard.Phrase;
+import lingogo.model.flashcard.LanguageType;
 
 
 /**
@@ -37,7 +37,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
 
         if (argMultimap.getValue(PREFIX_LANGUAGE_TYPE).isPresent()) {
-            Phrase languageType = ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_LANGUAGE_TYPE).get());
+            LanguageType languageType = ParserUtil.parseLanguageType(argMultimap.getValue(PREFIX_LANGUAGE_TYPE).get());
             filterBuilder.setLanguageType(languageType);
         }
 

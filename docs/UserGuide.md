@@ -224,6 +224,13 @@ Format: `exit`
 
 Exports flashcards from LingoGO! to a CSV file.
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about opening CSV files with Excel:**<br>
+* We advise changing the default settings so that foreign language is properly displayed with Excel.
+[Please refer here for detailed instructions.](https://www.itg.ias.edu/content/how-import-csv-file-uses-utf-8-character-encoding-0)
+
+</div>
+
 Format: `export FILE_NAME`
 
 * Provides a file name with a .csv extension in which the flashcards will be stored and exported.

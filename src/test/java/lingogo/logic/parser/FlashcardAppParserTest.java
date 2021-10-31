@@ -41,7 +41,7 @@ import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.ForeignPhraseContainsKeywordsPredicate;
-import lingogo.model.flashcard.Phrase;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 import lingogo.testutil.EditFlashcardDescriptorBuilder;
 import lingogo.testutil.FilterBuilderBuilder;
@@ -115,13 +115,13 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_filter() throws Exception {
-        Phrase givenPhrase = new Phrase(VALID_LANGUAGE_TYPE_TAMIL);
+        LanguageType givenPhrase = new LanguageType(VALID_LANGUAGE_TYPE_TAMIL);
         FilterCommand command = (FilterCommand) parser.parseCommand(
                 FilterCommand.COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + VALID_LANGUAGE_TYPE_TAMIL
                 + INDICES_DESC_DESC_ONE_TWO + RANGE_DESC_TWO_FOUR);
 
         assertEquals(
-                new FilterCommand(new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(givenPhrase)
+                new FilterCommand(new FilterBuilderBuilder().withIndexList(1, 2).withLanguageType(givenPhrase)
                 .withRange(2, 4).build()), command);
     }
 
