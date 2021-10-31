@@ -9,7 +9,7 @@ import static lingogo.commons.util.AppUtil.checkArgument;
  */
 public class Phrase {
     public static final String MESSAGE_CONSTRAINTS = "Phrases can take Unicode alphabet characters,"
-        + " and should not be blank";
+        + " should not be blank, and must be no longer than 50 characters.";
 
     /**
      * {@code \\S} The first character of the phrase must not be a whitespace.
@@ -17,6 +17,7 @@ public class Phrase {
      * {@code \\[^\n]*} Allows us to match any character that is not a new line character 0 or more times.
      */
     public static final String VALIDATION_REGEX = "\\S[^\n]*";
+    public static final int MAX_NUMBER_OF_CHARACTERS = 50;
 
     public final String value;
 
@@ -35,7 +36,7 @@ public class Phrase {
      * Returns true if a given phrase is a valid phrase.
      */
     public static boolean isValidPhrase(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= MAX_NUMBER_OF_CHARACTERS;
     }
 
     @Override

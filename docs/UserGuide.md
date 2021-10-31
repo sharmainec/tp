@@ -154,6 +154,14 @@ Adds a flashcard to LingoGO!.
 
 Format: `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about adding flashcards:**<br>
+
+* `ENGLISH_PHRASE` and `FOREIGN_PHRASE` should not be longer than 50 characters.
+
+</div>
+
 Examples:
 * `add l/Chinese e/Good Morning f/早安`
 
