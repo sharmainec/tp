@@ -19,6 +19,12 @@ public class PhraseTest {
     }
 
     @Test
+    public void constructor_phraseTooLong_throwsIllegalArgumentException() {
+        String longPhrase = "This invalid string is about 51 characters long :(.";
+        assertThrows(IllegalArgumentException.class, () -> new Phrase(longPhrase));
+    }
+
+    @Test
     public void isValidPhrase() {
         // null phrase
         assertThrows(NullPointerException.class, () -> Phrase.isValidPhrase(null));
@@ -28,6 +34,7 @@ public class PhraseTest {
         assertFalse(Phrase.isValidPhrase(" ")); // spaces only
         assertFalse(Phrase.isValidPhrase("Good\nMorning")); // new line not allowed
         assertFalse(Phrase.isValidPhrase(" Good Morning")); // preceding whitespace
+        assertFalse(Phrase.isValidPhrase("This invalid string is about 51 characters long :(.")); // phrase too long
 
         // valid English phrases
         assertTrue(Phrase.isValidPhrase("Good Morning"));
@@ -39,7 +46,7 @@ public class PhraseTest {
         assertTrue(Phrase.isValidPhrase("Good Morning?")); // punctuation: question mark
         assertTrue(Phrase.isValidPhrase("Good_Morning")); // punctuation: underscore
         assertTrue(Phrase.isValidPhrase("Non-stop")); // punctuation: dash
-        assertTrue(Phrase.isValidPhrase("sheesh, i can't believe we are back in lockdown again")); // long phrase
+        assertTrue(Phrase.isValidPhrase("This valid string is exactly 50 characters long :D")); // long phrase
 
         // valid Unicode character phrases
         assertTrue(Phrase.isValidPhrase("你好")); // Chinese, Simplified
