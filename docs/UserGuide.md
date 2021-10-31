@@ -214,6 +214,14 @@ Format: `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * **At least one** of the optional fields must be provided.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about editing flashcards:**<br>
+
+* `ENGLISH_PHRASE` and `FOREIGN_PHRASE` should not be longer than 50 characters.
+
+</div>
+
 Examples:
 * `edit 1 l/German` Edits the language of the 1st flashcard to be `German`.
 * `edit 1 e/Good Morning` Edits the English phrase of the 1st flashcard to be `Good Morning`.
