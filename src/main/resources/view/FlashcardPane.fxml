@@ -23,21 +23,22 @@
         <Insets left="5.0" right="5.0" />
       </padding>
     </Label>
-    <Label fx:id="language" text="Language" GridPane.columnIndex="1" style="-fx-font-family: 'Open Sans'">
+    <Label fx:id="language" text="Language" GridPane.columnIndex="1" wrapText="true"
+           style="-fx-font-family: 'Open Sans'" textAlignment="CENTER">
       <padding>
         <Insets left="5.0" right="5.0" />
       </padding>
     </Label>
     <Label fx:id="foreignPhrase" text="Foreign Phrase" GridPane.columnIndex="2" wrapText="true"
-           style="-fx-font-family: 'Open Sans'">
+           style="-fx-font-family: 'Open Sans'" textAlignment="CENTER">
       <padding>
-        <Insets left="5.0" right="5.0" />
+        <Insets left="10.0" right="10.0" />
       </padding>
     </Label>
     <Label fx:id="englishPhrase" text="English Phrase" GridPane.columnIndex="3" wrapText="true"
-           style="-fx-font-family: 'Open Sans'">
+           style="-fx-font-family: 'Open Sans'" textAlignment="CENTER">
       <padding>
-        <Insets left="5.0" right="5.0" />
+        <Insets left="10.0" right="10.0" />
       </padding>
     </Label>
   </GridPane>
