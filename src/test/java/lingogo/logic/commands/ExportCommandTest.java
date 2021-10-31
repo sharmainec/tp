@@ -58,6 +58,7 @@ public class ExportCommandTest {
 
     @Test
     public void execute_exportTypicalFlashcards_successfulExport() {
+        createDataFolder();
         String fileName = "exportTest.csv";
         String expectedMessage = String.format(ExportCommand.MESSAGE_SUCCESS, fileName);
         ExportCommand command = new ExportCommand(fileName);
@@ -82,6 +83,7 @@ public class ExportCommandTest {
 
     @Test
     public void execute_overwriteExportTestCsvFile_successfulExport() {
+        createDataFolder();
         String fileName = "exportTest.csv";
         Flashcard newlyAdded = new Flashcard(new Phrase("Korean"), new Phrase("Hello"), new Phrase("안녕"));
         model.addFlashcard(newlyAdded);
@@ -107,5 +109,12 @@ public class ExportCommandTest {
     public void deleteCopyInDataFolder(String fileName) throws Exception {
         File file = new File("data/" + fileName);
         file.delete();
+    }
+
+    public void createDataFolder() {
+        File data = new File("data");
+        if (!data.exists()) {
+            data.mkdir();
+        }
     }
 }

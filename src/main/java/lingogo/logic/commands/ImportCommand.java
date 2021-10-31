@@ -102,5 +102,6 @@ public class ImportCommand extends Command {
                 model.addFlashcard(card);
             }
         }
+        reader.close();
     }
 }

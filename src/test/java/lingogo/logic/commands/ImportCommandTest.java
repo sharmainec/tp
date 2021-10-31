@@ -61,6 +61,7 @@ public class ImportCommandTest {
 
     @Test
     public void execute_importInvalidHeaders_throwsCommandException() {
+        createDataFolder();
         String fileName = "invalidHeaders.csv";
         try {
             createCopyInDataFolder(fileName);
@@ -79,6 +80,7 @@ public class ImportCommandTest {
 
     @Test
     public void execute_importInvalidContent_throwsCommandException() {
+        createDataFolder();
         String fileName = "invalidContent.csv";
         try {
             createCopyInDataFolder(fileName);
@@ -97,6 +99,7 @@ public class ImportCommandTest {
 
     @Test
     public void execute_importDuplicateContent_noNewFlashcards() {
+        createDataFolder();
         String fileName = "duplicateContent.csv";
         try {
             createCopyInDataFolder(fileName);
@@ -121,6 +124,7 @@ public class ImportCommandTest {
 
     @Test
     public void execute_importNewContent_newFlashcard() {
+        createDataFolder();
         String fileName = "newContent.csv";
         try {
             createCopyInDataFolder(fileName);
@@ -154,5 +158,12 @@ public class ImportCommandTest {
     public void deleteCopyInDataFolder(String fileName) throws Exception {
         File file = new File("data/" + fileName);
         file.delete();
+    }
+
+    public void createDataFolder() {
+        File data = new File("data");
+        if (!data.exists()) {
+            data.mkdir();
+        }
     }
 }

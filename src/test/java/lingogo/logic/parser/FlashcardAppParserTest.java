@@ -147,6 +147,10 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_import() throws Exception {
+        File data = new File("data");
+        if (!data.exists()) {
+            data.mkdir();
+        }
         String csvFileName = "newContent.csv";
         Path srcFile = Paths.get("src/test/data/SampleCsvFiles/" + csvFileName).toAbsolutePath();
         Path destFile = Paths.get("data/" + csvFileName).toAbsolutePath();
