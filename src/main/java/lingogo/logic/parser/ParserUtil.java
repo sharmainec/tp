@@ -40,7 +40,7 @@ public class ParserUtil {
      * @throws ParseException if any specified indices is invalid (not non-zero unsigned integer).
      */
     public static List<Index> parseIndices(String indices) throws ParseException {
-        String[] splitIndices = indices.trim().split(" ");
+        String[] splitIndices = indices.trim().split("\\s+");
         List<Index> indexList = new ArrayList<>();
         for (String index
                 : splitIndices) {
