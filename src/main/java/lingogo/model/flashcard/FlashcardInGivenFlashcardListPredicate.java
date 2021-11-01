@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * A {@code Predicate} which tests whether a given {@code Flashcard}'s Language type matches the given phrase.
+ * A {@code Predicate} which tests whether a given {@code Flashcard}'s is in the {@code givenFlashcardList}.
  */
 public class FlashcardInGivenFlashcardListPredicate implements Predicate<Flashcard> {
 
