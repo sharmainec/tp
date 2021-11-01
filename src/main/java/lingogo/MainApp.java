@@ -46,6 +46,8 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
+
+
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing LingoGO! ]===========================");
@@ -61,36 +63,68 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        ModelBuilder modelBuilder = initModelManager(storage, userPrefs);
+
+        model = modelBuilder.getModel();
 
         logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic);
+        ui = new UiManager(logic, modelBuilder.getStartUpMessage());
     }
+
+    private class ModelBuilder {
+        private Model model;
+        private String startUpMessage;
+
+        private ModelBuilder(ReadOnlyFlashcardApp initialData, ReadOnlyUserPrefs userPrefs, String startUpMessage) {
+            this.model = new ModelManager(initialData, userPrefs);
+            this.startUpMessage = startUpMessage;
+        }
+
+        private Model getModel() {
+            return this.model;
+        }
+
+        private String getStartUpMessage() {
+            return this.startUpMessage;
+        }
+
+    }
+
 
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s flashcard app and {@code userPrefs}. <br>
      * The data from the sample flashcard app will be used instead if {@code storage}'s flashcard app is not found,
      * or an empty flashcard app will be used instead if errors occur when reading {@code storage}'s flashcard app.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private ModelBuilder initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyFlashcardApp> flashcardAppOptional;
         ReadOnlyFlashcardApp initialData;
+        String startUpMessage = null;
         try {
             flashcardAppOptional = storage.readFlashcardApp();
             if (!flashcardAppOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample FlashcardApp");
+                String message = "Seems like there is no data file found. Will be starting with a sample flashcard "
+                    + "list.";
+                logger.info(message);
+                startUpMessage = message;
             }
             initialData = flashcardAppOptional.orElseGet(SampleDataUtil::getSampleFlashcardApp);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty FlashcardApp");
+            String message = "The data file is not in the correct format. Will be starting with an empty flashcard "
+                + "list.";
+            logger.warning(message);
+            startUpMessage = message;
             initialData = new FlashcardApp();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty FlashcardApp");
+            String message = "There was a problem while reading from the file. Will be starting with an empty "
+                + "flashcard list.";
+            logger.warning(message);
+            startUpMessage = message;
             initialData = new FlashcardApp();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelBuilder(initialData, userPrefs, startUpMessage);
     }
 
     private void initLogging(Config config) {

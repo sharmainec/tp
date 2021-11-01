@@ -24,13 +24,16 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
+    private String startUpMessage;
+
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic) {
+    public UiManager(Logic logic, String startUpMessage) {
         super();
         this.logic = logic;
+        this.startUpMessage = startUpMessage;
     }
 
     @Override
@@ -44,6 +47,9 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            if (startUpMessage != null) {
+                showAlertDialogAndWait(AlertType.INFORMATION, "", "", startUpMessage);
+            }
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
