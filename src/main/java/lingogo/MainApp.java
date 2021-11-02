@@ -67,6 +67,9 @@ public class MainApp extends Application {
 
         model = modelBuilder.getModel();
 
+        // Saves flashcards upon first boot up for when new model needs to be rebuild due to missing/corrupted data file
+        storage.saveFlashcardApp(model.getFlashcardApp());
+
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic, modelBuilder.getStartUpMessage());
