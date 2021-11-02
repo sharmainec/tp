@@ -125,6 +125,12 @@ public class MainApp extends Application {
             logger.warning(message);
             startUpMessage = message;
             initialData = new FlashcardApp();
+        } catch (NullPointerException e) {
+            String message = "There was a problem while reading from the file. Will be starting with an empty "
+                + "flashcard list.";
+            logger.warning(message);
+            startUpMessage = message;
+            initialData = new FlashcardApp();
         }
 
         return new ModelBuilder(initialData, userPrefs, startUpMessage);

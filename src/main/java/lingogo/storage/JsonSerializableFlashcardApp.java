@@ -48,14 +48,18 @@ class JsonSerializableFlashcardApp {
      */
     public FlashcardApp toModelType() throws IllegalValueException {
         FlashcardApp flashcardApp = new FlashcardApp();
-        for (JsonAdaptedFlashcard jsonAdaptedFlashcard : flashcards) {
-            Flashcard flashcard = jsonAdaptedFlashcard.toModelType();
-            if (flashcardApp.hasFlashcard(flashcard)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_FLASHCARD);
+        try {
+            for (JsonAdaptedFlashcard jsonAdaptedFlashcard : flashcards) {
+                Flashcard flashcard = jsonAdaptedFlashcard.toModelType();
+                if (flashcardApp.hasFlashcard(flashcard)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_FLASHCARD);
+                }
+                flashcardApp.addFlashcard(flashcard);
             }
-            flashcardApp.addFlashcard(flashcard);
+            return flashcardApp;
+        } catch (NullPointerException e) {
+            throw new IllegalValueException(e.getMessage());
         }
-        return flashcardApp;
     }
 
 }
