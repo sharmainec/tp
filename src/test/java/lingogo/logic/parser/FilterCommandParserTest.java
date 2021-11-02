@@ -141,4 +141,20 @@ public class FilterCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+
+    @Test
+    public void parse_unevenWhiteSpaceSeperatedIndexListFieldSpecified_success() {
+        String userInput = " i/1   4 \n 5";
+        FilterCommand expectedCommand =
+            new FilterCommand(new FilterBuilderBuilder().withIndexList(1, 4, 5).build());
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_whiteSpaceSeperatedRangeFieldSpecified_success() {
+        String userInput = " r/1           \n 5";
+        FilterCommand expectedCommand =
+            new FilterCommand(new FilterBuilderBuilder().withRange(1, 5).build());
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 }
