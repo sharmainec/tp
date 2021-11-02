@@ -362,7 +362,7 @@ Examples:
 * `import dictionary.csv` will add all flashcards stored in the CSV file dictionary.csv to LingoGO!.
 
 
-### Listing flashcards : `list [NUMBER_OF_FLASHCARDS]`
+### Listing flashcards : `list`
 
 Shows a list of flashcards in LingoGO!.
 
