@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
-import static lingogo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import java.util.List;
 import java.util.Optional;
@@ -87,7 +86,7 @@ public class EditCommand extends Command {
         }
 
         model.setFlashcard(flashcardToEdit, editedFlashcard);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+
         return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard));
     }
 
