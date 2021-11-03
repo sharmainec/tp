@@ -302,6 +302,11 @@ Format: `help`
 
 ### Importing flashcards : `import`
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about importing CSV files made with Excel:**<br>
+* We advise against using Excel to create a CSV file to be imported into LingoGO!.
+</div>
+
 Imports flashcards from a CSV file and adds them to the existing list in LingoGO!
 (instead of replacing the current list)
 
