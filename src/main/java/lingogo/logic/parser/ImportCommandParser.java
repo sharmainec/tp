@@ -1,9 +1,6 @@
 package lingogo.logic.parser;
 
-import static lingogo.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_FILE_NAME;
-
-import java.io.File;
 
 import lingogo.logic.commands.ImportCommand;
 import lingogo.logic.parser.exceptions.ParseException;
@@ -22,14 +19,9 @@ public class ImportCommandParser implements Parser<ImportCommand> {
     public ImportCommand parse(String args) throws ParseException {
         String fileName = args.trim();
 
-        File f = new File("data/" + fileName);
         if (!fileName.endsWith(".csv")) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_CSV_FILE_NAME, fileName));
-        }
-        if (!f.exists()) {
-            throw new ParseException(
-                    String.format(MESSAGE_FILE_NOT_FOUND, fileName));
         }
 
         return new ImportCommand(fileName);

@@ -88,7 +88,7 @@ public class Flashcard {
             return true;
         }
         return otherFlashcard != null
-            && new LanguageTypeMatchesGivenPhrasePredicate(this.languageType).test(otherFlashcard)
+            && new LanguageTypeMatchesGivenLanguageTypePredicate(this.languageType).test(otherFlashcard)
             && new EnglishPhraseMatchesGivenPhrasePredicate(this.englishPhrase).test(otherFlashcard)
             && otherFlashcard.getForeignPhrase().equals(getForeignPhrase());
     }

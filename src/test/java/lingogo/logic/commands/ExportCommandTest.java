@@ -24,8 +24,6 @@ import lingogo.model.flashcard.Phrase;
 public class ExportCommandTest {
 
     private Model model = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
-    private Model emptyModel = new ModelManager(new FlashcardApp(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -61,17 +59,14 @@ public class ExportCommandTest {
     public void execute_exportTypicalFlashcards_successfulExport() {
         createDataFolder();
         String fileName = "exportTest.csv";
-        String expectedMessage = String.format(ExportCommand.MESSAGE_SUCCESS, fileName);
         ExportCommand command = new ExportCommand(fileName);
-        try {
-            command.exportHelper(expectedModel);
-        } catch (Exception e) {
-            fail("Exception not expected");
-        }
+        String expectedMessage = String.format(ExportCommand.MESSAGE_SUCCESS, fileName);
+        Model expectedModel = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        Model emptyModel = new ModelManager(new FlashcardApp(), new UserPrefs());
         try {
-            new ImportCommand(fileName).importHelper(emptyModel);
-            assertEquals(expectedModel.getFilteredFlashcardList(), emptyModel.getFilteredFlashcardList());
+            new ImportCommand(fileName).execute(emptyModel);
+            assertEquals(model.getFilteredFlashcardList(), emptyModel.getFilteredFlashcardList());
         } catch (Exception e) {
             fail("Exception not expected");
         }
@@ -86,16 +81,24 @@ public class ExportCommandTest {
     public void execute_overwriteExportTestCsvFile_successfulExport() {
         createDataFolder();
         String fileName = "exportTest.csv";
-        Flashcard newlyAdded = new Flashcard(new LanguageType("Korean"), new Phrase("Hello"), new Phrase("안녕"));
-        model.addFlashcard(newlyAdded);
+        // create an exported file with just typical flashcards
         try {
-            new ExportCommand(fileName).exportHelper(model);
+            new ExportCommand(fileName).execute(model);
         } catch (Exception e) {
             fail("Exception not expected");
         }
+        // add a new flashcard and export again to the existing CSV file
+        Flashcard newlyAdded = new Flashcard(new LanguageType("Korean"), new Phrase("Hello"), new Phrase("안녕"));
+        model.addFlashcard(newlyAdded);
+        ExportCommand command = new ExportCommand(fileName);
+        Model expectedModel = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
         expectedModel.addFlashcard(newlyAdded);
+        String expectedMessage = String.format(ExportCommand.MESSAGE_SUCCESS, fileName);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        // check if overwriting successfully happened
+        Model emptyModel = new ModelManager(new FlashcardApp(), new UserPrefs());
         try {
-            new ImportCommand(fileName).importHelper(emptyModel);
+            new ImportCommand(fileName).execute(emptyModel);
             assertEquals(expectedModel.getFilteredFlashcardList(), emptyModel.getFilteredFlashcardList());
         } catch (Exception e) {
             fail("Exception not expected");

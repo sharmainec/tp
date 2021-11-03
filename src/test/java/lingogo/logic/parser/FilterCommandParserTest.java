@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Test;
 
 import lingogo.logic.commands.FilterCommand;
 import lingogo.model.flashcard.LanguageType;
-import lingogo.model.flashcard.Phrase;
 import lingogo.testutil.FilterBuilderBuilder;
 
 public class FilterCommandParserTest {
@@ -49,7 +48,8 @@ public class FilterCommandParserTest {
 
     @Test
     public void parse_invalidLanguageField_failure() {
-        assertParseFailure(parser, INVALID_LANGUAGE_TYPE_DESC, Phrase.MESSAGE_CONSTRAINTS); // invalid Language type
+        // invalid Language type
+        assertParseFailure(parser, INVALID_LANGUAGE_TYPE_DESC, LanguageType.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class FilterCommandParserTest {
     @Test
     public void parse_validIndexButInvalidLanguageField_failure() {
         assertParseFailure(parser, INVALID_LANGUAGE_TYPE_DESC + INDICES_DESC_DESC_ONE_TWO,
-                Phrase.MESSAGE_CONSTRAINTS);
+                LanguageType.MESSAGE_CONSTRAINTS);
     }
 
     @Test

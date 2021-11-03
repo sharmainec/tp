@@ -1,11 +1,11 @@
 package lingogo.logic.commands;
 
+import static lingogo.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_CONTENT;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_HEADERS;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -22,11 +22,13 @@ import lingogo.commons.core.Messages;
 import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
+import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.LanguageType;
+import lingogo.model.flashcard.Phrase;
 
 public class ImportCommandTest {
 
     private Model model = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -55,6 +57,14 @@ public class ImportCommandTest {
         ImportCommand command = new ImportCommand("myCards.csv");
         String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);
 
+        assertCommandFailure(command, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_nonExistentFile_throwsCommandException() {
+        String fileName = "non-existent.csv";
+        ImportCommand command = new ImportCommand(fileName);
+        String expectedMessage = String.format(MESSAGE_FILE_NOT_FOUND, fileName);
         assertCommandFailure(command, model, expectedMessage);
     }
 
@@ -105,15 +115,10 @@ public class ImportCommandTest {
         } catch (Exception e) {
             fail("Exception not expected");
         }
-        String expectedMessage = String.format(ImportCommand.MESSAGE_NOT_UPDATED, fileName);
         ImportCommand command = new ImportCommand(fileName);
-        try {
-            command.importHelper(expectedModel);
-        } catch (Exception e) {
-            fail("Exception not expected");
-        }
+        String expectedMessage = String.format(ImportCommand.MESSAGE_NOT_UPDATED, fileName);
+        Model expectedModel = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(expectedModel.getFilteredFlashcardList(), model.getFilteredFlashcardList());
         try {
             deleteCopyInDataFolder(fileName);
         } catch (Exception e) {
@@ -130,15 +135,12 @@ public class ImportCommandTest {
         } catch (Exception e) {
             fail("Exception not expected");
         }
-        String expectedMessage = String.format(ImportCommand.MESSAGE_SUCCESS, fileName);
         ImportCommand command = new ImportCommand(fileName);
-        try {
-            new ImportCommand(fileName).importHelper(expectedModel);
-        } catch (Exception e) {
-            fail("Exception not expected");
-        }
+        String expectedMessage = String.format(ImportCommand.MESSAGE_SUCCESS, fileName);
+        Model expectedModel = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
+        Flashcard newlyAdded = new Flashcard(new LanguageType("Korean"), new Phrase("Hello"), new Phrase("안녕"));
+        expectedModel.addFlashcard(newlyAdded);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(expectedModel.getFilteredFlashcardList(), model.getFilteredFlashcardList());
         try {
             deleteCopyInDataFolder(fileName);
         } catch (Exception e) {

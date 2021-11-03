@@ -21,7 +21,7 @@ import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.FlashcardInGivenFlashcardListPredicate;
 import lingogo.model.flashcard.LanguageType;
-import lingogo.model.flashcard.LanguageTypeMatchesGivenPhrasePredicate;
+import lingogo.model.flashcard.LanguageTypeMatchesGivenLanguageTypePredicate;
 
 /**
  * Filters all flashcards in the flashcard app by its Language type.
@@ -130,7 +130,7 @@ public class FilterCommand extends Command {
                 return PREDICATE_SHOW_ALL_FLASHCARDS;
             }
 
-            return new LanguageTypeMatchesGivenPhrasePredicate(languageType);
+            return new LanguageTypeMatchesGivenLanguageTypePredicate(languageType);
         }
 
         private Predicate<Flashcard> buildRangeFilter(Model model) throws CommandException {

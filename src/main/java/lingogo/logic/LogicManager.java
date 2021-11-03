@@ -23,10 +23,8 @@ import lingogo.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save/load data to/from file: ";
-    public static final String IMPORT_IOEXCEPTION =
-            "Could not load flashcards from %1$s into LingoGO! due to IOException";
-    public static final String EXPORT_IOEXCEPTION =
-            "Could not save flashcards from LingoGO! into %1$s due to IOException";
+    public static final String IMPORT_IOEXCEPTION = "Could not load flashcards from %1$s into LingoGO!";
+    public static final String EXPORT_IOEXCEPTION = "Could not save flashcards from LingoGO! into %1$s";
     public static final String INCORRECT_CSV_FORMAT_ERROR_MESSAGE = "The CSV file is not in the correct format";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 

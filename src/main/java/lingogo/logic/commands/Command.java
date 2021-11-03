@@ -21,7 +21,6 @@ public abstract class Command {
         INDEX,
         INDEX_LIST,
         INDEX_RANGE,
-        FILE_NAME,
         CSV_FILE_NAME;
 
         public String withCondition(String condition) {

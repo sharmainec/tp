@@ -1,15 +1,18 @@
 package lingogo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static lingogo.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_CONTENT;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_HEADERS;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
@@ -43,10 +46,11 @@ public class ImportCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "LingoGO! has been updated with all the flashcards from %1$s";
 
-    public static final String MESSAGE_NOT_UPDATED = "%1$s has the same flashcards as those in LingoGO! now";
+    public static final String MESSAGE_NOT_UPDATED =
+            "LingoGO! already contains all the flashcards you are importing from %1$s";
 
     private static final String[] csvHeaders = {"Language", "Foreign", "English"};
-    private static boolean isUpdated;
+    private static List<Flashcard> importedFlashcardList;
     private final String fileName;
 
     /**
@@ -66,12 +70,27 @@ public class ImportCommand extends Command {
             throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
         }
 
-        try {
-            importHelper(model);
+        File f = new File("data/" + fileName);
+        if (!f.exists()) {
+            throw new CommandException(String.format(MESSAGE_FILE_NOT_FOUND, fileName));
+        }
+
+        // try-with-resources ensures that CSVReader is closed after execution of this try block
+        try (CSVReader reader = new CSVReaderBuilder(
+                new InputStreamReader(new FileInputStream("data/" + fileName), StandardCharsets.UTF_8)).build()) {
+            getImportedFlashcardList(reader);
         } catch (CsvValidationException e) {
             throw new CommandException(String.format(MESSAGE_INVALID_CSV_CONTENT, fileName));
         } catch (IOException ioe) {
             throw new CommandException(String.format(LogicManager.IMPORT_IOEXCEPTION, fileName));
+        }
+
+        boolean isUpdated = false;
+        for (Flashcard card : importedFlashcardList) {
+            if (!model.hasFlashcard(card)) {
+                isUpdated = true;
+                model.addFlashcard(card);
+            }
         }
 
         if (isUpdated) {
@@ -89,34 +108,23 @@ public class ImportCommand extends Command {
 
     /**
      * Uses CSVReader to import the contents of the {@code fileName} to {@code model}.
-     * @param model allows access to the current list of flashcards
      * @throws CommandException to indicate that CSV file content is not of the correct format
      * @throws CsvValidationException when CSV file is not valid
      * @throws IOException involved when reading from an external file
      */
-    public void importHelper(Model model) throws CommandException, CsvValidationException, IOException {
-        String file = "data/" + fileName;
-        CSVReader reader = new CSVReaderBuilder(
-                new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)).build();
+    private void getImportedFlashcardList(CSVReader reader)
+            throws CommandException, CsvValidationException, IOException {
         String[] line = reader.readNext();
         if (!Arrays.toString(line).equals(Arrays.toString(csvHeaders))) {
             throw new CommandException(String.format(MESSAGE_INVALID_CSV_HEADERS, fileName));
         }
-        LinkedList<Flashcard> newFlashcards = new LinkedList<>();
-        isUpdated = false;
+        importedFlashcardList = new LinkedList<>();
         while ((line = reader.readNext()) != null) {
             if (line.length != 3 || line[0].isBlank() || line[1].isBlank() || line[2].isBlank()) {
                 throw new CommandException(String.format(MESSAGE_INVALID_CSV_CONTENT, fileName));
             }
             Flashcard card = new Flashcard(new LanguageType(line[0]), new Phrase(line[2]), new Phrase(line[1]));
-            if (!model.hasFlashcard(card)) {
-                isUpdated = true;
-                newFlashcards.add(card);
-            }
+            importedFlashcardList.add(card);
         }
-        for (Flashcard card : newFlashcards) {
-            model.addFlashcard(card);
-        }
-        reader.close();
     }
 }

@@ -91,8 +91,8 @@ public class ParserUtil {
     public static LanguageType parseLanguageType(String languageType) throws ParseException {
         requireNonNull(languageType);
         String trimmedName = languageType.trim();
-        if (!Phrase.isValidPhrase(trimmedName)) {
-            throw new ParseException(Phrase.MESSAGE_CONSTRAINTS);
+        if (!LanguageType.isValidLanguageType(trimmedName)) {
+            throw new ParseException(LanguageType.MESSAGE_CONSTRAINTS);
         }
         return new LanguageType(trimmedName);
     }
