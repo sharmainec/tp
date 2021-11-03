@@ -120,6 +120,14 @@ In slideshow mode, you can:
   [`previous`](#moving-to-the-previous-flashcard-in-slideshow-mode--previous) flashcards
 * Enter an [`answer`](#answering-a-flashcard--answer) for a flashcard
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about slideshow mode:**<br>
+
+* If your flashcards have phrases that are too long to be displayed, you can **increase the app's window size**.
+
+</div>
+
 ## Commands
 
 The following section gives an indepth overview of each command in the application, and provides some examples on their usages.
@@ -158,7 +166,9 @@ Format: `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
 
 **:information_source: Notes about adding flashcards:**<br>
 
-* `ENGLISH_PHRASE` and `FOREIGN_PHRASE` should not be longer than 50 characters.
+* `ENGLISH_PHRASE` and `FOREIGN_PHRASE` should not be longer than **100 characters**.
+  For optimal viewing experience, flashcard phrases should be kept as short as possible.
+  If your phrases are too long to be displayed, you can **increase the app's window size**.
 
 </div>
 
@@ -218,7 +228,9 @@ Format: `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 
 **:information_source: Notes about editing flashcards:**<br>
 
-* `ENGLISH_PHRASE` and `FOREIGN_PHRASE` should not be longer than 50 characters.
+* `ENGLISH_PHRASE` and `FOREIGN_PHRASE` should not be longer than **100 characters**.
+  For optimal viewing experience, flashcard phrases should be kept as short as possible.
+  If your phrases are too long to be displayed, you can **increase the app's window size**.
 
 </div>
 

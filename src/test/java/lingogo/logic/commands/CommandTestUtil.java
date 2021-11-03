@@ -72,13 +72,17 @@ public class CommandTestUtil {
     public static final String INVALID_ENGLISH_PHRASE_DESC = " " + PREFIX_ENGLISH_PHRASE
             + "    "; // Phrases cannot be empty
     public static final String INVALID_LONG_ENGLISH_PHRASE_DESC = " " + PREFIX_ENGLISH_PHRASE
-            + "This invalid string is about 51 characters long :(.";
+            + "aaaaaaaaaaaaaaaaaaaa"
+            + "aaaaaaaaaaaaaaaaaaaa"
+            + "aaaaaaaaaaaaaaaaaaaa"
+            + "aaaaaaaaaaaaaaaaaaaa"
+            + "aaaaaaaaaaaaaaaaaaaaa"; // 101 character English phrase
     public static final String INVALID_LONG_FOREIGN_PHRASE_DESC = " " + PREFIX_FOREIGN_PHRASE
-            + "哈哈哈哈哈哈哈哈哈哈"
-            + "哈哈哈哈哈哈哈哈哈哈"
-            + "哈哈哈哈哈哈哈哈哈哈"
-            + "哈哈哈哈哈哈哈哈哈哈"
-            + "哈哈哈哈哈哈哈哈哈哈哈";
+            + "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
+            + "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
+            + "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
+            + "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
+            + "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"; // 101 character foreign phrase
 
     public static final String INVALID_NEGATIVE_INDEX_DESC = " " + PREFIX_INDEX_LIST + "-1";
 

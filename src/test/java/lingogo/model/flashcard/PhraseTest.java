@@ -20,7 +20,11 @@ public class PhraseTest {
 
     @Test
     public void constructor_phraseTooLong_throwsIllegalArgumentException() {
-        String longPhrase = "This invalid string is about 51 characters long :(.";
+        String longPhrase = "aaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaa";
         assertThrows(IllegalArgumentException.class, () -> new Phrase(longPhrase));
     }
 
@@ -34,7 +38,11 @@ public class PhraseTest {
         assertFalse(Phrase.isValidPhrase(" ")); // spaces only
         assertFalse(Phrase.isValidPhrase("Good\nMorning")); // new line not allowed
         assertFalse(Phrase.isValidPhrase(" Good Morning")); // preceding whitespace
-        assertFalse(Phrase.isValidPhrase("This invalid string is about 51 characters long :(.")); // phrase too long
+        assertFalse(Phrase.isValidPhrase("aaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaa")); // phrase too long
 
         // valid English phrases
         assertTrue(Phrase.isValidPhrase("Good Morning"));
