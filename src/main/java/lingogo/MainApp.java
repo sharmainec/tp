@@ -1,5 +1,10 @@
 package lingogo;
 
+
+import static lingogo.commons.core.Messages.AlertMessage.ALERT_INVALID_DATA_FILE;
+import static lingogo.commons.core.Messages.AlertMessage.ALERT_PROBLEM_WHILE_READING_DATA_FILE;
+import static lingogo.commons.core.Messages.AlertMessage.ALERT_WELCOME_TO_LINGOGO;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -9,6 +14,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import lingogo.commons.core.Config;
 import lingogo.commons.core.LogsCenter;
+import lingogo.commons.core.Messages.AlertMessage;
 import lingogo.commons.core.Version;
 import lingogo.commons.exceptions.DataConversionException;
 import lingogo.commons.util.ConfigUtil;
@@ -67,29 +73,31 @@ public class MainApp extends Application {
 
         model = modelBuilder.getModel();
 
-        // Saves flashcards upon first boot up for when new model needs to be rebuild due to missing/corrupted data file
-        storage.saveFlashcardApp(model.getFlashcardApp());
+        // Save sample data file on initial start up
+        if (modelBuilder.getAlertMessage() == ALERT_WELCOME_TO_LINGOGO) {
+            storage.saveFlashcardApp(model.getFlashcardApp());
+        }
 
         logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic, modelBuilder.getStartUpMessage());
+        ui = new UiManager(logic, modelBuilder.getAlertMessage());
     }
 
     private class ModelBuilder {
         private Model model;
-        private String startUpMessage;
+        private AlertMessage alertMessage;
 
-        private ModelBuilder(ReadOnlyFlashcardApp initialData, ReadOnlyUserPrefs userPrefs, String startUpMessage) {
+        private ModelBuilder(ReadOnlyFlashcardApp initialData, ReadOnlyUserPrefs userPrefs, AlertMessage alertMessage) {
             this.model = new ModelManager(initialData, userPrefs);
-            this.startUpMessage = startUpMessage;
+            this.alertMessage = alertMessage;
         }
 
         private Model getModel() {
             return this.model;
         }
 
-        private String getStartUpMessage() {
-            return this.startUpMessage;
+        private AlertMessage getAlertMessage() {
+            return this.alertMessage;
         }
 
     }
@@ -103,37 +111,29 @@ public class MainApp extends Application {
     private ModelBuilder initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyFlashcardApp> flashcardAppOptional;
         ReadOnlyFlashcardApp initialData;
-        String startUpMessage = null;
+        AlertMessage alertMessage = null;
         try {
             flashcardAppOptional = storage.readFlashcardApp();
             if (!flashcardAppOptional.isPresent()) {
-                String message = "Seems like there is no data file found. Will be starting with a sample flashcard "
-                    + "list.";
-                logger.info(message);
-                startUpMessage = message;
+                alertMessage = ALERT_WELCOME_TO_LINGOGO;
+                logger.info(alertMessage.getContentText());
             }
             initialData = flashcardAppOptional.orElseGet(SampleDataUtil::getSampleFlashcardApp);
         } catch (DataConversionException e) {
-            String message = "The data file is not in the correct format. Will be starting with an empty flashcard "
-                + "list.";
-            logger.warning(message);
-            startUpMessage = message;
+            alertMessage = ALERT_INVALID_DATA_FILE;
+            logger.warning(alertMessage.getContentText());
             initialData = new FlashcardApp();
         } catch (IOException e) {
-            String message = "There was a problem while reading from the file. Will be starting with an empty "
-                + "flashcard list.";
-            logger.warning(message);
-            startUpMessage = message;
+            alertMessage = ALERT_PROBLEM_WHILE_READING_DATA_FILE;
+            logger.warning(alertMessage.getContentText());
             initialData = new FlashcardApp();
         } catch (NullPointerException e) {
-            String message = "There was a problem while reading from the file. Will be starting with an empty "
-                + "flashcard list.";
-            logger.warning(message);
-            startUpMessage = message;
+            alertMessage = ALERT_INVALID_DATA_FILE;
+            logger.warning(alertMessage.getContentText());
             initialData = new FlashcardApp();
         }
 
-        return new ModelBuilder(initialData, userPrefs, startUpMessage);
+        return new ModelBuilder(initialData, userPrefs, alertMessage);
     }
 
     private void initLogging(Config config) {

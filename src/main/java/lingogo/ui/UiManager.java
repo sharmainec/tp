@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import lingogo.MainApp;
 import lingogo.commons.core.LogsCenter;
+import lingogo.commons.core.Messages.AlertMessage;
 import lingogo.commons.util.StringUtil;
 import lingogo.logic.Logic;
 
@@ -24,16 +25,16 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
-    private String startUpMessage;
+    private AlertMessage alertMessage;
 
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic, String startUpMessage) {
+    public UiManager(Logic logic, AlertMessage alertMessage) {
         super();
         this.logic = logic;
-        this.startUpMessage = startUpMessage;
+        this.alertMessage = alertMessage;
     }
 
     @Override
@@ -47,8 +48,9 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-            if (startUpMessage != null) {
-                showAlertDialogAndWait(AlertType.INFORMATION, "", "", startUpMessage);
+            if (alertMessage != null) {
+                showAlertDialogAndWait(alertMessage.getAlertType(), alertMessage.getTitle(),
+                        alertMessage.getHeaderText(), alertMessage.getContentText());
             }
 
         } catch (Throwable e) {
