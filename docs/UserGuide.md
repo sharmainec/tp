@@ -228,10 +228,13 @@ Exports flashcards from LingoGO! to a CSV file.
 **:information_source: Notes about opening CSV files with Excel:**<br>
 * We advise changing the default settings so that foreign language is properly displayed with Excel.
 [Please refer here for detailed instructions.](https://www.itg.ias.edu/content/how-import-csv-file-uses-utf-8-character-encoding-0)
-
 </div>
 
-Format: `export FILE_NAME`
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you export to a file that already exists in the data folder, the file will get overwritten
+</div>
+
+Format: `export CSV_FILE_NAME`
 
 * Provides a file name with a .csv extension in which the flashcards will be stored and exported.
 * The exported file will be added to the *data* folder (located in the same folder as the *lingogo.jar* file).
@@ -312,11 +315,17 @@ Format: `import CSV_FILE_NAME`
   2. Foreign phrase
   3. English phrase
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Importing invalid CSV file:**<br>
+* If any of the above required information in the CSV file is invalid or missing,
+LingoGO! will not import the flashcards
+</div>
+
 Below is an example of how the CSV file might look like.
      ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
-* `import dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
+* `import dictionary.csv` will add all flashcards stored in the CSV file dictionary.csv to LingoGO!.
 
 
 ### Listing all flashcards : `list [NUMBER_OF_FLASHCARDS]`
