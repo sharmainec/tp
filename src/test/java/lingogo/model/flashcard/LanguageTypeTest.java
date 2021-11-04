@@ -1,6 +1,7 @@
 package lingogo.model.flashcard;
 
 import static lingogo.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,6 +17,12 @@ public class LanguageTypeTest {
     public void constructor_invalidLanguageType_throwsIllegalArgumentException() {
         String invalidLanguageType = "";
         assertThrows(IllegalArgumentException.class, () -> new LanguageType(invalidLanguageType));
+    }
+
+    @Test
+    public void constructor_capitalize_success() {
+        LanguageType l = new LanguageType("bahasa melayu");
+        assertEquals(l.value, "Bahasa Melayu");
     }
 
     @Test
