@@ -42,7 +42,13 @@ public class LanguageType {
      * Returns the formatted string for language type, where only the first letter is capitalized.
      */
     private static String formatLanguageType(String input) {
-        return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
+        String[] words = input.split("\\s+");
+        StringBuilder languageType = new StringBuilder("");
+        for (String word : words) {
+            languageType.append(word.substring(0, 1).toUpperCase())
+                    .append(word.substring(1).toLowerCase()).append(" ");
+        }
+        return languageType.substring(0, languageType.length() - 1);
     }
 
     @Override

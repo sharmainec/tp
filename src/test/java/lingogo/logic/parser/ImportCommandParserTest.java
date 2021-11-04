@@ -10,8 +10,15 @@ public class ImportCommandParserTest {
     private final ImportCommandParser parser = new ImportCommandParser();
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_noCsvExtension_throwsParseException() {
         String userInput = "abc";
+        assertParseFailure(parser, userInput,
+                String.format(MESSAGE_INVALID_CSV_FILE_NAME, userInput));
+    }
+
+    @Test
+    public void parse_containSlashes_throwsParseException() {
+        String userInput = "./abc";
         assertParseFailure(parser, userInput,
                 String.format(MESSAGE_INVALID_CSV_FILE_NAME, userInput));
     }
