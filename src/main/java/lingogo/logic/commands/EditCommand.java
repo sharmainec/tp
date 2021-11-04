@@ -87,6 +87,12 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
         }
 
+        // Due to the implementation of JavaFX's FilteredList, when an item is replaced via '.set()' in the original
+        // ObservableList, it is also removed from the FilteredList. This results in a bug where the editted flashcard
+        // no longer appears in the filtered list of flashcards after the edit command is run.
+        // To overcome this, we track the flashcards which should be shown after the edit command in the
+        // FlashcardInGivenFlashcardListPredicate, and apply this predicate to the filtered flashcard list after the
+        // command is run.
         List<Flashcard> updatedList = new ArrayList<>(lastShownList);
         updatedList.remove(index.getZeroBased());
         updatedList.add(editedFlashcard);
