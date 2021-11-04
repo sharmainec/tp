@@ -171,6 +171,8 @@ Format: `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
   If your phrases are too long to be displayed, you can **increase the app's window size**.
 
 </div>
+* `LANGUAGE` only allows alphabetic characters which will be **capitalised** when the flashcard is added (e.g. "CHINESE" will be saved as "Chinese").
+* `ENGLISH_PHRASE` is not restricted to alphabetic characters, it is **recommended** that users ensure that `ENGLISH_PHRASE` is a valid English input.
 
 Examples:
 * `add l/Chinese e/Good Morning f/早安`
