@@ -124,7 +124,16 @@ public class ImportCommand extends Command {
             if (line.length != 3 || line[0].isBlank() || line[1].isBlank() || line[2].isBlank()) {
                 throw new CommandException(String.format(MESSAGE_INVALID_CSV_CONTENT, fileName));
             }
-            Flashcard card = new Flashcard(new LanguageType(line[0]), new Phrase(line[2]), new Phrase(line[1]));
+            String languageType = line[0];
+            String englishPhrase = line[2];
+            String foreignPhrase = line[1];
+            if (!LanguageType.isValidLanguageType(languageType)
+                    || !Phrase.isValidPhrase(englishPhrase)
+                    || !Phrase.isValidPhrase(foreignPhrase)) {
+                throw new CommandException(String.format(MESSAGE_INVALID_CSV_CONTENT, fileName));
+            }
+            Flashcard card = new Flashcard(
+                    new LanguageType(languageType), new Phrase(englishPhrase), new Phrase(foreignPhrase));
             importedFlashcardList.add(card);
         }
     }

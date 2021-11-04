@@ -19,7 +19,7 @@ public class ImportCommandParser implements Parser<ImportCommand> {
     public ImportCommand parse(String args) throws ParseException {
         String fileName = args.trim();
 
-        if (!fileName.endsWith(".csv")) {
+        if (!fileName.endsWith(".csv") || fileName.contains("\\") || fileName.contains("/")) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_CSV_FILE_NAME, fileName));
         }

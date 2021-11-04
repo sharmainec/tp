@@ -54,7 +54,7 @@ class JsonAdaptedFlashcard {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     "Language " + Phrase.class.getSimpleName()));
         }
-        if (!Phrase.isValidPhrase(languageType)) {
+        if (!LanguageType.isValidLanguageType(languageType)) {
             throw new IllegalValueException(Phrase.MESSAGE_CONSTRAINTS);
         }
 

@@ -1,6 +1,7 @@
 package lingogo.model.flashcard;
 
 import static lingogo.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -19,6 +20,12 @@ public class LanguageTypeTest {
     }
 
     @Test
+    public void constructor_capitalize_success() {
+        LanguageType l = new LanguageType("bahasa melayu");
+        assertEquals(l.value, "Bahasa Melayu");
+    }
+
+    @Test
     public void isValidLanguageType() {
         // null language type
         assertThrows(NullPointerException.class, () -> LanguageType.isValidLanguageType(null));
@@ -28,6 +35,9 @@ public class LanguageTypeTest {
         assertFalse(LanguageType.isValidLanguageType(" ")); // spaces only
         assertFalse(LanguageType.isValidLanguageType("English\n")); // non alphabet not allowed
         assertFalse(LanguageType.isValidLanguageType(" English")); // preceding whitespace
+        assertFalse(LanguageType.isValidLanguageType(":English")); // preceding non-alphabet
+        assertFalse(LanguageType.isValidLanguageType(
+                "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")); // longer than 50 characters
 
         // valid language type
         assertTrue(LanguageType.isValidLanguageType("English"));
