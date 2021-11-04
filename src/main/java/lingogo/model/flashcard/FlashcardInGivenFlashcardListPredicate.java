@@ -27,19 +27,6 @@ public class FlashcardInGivenFlashcardListPredicate implements Predicate<Flashca
         this.givenFlashcardSet = tempSet;
     }
 
-    /**
-     * Constructs a predicate that will check if a specified flashcard
-     * is in the list of specified flashcards.
-     * @param flashcards The list of specified flashcards.
-     */
-    public FlashcardInGivenFlashcardListPredicate(Flashcard... flashcards) {
-        HashSet<Flashcard> tempSet = new HashSet<>();
-        for (Flashcard flashcard : flashcards) {
-            tempSet.add(flashcard);
-        }
-        this.givenFlashcardSet = tempSet;
-    }
-
     @Override
     public boolean test(Flashcard flashcard) {
         return givenFlashcardSet.contains(flashcard);

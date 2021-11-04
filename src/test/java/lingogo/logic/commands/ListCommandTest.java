@@ -5,9 +5,12 @@ import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static lingogo.testutil.TypicalFlashcards.AFTERNOON_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.NIGHT_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.SORRY_CHINESE_FLASHCARD;
+import static lingogo.testutil.TypicalFlashcards.SUNRISE_TAMIL_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,15 +52,22 @@ public class ListCommandTest {
 
     @Test
     public void execute_listWithValidIndex_success() {
-        int seed = 10;
         int n = 3;
 
+        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_SHUFFLED, n);
+
+        int seed = 10;
         // With seed = 10, flashcards expected to be selected are:
         // AFTERNOON_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD and SORRY_CHINESE_FLASHCARD
         expectedModel.updateFilteredFlashcardList(new FlashcardInGivenFlashcardListPredicate(
-                AFTERNOON_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD));
-        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_SHUFFLED, n);
+                List.of(AFTERNOON_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD)));
+        assertCommandSuccess(new ListCommand(n, seed), model, expectedMessage, expectedModel);
 
+        seed = 9;
+        // With seed = 9, flashcards expected to be selected are:
+        // NIGHT_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD and SUNRISE_TAMIL_FLASHCARD
+        expectedModel.updateFilteredFlashcardList(new FlashcardInGivenFlashcardListPredicate(
+                List.of(NIGHT_CHINESE_FLASHCARD, SORRY_CHINESE_FLASHCARD, SUNRISE_TAMIL_FLASHCARD)));
         assertCommandSuccess(new ListCommand(n, seed), model, expectedMessage, expectedModel);
     }
 
