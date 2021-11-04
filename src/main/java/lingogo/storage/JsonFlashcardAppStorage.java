@@ -1,5 +1,6 @@
 package lingogo.storage;
 
+import static java.nio.file.Files.isDirectory;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.util.logging.Logger;
 
 import lingogo.commons.core.LogsCenter;
 import lingogo.commons.exceptions.DataConversionException;
+import lingogo.commons.exceptions.DataFileAsDirectoryException;
 import lingogo.commons.exceptions.IllegalValueException;
 import lingogo.commons.util.FileUtil;
 import lingogo.commons.util.JsonUtil;
@@ -32,7 +34,8 @@ public class JsonFlashcardAppStorage implements FlashcardAppStorage {
     }
 
     @Override
-    public Optional<ReadOnlyFlashcardApp> readFlashcardApp() throws DataConversionException {
+    public Optional<ReadOnlyFlashcardApp> readFlashcardApp() throws DataConversionException,
+            DataFileAsDirectoryException {
         return readFlashcardApp(filePath);
     }
 
@@ -42,8 +45,13 @@ public class JsonFlashcardAppStorage implements FlashcardAppStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyFlashcardApp> readFlashcardApp(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyFlashcardApp> readFlashcardApp(Path filePath) throws DataConversionException,
+            DataFileAsDirectoryException {
         requireNonNull(filePath);
+
+        if (isDirectory(filePath)) {
+            throw new DataFileAsDirectoryException("data/flashcardapp.json should be a json file, not a directory.");
+        }
 
         Optional<JsonSerializableFlashcardApp> jsonFlashcardApp = JsonUtil.readJsonFile(
             filePath, JsonSerializableFlashcardApp.class);

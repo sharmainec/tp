@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import lingogo.commons.exceptions.DataConversionException;
+import lingogo.commons.exceptions.DataFileAsDirectoryException;
 import lingogo.model.ReadOnlyFlashcardApp;
 import lingogo.model.ReadOnlyUserPrefs;
 import lingogo.model.UserPrefs;
@@ -24,7 +25,8 @@ public interface Storage extends FlashcardAppStorage, UserPrefsStorage {
     Path getFlashcardAppFilePath();
 
     @Override
-    Optional<ReadOnlyFlashcardApp> readFlashcardApp() throws DataConversionException, IOException;
+    Optional<ReadOnlyFlashcardApp> readFlashcardApp() throws DataConversionException, IOException,
+            DataFileAsDirectoryException;
 
     @Override
     void saveFlashcardApp(ReadOnlyFlashcardApp flashcardApp) throws IOException;

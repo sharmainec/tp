@@ -1,6 +1,7 @@
 package lingogo;
 
 
+import static lingogo.commons.core.Messages.AlertMessage.ALERT_FLASHCARDAPP_JSON_IS_DIRECTORY;
 import static lingogo.commons.core.Messages.AlertMessage.ALERT_INVALID_DATA_FILE;
 import static lingogo.commons.core.Messages.AlertMessage.ALERT_PROBLEM_WHILE_READING_DATA_FILE;
 import static lingogo.commons.core.Messages.AlertMessage.ALERT_WELCOME_TO_LINGOGO;
@@ -18,6 +19,7 @@ import lingogo.commons.core.LogsCenter;
 import lingogo.commons.core.Messages.AlertMessage;
 import lingogo.commons.core.Version;
 import lingogo.commons.exceptions.DataConversionException;
+import lingogo.commons.exceptions.DataFileAsDirectoryException;
 import lingogo.commons.util.ConfigUtil;
 import lingogo.commons.util.StringUtil;
 import lingogo.logic.Logic;
@@ -136,6 +138,10 @@ public class MainApp extends Application {
             initialData = new FlashcardApp();
         } catch (NullPointerException e) {
             alertMessage = ALERT_INVALID_DATA_FILE;
+            logger.warning(alertMessage.getContentText());
+            initialData = new FlashcardApp();
+        } catch (DataFileAsDirectoryException e) {
+            alertMessage = ALERT_FLASHCARDAPP_JSON_IS_DIRECTORY;
             logger.warning(alertMessage.getContentText());
             initialData = new FlashcardApp();
         }

@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import lingogo.commons.exceptions.DataConversionException;
+import lingogo.commons.exceptions.DataFileAsDirectoryException;
 import lingogo.model.ReadOnlyFlashcardApp;
 
 /**
@@ -24,12 +25,14 @@ public interface FlashcardAppStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyFlashcardApp> readFlashcardApp() throws DataConversionException, IOException;
+    Optional<ReadOnlyFlashcardApp> readFlashcardApp() throws DataConversionException, DataFileAsDirectoryException,
+            IOException;
 
     /**
      * @see #getFlashcardAppFilePath()
      */
-    Optional<ReadOnlyFlashcardApp> readFlashcardApp(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyFlashcardApp> readFlashcardApp(Path filePath) throws DataConversionException,
+            DataFileAsDirectoryException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyFlashcardApp} to the storage.

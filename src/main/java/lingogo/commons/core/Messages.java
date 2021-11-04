@@ -46,6 +46,12 @@ public class Messages {
                 + "restarting it again. Any further commands will delete all data stored in data/flashcardapp.json "
                 + "permanently.", AlertType.WARNING);
 
+        public static final AlertMessage ALERT_FLASHCARDAPP_JSON_IS_DIRECTORY = new AlertMessage("Invalid data file",
+             "Warning!", "Please delete the directory at path: data/flashcardapp.json before restarting this "
+            + "application. This path is reserved for storing LingoGO! data in a JSON file format. As such no further "
+            + "commands will work until the directory named flashcardapp.json has been deleted, and the application "
+            + "successfully restarted.", AlertType.WARNING);
+
         private String title;
         private String headerText;
         private String contentText;
