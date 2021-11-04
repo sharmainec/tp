@@ -22,7 +22,7 @@ import lingogo.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
-    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save/load data to/from file: ";
+    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save/load data to/from flashcardApp.json";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -49,7 +49,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveFlashcardApp(model.getFlashcardApp());
         } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE);
         }
 
         return commandResult;
