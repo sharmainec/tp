@@ -17,6 +17,7 @@ public class LanguageType {
      * {@code \\[a-zA-Z ]*} Allows us to match any alphabet characters 0 or more times.
      */
     public static final String VALIDATION_REGEX = "\\S[a-zA-Z ]*";
+    public static final int MAX_LENGTH = 50;
 
     public final String value;
 
@@ -35,7 +36,7 @@ public class LanguageType {
      * Returns true if a given language type is a valid language type.
      */
     public static boolean isValidLanguageType(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= MAX_LENGTH;
     }
 
     /**
