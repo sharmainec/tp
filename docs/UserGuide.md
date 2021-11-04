@@ -250,9 +250,19 @@ Format: `exit`
 
 ### Exporting flashcards : `export`
 
-Exports flashcards from LingoGO! to a CSV file.
+Exports the currently displayed flashcards in [list mode](#list-mode) to a CSV file.
 
-Format: `export FILE_NAME`
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about opening CSV files with Excel:**<br>
+* We advise changing the default settings so that foreign language is properly displayed with Excel.
+[Please refer here for detailed instructions.](https://www.itg.ias.edu/content/how-import-csv-file-uses-utf-8-character-encoding-0)
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you export to a file that already exists in the data folder, the file will get overwritten
+</div>
+
+Format: `export CSV_FILE_NAME`
 
 * Provides a file name with a .csv extension in which the flashcards will be stored and exported.
 * The exported file will be added to the *data* folder (located in the same folder as the *lingogo.jar* file).
@@ -320,28 +330,35 @@ Format: `help`
 
 ### Importing flashcards : `import`
 
-Imports flashcards to LingoGO! using a CSV file.
-
-Format: `import CSV_FILE_PATH`
-
-* The file path can be absolute or relative to the location of the LingoGO! file.
-
 <div markdown="block" class="alert alert-info">
-**:information_source: Notes about `CSV_FILE_PATH`:**<br>
-* Users with no knowledge about file paths can just place the CSV file in the same folder that LingoGO! is located in
-  and fill the `CSV_FILE_PATH` parameter with the CSV file's name.
+**:information_source: Notes about importing CSV files made with Excel:**<br>
+* We advise against using Excel to create a CSV file to be imported into LingoGO!.
 </div>
 
+Imports flashcards from a CSV file and **adds** them to the existing list in LingoGO!
+(instead of replacing the current list)
+
+Format: `import CSV_FILE_NAME`
+
+* Place the CSV file that you wish to import in the *data* folder
+ (located in the same folder as the *lingogo.jar* file).
+* The CSV file must have exact headers "Language, Foreign, English". (as shown in the below example)
 * The CSV file must have **3 columns** in this order from left to right:
   1. Language
   2. Foreign phrase
   3. English phrase
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Importing invalid CSV file:**<br>
+* If any of the above required information in the CSV file is invalid or missing,
+LingoGO! will **not** import the flashcards
+</div>
+
 Below is an example of how the CSV file might look like.
      ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
-* `import dictionary.csv` will load all cards stored in the dictionary.csv to LingoGO!.
+* `import dictionary.csv` will add all flashcards stored in the CSV file dictionary.csv to LingoGO!.
 
 
 ### Listing all flashcards : `list [NUMBER_OF_FLASHCARDS]`
