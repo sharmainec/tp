@@ -22,7 +22,9 @@ public class FileUtilTest {
         // invalid CSV file name
         assertFalse(FileUtil.isValidCsvFileName("abc"));
         assertFalse(FileUtil.isValidCsvFileName("a/v/d/.csv"));
-        assertFalse(FileUtil.isValidCsvFileName("file name.csv"));
+        assertFalse(FileUtil.isValidCsvFileName("....csv"));
+        assertFalse(FileUtil.isValidCsvFileName("COM1.csv"));
+        assertFalse(FileUtil.isValidCsvFileName("supersupersupersupersupersuperlong.csv"));
     }
 
 }

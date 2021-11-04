@@ -13,6 +13,11 @@ import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +41,7 @@ import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.EnglishPhraseContainsKeywordsPredicate;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.ForeignPhraseContainsKeywordsPredicate;
-import lingogo.model.flashcard.Phrase;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.PhraseContainsKeywordsPredicate;
 import lingogo.testutil.EditFlashcardDescriptorBuilder;
 import lingogo.testutil.FilterBuilderBuilder;
@@ -110,13 +115,13 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_filter() throws Exception {
-        Phrase givenPhrase = new Phrase(VALID_LANGUAGE_TYPE_TAMIL);
+        LanguageType givenPhrase = new LanguageType(VALID_LANGUAGE_TYPE_TAMIL);
         FilterCommand command = (FilterCommand) parser.parseCommand(
                 FilterCommand.COMMAND_WORD + " " + PREFIX_LANGUAGE_TYPE + VALID_LANGUAGE_TYPE_TAMIL
                 + INDICES_DESC_DESC_ONE_TWO + RANGE_DESC_TWO_FOUR);
 
         assertEquals(
-                new FilterCommand(new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(givenPhrase)
+                new FilterCommand(new FilterBuilderBuilder().withIndexList(1, 2).withLanguageType(givenPhrase)
                 .withRange(2, 4).build()), command);
     }
 
@@ -134,7 +139,7 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_export() throws Exception {
-        String csvFileName = "test.csv";
+        String csvFileName = "myCards.csv";
         ExportCommand command = (ExportCommand) parser.parseCommand(
                 ExportCommand.COMMAND_WORD + " " + csvFileName);
         assertEquals(new ExportCommand(csvFileName), command);
@@ -142,10 +147,19 @@ public class FlashcardAppParserTest {
 
     @Test
     public void parseCommand_import() throws Exception {
-        String csvFilePath = "src/test/data/SampleCsvFiles/exportTest.csv";
+        File data = new File("data");
+        if (!data.exists()) {
+            data.mkdir();
+        }
+        String csvFileName = "newContent.csv";
+        Path srcFile = Paths.get("src/test/data/SampleCsvFiles/" + csvFileName).toAbsolutePath();
+        Path destFile = Paths.get("data/" + csvFileName).toAbsolutePath();
+        Files.copy(srcFile, destFile, StandardCopyOption.REPLACE_EXISTING);
         ImportCommand command = (ImportCommand) parser.parseCommand(
-                ImportCommand.COMMAND_WORD + " " + csvFilePath);
-        assertEquals(new ImportCommand(csvFilePath), command);
+                ImportCommand.COMMAND_WORD + " " + csvFileName);
+        assertEquals(new ImportCommand(csvFileName), command);
+        File file = new File("data/" + csvFileName);
+        file.delete();
     }
 
     @Test

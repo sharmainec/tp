@@ -1,6 +1,7 @@
 package lingogo.testutil;
 
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 
 /**
@@ -12,7 +13,7 @@ public class FlashcardBuilder {
     public static final String DEFAULT_FOREIGN_PHRASE = "早安";
     public static final Boolean DEFAULT_IS_FLIPPED = false;
 
-    private Phrase languageType;
+    private LanguageType languageType;
     private Phrase englishPhrase;
     private Phrase foreignPhrase;
     private Boolean isFlipped;
@@ -21,7 +22,7 @@ public class FlashcardBuilder {
      * Creates a {@code FlashcardBuilder} with the default details.
      */
     public FlashcardBuilder() {
-        languageType = new Phrase(DEFAULT_LANGUAGE_TYPE);
+        languageType = new LanguageType(DEFAULT_LANGUAGE_TYPE);
         englishPhrase = new Phrase(DEFAULT_ENGLISH_PHRASE);
         foreignPhrase = new Phrase(DEFAULT_FOREIGN_PHRASE);
         isFlipped = DEFAULT_IS_FLIPPED;
@@ -41,7 +42,7 @@ public class FlashcardBuilder {
      * Sets the {@code languageType} of the {@code Flashcard} that we are building.
      */
     public FlashcardBuilder withLanguageType(String languageType) {
-        this.languageType = new Phrase(languageType);
+        this.languageType = new LanguageType(languageType);
         return this;
     }
 

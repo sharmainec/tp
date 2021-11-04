@@ -2,6 +2,7 @@ package lingogo.testutil;
 
 import lingogo.logic.commands.EditCommand.EditFlashcardDescriptor;
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 
 /**
@@ -33,7 +34,7 @@ public class EditFlashcardDescriptorBuilder {
      * Sets the {@code languageType} of the {@code EditFlashcardDescriptor} that we are building.
      */
     public EditFlashcardDescriptorBuilder withLanguageType(String languageType) {
-        descriptor.setLanguageType(new Phrase(languageType));
+        descriptor.setLanguageType(new LanguageType(languageType));
         return this;
     }
 
