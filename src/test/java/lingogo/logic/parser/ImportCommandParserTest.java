@@ -17,8 +17,15 @@ public class ImportCommandParserTest {
     }
 
     @Test
-    public void parse_containSlashes_throwsParseException() {
+    public void parse_containForwardSlash_throwsParseException() {
         String userInput = "./abc";
+        assertParseFailure(parser, userInput,
+                String.format(MESSAGE_INVALID_CSV_FILE_NAME, userInput));
+    }
+
+    @Test
+    public void parse_containBackSlash_throwsParseException() {
+        String userInput = ".\\abc";
         assertParseFailure(parser, userInput,
                 String.format(MESSAGE_INVALID_CSV_FILE_NAME, userInput));
     }
