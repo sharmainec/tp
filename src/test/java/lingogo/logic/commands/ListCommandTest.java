@@ -7,6 +7,7 @@ import static lingogo.testutil.TypicalFlashcards.NIGHT_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.SORRY_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.SUNRISE_TAMIL_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -90,6 +91,7 @@ public class ListCommandTest {
         // same values -> returns true
         ListCommand listRandomThreeCommandCopy = new ListCommand(3);
         assertTrue(listRandomThreeCommand.equals(listRandomThreeCommandCopy));
+        assertEquals(listAllCommand, new ListCommand());
 
         // different types -> returns false
         assertFalse(listRandomThreeCommand.equals(1));
