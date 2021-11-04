@@ -12,11 +12,9 @@ public class LanguageType {
             + " and should not be blank";
 
     /**
-     * {@code \\S} The first character of the phrase must not be a whitespace.
-     * This prevents " " (a blank string) from becoming a valid input.
-     * {@code \\[a-zA-Z ]*} Allows us to match any alphabet characters 0 or more times.
+     * {@code \\[a-zA-Z ]*} Allows us to match any alphabet characters or space 0 or more times.
      */
-    public static final String VALIDATION_REGEX = "\\S[a-zA-Z ]*";
+    public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z ]*";
     public static final int MAX_LENGTH = 50;
 
     public final String value;

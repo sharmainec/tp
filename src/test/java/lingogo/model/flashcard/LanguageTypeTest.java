@@ -35,6 +35,7 @@ public class LanguageTypeTest {
         assertFalse(LanguageType.isValidLanguageType(" ")); // spaces only
         assertFalse(LanguageType.isValidLanguageType("English\n")); // non alphabet not allowed
         assertFalse(LanguageType.isValidLanguageType(" English")); // preceding whitespace
+        assertFalse(LanguageType.isValidLanguageType(":English")); // preceding non-alphabet
         assertFalse(LanguageType.isValidLanguageType(
                 "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")); // longer than 50 characters
 
