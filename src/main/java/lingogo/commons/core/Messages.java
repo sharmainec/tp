@@ -30,10 +30,12 @@ public class Messages {
                 + "flashcards!", AlertType.INFORMATION);
 
         public static final AlertMessage ALERT_INVALID_DATA_FILE = new AlertMessage("Invalid data file", "Warning!",
-                "The data file is not in the correct format. Will be starting with an empty flashcard list. Do exit "
-                + "the application via the close button and ensure the that flashcardapp.json file in the data folder "
-                + "is in the correct format before restarting the application. Any further commands will delete all "
-                + "data stored in data/flashcardapp.json permanently.", AlertType.WARNING);
+                "The data file is invalid. Will be starting with an empty flashcard list. Do exit "
+                + "the application via the close button and fix the flashcardapp.json file in the data folder. "
+                + "Bugs in data/flashcardapp.json include null values, missing commas or brackets, missing fields or "
+                + "duplicate flashcards, among other issues. Any further commands will delete all data stored in "
+                + "data/flashcardapp.json permanently.",
+                AlertType.WARNING);
 
         public static final AlertMessage ALERT_PROBLEM_WHILE_READING_DATA_FILE = new AlertMessage("Problem while "
                 + "reading data file", "Warning!", "There was a problem while reading from the file. Will be starting "

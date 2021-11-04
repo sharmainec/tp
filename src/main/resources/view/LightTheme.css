@@ -275,10 +275,18 @@
     -fx-background-color: #ffffff;
 }
 
+.dialog-pane > *.button-bar *.button {
+    -fx-text-fill: #ffffff;
+}
+
+.dialog-pane > *.button-bar *.button:hover {
+    -fx-text-fill: #000000;
+}
+
 .dialog-pane > *.label.content {
     -fx-font-size: 14px;
-    -fx-font-weight: bold;
     -fx-text-fill: #1a1d28;
+    -fx-wrap-text: true;
 }
 
 .dialog-pane:header *.header-panel {
