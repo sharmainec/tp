@@ -5,6 +5,7 @@ import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import lingogo.commons.util.CollectionUtil;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.FlashcardInGivenFlashcardListPredicate;
 import lingogo.model.flashcard.Phrase;
 
 /**
@@ -85,7 +87,12 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
         }
 
+        List<Flashcard> updatedList = new ArrayList<>(lastShownList);
+        updatedList.remove(index.getZeroBased());
+        updatedList.add(editedFlashcard);
+
         model.setFlashcard(flashcardToEdit, editedFlashcard);
+        model.updateFilteredFlashcardList(new FlashcardInGivenFlashcardListPredicate(updatedList));
 
         return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard));
     }
