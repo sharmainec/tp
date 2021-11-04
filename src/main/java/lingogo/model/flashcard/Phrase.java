@@ -8,15 +8,16 @@ import static lingogo.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidPhrase(String)}
  */
 public class Phrase {
-    public static final String MESSAGE_CONSTRAINTS = "Phrases can take Unicode alphabet characters,"
-        + " and should not be blank";
-
     /**
      * {@code \\S} The first character of the phrase must not be a whitespace.
      * This prevents " " (a blank string) from becoming a valid input.
      * {@code \\[^\n]*} Allows us to match any character that is not a new line character 0 or more times.
      */
     public static final String VALIDATION_REGEX = "\\S[^\n]*";
+    public static final int MAX_NUMBER_OF_CHARACTERS = 100;
+
+    public static final String MESSAGE_CONSTRAINTS = "Phrases can take Unicode alphabet characters,"
+            + " should not be blank, and must be no longer than " + MAX_NUMBER_OF_CHARACTERS + " characters.";
 
     public final String value;
 
@@ -35,7 +36,7 @@ public class Phrase {
      * Returns true if a given phrase is a valid phrase.
      */
     public static boolean isValidPhrase(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= MAX_NUMBER_OF_CHARACTERS;
     }
 
     @Override

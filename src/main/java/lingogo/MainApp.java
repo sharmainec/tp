@@ -5,6 +5,7 @@ import static lingogo.commons.core.Messages.AlertMessage.ALERT_INVALID_DATA_FILE
 import static lingogo.commons.core.Messages.AlertMessage.ALERT_PROBLEM_WHILE_READING_DATA_FILE;
 import static lingogo.commons.core.Messages.AlertMessage.ALERT_WELCOME_TO_LINGOGO;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -58,6 +59,12 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing LingoGO! ]===========================");
         super.init();
+
+        logger.info("=============================[ Creating Data folder ]===========================");
+        File data = new File("data");
+        if (!data.exists()) {
+            data.mkdir();
+        }
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());

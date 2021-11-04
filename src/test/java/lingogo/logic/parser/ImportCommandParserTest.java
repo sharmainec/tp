@@ -1,11 +1,9 @@
 package lingogo.logic.parser;
 
-import static lingogo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_FILE_NAME;
 import static lingogo.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
-
-import lingogo.logic.commands.ImportCommand;
 
 public class ImportCommandParserTest {
 
@@ -15,20 +13,6 @@ public class ImportCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         String userInput = "abc";
         assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_nonExistentFile_throwsParseException() {
-        String userInput = "./x.csv";
-        assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_nonExistentPath_throwsParseException() {
-        String userInput = "sub/directory/x.csv";
-        assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_CSV_FILE_NAME, userInput));
     }
 }

@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import lingogo.commons.core.GuiSettings;
 import lingogo.commons.core.LogsCenter;
-import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.flashcard.Flashcard;
 
 /**
@@ -113,18 +112,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedFlashcard);
 
         flashcardApp.setFlashcard(target, editedFlashcard);
-    }
-
-    @Override
-    public void exportFlashCards(String fileName) throws CommandException {
-        requireAllNonNull(fileName);
-        flashcardApp.exportFlashCards(fileName);
-    }
-
-    @Override
-    public void importFlashCards(String filePath) throws CommandException {
-        requireAllNonNull(filePath);
-        flashcardApp.importFlashCards(filePath);
     }
 
     //=========== Filtered Flashcard List Accessors =============================================================

@@ -38,7 +38,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         if (argMultimap.getValue(PREFIX_LANGUAGE_TYPE).isPresent()) {
             editFlashcardDescriptor.setLanguageType(
-                    ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_LANGUAGE_TYPE).get()));
+                    ParserUtil.parseLanguageType(argMultimap.getValue(PREFIX_LANGUAGE_TYPE).get()));
         }
         if (argMultimap.getValue(PREFIX_ENGLISH_PHRASE).isPresent()) {
             editFlashcardDescriptor.setEnglishPhrase(

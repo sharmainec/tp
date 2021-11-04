@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import javafx.util.Pair;
 import lingogo.commons.core.index.Index;
 import lingogo.logic.commands.FilterCommand.FilterBuilder;
-import lingogo.model.flashcard.Phrase;
+import lingogo.model.flashcard.LanguageType;
 
 /**
  * A utility class to help with building FilterBuilder objects.
@@ -22,18 +22,20 @@ public class FilterBuilderBuilder {
 
     /**
      * Sets the {@code languageType} of the {@code FilterBuilder} that we are building.
+     * @param languageType
      */
-    public FilterBuilderBuilder withLanguagePhrase(Phrase languagePhrase) {
-        filterBuilder.setLanguageType(languagePhrase);
+    public FilterBuilderBuilder withLanguageType(LanguageType languageType) {
+        filterBuilder.setLanguageType(languageType);
         return this;
     }
 
 
     /**
      * Sets the {@code languageType} of the {@code FilterBuilder} that we are building.
+     * @param languageType
      */
-    public FilterBuilderBuilder withLanguagePhrase(String languagePhrase) {
-        filterBuilder.setLanguageType(new Phrase(languagePhrase));
+    public FilterBuilderBuilder withLanguageType(String languageType) {
+        filterBuilder.setLanguageType(new LanguageType(languageType));
         return this;
     }
 

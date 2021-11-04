@@ -13,9 +13,17 @@
     <Label styleClass="label-bright" fx:id="currentFlashcardNumber" text="Flashcard number: 1" />
   </StackPane>
   <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+    <padding>
+      <Insets top="10" right="50" bottom="10" left="50" />
+    </padding>
     <Label styleClass="label-bright" text="What does this mean?" />
     <Label styleClass="label-header" fx:id="currentForeignPhrase"
-           text="Foreign Phrase" wrapText="true" textAlignment="CENTER" />
+           text="Foreign Phrase" wrapText="true" textAlignment="CENTER">
+      <padding>
+        <Insets bottom="10" />
+      </padding>
+    </Label>
+    <Label styleClass="label-bright" fx:id="answerHeader" text="Answer:" />
     <Label styleClass="label-header" fx:id="answer"
            text="" wrapText="true" textAlignment="CENTER" />
   </VBox>
