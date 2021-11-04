@@ -28,7 +28,7 @@ public class Messages {
 
     public static class AlertMessage {
 
-        public static final AlertMessage ALERT_WELCOME_TO_LINGOGO = new AlertMessage("Welcome to LingoGo!",
+        public static final AlertMessage ALERT_WELCOME_TO_LINGOGO = new AlertMessage("Welcome to LingoGO!",
                 "Welcome!", "It seems like you have no flashcards yet, let's get you started with a set of sample "
                 + "flashcards!", AlertType.INFORMATION);
 
