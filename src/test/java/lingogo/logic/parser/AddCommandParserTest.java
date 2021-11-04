@@ -9,6 +9,8 @@ import static lingogo.logic.commands.CommandTestUtil.ENGLISH_PHRASE_DESC_SUNRISE
 import static lingogo.logic.commands.CommandTestUtil.INVALID_ENGLISH_PHRASE_DESC;
 import static lingogo.logic.commands.CommandTestUtil.INVALID_FOREIGN_PHRASE_DESC;
 import static lingogo.logic.commands.CommandTestUtil.INVALID_LANGUAGE_TYPE_DESC;
+import static lingogo.logic.commands.CommandTestUtil.INVALID_LONG_ENGLISH_PHRASE_DESC;
+import static lingogo.logic.commands.CommandTestUtil.INVALID_LONG_FOREIGN_PHRASE_DESC;
 import static lingogo.logic.commands.CommandTestUtil.LANGUAGE_TYPE_DESC_CHINESE;
 import static lingogo.logic.commands.CommandTestUtil.LANGUAGE_TYPE_DESC_TAMIL;
 import static lingogo.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -95,6 +97,14 @@ public class AddCommandParserTest {
         // invalid foreign phrase
         assertParseFailure(parser, LANGUAGE_TYPE_DESC_CHINESE
                 + ENGLISH_PHRASE_DESC_HELLO + INVALID_FOREIGN_PHRASE_DESC, Phrase.MESSAGE_CONSTRAINTS);
+
+        // English phrase too long
+        assertParseFailure(parser, LANGUAGE_TYPE_DESC_CHINESE
+                + INVALID_LONG_ENGLISH_PHRASE_DESC + CHINESE_PHRASE_DESC_HELLO, Phrase.MESSAGE_CONSTRAINTS);
+
+        //Foreign phrase too long
+        assertParseFailure(parser, LANGUAGE_TYPE_DESC_CHINESE
+                + ENGLISH_PHRASE_DESC_HELLO + INVALID_LONG_FOREIGN_PHRASE_DESC, Phrase.MESSAGE_CONSTRAINTS);
 
         // three invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_LANGUAGE_TYPE_DESC + INVALID_ENGLISH_PHRASE_DESC

@@ -17,7 +17,7 @@ import lingogo.model.flashcard.Flashcard;
 public class SlideshowPanel extends UiPart<Region> {
     private static final String FXML = "SlideshowPanel.fxml";
     private static final String CURRENT_FLASHCARD_NUMBER_FORMAT_STRING = "Current flashcard: %s";
-    private static final String ANSWER_FORMAT_STRING = "Answer: %s";
+    private static final String ANSWER_HEADER_STRING = "Answer:";
     private static final String PROGRESS_FORMAT_STRING = "Flashcards answered: %s";
 
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
@@ -26,6 +26,8 @@ public class SlideshowPanel extends UiPart<Region> {
     private Label currentFlashcardNumber;
     @FXML
     private Label currentForeignPhrase;
+    @FXML
+    private Label answerHeader;
     @FXML
     private Label answer;
     @FXML
@@ -43,8 +45,10 @@ public class SlideshowPanel extends UiPart<Region> {
                         readOnlySlideshowApp.getCurrentSlideNumber()));
                 currentForeignPhrase.setText(newVal.getForeignPhrase().toString());
                 if (readOnlySlideshowApp.isCurrentSlideAnswered()) {
-                    answer.setText(String.format(ANSWER_FORMAT_STRING, newVal.getEnglishPhrase().toString()));
+                    answerHeader.setText(ANSWER_HEADER_STRING);
+                    answer.setText(newVal.getEnglishPhrase().toString());
                 } else {
+                    answerHeader.setText("");
                     answer.setText("");
                 }
                 progress.setText(String.format(PROGRESS_FORMAT_STRING, readOnlySlideshowApp.getProgress()));
@@ -54,10 +58,11 @@ public class SlideshowPanel extends UiPart<Region> {
             @Override
             public void changed(ObservableValue<? extends Boolean> o, Boolean oldVal, Boolean newVal) {
                 if (newVal) {
-                    answer.setText(String.format(ANSWER_FORMAT_STRING,
-                            readOnlySlideshowApp.getCurrentSlide().getEnglishPhrase().toString()));
+                    answerHeader.setText(ANSWER_HEADER_STRING);
+                    answer.setText(readOnlySlideshowApp.getCurrentSlide().getEnglishPhrase().toString());
                     progress.setText(String.format(PROGRESS_FORMAT_STRING, readOnlySlideshowApp.getProgress()));
                 } else {
+                    answerHeader.setText("");
                     answer.setText("");
                 }
             }

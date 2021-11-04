@@ -120,6 +120,14 @@ In slideshow mode, you can:
   [`previous`](#moving-to-the-previous-flashcard-in-slideshow-mode--previous) flashcards
 * Enter an [`answer`](#answering-a-flashcard--answer) for a flashcard
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about slideshow mode:**<br>
+
+* If your flashcards have phrases that are too long to be displayed, you can **increase the app's window size**.
+
+</div>
+
 ## Commands
 
 The following section gives an indepth overview of each command in the application, and provides some examples on their usages.
@@ -153,6 +161,16 @@ Adds a flashcard to LingoGO!.
 * The flashcard will be added to the bottom of the displayed flashcard list in [list mode](#list-mode).
 
 Format: `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about adding flashcards:**<br>
+
+* `ENGLISH_PHRASE` and `FOREIGN_PHRASE` should not be longer than **100 characters**.
+  For optimal viewing experience, flashcard phrases should be kept as short as possible.
+  If your phrases are too long to be displayed, you can **increase the app's window size**.
+
+</div>
 
 Examples:
 * `add l/Chinese e/Good Morning f/早安`
@@ -205,6 +223,16 @@ Format: `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 * `INDEX` refers to the index number of the flashcard shown in [list mode](#list-mode).
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * **At least one** of the optional fields must be provided.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about editing flashcards:**<br>
+
+* `ENGLISH_PHRASE` and `FOREIGN_PHRASE` should not be longer than **100 characters**.
+  For optimal viewing experience, flashcard phrases should be kept as short as possible.
+  If your phrases are too long to be displayed, you can **increase the app's window size**.
+
+</div>
 
 Examples:
 * `edit 1 l/German` Edits the language of the 1st flashcard to be `German`.
