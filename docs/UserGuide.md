@@ -222,7 +222,7 @@ Format: `exit`
 
 ### Exporting flashcards : `export`
 
-Exports flashcards from LingoGO! to a CSV file.
+Exports the currently displayed flashcards in [list mode](#list-mode) to a CSV file.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about opening CSV files with Excel:**<br>
