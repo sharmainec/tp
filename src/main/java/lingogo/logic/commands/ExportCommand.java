@@ -1,15 +1,12 @@
 package lingogo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static lingogo.commons.util.FileUtil.exportToCsvFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-
-import com.opencsv.CSVWriter;
+import java.util.stream.Collectors;
 
 import lingogo.commons.core.Messages;
 import lingogo.logic.commands.exceptions.CommandException;
@@ -40,7 +37,6 @@ public class ExportCommand extends Command {
     public static final String EXPORT_IOEXCEPTION = "Could not save flashcards from LingoGO! into %1$s";
 
     private static final String[] csvHeaders = {"Language", "Foreign", "English"};
-    private static List<Flashcard> filteredFlashcardList;
     private final String fileName;
 
 
@@ -67,11 +63,10 @@ public class ExportCommand extends Command {
             dataFolder.mkdir();
         }
 
-        // try-with-resources ensures that CSVWriter is closed after execution of this try block
-        try (CSVWriter writer = new CSVWriter(new OutputStreamWriter(
-                new FileOutputStream("data/" + fileName), StandardCharsets.UTF_8))) {
-            filteredFlashcardList = model.getFilteredFlashcardList();
-            exportFlashcardList(writer);
+        List<String[]> content = flashcardListToCsvFormat(model.getFilteredFlashcardList());
+
+        try {
+            exportToCsvFile("data/" + fileName, csvHeaders, content);
         } catch (IOException ioe) {
             throw new CommandException(String.format(EXPORT_IOEXCEPTION, fileName));
         }
@@ -86,16 +81,10 @@ public class ExportCommand extends Command {
                 && fileName.equals(((ExportCommand) other).fileName)); // state check
     }
 
-    /**
-     * Uses CSVWriter to export the contents of internalList to {@code fileName}.
-     */
-    private void exportFlashcardList(CSVWriter writer) {
-        writer.writeNext(csvHeaders);
-        String[] line;
-        for (Flashcard card : filteredFlashcardList) {
-            line = new String[]{card.getLanguageType().value,
-                    card.getForeignPhrase().value, card.getEnglishPhrase().value};
-            writer.writeNext(line);
-        }
+    private List<String[]> flashcardListToCsvFormat(List<Flashcard> flashcards) {
+        return flashcards.stream()
+                .map(e -> new String[] {e.getLanguageType().value,
+                        e.getForeignPhrase().value, e.getEnglishPhrase().value})
+                .collect(Collectors.toList());
     }
 }

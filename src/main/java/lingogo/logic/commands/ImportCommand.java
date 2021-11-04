@@ -4,21 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static lingogo.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_CONTENT;
 import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_HEADERS;
+import static lingogo.commons.util.FileUtil.importCsvFileContent;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
 import lingogo.commons.core.Messages;
+import lingogo.commons.exceptions.CsvColumnHeaderException;
+import lingogo.commons.exceptions.CsvNumColumnsException;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
@@ -51,7 +48,6 @@ public class ImportCommand extends Command {
     public static final String IMPORT_IOEXCEPTION = "Could not load flashcards from %1$s into LingoGO!";
 
     private static final String[] csvHeaders = {"Language", "Foreign", "English"};
-    private static List<Flashcard> importedFlashcardList;
     private final String fileName;
 
     /**
@@ -71,23 +67,31 @@ public class ImportCommand extends Command {
             throw new CommandException(Messages.MESSAGE_IN_SLIDESHOW_MODE);
         }
 
-        File f = new File("data/" + fileName);
+        String filepath = "data/" + fileName;
+
+        File f = new File(filepath);
         if (!f.exists()) {
             throw new CommandException(String.format(MESSAGE_FILE_NOT_FOUND, fileName));
         }
 
-        // try-with-resources ensures that CSVReader is closed after execution of this try block
-        try (CSVReader reader = new CSVReaderBuilder(
-                new InputStreamReader(new FileInputStream("data/" + fileName), StandardCharsets.UTF_8)).build()) {
-            getImportedFlashcardList(reader);
-        } catch (CsvValidationException e) {
+        // Get CSV file content
+        List<String[]> content;
+        try {
+            content = importCsvFileContent(filepath, csvHeaders);
+        } catch (CsvColumnHeaderException e) {
+            throw new CommandException(String.format(MESSAGE_INVALID_CSV_HEADERS, fileName));
+        } catch (CsvValidationException | CsvNumColumnsException e) {
             throw new CommandException(String.format(MESSAGE_INVALID_CSV_CONTENT, fileName));
         } catch (IOException ioe) {
             throw new CommandException(String.format(IMPORT_IOEXCEPTION, fileName));
         }
 
+        // Validate that all CSV row entries make up valid flashcards
+        List<Flashcard> validatedFlashcards = validateCsvContentAreValidFlashcards(content);
+
+        // Only when entire CSV file are valid flashcards do we add these entries into the actual flashcard list
         boolean isUpdated = false;
-        for (Flashcard card : importedFlashcardList) {
+        for (Flashcard card : validatedFlashcards) {
             if (!model.hasFlashcard(card)) {
                 isUpdated = true;
                 model.addFlashcard(card);
@@ -107,34 +111,25 @@ public class ImportCommand extends Command {
                 && fileName.equals(((ImportCommand) other).fileName)); // state check
     }
 
-    /**
-     * Uses CSVReader to import the contents of the {@code fileName} to {@code model}.
-     * @throws CommandException to indicate that CSV file content is not of the correct format
-     * @throws CsvValidationException when CSV file is not valid
-     * @throws IOException involved when reading from an external file
-     */
-    private void getImportedFlashcardList(CSVReader reader)
-            throws CommandException, CsvValidationException, IOException {
-        String[] line = reader.readNext();
-        if (!Arrays.toString(line).equals(Arrays.toString(csvHeaders))) {
-            throw new CommandException(String.format(MESSAGE_INVALID_CSV_HEADERS, fileName));
-        }
-        importedFlashcardList = new LinkedList<>();
-        while ((line = reader.readNext()) != null) {
-            if (line.length != 3 || line[0].isBlank() || line[1].isBlank() || line[2].isBlank()) {
-                throw new CommandException(String.format(MESSAGE_INVALID_CSV_CONTENT, fileName));
-            }
+    private List<Flashcard> validateCsvContentAreValidFlashcards(List<String[]> content)
+        throws CommandException {
+        ArrayList<Flashcard> importedFlashcardList = new ArrayList<>();
+        for (String[] line : content) {
             String languageType = line[0];
             String englishPhrase = line[2];
             String foreignPhrase = line[1];
-            if (!LanguageType.isValidLanguageType(languageType)
-                    || !Phrase.isValidPhrase(englishPhrase)
-                    || !Phrase.isValidPhrase(foreignPhrase)) {
+            Flashcard card;
+
+            try {
+                card = new Flashcard(
+                        new LanguageType(languageType), new Phrase(englishPhrase), new Phrase(foreignPhrase));
+            } catch (IllegalArgumentException e) {
                 throw new CommandException(String.format(MESSAGE_INVALID_CSV_CONTENT, fileName));
             }
-            Flashcard card = new Flashcard(
-                    new LanguageType(languageType), new Phrase(englishPhrase), new Phrase(foreignPhrase));
+
             importedFlashcardList.add(card);
         }
+
+        return importedFlashcardList;
     }
 }
