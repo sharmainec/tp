@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":ModelManager" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("import ./data/dictionary.csv")
+[-> LogicManager : execute("import dictionary.csv")
 activate LogicManager
 
-LogicManager -> FlashcardAppParser : parseCommand("import ./data/dictionary.csv")
+LogicManager -> FlashcardAppParser : parseCommand("import dictionary.csv")
 activate FlashcardAppParser
 
 create ImportCommandParser
@@ -26,7 +26,7 @@ activate ImportCommandParser
 ImportCommandParser --> FlashcardAppParser
 deactivate ImportCommandParser
 
-FlashcardAppParser -> ImportCommandParser: parse("./data/dictionary.csv")
+FlashcardAppParser -> ImportCommandParser: parse("dictionary.csv")
 activate ImportCommandParser
 
 create ImportCommand
@@ -48,7 +48,7 @@ deactivate FlashcardAppParser
 LogicManager -> ImportCommand : execute()
 activate ImportCommand
 
-ImportCommand -> Model : importFlashCards("./data/dictionary.csv")
+ImportCommand -> Model : importFlashCards("dictionary.csv")
 activate Model
 
 Model --> ImportCommand

@@ -2,8 +2,9 @@ package lingogo.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import lingogo.model.flashcard.Flashcard;
 
 /**
@@ -24,15 +25,15 @@ public class FlashcardPane extends UiPart<Region> {
     public final Flashcard flashcard;
 
     @FXML
-    private HBox cardPane;
+    private GridPane cardPane;
     @FXML
     private Label id;
     @FXML
     private Label language;
     @FXML
-    private Label foreignPhrase;
+    private Text foreignPhrase;
     @FXML
-    private Label englishPhrase;
+    private Text englishPhrase;
 
     /**
      * Creates a {@code FlashcardPane} with the given {@code Flashcard} and index to display.
@@ -44,6 +45,17 @@ public class FlashcardPane extends UiPart<Region> {
         language.setText(flashcard.getLanguageType().value);
         foreignPhrase.setText(flashcard.getForeignPhrase().value);
         englishPhrase.setText(flashcard.getEnglishPhrase().value);
+
+        foreignPhrase.setWrappingWidth(cardPane.getColumnConstraints().get(2).getPrefWidth());
+        englishPhrase.setWrappingWidth(cardPane.getColumnConstraints().get(3).getPrefWidth());
+
+        double heightNeeded =
+                Math.max(foreignPhrase.getLayoutBounds().getHeight(), englishPhrase.getLayoutBounds().getHeight());
+        cardPane.setMinHeight(
+                Math.max(foreignPhrase.getLayoutBounds().getHeight(), englishPhrase.getLayoutBounds().getHeight()));
+        if (cardPane.getPrefHeight() < heightNeeded) {
+            cardPane.setPrefHeight(heightNeeded);
+        }
     }
 
     @Override

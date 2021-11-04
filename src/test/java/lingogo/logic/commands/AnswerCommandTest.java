@@ -36,7 +36,7 @@ public class AnswerCommandTest {
         AnswerCommand answerCommand = new AnswerCommand(validPhraseAfternoon);
 
         String expectedMessage = String.format(AnswerCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT,
-            flashcardToTest.getForeignPhrase(), flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_AFTERNOON);
+            flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_AFTERNOON);
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
         expectedModel.startSlideshow();
@@ -57,7 +57,7 @@ public class AnswerCommandTest {
         AnswerCommand answerCommand = new AnswerCommand(validPhraseGoodMorning);
 
         String expectedMessage = String.format(AnswerCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_WRONG,
-            flashcardToTest.getForeignPhrase(), flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_GOOD_MORNING);
+            flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_GOOD_MORNING);
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
         expectedModel.startSlideshow();
@@ -88,7 +88,7 @@ public class AnswerCommandTest {
         Flashcard flashcardToTest = model.getCurrentSlide();
         AnswerCommand answerCommand = new AnswerCommand(validPhraseAfternoon);
         String expectedMessage = String.format(AnswerCommand.MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT,
-                flashcardToTest.getForeignPhrase(), flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_AFTERNOON);
+                flashcardToTest.getEnglishPhrase(), VALID_ENGLISH_PHRASE_AFTERNOON);
 
         ModelManager expectedModel = new ModelManager(model.getFlashcardApp(), new UserPrefs());
         expectedModel.startSlideshow();

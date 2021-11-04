@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import lingogo.logic.parser.exceptions.ParseException;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 
 public class ParserUtilTest {
@@ -56,6 +57,29 @@ public class ParserUtilTest {
         String phraseWithWhitespace = WHITESPACE + VALID_PHRASE + WHITESPACE;
         Phrase expectedPhrase = new Phrase(VALID_PHRASE);
         assertEquals(expectedPhrase, ParserUtil.parsePhrase(phraseWithWhitespace));
+    }
+
+    @Test
+    public void parseLanguageType_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLanguageType((String) null));
+    }
+
+    @Test
+    public void parseLanguageType_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLanguageType(INVALID_PHRASE));
+    }
+
+    @Test
+    public void parseLanguageType_validValueWithoutWhitespace_returnsPhrase() throws Exception {
+        LanguageType expectedPhrase = new LanguageType(VALID_PHRASE);
+        assertEquals(expectedPhrase, ParserUtil.parseLanguageType(VALID_PHRASE));
+    }
+
+    @Test
+    public void parseLanguageType_validValueWithWhitespace_returnsTrimmedPhrase() throws Exception {
+        String phraseWithWhitespace = WHITESPACE + VALID_PHRASE + WHITESPACE;
+        LanguageType expectedPhrase = new LanguageType(VALID_PHRASE);
+        assertEquals(expectedPhrase, ParserUtil.parseLanguageType(phraseWithWhitespace));
     }
 
 }

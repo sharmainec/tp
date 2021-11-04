@@ -87,10 +87,13 @@ public class FileUtil {
      * @param fileName A string representing the file name. Cannot be null.
      */
     public static boolean isValidCsvFileName(String fileName) {
-        Pattern p = Pattern.compile("[$&+:=\\\\?@#|/'<>%!*{}`]");
+        Pattern specialChars = Pattern.compile("[\"$^&+:=\\\\?@#|/'<>%!*{}`]");
+        Pattern reservedNames = Pattern.compile("CON|PRN|AUX|NUL|COM[0-9]|LPT[0-9]");
         return fileName.endsWith(".csv")
-                && !p.matcher(fileName).find()
-                && !fileName.contains(" ");
+                && !fileName.replace(".csv", "").replace(".", "").isBlank()
+                && !specialChars.matcher(fileName).find()
+                && !reservedNames.matcher(fileName.replace(".csv", "")).matches()
+                && fileName.length() < 32;
     }
 
 }

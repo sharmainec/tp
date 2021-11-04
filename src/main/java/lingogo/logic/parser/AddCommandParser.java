@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import lingogo.logic.commands.AddCommand;
 import lingogo.logic.parser.exceptions.ParseException;
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 
 /**
@@ -31,7 +32,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Phrase languageType = ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_LANGUAGE_TYPE).get());
+        LanguageType languageType = ParserUtil.parseLanguageType(argMultimap.getValue(PREFIX_LANGUAGE_TYPE).get());
         Phrase englishPhrase = ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get());
         Phrase foreignPhrase = ParserUtil.parsePhrase(argMultimap.getValue(PREFIX_FOREIGN_PHRASE).get());
 
