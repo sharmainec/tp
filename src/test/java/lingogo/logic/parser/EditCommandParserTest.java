@@ -7,6 +7,8 @@ import static lingogo.logic.commands.CommandTestUtil.ENGLISH_PHRASE_DESC_GOOD_MO
 import static lingogo.logic.commands.CommandTestUtil.ENGLISH_PHRASE_DESC_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.INVALID_ENGLISH_PHRASE_DESC;
 import static lingogo.logic.commands.CommandTestUtil.INVALID_FOREIGN_PHRASE_DESC;
+import static lingogo.logic.commands.CommandTestUtil.INVALID_LONG_ENGLISH_PHRASE_DESC;
+import static lingogo.logic.commands.CommandTestUtil.INVALID_LONG_FOREIGN_PHRASE_DESC;
 import static lingogo.logic.commands.CommandTestUtil.LANGUAGE_TYPE_DESC_CHINESE;
 import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
@@ -67,6 +69,10 @@ public class EditCommandParserTest {
                 Phrase.MESSAGE_CONSTRAINTS); // invalid English phrase
         assertParseFailure(parser, "1" + INVALID_FOREIGN_PHRASE_DESC,
                 Phrase.MESSAGE_CONSTRAINTS); // invalid foreign phrase
+        assertParseFailure(parser, "1" + INVALID_LONG_ENGLISH_PHRASE_DESC,
+                Phrase.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_LONG_FOREIGN_PHRASE_DESC,
+                Phrase.MESSAGE_CONSTRAINTS);
 
         // invalid English phrase followed by valid foreign phrase
         assertParseFailure(parser, "1" + INVALID_ENGLISH_PHRASE_DESC + CHINESE_PHRASE_DESC_GOOD_MORNING,

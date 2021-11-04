@@ -1,29 +1,13 @@
 package lingogo.model.flashcard;
 
 import static java.util.Objects.requireNonNull;
-import static lingogo.commons.core.Messages.MESSAGE_INVALID_CSV_FORMAT;
 import static lingogo.commons.util.CollectionUtil.requireAllNonNull;
-import static lingogo.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvValidationException;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.flashcard.exceptions.DuplicateFlashcardException;
 import lingogo.model.flashcard.exceptions.FlashcardNotFoundException;
 
@@ -43,7 +27,6 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
     private final ObservableList<Flashcard> internalList = FXCollections.observableArrayList();
     private final ObservableList<Flashcard> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final String[] csvHeaders = {"Language", "Foreign", "English"};
 
     /**
      * Returns true if the list contains an equivalent flashcard as the given argument.
@@ -112,61 +95,6 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
         }
 
         internalList.setAll(flashcards);
-    }
-
-    /**
-     * Exports the contents of internalList to a CSV file named {@code fileName}.
-     * {@code fileName} must be a valid file name with .csv extension.
-     */
-    public void exportFlashcards(String fileName) throws CommandException {
-        String directoryName = "data";
-        File directory = new File(directoryName);
-        String filePath = directoryName + "/" + fileName;
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
-        try {
-            CSVWriter writer = new CSVWriter(
-                    new OutputStreamWriter(new FileOutputStream(filePath), StandardCharsets.UTF_8));
-            writer.writeNext(csvHeaders);
-            String[] line;
-            for (Flashcard card : internalList) {
-                line = new String[]{card.getLanguageType().value,
-                        card.getForeignPhrase().value, card.getEnglishPhrase().value};
-                writer.writeNext(line);
-            }
-            writer.close();
-        } catch (Exception ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
-    }
-
-    /**
-     * Imports the contents of the CSV file in {@code filePath} to LingoGO!.
-     * {@code filePath} must be a valid file path with .csv extension.
-     */
-    public void importFlashcards(String filePath) throws CommandException {
-        try {
-            CSVReader reader = new CSVReaderBuilder(
-                    new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8)).build();
-            String[] line = reader.readNext();
-            if (!Arrays.toString(line).equals(Arrays.toString(csvHeaders))) {
-                throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, filePath));
-            }
-            while ((line = reader.readNext()) != null) {
-                if (line.length != 3 || line[0].isBlank() || line[1].isBlank() || line[2].isBlank()) {
-                    throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, filePath));
-                }
-                Flashcard card = new Flashcard(new Phrase(line[0]), new Phrase(line[2]), new Phrase(line[1]));
-                if (!internalList.contains(card)) {
-                    internalList.add(card);
-                }
-            }
-        } catch (CsvValidationException e) {
-            throw new CommandException(String.format(MESSAGE_INVALID_CSV_FORMAT, filePath));
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
     }
 
     /**

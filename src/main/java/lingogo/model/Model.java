@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import lingogo.commons.core.GuiSettings;
-import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.flashcard.Flashcard;
 
 /**
@@ -77,20 +76,6 @@ public interface Model {
      * another existing flashcard in the flashcard app.
      */
     void setFlashcard(Flashcard target, Flashcard editedFlashcard);
-
-    /**
-     * Creates the CSV file named {@code fileName} which contains all existing
-     * cards in the flashcard app.
-     * {@code fileName} must be a valid filename with .csv extension.
-     */
-    void exportFlashCards(String fileName) throws CommandException;
-
-    /**
-     * Loads the CSV file named {@code filePath} which contains foreign words
-     * in the first column and English meanings in the second column
-     * {@code filePath} must be a valid file path with .csv extension.
-     */
-    void importFlashCards(String filePath) throws CommandException;
 
     /** Returns an unmodifiable view of the filtered flashcard list */
     ObservableList<Flashcard> getFilteredFlashcardList();

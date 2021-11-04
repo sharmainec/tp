@@ -9,6 +9,8 @@ import static lingogo.logic.commands.CommandTestUtil.ENGLISH_PHRASE_DESC_SUNRISE
 import static lingogo.logic.commands.CommandTestUtil.INVALID_ENGLISH_PHRASE_DESC;
 import static lingogo.logic.commands.CommandTestUtil.INVALID_FOREIGN_PHRASE_DESC;
 import static lingogo.logic.commands.CommandTestUtil.INVALID_LANGUAGE_TYPE_DESC;
+import static lingogo.logic.commands.CommandTestUtil.INVALID_LONG_ENGLISH_PHRASE_DESC;
+import static lingogo.logic.commands.CommandTestUtil.INVALID_LONG_FOREIGN_PHRASE_DESC;
 import static lingogo.logic.commands.CommandTestUtil.LANGUAGE_TYPE_DESC_CHINESE;
 import static lingogo.logic.commands.CommandTestUtil.LANGUAGE_TYPE_DESC_TAMIL;
 import static lingogo.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -26,6 +28,7 @@ import org.junit.jupiter.api.Test;
 
 import lingogo.logic.commands.AddCommand;
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 import lingogo.testutil.FlashcardBuilder;
 
@@ -86,7 +89,7 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid Language type
         assertParseFailure(parser, INVALID_LANGUAGE_TYPE_DESC
-                + ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_HELLO, Phrase.MESSAGE_CONSTRAINTS);
+                + ENGLISH_PHRASE_DESC_HELLO + CHINESE_PHRASE_DESC_HELLO, LanguageType.MESSAGE_CONSTRAINTS);
 
         // invalid English phrase
         assertParseFailure(parser, LANGUAGE_TYPE_DESC_CHINESE
@@ -96,9 +99,17 @@ public class AddCommandParserTest {
         assertParseFailure(parser, LANGUAGE_TYPE_DESC_CHINESE
                 + ENGLISH_PHRASE_DESC_HELLO + INVALID_FOREIGN_PHRASE_DESC, Phrase.MESSAGE_CONSTRAINTS);
 
+        // English phrase too long
+        assertParseFailure(parser, LANGUAGE_TYPE_DESC_CHINESE
+                + INVALID_LONG_ENGLISH_PHRASE_DESC + CHINESE_PHRASE_DESC_HELLO, Phrase.MESSAGE_CONSTRAINTS);
+
+        //Foreign phrase too long
+        assertParseFailure(parser, LANGUAGE_TYPE_DESC_CHINESE
+                + ENGLISH_PHRASE_DESC_HELLO + INVALID_LONG_FOREIGN_PHRASE_DESC, Phrase.MESSAGE_CONSTRAINTS);
+
         // three invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_LANGUAGE_TYPE_DESC + INVALID_ENGLISH_PHRASE_DESC
-                        + INVALID_FOREIGN_PHRASE_DESC, Phrase.MESSAGE_CONSTRAINTS);
+                        + INVALID_FOREIGN_PHRASE_DESC, LanguageType.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + LANGUAGE_TYPE_DESC_CHINESE

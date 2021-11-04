@@ -16,6 +16,7 @@ import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
 import lingogo.model.flashcard.FlashcardInGivenFlashcardListPredicate;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 
 /**
@@ -111,7 +112,7 @@ public class EditCommand extends Command {
             EditFlashcardDescriptor editFlashcardDescriptor) {
         assert flashcardToEdit != null;
 
-        Phrase updatedLanguageType = editFlashcardDescriptor.getLanguageType()
+        LanguageType updatedLanguageType = editFlashcardDescriptor.getLanguageType()
                 .orElse(flashcardToEdit.getLanguageType());
         Phrase updatedEnglishPhrase = editFlashcardDescriptor.getEnglishPhrase()
                 .orElse(flashcardToEdit.getEnglishPhrase());
@@ -144,7 +145,7 @@ public class EditCommand extends Command {
      * corresponding field value of the flashcard.
      */
     public static class EditFlashcardDescriptor {
-        private Phrase languageType;
+        private LanguageType languageType;
         private Phrase englishPhrase;
         private Phrase foreignPhrase;
 
@@ -166,11 +167,11 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(languageType, englishPhrase, foreignPhrase);
         }
 
-        public void setLanguageType(Phrase languageType) {
+        public void setLanguageType(LanguageType languageType) {
             this.languageType = languageType;
         }
 
-        public Optional<Phrase> getLanguageType() {
+        public Optional<LanguageType> getLanguageType() {
             return Optional.ofNullable(languageType);
         }
 

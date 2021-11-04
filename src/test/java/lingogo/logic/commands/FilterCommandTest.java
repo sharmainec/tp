@@ -48,22 +48,22 @@ public class FilterCommandTest {
     public void equals() {
 
         FilterBuilder firstFilterBuilder =
-                new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(VALID_LANGUAGE_TYPE_CHINESE)
+                new FilterBuilderBuilder().withIndexList(1, 2).withLanguageType(VALID_LANGUAGE_TYPE_CHINESE)
                 .withRange(2, 4).build();
         FilterBuilder firstFilterBuilderAgain =
-                new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(VALID_LANGUAGE_TYPE_CHINESE)
+                new FilterBuilderBuilder().withIndexList(1, 2).withLanguageType(VALID_LANGUAGE_TYPE_CHINESE)
                 .withRange(2, 4).build();
         FilterBuilder secondFilterBuilder =
-                new FilterBuilderBuilder().withIndexList(1).withLanguagePhrase(VALID_LANGUAGE_TYPE_TAMIL)
+                new FilterBuilderBuilder().withIndexList(1).withLanguageType(VALID_LANGUAGE_TYPE_TAMIL)
                 .withRange(1, 3).build();
         FilterBuilder thirdFilterBuilder =
-                new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(VALID_LANGUAGE_TYPE_TAMIL)
+                new FilterBuilderBuilder().withIndexList(1, 2).withLanguageType(VALID_LANGUAGE_TYPE_TAMIL)
                 .withRange(2, 4).build();
         FilterBuilder fourthFilterBuilder =
-                new FilterBuilderBuilder().withIndexList(1).withLanguagePhrase(VALID_LANGUAGE_TYPE_CHINESE)
+                new FilterBuilderBuilder().withIndexList(1).withLanguageType(VALID_LANGUAGE_TYPE_CHINESE)
                 .withRange(2, 4).build();
         FilterBuilder fifthFilterBuilder =
-            new FilterBuilderBuilder().withIndexList(1, 2).withLanguagePhrase(VALID_LANGUAGE_TYPE_CHINESE)
+            new FilterBuilderBuilder().withIndexList(1, 2).withLanguageType(VALID_LANGUAGE_TYPE_CHINESE)
                 .withRange(1, 3).build();
 
 
@@ -98,7 +98,7 @@ public class FilterCommandTest {
     @Test
     public void execute_unknownLanguage_noFlashcardFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
-        FilterBuilder filterBuilder = new FilterBuilderBuilder().withLanguagePhrase("Unknown language").build();
+        FilterBuilder filterBuilder = new FilterBuilderBuilder().withLanguageType("Unknown language").build();
         FilterCommand command = new FilterCommand(filterBuilder);
         try {
             expectedModel.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
@@ -127,7 +127,7 @@ public class FilterCommandTest {
     @Test
     public void execute_invalidIndexKeywordTamil_failure() {
         FilterBuilder filterBuilder =
-                new FilterBuilderBuilder().withIndexList(1000).withLanguagePhrase("Tamil").build();
+                new FilterBuilderBuilder().withIndexList(1000).withLanguageType("Tamil").build();
         FilterCommand command = new FilterCommand(filterBuilder);
         assertCommandFailure(command, model, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
@@ -136,7 +136,7 @@ public class FilterCommandTest {
     @Test
     public void execute_keywordTamil_tamilFlashcardsFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 1);
-        FilterBuilder filterBuilder = new FilterBuilderBuilder().withLanguagePhrase("Tamil").build();
+        FilterBuilder filterBuilder = new FilterBuilderBuilder().withLanguageType("Tamil").build();
         FilterCommand command = new FilterCommand(filterBuilder);
         try {
             expectedModel.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
@@ -151,7 +151,7 @@ public class FilterCommandTest {
     public void execute_slideshowActive_throwsCommandException() {
         model.startSlideshow();
 
-        FilterBuilder filterBuilder = new FilterBuilderBuilder().withLanguagePhrase("Tamil").build();
+        FilterBuilder filterBuilder = new FilterBuilderBuilder().withLanguageType("Tamil").build();
         FilterCommand command = new FilterCommand(filterBuilder);
         String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);
 
@@ -194,7 +194,7 @@ public class FilterCommandTest {
     public void execute_selectedAllFields_flashcardsFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 1);
         FilterBuilder filterBuilder =
-                new FilterBuilderBuilder().withIndexList(1, 5).withLanguagePhrase("Chinese").withRange(1, 5).build();
+                new FilterBuilderBuilder().withIndexList(1, 5).withLanguageType("Chinese").withRange(1, 5).build();
         FilterCommand command = new FilterCommand(filterBuilder);
         try {
             expectedModel.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
@@ -232,7 +232,7 @@ public class FilterCommandTest {
 
 
         FilterBuilder filterBuilder =
-                new FilterBuilderBuilder().withLanguagePhrase("Chinese").build();
+                new FilterBuilderBuilder().withLanguageType("Chinese").build();
         FilterCommand command = new FilterCommand(filterBuilder);
         try {
             expectedResultModel.updateFilteredFlashcardList(filterBuilder.buildFilter(testModel));

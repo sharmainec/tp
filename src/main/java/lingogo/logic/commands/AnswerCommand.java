@@ -29,8 +29,7 @@ public class AnswerCommand extends Command {
     public static final String MESSAGE_USAGE =
             getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
 
-    public static final String COMPARISON_TEXT = "Foreign phrase: %1$s\n" + "Expected answer: %2$s\n"
-        + "Your answer: %3$s";
+    public static final String COMPARISON_TEXT = "Expected answer: %1$s\nYour answer: %2$s";
 
     public static final String MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT = "Well done! You got it right!\n"
         + COMPARISON_TEXT;
@@ -66,11 +65,11 @@ public class AnswerCommand extends Command {
         Flashcard currentFlashcard = model.getCurrentSlide();
         if (!predicate.test(currentFlashcard)) {
             return new CommandResult(String.format(MESSAGE_TEST_FLASHCARD_SUCCESS_WRONG,
-                    currentFlashcard.getForeignPhrase(), currentFlashcard.getEnglishPhrase(), givenPhrase));
+                    currentFlashcard.getEnglishPhrase(), givenPhrase));
         }
 
         return new CommandResult(String.format(MESSAGE_TEST_FLASHCARD_SUCCESS_CORRECT,
-                currentFlashcard.getForeignPhrase(), currentFlashcard.getEnglishPhrase(), givenPhrase));
+                currentFlashcard.getEnglishPhrase(), givenPhrase));
     }
 
     @Override

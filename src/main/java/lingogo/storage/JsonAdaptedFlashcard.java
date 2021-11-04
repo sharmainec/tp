@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lingogo.commons.exceptions.IllegalValueException;
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 
 
@@ -53,11 +54,11 @@ class JsonAdaptedFlashcard {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     "Language " + Phrase.class.getSimpleName()));
         }
-        if (!Phrase.isValidPhrase(languageType)) {
+        if (!LanguageType.isValidLanguageType(languageType)) {
             throw new IllegalValueException(Phrase.MESSAGE_CONSTRAINTS);
         }
 
-        final Phrase modelLanguageType = new Phrase(languageType);
+        final LanguageType modelLanguageType = new LanguageType(languageType);
 
         if (englishPhrase == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
