@@ -19,7 +19,6 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
 import lingogo.commons.core.Messages;
-import lingogo.logic.LogicManager;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
@@ -48,6 +47,8 @@ public class ImportCommand extends Command {
 
     public static final String MESSAGE_NOT_UPDATED =
             "LingoGO! already contains all the flashcards you are importing from %1$s";
+
+    public static final String IMPORT_IOEXCEPTION = "Could not load flashcards from %1$s into LingoGO!";
 
     private static final String[] csvHeaders = {"Language", "Foreign", "English"};
     private static List<Flashcard> importedFlashcardList;
@@ -82,7 +83,7 @@ public class ImportCommand extends Command {
         } catch (CsvValidationException e) {
             throw new CommandException(String.format(MESSAGE_INVALID_CSV_CONTENT, fileName));
         } catch (IOException ioe) {
-            throw new CommandException(String.format(LogicManager.IMPORT_IOEXCEPTION, fileName));
+            throw new CommandException(String.format(IMPORT_IOEXCEPTION, fileName));
         }
 
         boolean isUpdated = false;

@@ -12,7 +12,6 @@ import java.util.List;
 import com.opencsv.CSVWriter;
 
 import lingogo.commons.core.Messages;
-import lingogo.logic.LogicManager;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
@@ -38,9 +37,13 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_SUCCESS =
             "All existing flashcards have been saved in %1$s (located in the data folder)";
 
+    public static final String EXPORT_IOEXCEPTION = "Could not save flashcards from LingoGO! into %1$s";
+
     private static final String[] csvHeaders = {"Language", "Foreign", "English"};
     private static List<Flashcard> filteredFlashcardList;
     private final String fileName;
+
+
 
     /**
      * @param fileName of the CSV file to be exported from the flashcard app
@@ -70,7 +73,7 @@ public class ExportCommand extends Command {
             filteredFlashcardList = model.getFilteredFlashcardList();
             exportFlashcardList(writer);
         } catch (IOException ioe) {
-            throw new CommandException(String.format(LogicManager.EXPORT_IOEXCEPTION, fileName));
+            throw new CommandException(String.format(EXPORT_IOEXCEPTION, fileName));
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
