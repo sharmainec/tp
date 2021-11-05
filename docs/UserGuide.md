@@ -42,7 +42,7 @@ This user guide aims to help users familiarise themselves with the commands of L
 * New users can refer to the [Quick Start](#quick-start) guide for a quick set-up tutorial.
 * New users can also refer to [Modes](#modes) to start understanding how to use LingoGO!.
 * A detailed outline of the commands can be found under [Commands](#commands).
-* Experienced users can refer to the [Command Summary](#command-summary) for a quick overview of all the commands in LingoGo!.
+* Experienced users can refer to the [Command Summary](#command-summary) for a quick overview of all the commands in LingoGO!.
 * A [Glossary](#glossary) is provided to help explain certain important terms used in this guide.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -55,12 +55,12 @@ This user guide aims to help users familiarise themselves with the commands of L
 
 1. Copy the file to the folder you want to use as the home folder for LingoGO!.
 
-1. Double-click the file to start the app. The following GUI should appear in a few seconds. Note how the
-   app contains some sample data.
+1. Double-click the file to start the app. Upon opening the app, you will be greeted with a welcome message. After acknowledging,
+you will see the following [GUI](#gui) with some sample flashcards.
 
    ![Ui](images/Ui-explanation.png)
 
-    Below is an overview of the GUI, with the corresponding number label:
+    Below is an overview of the [GUI](#gui), with the corresponding number label:
    1. <u>Menu</u>
      * A clickable menu bar.
    1. <u>Command box</u>
@@ -68,9 +68,9 @@ This user guide aims to help users familiarise themselves with the commands of L
       * Some example commands you can try (refer to the [Commands](#commands) section below for a full list of commands and their details):
         * `list` : Lists all flashcards.
         * `add l/Chinese e/Good Morning f/早安` : Adds a flashcard with the `Chinese` language, English phrase `Good Morning`, and corresponding foreign phrase `早安`.
-        * `delete 3` : Deletes the 3rd flashcard shown in the displayed flashcard list of [list mode](#list-mode).
+        * `delete 3` : Deletes the 3rd flashcard shown in the displayed flashcard list of [List mode](#list-mode).
         * `find e/Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`.
-        * `filter l/Chinese` : Shows only the flashcard(s) with the `Chinese` language in the displayed flashcard list of [list mode](#list-mode).
+        * `filter l/Chinese` : Shows only the flashcard(s) with the `Chinese` language in the displayed flashcard list of [List mode](#list-mode).
    1. <u>Command result</u>
      * Shows a message after you execute a command.
    1. <u>Displayed flashcard list</u>
@@ -89,24 +89,24 @@ The following two sections will describe these modes in further detail.
 
 ### List mode
 
-Below is an example of what LingoGO! looks like in list mode.
+Below is an example of what LingoGO! looks like in List mode.
 
 ![Ui](images/Ui.png)
 
-LingoGO! always starts in list mode and displays all of your flashcards.
+LingoGO! always starts in List mode and displays all of your flashcards.
 
 List mode lets you [`add`](#adding-a-flashcard-add), [`delete`](#deleting-a-flashcard--delete),
 [`edit`](#editing-a-flashcard--edit), [`import`](#importing-flashcards--import), and [`export`](#exporting-flashcards--export)
 flashcards.
 
 List mode also lets you choose what flashcards to display. The displayed flashcards
-will be the flashcards you get tested on when you switch to [slideshow mode](#slideshow-mode).
-You can use the [`list`](#listing-all-flashcards--list), [`filter`](#filtering-flashcards-by-conditions-filter), or
+will be the flashcards you get tested on when you switch to [Slideshow mode](#slideshow-mode).
+You can use the [`list`](#listing-flashcards--list), [`filter`](#filtering-flashcards-by-conditions-filter), or
 [`find`](#locating-flashcards-by-keywords-find) command to choose which flashcards to display.
 
 ### Slideshow mode
 
-Below is an example of what LingoGO! looks like in slideshow mode.
+Below is an example of what LingoGO! looks like in Slideshow mode.
 
 ![Slideshow](images/Slideshow.png)
 
@@ -128,9 +128,11 @@ In slideshow mode, you can:
 
 </div>
 
+<hr/>
+
 ## Commands
 
-The following section gives an indepth overview of each command in the application, and provides some examples on their usages.
+The following section gives an in-depth overview of each command in the application, and provides some examples on their usages.
 
 <div markdown="block" class="alert alert-info">
 
@@ -157,8 +159,8 @@ The following section gives an indepth overview of each command in the applicati
 ### Adding a flashcard: `add`
 
 Adds a flashcard to LingoGO!.
-
-* The flashcard will be added to the bottom of the displayed flashcard list in [list mode](#list-mode).
+* This command can only be run in [List mode](#list-mode).
+* The flashcard will be added to the bottom of the displayed flashcard list in [List mode](#list-mode).
 
 Format: `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
 
@@ -171,7 +173,7 @@ Format: `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
   If your phrases are too long to be displayed, you can **increase the app's window size**.
 
 </div>
-* `LANGUAGE` only allows alphabetic characters which will be **capitalised** when the flashcard is added (e.g. "CHINESE" will be saved as "Chinese").
+* `LANGUAGE` only allows alphabetic characters which will be **capitalized** when the flashcard is added (e.g. "CHINESE" will be saved as "Chinese").
 * `ENGLISH_PHRASE` is not restricted to alphabetic characters, it is **recommended** that users ensure that `ENGLISH_PHRASE` is a valid English input.
 
 Examples:
@@ -181,13 +183,14 @@ Examples:
 ### Answering a flashcard : `answer`
 
 Checks whether the English phrase of a flashcard matches the phrase you provide.
+* This command can only be run in [Slideshow mode](#slideshow-mode).
 
 Format: `answer e/ENGLISH_PHRASE`
 
 * Checks the English phrase of the displayed flashcard against the `ENGLISH_PHRASE` you provide.
 * The app will then show the correct English phrase and tell you whether you got it right.
 * `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello").
-* You can only answer a flashcard in [slideshow mode](#slideshow-mode), and you can only answer it once.
+* You can only answer a flashcard in [Slideshow mode](#slideshow-mode), and you can only answer it once.
 
 Examples:
 * `answer e/hello` checks the English phrase of the flashcard on display to see if `hello` matches it.
@@ -196,6 +199,7 @@ Examples:
 ### Clearing all flashcards : `clear`
 
 Clears all flashcards from LingoGO!.
+* This command can only be run in [List mode](#list-mode).
 
 Format: `clear`
 
@@ -203,26 +207,28 @@ Format: `clear`
 ### Deleting a flashcard : `delete`
 
 Deletes the specified flashcard from LingoGO!.
+* This command can only be run in [List mode](#list-mode).
 
 Format: `delete INDEX`
 
 * Deletes the flashcard at the specified `INDEX`.
-* `INDEX` refers to the index number of the flashcard shown in [list mode](#list-mode).
+* `INDEX` refers to the index number of the flashcard shown in [List mode](#list-mode).
 * `INDEX` **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd flashcard in the displayed flashcard list of [list mode](#list-mode).
-* `find Hello` followed by `delete 1` deletes the 1st flashcard in the displayed flashcard list of [list mode](#list-mode), following the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd flashcard in the displayed flashcard list of [List mode](#list-mode).
+* `find Hello` followed by `delete 1` deletes the 1st flashcard in the displayed flashcard list of [List mode](#list-mode), following the results of the `find` command.
 
 
 ### Editing a flashcard : `edit`
 
 Edits an existing flashcard in LingoGO!.
+* This command can only be run in [List mode](#list-mode).
 
 Format: `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 
 * Edits the flashcard at the specified `INDEX`.
-* `INDEX` refers to the index number of the flashcard shown in [list mode](#list-mode).
+* `INDEX` refers to the index number of the flashcard shown in [List mode](#list-mode).
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * **At least one** of the optional fields must be provided.
 
@@ -237,22 +243,24 @@ Format: `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 </div>
 
 Examples:
-* `edit 1 l/German` Edits the language of the 1st flashcard in the displayed flashcard list of [list mode](#list-mode) to be `German`.
-* `edit 1 e/Good Morning` Edits the English phrase of the 1st flashcard in the displayed flashcard list of [list mode](#list-mode) to be `Good Morning`.
-* `edit 2 f/Guten Morgen` Edits the foreign phrase of the 2nd flashcard in the displayed flashcard list of [list mode](#list-mode) to be `Guten Morgen`.
-* `edit 2 l/German e/Good Morning f/Guten Morgen` Edits the language, English phrase, and foreign phrase of the 2nd flashcard in the displayed flashcard list of [list mode](#list-mode) to be `German`, `Good Morning`, and `Guten Morgen` respectively.
+* `edit 1 l/German` Edits the language of the 1st flashcard in the displayed flashcard list of [List mode](#list-mode) to be `German`.
+* `edit 1 e/Good Morning` Edits the English phrase of the 1st flashcard in the displayed flashcard list of [List mode](#list-mode) to be `Good Morning`.
+* `edit 2 f/Guten Morgen` Edits the foreign phrase of the 2nd flashcard in the displayed flashcard list of [List mode](#list-mode) to be `Guten Morgen`.
+* `edit 2 l/German e/Good Morning f/Guten Morgen` Edits the language, English phrase, and foreign phrase of the 2nd flashcard in the displayed flashcard list of [List mode](#list-mode) to be `German`, `Good Morning`, and `Guten Morgen` respectively.
 
 
 ### Exiting LingoGO! : `exit`
 
 Exits the app.
+* This command can be run in both [List mode](#list-mode) and [Slideshow mode](#slideshow-mode).
 
 Format: `exit`
 
 
 ### Exporting flashcards : `export`
 
-Exports the currently displayed flashcards in [list mode](#list-mode) to a CSV file.
+Exports the currently displayed flashcards in [List mode](#list-mode) to a CSV file.
+* This command can only be run in [List mode](#list-mode).
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about opening CSV files with Excel:**<br>
@@ -279,17 +287,18 @@ Examples:
 
 ### Filtering flashcards by condition(s): `filter`
 
-Filters flashcards based on specified condition(s), such that only flashcards matching **any of the given conditions** remain in the displayed flashcard list of [list mode](#list-mode).
+Filters flashcards based on specified condition(s), such that only flashcards matching **any of the given conditions** remain in the displayed flashcard list of [List mode](#list-mode).
+* This command can only be run in [List mode](#list-mode).
 
 Format: `filter [l/LANGUAGE] [i/INDEX_LIST] [r/INDEX_RANGE]`
 
 
-* The `filter` search will apply **only on flashcards in the displayed flashcard list of [list mode](#list-mode)**. 
+* The `filter` search will apply **only on flashcards in the displayed flashcard list of [List mode](#list-mode)**. 
   Flashcards not in the displayed flashcard list will not subsequently show up even if a `filter` command with matching conditions is executed. 
   (Refer to the last `filter` example).
 * `LANGUAGE` is not **case-sensitive** (e.g. "Chinese" matches "CHINESE").
-* `INDEX_LIST` is a list of space separated indices, that refer to the indices shown in the displayed flashcard list of [list mode](#list-mode).
-* `INDEX_RANGE` is a pair of space separated indices, that refer to the indices shown in the displayed flashcard list of [list mode](#list-mode).
+* `INDEX_LIST` is a list of space separated indices, that refer to the indices shown in the displayed flashcard list of [List mode](#list-mode).
+* `INDEX_RANGE` is a pair of space separated indices, that refer to the indices shown in the displayed flashcard list of [List mode](#list-mode).
   The given range is inclusive, that is `1 3` would refer to the flashcards at indices 1, 2 and 3. Additionally, the first given
   index must be smaller or equal to the second given index. e.g. `1 2`, `3 14` are accepted but not `1 2 3` nor `3 1`.
 * The indices **must be positive integers** 1, 2, 3, …
@@ -297,25 +306,26 @@ Format: `filter [l/LANGUAGE] [i/INDEX_LIST] [r/INDEX_RANGE]`
 
 
 Examples:
-* `filter l/Chinese` returns all flashcards in the displayed flashcard list of [list mode](#list-mode) with the `Chinese` language like `e/Good Morning f/早安 l/Chinese`.
-* `filter i/1 2 3` returns the flashcards in the displayed flashcard list of [list mode](#list-mode) indexed at 1, 2 and 3.
-* `filter r/2 4` returns all the flashcards in the displayed flashcard list of [list mode](#list-mode) indexed from 2 to 4.
-* `filter i/1 3 6 l/Tamil` returns all the flashcards in the displayed flashcard list of [list mode](#list-mode) indexed at 1, 3 and 6, **or** of `Tamil` language.
-* `filter l/Chinese r/1 4` returns all the flashcards in the displayed flashcard list of [list mode](#list-mode) indexed from 1 to 4, **or** of `Chinese` language.
-* `filter l/French r/1 10 i/15 19 20` returns all flashcards in the displayed flashcard list of [list mode](#list-mode) indexed from 1 to 10 **or** 
+* `filter l/Chinese` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) with the `Chinese` language like `e/Good Morning f/早安 l/Chinese`.
+* `filter i/1 2 3` returns the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed at 1, 2 and 3.
+* `filter r/2 4` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 2 to 4.
+* `filter i/1 3 6 l/Tamil` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed at 1, 3 and 6, **or** of `Tamil` language.
+* `filter l/Chinese r/1 4` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 4, **or** of `Chinese` language.
+* `filter l/French r/1 10 i/15 19 20` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 10 **or** 
   indexed at 15, 19 and 20  **or** of the `French` language.
-*  When the displayed flashcard list of [list mode](#list-mode) shows `e/Good Morning f/早安 l/Chinese` and 
+*  When the displayed flashcard list of [List mode](#list-mode) shows `e/Good Morning f/早安 l/Chinese` and 
    `e/hand f/손 l/Korean`, executing `filter l/Korean` will return a displayed flashcard list with only the `e/hand f/손 l/Korean` 
    flashcard left. If we then execute `filter l/Chinese`, an empty displayed flashcard list will be returned. 
 
 ### Locating flashcards by keyword(s): `find`
 
 Finds flashcards from the **entire** flashcard list based on the keyword(s) specified.
+* This command can only be run in [List mode](#list-mode).
 
 Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`
 
 * The search for english keywords is **not case-sensitive**, e.g "HELLO" will match "Hello".
-* The search for foreign keywords is **case sensitive** because some language depends on capitalization rules, e.g. in German, "Morgen" translates to "morning" but "morgen" translates to "tomorrow".
+* The search for foreign keywords is **case-sensitive** because some language depends on capitalization rules, e.g. in German, "Morgen" translates to "morning" but "morgen" translates to "tomorrow".
 * The **order** of the keywords **does not matter**, e.g. "Good morning" will match "Morning good".
 * Only **full words** will be matched for **English keywords**, e.g. "Fire" will **not** match "Firetruck".
 * **Non-full words** match will be accepted for **foreign keywords**, e.g. "早" with match "早安".
@@ -334,10 +344,11 @@ Examples:
 
 Shows a message explaining how to access the help page, as well as dropdowns with brief explanations
 for each command.
-
-![help message](images/helpMessage.png)
+* This command can be run in both [List mode](#list-mode) and [Slideshow mode](#slideshow-mode).
 
 Format: `help`
+
+![help message](images/helpMessage.png)
 
 
 ### Importing flashcards : `import`
@@ -349,6 +360,7 @@ Format: `help`
 
 Imports flashcards from a CSV file and **adds** them to the existing list in LingoGO!
 (instead of replacing the current list)
+* This command can only be run in [List mode](#list-mode).
 
 Format: `import CSV_FILE_NAME`
 
@@ -377,11 +389,12 @@ Examples:
 ### Listing flashcards : `list`
 
 Shows a list of flashcards in LingoGO!.
+* This command can only be run in [List mode](#list-mode).
 
 Format: `list [NUMBER_OF_FLASHCARDS]`
 
 * Lists flashcards in LingoGO!
-* If `[NUMBER_OF_FLASHCARDS]` is provided, randomly select `[NUMBER_OF_FLASHCARDS]` flashcards to be shown in the [list mode](#list-mode)
+* If `[NUMBER_OF_FLASHCARDS]` is provided, randomly select `[NUMBER_OF_FLASHCARDS]` flashcards from the entire application to be shown in [List mode](#list-mode)
 * The `[NUMBER_OF_FLASHCARDS]` **must be a positive integer** 1, 2, 3, …
 
 Examples:
@@ -391,28 +404,32 @@ Examples:
 
 ### Moving to the next flashcard in slideshow mode : `next`
 
-Goes forward to the next flashcard (if there is one) in [slideshow mode](#slideshow-mode).
+Goes forward to the next flashcard (if there is one) in [Slideshow mode](#slideshow-mode).
+* This command can only be run in [Slideshow mode](#slideshow-mode).
 
 Format: `next`
 
 
 ### Moving to the previous flashcard in slideshow mode : `previous`
 
-Goes back to the previous flashcard (if there is one) in [slideshow mode](#slideshow-mode).
+Goes back to the previous flashcard (if there is one) in [Slideshow mode](#slideshow-mode).
+* This command can only be run in [Slideshow mode](#slideshow-mode).
 
 Format: `previous`
 
 
 ### Testing with a set of flashcards : `slideshow`
 
-Switches to [slideshow mode](#slideshow-mode) for you to test yourself using the flashcards shown in [list mode](#list-mode).
+Switches to [Slideshow mode](#slideshow-mode) for you to test yourself using the flashcards shown in [List mode](#list-mode).
+* This command can only be run in [List mode](#list-mode).
 
 Format: `slideshow`
 
 
 ### Exiting slideshow mode: `stop`
 
-Exits [slideshow mode](#slideshow-mode) and returns to [list mode](#list-mode).
+Exits [Slideshow mode](#slideshow-mode) and returns to [List mode](#list-mode).
+* This command can only be run in [Slideshow mode](#slideshow-mode).
 
 Format: `stop`
 
@@ -429,7 +446,7 @@ LingoGO!'s data is saved as a JSON file at `{JAR file location}/data/lingogo.jso
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 <br> 1. If your changes to the data file makes its format invalid, LingoGO! will discard all data and start with an empty data file on the next run.
-<br> 2. Some changes to the JSON file, such as the adding of extraneous JSON fields, may be ignored and overwritten upon the next LingoGo! command.
+<br> 2. Some changes to the JSON file, such as the adding of extraneous JSON fields, may be ignored and overwritten upon the next LingoGO! command.
 </div>
 
 
@@ -440,12 +457,8 @@ LingoGO!'s data is saved as a JSON file at `{JAR file location}/data/lingogo.jso
 ### CSV
 A CSV file, short for comma-separated values, is a special text file that uses commas for formatting.
 
-### File paths
-File paths specify the location of a file on the computer, telling the computer how to find a specific file.
-An absolute file path tells the computer how to find the file from the root folder.
-A relative file path tells the computer how to find a file from the current folder that it is in.
-For more on file paths, you may want to visit [here](https://docs.oracle.com/javase/tutorial/essential/io/path.html).
-
+### GUI
+A GUI, short for graphical user interface, is a visual display through which users can interact with the application.
 
 ## FAQ
 
