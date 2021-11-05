@@ -13,6 +13,7 @@ import lingogo.model.flashcard.Flashcard;
 public class FlashcardPane extends UiPart<Region> {
 
     private static final String FXML = "FlashcardPane.fxml";
+    private static final int LARGE_PHRASE_PADDING = 30;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -49,10 +50,12 @@ public class FlashcardPane extends UiPart<Region> {
         foreignPhrase.setWrappingWidth(cardPane.getColumnConstraints().get(2).getPrefWidth());
         englishPhrase.setWrappingWidth(cardPane.getColumnConstraints().get(3).getPrefWidth());
 
+        // If the English or foreign phrase or both are very long, the flashcard pane will need more height to display
+        // all the text
         double heightNeeded =
-                Math.max(foreignPhrase.getLayoutBounds().getHeight(), englishPhrase.getLayoutBounds().getHeight());
-        cardPane.setMinHeight(
-                Math.max(foreignPhrase.getLayoutBounds().getHeight(), englishPhrase.getLayoutBounds().getHeight()));
+                Math.max(foreignPhrase.getLayoutBounds().getHeight(), englishPhrase.getLayoutBounds().getHeight())
+                + LARGE_PHRASE_PADDING;
+        cardPane.setMinHeight(heightNeeded);
         if (cardPane.getPrefHeight() < heightNeeded) {
             cardPane.setPrefHeight(heightNeeded);
         }
