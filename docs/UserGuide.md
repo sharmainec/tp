@@ -355,7 +355,7 @@ Format: `import CSV_FILE_NAME`
 * Place the CSV file that you wish to import in the *data* folder
  (located in the same folder as the *lingogo.jar* file).
 * The CSV file must have exact headers "Language, Foreign, English". (as shown in the below example)
-* The headers in the CSV file are case-insensitive.
+* The headers in the CSV file are case-sensitive.
 * The CSV file must have **3 columns** in this order from left to right:
   1. Language
   2. Foreign phrase
