@@ -107,6 +107,25 @@ public class ImportCommandTest {
     }
 
     @Test
+    public void execute_validHeadersButNoRowContent_throwsCommandException() {
+        createDataFolder();
+        String fileName = "noRowEntries.csv";
+        try {
+            createCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+        String expectedMessage = String.format(ImportCommand.MESSAGE_NO_CSV_ROW_ENTRIES_DETECTED, fileName);
+        ImportCommand command = new ImportCommand(fileName);
+        assertCommandFailure(command, model, expectedMessage);
+        try {
+            deleteCopyInDataFolder(fileName);
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+    }
+
+    @Test
     public void execute_importDuplicateContent_noNewFlashcards() {
         createDataFolder();
         String fileName = "duplicateContent.csv";
