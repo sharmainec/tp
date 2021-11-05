@@ -2,30 +2,44 @@
 layout: page
 title: Developer Guide
 ---
+
+<div style="text-align:center;">
+<img src="images/lingogo_logo_text.png">
+</div>
+
+<br/>
+
+
+LingoGO! is a **desktop app** for **university students who use English as their first language** and are trying to **learn a
+new language**. Founded on the widely established learning technique of **spaced-repetition**, LingoGO! takes all the
+benefits of pen-and-paper flashcards in learning, and brings them to the next level with our **powerful indexing** and **sharing
+features** -- *without the hassle* of managing actual physical ones. Coupled with our unique **Command Line Interface (CLI)** and
+an elegant **Graphical User Interface (GUI)** to accompany it, LingoGO! is sure to delight you, and empower you on your
+journey in mastering the new language you *have always wanted*.
+
+LingoGO! currently supports **all languages that can be represented on your computer** and has the following main features:
+* Addition, deletion, and editing of flashcards.
+* Finding and filtering of flashcards by keywords and conditions.
+* Importing and exporting of flashcards to be shared with others.
+* Testing your knowledge in a questionnaire of flashcards.
+
+Detailed information about these features can be found under the [Modes](UserGuide/#modes) and [Commands](UserGuide/#commands) sections in the user guide.
+
+<hr/>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **About LingoGO!**
-
-LingoGO! is a **desktop app** for **university students who use English as their first language** and are trying to **learn a
-new language**, optimized for use via a **Command Line Interface (CLI)** while still having the **benefits of a
-Graphical User Interface (GUI)**. With digital flashcards, LingoGO! can make learning faster and more convenient compared
-to using traditional flashcards.
-
-LingoGO! currently supports *all languages* that can be represented on a computer and has the following main features:
-* Addition, deletion, and editing of flashcards.
-* Finding and filtering of flashcards by keywords and conditions.
-* Importing and exporting of flashcards to be shared with others.
-* Testing a user's knowledge in a questionnaire of flashcards.
-
-## **Purpose of the developer guide**
+## Purpose of the developer guide
 
 This developer guide is meant for budding software developers who want to learn more about LingoGO!'s architecture,
 contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
 
-## **How to use the developer guide**
+## How to use the developer guide
 <!-- CHANGE LINKS -->
 * A [*Table of Contents*](#) with clickable links can be found above to help with navigating across the user guide quickly.
 * To set up your development environment, refer to the guide on [*Setting up and getting started*](#setting-up-getting-started).
@@ -40,7 +54,7 @@ contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
 * A [Glossary](#appendix-e-glossary) is provided to help explain certain important terms used in this guide.
 * For instructions on manual testing, refer to the [*Manual testing*](#appendix-f-instructions-for-manual-testing) section.
 
-## **Acknowledgements**
+## Acknowledgements
 
 This project was originally adapted from [AddressBook-Level3 (AB3)](https://se-education.org/addressbook-level3/).
 
@@ -49,13 +63,13 @@ Third party libraries used:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Overall Design**
+## Overall Design
 
 This section gives an overview of the software architecture of the system, and details on how each major component functions.
 
@@ -183,7 +197,7 @@ The `Model` component:
 
 * Stores the flashcard app data i.e., all `Flashcard` objects (which are contained in a `UniqueFlashcardList` object).
 * Stores the currently 'selected' `Flashcard` objects (e.g., results of a search query) as a **separate filtered list** which is exposed as an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the `UI` can be bound to this list so that the `UI` automatically updates when the data in the list changes.
-* Stores the slideshow app data i.e., all `Flashcard` objects in the slideshow (which are contained in a `Slideshow` object).
+* Stores the slideshow app data i.e., all `Flashcard` objects in the slideshow (which are contained in a `Slideshow` object). This is exposed as a `ReadOnlySlideshowApp` object.
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed as a `ReadOnlyUserPref` object.
 * Does not depend on any of the other three components (as the `Model` represents data entities of the domain, it should make sense on its own without depending on other components).
 
@@ -208,7 +222,7 @@ Classes used by multiple components are in the `lingogo.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Feature Implementation**
+## Feature Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -305,7 +319,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The find feature is facilitated by `ModelManager`. It extends `Model` implements `updateFilteredFlashcardList` which returns an unmodifiable view of filtered flashcards in the GUI.
+The find feature is facilitated by `ModelManager`. It extends `Model` implements `updateFilteredFlashcardList` which returns an unmodifiable view of flashcards matching the specified keywords in the GUI.
 
 The find feature relies on the `FindCommandParser` and `PhraseContainsKeywordsPredicate`. Multiple keywords can be given for both english and foreign phrases. `FindCommandParser` uses `PhraseContainsKeywordsPredicate` to select flashcards that matches the keywords.
 
@@ -330,9 +344,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The list feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList`which returns an unmodifiable view of the flashcards in the GUI.
+The list feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList` which returns an unmodifiable view of the flashcards in the GUI.
 
-In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the main list of flashcards.
+The list feature relies on the `ListCommandParser` and `FlashcardInGivenFlashcardListPredicate`. In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the main list of flashcards.
 
 The sequence diagram below illustrates the execution of `ListCommand`.
 
@@ -344,16 +358,54 @@ The sequence diagram below illustrates the execution of `ListCommand`.
 
 * **Alternative 1 (current choice):** Randomise the list of flashcards
     * Pros: Users are able to use flashcards more effectively.
-    * Cons: Harder to implement and more difficult to test (due to random stream of `Index`).
+    * Cons: Harder to implement and needs a random stream of `Index`.
 
 * **Alternative 2:** Output list up to `n`
     * Pros: Easy to implement.
     * Cons: Does not add value to the user's learning experience.
 
+### Slideshow feature
+
+#### Description
+
+The slideshow feature displays the flashcards shown in list mode one at a time in individual "slides".
+In slideshow mode, users can test how well they remember their flashcards by entering their answers for each flashcard
+and getting feedback on whether they are right or wrong. Users may also navigate between "slides".
+
+#### Implementation
+
+The slideshow feature is facilitated by `ModelManager`.
+It extends `Model` and implements `startSlideshow`, `stopSlideshow`, `isSlideshowActive`, `slideshowNextFlashcard`,
+`slideshowPreviousFlashcard`, `answerCurrentSlide`, `displayCurrentAnswer`, `getSlideshowApp`, and `getCurrentSlide`.
+
+The above methods in turn facilitate the following commands:
+* `SlideshowCommand` - When the user enters slideshow mode.
+* `AnswerCommand` - When the user enters an answer for the flashcard shown on the current slide.
+* `NextCommand` - When the user navigates to the next slide.
+* `PreviousCommand` - When the user navigates to the previous slide.
+* `StopCommand` - When the user exits slideshow mode.
+
+The `SlideshowApp` class is used to encapsulate all state and operations related to the slideshow.
+It is exposed as a `ReadOnlySlideshowApp` object.
+
+The following sequence diagrams shows how the slideshow command works:
+
+![SlideshowSequenceDiagram](images/SlideshowSequenceDiagram.png)
+
+![UpdateSlideshowAppReferenceSequenceDiagram](images/UpdateSlideshowAppReferenceSequenceDIagram.png)
+
+The reference sequence diagram above shows the various state changes within `SlideshowApp`.
+When a certain property is changed, the UI updates itself accordingly.
+The relevant `UiPart` listens to changes in these properties using the `ChangeListener` class provided by `java.beans`.
+
+For instance, when `isActive:BooleanProperty` becomes true, the UI will go into slideshow mode.
+Below is a code snippet on how this is implemented in `FlashcardListPanel.java`.
+
+![SlideshowUpdateUiCodeSnippet](images/SlideshowUpdateUiCodeSnippet.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -363,7 +415,7 @@ The sequence diagram below illustrates the execution of `ListCommand`.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix A: Product Scope**
+## Appendix A: Product Scope
 
 ### Target user profile
 
@@ -379,7 +431,7 @@ University students
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix B: User Stories**
+## Appendix B: User Stories
 
 **Categories:** Usage pattern, user behaviours, general user, multiple language user, user learning style, user learning 'rate', level of experience, user collaboration<br>
 **Priorities:** High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -425,7 +477,7 @@ University students
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix C: Use Cases**
+## Appendix C: Use Cases
 
 (For all use cases below, the **System** is `LingoGO!` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -446,12 +498,12 @@ University students
    Use case ends.
 
 **Extensions**
-* 1a. The given user input is invalid (e.g. `list abc` or `list -1`)
+* 1a. The given user input is invalid (e.g. `list abc` or `list -1`).
     * 1a1. LingoGO! shows an error message.
 
       Use case resumes at step 1.
 
-* 1b. The given user input is larger than the total flashcards
+* 1b. The given user input is larger than the total flashcards.
     * 1b1. LingoGO! shows an error message.
 
       Use case resumes at step 1.
@@ -474,8 +526,13 @@ University students
 
       Use case resumes at step 1.
 
-* 2b. Information provided by the user in incomplete.
+* 2b. Information provided by the user is incomplete.
     * 2b1. LingoGO! shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. Language input provided by the user is invalid.
+    * 2c1. LingoGO! shows an error message.
 
       Use case resumes at step 1.
 
@@ -546,6 +603,21 @@ University students
     * 1a1. LingoGO! shows an error message.
 
       Use case resumes at step 1.
+    
+### Filter flashcards
+
+**MSS**
+1. User requests to filter flashcards in the displayed flashcards list by providing filter conditions.
+2. LingoGo! shows all flashcards in the previous displayed flashcards list that matches any of the given predicates in 
+   a new list.
+   
+   Use case ends.
+
+**Extensions**
+* 1a. The given user input is invalid.
+    * 1a1. LingoGO! shows an error message.
+
+      Use case resumes at step 1.
 
 ### Import flashcards
 
@@ -605,7 +677,7 @@ University students
 --------------------------------------------------------------------------------------------------------------------
 
 
-## **Appendix D: Non-Functional Requirements**
+## Appendix D: Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 flashcards without a noticeable sluggishness in performance for typical usage.
@@ -614,7 +686,7 @@ University students
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix E: Glossary**
+## Appendix E: Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Flashcard**: A memory aid that users can use to input a phrase or word in the language that they are learning
@@ -622,7 +694,7 @@ University students
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Appendix F: Instructions for Manual Testing**
+## Appendix F: Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
 
@@ -638,7 +710,8 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder.
 
    2. Double-click the jar file <br>
-       Expected: Shows the GUI with a set of sample flashcards. The window size may not be optimum.
+       Expected snapshot: 
+        ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
 
 1. Saving window preferences
 
@@ -663,6 +736,81 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Loading in a JSON data file
+
+1. Loading valid JSON data file
+    
+    1. Prerequisites: Sample `flashcardapp.json` file is filled with following data and is inside a `data` directory in 
+       the same directory as the jar file:
+       ```
+        {
+            "flashcards" : [ {
+            "languageType" : "Chinese",
+            "englishPhrase" : "Hello",
+            "foreignPhrase" : "你好"
+            }, {
+            "languageType" : "Chinese",
+            "englishPhrase" : "Good Morning",
+            "foreignPhrase" : "早安"
+            }, {
+            "languageType" : "Chinese",
+            "englishPhrase" : "Good Afternoon",
+            "foreignPhrase" : "午安"
+            }, {
+            "languageType" : "Chinese",
+            "englishPhrase" : "Good Night",
+            "foreignPhrase" : "晚安"
+             } ]
+        }  
+        ```
+    1. Open the jar file <br>
+       Expected snapshot:
+       ![sampleDataList](images/developerGuideExpectedSnapshots/sampleDataListMode.png)
+1. Opening jar file with non-existing JSON data file or `data` folder:
+    
+    1. Open the jar file <br>
+       Expected snapshot:
+       ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
+       
+1. Opening jar file with incorrectly named JSON data file in `data` folder:
+    1. Open the jar file <br>
+       Expected snapshot:
+       ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
+
+1. Opening jar file with invalid JSON file:
+    1. Test case: empty `flashcardapp.json`<br>
+        
+    2. Test case: `flashcardapp.json` with data: <br>
+       ```null```
+    
+    3. Test case: `flashcardapp.json` with data: 
+       ```
+       {
+           "flashcards" : [ null ]
+       }
+       ```
+    4. Test case: `flashcardapp.json` with data:
+        ```
+        {
+            "flashcards" : [ {
+                "languageType" : "Chinese",
+                "englishPhrase" : "good morning"
+                "foreignPhrase" : "早上好"
+            } ]
+        }
+        ```
+    5. Test case: `flashcardapp.json` with data:
+        ```
+        {
+            "flashcards" : [ {
+                "languageType" : "Chinese",
+                "englishPhrase" : null,
+                "foreignPhrase" : "早上好"
+            } ]
+        }
+        ```
+   Expected snapshot for above test cases 1 to 5:
+   ![invalidJSONDataFile](images/developerGuideExpectedSnapshots/invalidJSONDataFile.png)
 _{ more test cases to be added in future …​ }_
 
 <!---
