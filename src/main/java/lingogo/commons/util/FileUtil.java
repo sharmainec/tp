@@ -127,39 +127,40 @@ public class FileUtil {
      */
     public static List<String[]> importCsvFileContent(String filepath, String[] expectedHeaders)
             throws IOException, CsvValidationException, CsvColumnHeaderException, CsvNumColumnsException {
-        CSVReader reader = new CSVReaderBuilder(
-                new InputStreamReader(new FileInputStream(filepath), StandardCharsets.UTF_8)).build();
+        // Try-with-resources statement ensures the CSVReader is closed after the execution of the try block
+        try (CSVReader reader = new CSVReaderBuilder(
+            new InputStreamReader(new FileInputStream(filepath), StandardCharsets.UTF_8)).build()) {
 
-        String[] headers = reader.readNext();
+            String[] headers = reader.readNext();
 
-        // Handle empty CSV file
-        if (headers == null) {
-            throw new CsvColumnHeaderException();
-        }
-
-        // Handle UTF-8 byte order mark
-        if (headers.length > 0 && headers[0].startsWith(UTF8_BOM)) {
-            headers[0] = headers[0].substring(1);
-        }
-
-        // Validate headers
-        if (!Arrays.toString(headers).equals(Arrays.toString(expectedHeaders))) {
-            throw new CsvColumnHeaderException();
-        }
-
-        ArrayList<String[]> output = new ArrayList<>();
-        String[] line;
-        int expectedNumberOfColumns = expectedHeaders.length;
-
-        while ((line = reader.readNext()) != null) {
-            if (line.length != expectedNumberOfColumns || Arrays.asList(line).stream().anyMatch(e -> e.isBlank())) {
-                throw new CsvNumColumnsException();
+            // Handle empty CSV file
+            if (headers == null) {
+                throw new CsvColumnHeaderException();
             }
 
-            output.add(line);
-        }
+            // Handle UTF-8 byte order mark
+            if (headers.length > 0 && headers[0].startsWith(UTF8_BOM)) {
+                headers[0] = headers[0].substring(1);
+            }
 
-        return output;
+            // Validate headers
+            if (!Arrays.toString(headers).equals(Arrays.toString(expectedHeaders))) {
+                throw new CsvColumnHeaderException();
+            }
+
+            ArrayList<String[]> output = new ArrayList<>();
+            String[] line;
+            int expectedNumberOfColumns = expectedHeaders.length;
+
+            while ((line = reader.readNext()) != null) {
+                if (line.length != expectedNumberOfColumns || Arrays.asList(line).stream().anyMatch(e -> e.isBlank())) {
+                    throw new CsvNumColumnsException();
+                }
+                output.add(line);
+            }
+
+            return output;
+        }
     }
 
     /**
@@ -172,19 +173,18 @@ public class FileUtil {
      */
     public static void exportToCsvFile(String filepath, String[] headers, List<String[]> content)
             throws IOException {
-        FileOutputStream w = new FileOutputStream(filepath);
+        try (FileOutputStream w = new FileOutputStream(filepath);
+             CSVWriter writer = new CSVWriter(new OutputStreamWriter(w, StandardCharsets.UTF_8))) {
 
-        // Add the byte order mark (BOM) for UTF-8 encoding. This is necessary for certain software
-        // (e.g. Excel) to read the CSV file correctly
-        w.write(0xef);
-        w.write(0xbb);
-        w.write(0xbf);
+            // Add the byte order mark (BOM) for UTF-8 encoding. This is necessary for certain software
+            // (e.g. Excel) to read the CSV file correctly
+            w.write(0xef);
+            w.write(0xbb);
+            w.write(0xbf);
 
-        CSVWriter writer = new CSVWriter(new OutputStreamWriter(w, StandardCharsets.UTF_8));
-
-        writer.writeNext(headers);
-        writer.writeAll(content);
-        writer.close();
+            writer.writeNext(headers);
+            writer.writeAll(content);
+        }
     }
 
 }
