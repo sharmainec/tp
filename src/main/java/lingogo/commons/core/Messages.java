@@ -11,7 +11,7 @@ public class Messages {
     public static final String MESSAGE_FLASHCARDS_LISTED_OVERVIEW = "%1$d flashcards listed!";
     public static final String MESSAGE_INVALID_CSV_CONTENT = "The flashcards in %1$s are not in the correct format";
     public static final String MESSAGE_INVALID_CSV_HEADERS = "The headers in %1$s are not in the correct format";
-    public static final String MESSAGE_FILE_NOT_FOUND = "%1$s cannot found in the data folder";
+    public static final String MESSAGE_FILE_NOT_FOUND = "%1$s cannot be found in the data folder";
     public static final String MESSAGE_INVALID_CSV_FILE_NAME = "%1$s is not a valid CSV file name";
     public static final String MESSAGE_IN_SLIDESHOW_MODE = "This command can only be run when slideshow mode is not"
             + " active!";
