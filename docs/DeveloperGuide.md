@@ -2,30 +2,44 @@
 layout: page
 title: Developer Guide
 ---
+
+<div style="text-align:center;">
+<img src="images/lingogo_logo_text.png">
+</div>
+
+<br/>
+
+
+LingoGO! is a **desktop app** for **university students who use English as their first language** and are trying to **learn a
+new language**. Founded on the widely established learning technique of **spaced-repetition**, LingoGO! takes all the
+benefits of pen-and-paper flashcards in learning, and brings them to the next level with our **powerful indexing** and **sharing
+features** -- *without the hassle* of managing actual physical ones. Coupled with our unique **Command Line Interface (CLI)** and
+an elegant **Graphical User Interface (GUI)** to accompany it, LingoGO! is sure to delight you, and empower you on your
+journey in mastering the new language you *have always wanted*.
+
+LingoGO! currently supports **all languages that can be represented on your computer** and has the following main features:
+* Addition, deletion, and editing of flashcards.
+* Finding and filtering of flashcards by keywords and conditions.
+* Importing and exporting of flashcards to be shared with others.
+* Testing your knowledge in a questionnaire of flashcards.
+
+Detailed information about these features can be found under the [Modes](UserGuide/#modes) and [Commands](UserGuide/#commands) sections in the user guide.
+
+<hr/>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **About LingoGO!**
-
-LingoGO! is a **desktop app** for **university students who use English as their first language** and are trying to **learn a
-new language**, optimized for use via a **Command Line Interface (CLI)** while still having the **benefits of a
-Graphical User Interface (GUI)**. With digital flashcards, LingoGO! can make learning faster and more convenient compared
-to using traditional flashcards.
-
-LingoGO! currently supports *all languages* that can be represented on a computer and has the following main features:
-* Addition, deletion, and editing of flashcards.
-* Finding and filtering of flashcards by keywords and conditions.
-* Importing and exporting of flashcards to be shared with others.
-* Testing a user's knowledge in a questionnaire of flashcards.
-
-## **Purpose of the developer guide**
+## Purpose of the developer guide
 
 This developer guide is meant for budding software developers who want to learn more about LingoGO!'s architecture,
 contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
 
-## **How to use the developer guide**
+## How to use the developer guide
 <!-- CHANGE LINKS -->
 * A [*Table of Contents*](#) with clickable links can be found above to help with navigating across the user guide quickly.
 * To set up your development environment, refer to the guide on [*Setting up and getting started*](#setting-up-getting-started).
@@ -40,7 +54,7 @@ contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
 * A [Glossary](#appendix-e-glossary) is provided to help explain certain important terms used in this guide.
 * For instructions on manual testing, refer to the [*Manual testing*](#appendix-f-instructions-for-manual-testing) section.
 
-## **Acknowledgements**
+## Acknowledgements
 
 This project was originally adapted from [AddressBook-Level3 (AB3)](https://se-education.org/addressbook-level3/).
 
@@ -49,13 +63,13 @@ Third party libraries used:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Overall Design**
+## Overall Design
 
 This section gives an overview of the software architecture of the system, and details on how each major component functions.
 
@@ -208,7 +222,7 @@ Classes used by multiple components are in the `lingogo.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Feature Implementation**
+## Feature Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -391,7 +405,7 @@ Below is a code snippet on how this is implemented in `FlashcardListPanel.java`.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -401,7 +415,7 @@ Below is a code snippet on how this is implemented in `FlashcardListPanel.java`.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix A: Product Scope**
+## Appendix A: Product Scope
 
 ### Target user profile
 
@@ -417,7 +431,7 @@ University students
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix B: User Stories**
+## Appendix B: User Stories
 
 **Categories:** Usage pattern, user behaviours, general user, multiple language user, user learning style, user learning 'rate', level of experience, user collaboration<br>
 **Priorities:** High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -463,7 +477,7 @@ University students
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix C: Use Cases**
+## Appendix C: Use Cases
 
 (For all use cases below, the **System** is `LingoGO!` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -663,7 +677,7 @@ University students
 --------------------------------------------------------------------------------------------------------------------
 
 
-## **Appendix D: Non-Functional Requirements**
+## Appendix D: Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 flashcards without a noticeable sluggishness in performance for typical usage.
@@ -672,7 +686,7 @@ University students
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix E: Glossary**
+## Appendix E: Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Flashcard**: A memory aid that users can use to input a phrase or word in the language that they are learning
@@ -680,7 +694,7 @@ University students
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Appendix F: Instructions for Manual Testing**
+## Appendix F: Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
 
