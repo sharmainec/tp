@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import lingogo.commons.core.LogsCenter;
 import lingogo.commons.exceptions.DataConversionException;
+import lingogo.commons.exceptions.DataFileAsDirectoryException;
 import lingogo.model.ReadOnlyFlashcardApp;
 import lingogo.model.ReadOnlyUserPrefs;
 import lingogo.model.UserPrefs;
@@ -55,12 +56,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyFlashcardApp> readFlashcardApp() throws DataConversionException, IOException {
+    public Optional<ReadOnlyFlashcardApp> readFlashcardApp() throws DataConversionException, IOException,
+            DataFileAsDirectoryException {
         return readFlashcardApp(flashcardAppStorage.getFlashcardAppFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyFlashcardApp> readFlashcardApp(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFlashcardApp> readFlashcardApp(Path filePath) throws DataConversionException, IOException,
+            DataFileAsDirectoryException {
         logger.fine("Attempting to read data from file: " + filePath);
         return flashcardAppStorage.readFlashcardApp(filePath);
     }

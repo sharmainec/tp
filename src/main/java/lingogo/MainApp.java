@@ -1,5 +1,11 @@
 package lingogo;
 
+
+import static lingogo.commons.core.Messages.AlertMessage.ALERT_FLASHCARDAPP_JSON_IS_DIRECTORY;
+import static lingogo.commons.core.Messages.AlertMessage.ALERT_INVALID_DATA_FILE;
+import static lingogo.commons.core.Messages.AlertMessage.ALERT_PROBLEM_WHILE_READING_DATA_FILE;
+import static lingogo.commons.core.Messages.AlertMessage.ALERT_WELCOME_TO_LINGOGO;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -10,8 +16,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import lingogo.commons.core.Config;
 import lingogo.commons.core.LogsCenter;
+import lingogo.commons.core.Messages.AlertMessage;
 import lingogo.commons.core.Version;
 import lingogo.commons.exceptions.DataConversionException;
+import lingogo.commons.exceptions.DataFileAsDirectoryException;
 import lingogo.commons.util.ConfigUtil;
 import lingogo.commons.util.StringUtil;
 import lingogo.logic.Logic;
@@ -47,6 +55,8 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
+
+
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing LingoGO! ]===========================");
@@ -68,36 +78,75 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        ModelBuilder modelBuilder = initModelManager(storage, userPrefs);
+
+        model = modelBuilder.getModel();
+
+        // Save sample data file on initial start up
+        if (modelBuilder.getAlertMessage() == ALERT_WELCOME_TO_LINGOGO) {
+            storage.saveFlashcardApp(model.getFlashcardApp());
+        }
 
         logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic);
+        ui = new UiManager(logic, modelBuilder.getAlertMessage());
     }
+
+    private class ModelBuilder {
+        private Model model;
+        private AlertMessage alertMessage;
+
+        private ModelBuilder(ReadOnlyFlashcardApp initialData, ReadOnlyUserPrefs userPrefs, AlertMessage alertMessage) {
+            this.model = new ModelManager(initialData, userPrefs);
+            this.alertMessage = alertMessage;
+        }
+
+        private Model getModel() {
+            return this.model;
+        }
+
+        private AlertMessage getAlertMessage() {
+            return this.alertMessage;
+        }
+
+    }
+
 
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s flashcard app and {@code userPrefs}. <br>
      * The data from the sample flashcard app will be used instead if {@code storage}'s flashcard app is not found,
      * or an empty flashcard app will be used instead if errors occur when reading {@code storage}'s flashcard app.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private ModelBuilder initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyFlashcardApp> flashcardAppOptional;
         ReadOnlyFlashcardApp initialData;
+        AlertMessage alertMessage = null;
         try {
             flashcardAppOptional = storage.readFlashcardApp();
             if (!flashcardAppOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample FlashcardApp");
+                alertMessage = ALERT_WELCOME_TO_LINGOGO;
+                logger.info(alertMessage.getContentText());
             }
             initialData = flashcardAppOptional.orElseGet(SampleDataUtil::getSampleFlashcardApp);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty FlashcardApp");
+            alertMessage = ALERT_INVALID_DATA_FILE;
+            logger.warning(alertMessage.getContentText());
             initialData = new FlashcardApp();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty FlashcardApp");
+            alertMessage = ALERT_PROBLEM_WHILE_READING_DATA_FILE;
+            logger.warning(alertMessage.getContentText());
+            initialData = new FlashcardApp();
+        } catch (NullPointerException e) {
+            alertMessage = ALERT_INVALID_DATA_FILE;
+            logger.warning(alertMessage.getContentText());
+            initialData = new FlashcardApp();
+        } catch (DataFileAsDirectoryException e) {
+            alertMessage = ALERT_FLASHCARDAPP_JSON_IS_DIRECTORY;
+            logger.warning(alertMessage.getContentText());
             initialData = new FlashcardApp();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelBuilder(initialData, userPrefs, alertMessage);
     }
 
     private void initLogging(Config config) {

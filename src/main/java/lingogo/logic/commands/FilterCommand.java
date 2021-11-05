@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static lingogo.logic.parser.CliSyntax.PREFIX_INDEX_LIST;
 import static lingogo.logic.parser.CliSyntax.PREFIX_INDEX_RANGE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
-import static lingogo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
+import static lingogo.model.Model.PREDICATE_SHOW_NO_FLASHCARDS;
 
 import java.util.List;
 import java.util.Objects;
@@ -109,7 +109,7 @@ public class FilterCommand extends Command {
         private Predicate<Flashcard> buildIndexFilter(Model model) throws CommandException {
 
             if (this.indexList == null) {
-                return PREDICATE_SHOW_ALL_FLASHCARDS;
+                return PREDICATE_SHOW_NO_FLASHCARDS;
             }
 
             List<Flashcard> lastShownList = model.getFilteredFlashcardList();
@@ -127,7 +127,7 @@ public class FilterCommand extends Command {
 
         private Predicate<Flashcard> buildLanguageTypeFilter() {
             if (this.languageType == null) {
-                return PREDICATE_SHOW_ALL_FLASHCARDS;
+                return PREDICATE_SHOW_NO_FLASHCARDS;
             }
 
             return new LanguageTypeMatchesGivenLanguageTypePredicate(languageType);
@@ -135,7 +135,7 @@ public class FilterCommand extends Command {
 
         private Predicate<Flashcard> buildRangeFilter(Model model) throws CommandException {
             if (this.indexRangePair == null) {
-                return PREDICATE_SHOW_ALL_FLASHCARDS;
+                return PREDICATE_SHOW_NO_FLASHCARDS;
             }
 
             List<Flashcard> lastShownList = model.getFilteredFlashcardList();
@@ -170,8 +170,8 @@ public class FilterCommand extends Command {
                     new FlashcardInGivenFlashcardListPredicate(model.getFilteredFlashcardList());
 
 
-            return flashcard -> languageTypeFilter.test(flashcard) && indexFilter.test(flashcard)
-                    && rangeFilter.test(flashcard) && currentDisplayedListFilter.test(flashcard);
+            return flashcard -> (languageTypeFilter.test(flashcard) || indexFilter.test(flashcard)
+                    || rangeFilter.test(flashcard)) && currentDisplayedListFilter.test(flashcard);
         }
 
         @Override

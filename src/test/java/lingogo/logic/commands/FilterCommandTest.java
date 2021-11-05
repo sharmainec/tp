@@ -192,9 +192,9 @@ public class FilterCommandTest {
 
     @Test
     public void execute_selectedAllFields_flashcardsFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 4);
         FilterBuilder filterBuilder =
-                new FilterBuilderBuilder().withIndexList(1, 5).withLanguageType("Chinese").withRange(1, 5).build();
+                new FilterBuilderBuilder().withIndexList(1).withLanguageType("Tamil").withRange(2, 3).build();
         FilterCommand command = new FilterCommand(filterBuilder);
         try {
             expectedModel.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
@@ -202,8 +202,46 @@ public class FilterCommandTest {
             fail("Exception not expected");
         }
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(AFTERNOON_CHINESE_FLASHCARD), model.getFilteredFlashcardList());
+        assertEquals(Arrays.asList(AFTERNOON_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD,
+                SUNRISE_TAMIL_FLASHCARD), model.getFilteredFlashcardList());
     }
+
+    @Test
+    public void execute_filtersInSequence_flashcardsFound() {
+        String firstExpectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 4);
+        String secondExpectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+
+        FilterBuilder firstFilterBuilder = new FilterBuilderBuilder().withLanguageType("Chinese").build();
+
+        FilterBuilder secondFilterBuilder = new FilterBuilderBuilder().withRange(1, 3).build();
+
+        FilterCommand firstCommand = new FilterCommand(firstFilterBuilder);
+        FilterCommand secondCommand = new FilterCommand(secondFilterBuilder);
+
+        try {
+            expectedModel.updateFilteredFlashcardList(firstFilterBuilder.buildFilter(model));
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+
+        assertCommandSuccess(firstCommand, model, firstExpectedMessage, expectedModel);
+        assertEquals(Arrays.asList(AFTERNOON_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD,
+            SORRY_CHINESE_FLASHCARD), model.getFilteredFlashcardList());
+
+        try {
+            expectedModel.updateFilteredFlashcardList(secondFilterBuilder.buildFilter(model));
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+
+
+        assertCommandSuccess(secondCommand, model, secondExpectedMessage, expectedModel);
+        assertEquals(Arrays.asList(AFTERNOON_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD),
+                model.getFilteredFlashcardList());
+
+
+    }
+
 
     @Test
     public void execute_filterFoundFlashcards_flashcardsFound() {

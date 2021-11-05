@@ -6,9 +6,11 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import lingogo.MainApp;
 import lingogo.commons.core.LogsCenter;
+import lingogo.commons.core.Messages.AlertMessage;
 import lingogo.commons.util.StringUtil;
 import lingogo.logic.Logic;
 
@@ -24,13 +26,16 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
+    private AlertMessage alertMessage;
+
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic) {
+    public UiManager(Logic logic, AlertMessage alertMessage) {
         super();
         this.logic = logic;
+        this.alertMessage = alertMessage;
     }
 
     @Override
@@ -44,6 +49,10 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            if (alertMessage != null) {
+                showAlertDialogAndWait(alertMessage.getAlertType(), alertMessage.getTitle(),
+                        alertMessage.getHeaderText(), alertMessage.getContentText());
+            }
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -72,6 +81,7 @@ public class UiManager implements Ui {
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
         alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         alert.showAndWait();
     }
 

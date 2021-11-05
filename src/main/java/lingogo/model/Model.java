@@ -14,6 +14,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Flashcard> PREDICATE_SHOW_ALL_FLASHCARDS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to false */
+    Predicate<Flashcard> PREDICATE_SHOW_NO_FLASHCARDS = unused -> false;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
