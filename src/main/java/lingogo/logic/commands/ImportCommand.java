@@ -42,6 +42,9 @@ public class ImportCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "LingoGO! has been updated with all the flashcards from %1$s";
 
+    public static final String MESSAGE_NO_CSV_ROW_ENTRIES_DETECTED = "There are no CSV row entries detected in %1$s!"
+            + " Please recheck your CSV file!";
+
     public static final String MESSAGE_NOT_UPDATED =
             "LingoGO! already contains all the flashcards you are importing from %1$s";
 
@@ -84,6 +87,11 @@ public class ImportCommand extends Command {
             throw new CommandException(String.format(MESSAGE_INVALID_CSV_CONTENT, fileName));
         } catch (IOException ioe) {
             throw new CommandException(String.format(IMPORT_IOEXCEPTION, fileName));
+        }
+
+        // No CSV row entries detected
+        if (content.size() == 0) {
+            throw new CommandException(String.format(MESSAGE_NO_CSV_ROW_ENTRIES_DETECTED, fileName));
         }
 
         // Validate that all CSV row entries make up valid flashcards
