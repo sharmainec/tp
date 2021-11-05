@@ -33,8 +33,8 @@ public class ListCommand extends Command {
     public static final String MESSAGE_USAGE =
             getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
 
-    public static final String MESSAGE_SUCCESS = "Listed all flashcards";
-    public static final String MESSAGE_SUCCESS_SHUFFLED = "Randomly selected %1$d flashcard(s) to be listed";
+    public static final String MESSAGE_SUCCESS = "Listed all flashcards!";
+    public static final String MESSAGE_SUCCESS_SHUFFLED = "Randomly selected %1$d flashcard(s) to be listed!";
 
     private final Optional<Integer> input;
     private final Optional<Random> random;
@@ -74,7 +74,7 @@ public class ListCommand extends Command {
 
         List<Flashcard> lastShownList = model.getFilteredFlashcardList();
         int size = lastShownList.size();
-        if (input.isEmpty()) {
+        if (input.isEmpty() || input.get() == size) {
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
             int n = input.get();
