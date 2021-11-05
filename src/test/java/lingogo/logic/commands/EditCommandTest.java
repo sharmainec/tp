@@ -1,5 +1,6 @@
 package lingogo.logic.commands;
 
+import static lingogo.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
 import static lingogo.logic.commands.CommandTestUtil.DESC_GOOD_MORNING;
 import static lingogo.logic.commands.CommandTestUtil.DESC_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.VALID_CHINESE_PHRASE_HELLO;
@@ -7,11 +8,19 @@ import static lingogo.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_HELLO;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static lingogo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static lingogo.logic.commands.CommandTestUtil.showFlashcardAtIndex;
+import static lingogo.testutil.TypicalFlashcards.AFTERNOON_CHINESE_FLASHCARD;
+import static lingogo.testutil.TypicalFlashcards.BYE_CHINESE_FLASHCARD;
+import static lingogo.testutil.TypicalFlashcards.NIGHT_CHINESE_FLASHCARD;
 import static lingogo.testutil.TypicalFlashcards.getTypicalFlashcardApp;
 import static lingogo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static lingogo.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,11 +32,13 @@ import lingogo.model.Model;
 import lingogo.model.ModelManager;
 import lingogo.model.UserPrefs;
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.FlashcardInGivenFlashcardListPredicate;
 import lingogo.testutil.EditFlashcardDescriptorBuilder;
+import lingogo.testutil.FilterBuilderBuilder;
 import lingogo.testutil.FlashcardBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model and FilterCommand) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
@@ -95,6 +106,8 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new FlashcardApp(model.getFlashcardApp()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
+        showFlashcardAtIndex(expectedModel, INDEX_FIRST_FLASHCARD);
+
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -159,6 +172,41 @@ public class EditCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_IN_SLIDESHOW_MODE);
 
         assertCommandFailure(editCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_filterListThenEdit_success() {
+
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        FilterCommand.FilterBuilder filterBuilder = new FilterBuilderBuilder().withRange(1, 3).build();
+        FilterCommand filterCommand = new FilterCommand(filterBuilder);
+
+        Model expectedModel = new ModelManager(getTypicalFlashcardApp(), new UserPrefs());
+        try {
+            expectedModel.updateFilteredFlashcardList(filterBuilder.buildFilter(model));
+        } catch (Exception e) {
+            fail("Exception not expected");
+        }
+        assertCommandSuccess(filterCommand, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(AFTERNOON_CHINESE_FLASHCARD, NIGHT_CHINESE_FLASHCARD, BYE_CHINESE_FLASHCARD),
+            model.getFilteredFlashcardList());
+
+        Flashcard editedFlashcard = new FlashcardBuilder(NIGHT_CHINESE_FLASHCARD).withLanguageType("Test").build();
+
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_FLASHCARD,
+                new EditFlashcardDescriptorBuilder(editedFlashcard).build());
+
+        expectedModel.setFlashcard(NIGHT_CHINESE_FLASHCARD, editedFlashcard);
+
+        String secondExpectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
+
+        List<Flashcard> updatedList = Arrays.asList(AFTERNOON_CHINESE_FLASHCARD, editedFlashcard,
+                BYE_CHINESE_FLASHCARD);
+        expectedModel.updateFilteredFlashcardList(new FlashcardInGivenFlashcardListPredicate(updatedList));
+
+        assertCommandSuccess(editCommand, model, secondExpectedMessage, expectedModel);
+        assertEquals(updatedList,
+                model.getFilteredFlashcardList());
     }
 
     @Test

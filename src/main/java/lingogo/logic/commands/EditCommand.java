@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static lingogo.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_FOREIGN_PHRASE;
 import static lingogo.logic.parser.CliSyntax.PREFIX_LANGUAGE_TYPE;
-import static lingogo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +15,7 @@ import lingogo.commons.util.CollectionUtil;
 import lingogo.logic.commands.exceptions.CommandException;
 import lingogo.model.Model;
 import lingogo.model.flashcard.Flashcard;
+import lingogo.model.flashcard.FlashcardInGivenFlashcardListPredicate;
 import lingogo.model.flashcard.LanguageType;
 import lingogo.model.flashcard.Phrase;
 
@@ -87,8 +88,19 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
         }
 
+        // Due to the implementation of JavaFX's FilteredList, when an item is replaced via '.set()' in the original
+        // ObservableList, it is also removed from the FilteredList. This results in a bug where the editted flashcard
+        // no longer appears in the filtered list of flashcards after the edit command is run.
+        // To overcome this, we track the flashcards which should be shown after the edit command in the
+        // FlashcardInGivenFlashcardListPredicate, and apply this predicate to the filtered flashcard list after the
+        // command is run.
+        List<Flashcard> updatedList = new ArrayList<>(lastShownList);
+        updatedList.remove(index.getZeroBased());
+        updatedList.add(editedFlashcard);
+
         model.setFlashcard(flashcardToEdit, editedFlashcard);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+        model.updateFilteredFlashcardList(new FlashcardInGivenFlashcardListPredicate(updatedList));
+
         return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard));
     }
 
