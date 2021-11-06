@@ -815,14 +815,44 @@ testers are expected to do more *exploratory* testing.
         ```
    Expected snapshot for above test cases 1 to 5:
    ![invalidJSONDataFile](images/developerGuideExpectedSnapshots/invalidJSONDataFile.png)
-_{ more test cases to be added in future …​ }_
 
-<!---
-### Saving data
+### Exporting flashcards to CSV file
+The `data` directory in this section refers to the directory named `data` which is located in the same directory as the jar file to be tested.
 
-1. Dealing with missing/corrupted data files
+1. Exporting to CSV file while all flashcards are listed.
+    1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards are in the list. The `data` directory does not contain a file named `file.csv`.
+    1. Test case: `export file.csv`<br>
+       Expected: A CSV file named `file.csv` is created in the `data` directory.
+       This CSV file contains 3 columns with the headers "Language", "Foreign", "English" from left to right, while the rows contain
+       the data for **all** the flashcards in the app.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Exporting a set of filtered flashcards to CSV file.
+    1. Prerequisites: Use the `filter` or `find` commands to obtain a filtered list of flashcards. This filtered list of flashcards
+       should contain a **strict subset** of all the flashcards in the app. The `data` directory does not contain a file named `file.csv`.
+    1. Test case: `export file.csv`<br>
+       Expected: Similar to previous, but now the CSV row data should **only** contain the data for the flashcards in the filtered list of flashcards.
 
-1. _{ more test cases …​ }_
--->
+1. Export successfully overwrites existing file content.
+    1. Prerequisites: An empty file named `file.csv` should already exist in the `data` directory.
+    1. Test case: `export file.csv`<br>
+       Expected: The contents of `file.csv` have been overwriten to contain the flashcard data as per the previous test cases.
+
+### Importing flashcards from CSV file
+The `data` directory in this section refers to the directory named `data` which is located in the same directory as the jar file to be tested.
+
+1. Importing valid CSV file.
+    1. Prerequisites:
+      * A valid CSV file named `file.csv` is located in the `data` directory.
+      * This CSV file should contain flashcard data for some **new** flashcards not found in the app currently, and some flashcards that are **already** in the app currently.
+      * See the User Guide [here](UserGuide/#importing-flashcards--import) for more information on what constitutes a valid CSV file.
+    1. Test case: `import file.csv`<br>
+       Expected: All the flashcard data in `file.csv` is successful imported as flashcards in the application, and displayed in the
+       current list of flashcards. Note that the duplicated flashcards set up above in the prerequisites will not be imported into the application.
+    1. Test case: `import file.csv` again immediately after the previous test case<br>
+       Expected: The command result informs the user that the application already contains all the flashcards the user is trying to
+       import.
+
+1. Importing CSV file with invalid headers.
+    1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide/#importing-flashcards--import). 
+    1. Test case: `import file.csv`<br>
+       Expected: The command result informs the user that the headers in the CSV file are not in the correct format.
