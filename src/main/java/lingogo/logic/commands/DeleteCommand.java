@@ -28,7 +28,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE =
             getMessageUsage(COMMAND_WORD, COMMAND_DESCRIPTION, COMMAND_PARAMETERS, COMMAND_EXAMPLES);
 
-    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS = "Deleted Flashcard: %1$s.";
+    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS = "Deleted Flashcard: %1$s";
 
     private final Index targetIndex;
 
