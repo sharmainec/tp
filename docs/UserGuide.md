@@ -138,6 +138,9 @@ The following section gives an in-depth overview of each command in the applicat
 
 **:information_source: Notes about the command format:**<br>
 
+* The command words and prefixes are case-sensitive.
+  * e.g. `clEar` will not be accepted for the `clear` command
+
 * Words in `UPPER_CASE` are parameters to be supplied by you.
   * e.g. a usage of `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` could be `add l/Chinese e/Good Morning f/早安`.
 
@@ -264,27 +267,23 @@ Format: `exit`
 Exports the currently displayed flashcards in [List mode](#list-mode) to a CSV file.
 * This command can only be run in [List mode](#list-mode).
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Notes about opening CSV files with Excel:**<br>
-* We advise changing the default settings so that foreign language is properly displayed with Excel.
-[Please refer here for detailed instructions.](https://www.itg.ias.edu/content/how-import-csv-file-uses-utf-8-character-encoding-0)
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If you export to a file that already exists in the data folder, the file will get overwritten
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Caution:**<br>
+* If you export to a file that already exists in the *data* folder, the file will get overwritten.
 </div>
 
 Format: `export CSV_FILE_NAME`
 
-* Provides a file name with a .csv extension in which the flashcards will be stored and exported.
-* The exported file will be added to the *data* folder (located in the same folder as the *lingogo.jar* file).
+* Provides a file name with a **.csv extension** in which the flashcards will be stored and exported.
+* If you want to export to a file that already exists in the *data* folder, ensure it is not opened elsewhere. 
+* If you are exporting to a new file, the file will be added to the *data* folder (located in the same folder as the *lingogo.jar* file).
 * The CSV file will have **3 columns** in this order from left to right:
   1. Language
   1. Foreign phrase
   1. English phrase
 
 Examples:
-* `export myCards.csv` will save all cards in LingoGO! to a CSV file named `myCards.csv`.
+* `export myCards.csv` will save all cards in LingoGO! to a CSV file named `myCards.csv` located in the *data* folder mentioned above.
 
 
 ### Filtering flashcards by condition(s): `filter`
@@ -355,11 +354,6 @@ Format: `help`
 
 ### Importing flashcards : `import`
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Notes about importing CSV files made with Excel:**<br>
-* We advise against using Excel to create a CSV file to be imported into LingoGO!.
-</div>
-
 Imports flashcards from a CSV file and **adds** them to the existing list in LingoGO!
 (instead of replacing the current list)
 * This command can only be run in [List mode](#list-mode).
@@ -368,17 +362,22 @@ Format: `import CSV_FILE_NAME`
 
 * Place the CSV file that you wish to import in the *data* folder
  (located in the same folder as the *lingogo.jar* file).
-* The CSV file must have exact headers "Language, Foreign, English". (as shown in the below example)
-* The headers in the CSV file are case-sensitive.
 * The CSV file must have **3 columns** in this order from left to right:
   1. Language
   2. Foreign phrase
   3. English phrase
+* The headers in the CSV file are case-sensitive.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Importing invalid CSV file:**<br>
 * If any of the above required information in the CSV file is invalid or missing,
 LingoGO! will **not** import the flashcards
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about importing CSV files made with Microsoft Excel:**<br>
+* Please save the CSV file in the 'CSV UTF-8 (Comma-delimited)' file format in Excel before importing into LingoGO!
+![Excel CSV UTF-8 save format screenshot](images/ExcelSaveScreenshot.png)
 </div>
 
 Below is an example of how the CSV file might look like.
