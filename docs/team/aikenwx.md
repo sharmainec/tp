@@ -69,7 +69,7 @@ Below is a summary of the enhancements I have implemented in the project.
   * PR(s): [\#201](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/201)
   * Wrote alert dialogue popups to greet new users as well as to warn users when they make code-breaking changes to
     the JSON data file.
-  * Such alerts can help users to troubleshoot if they have made 
+  * Such alerts can help users to troubleshoot if they have made
     unintended changes to the data file.
 * **Debugged edit feature**
   * PR(s): [\#205](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/205)
@@ -131,6 +131,5 @@ Below are some of the things I have done to help others during this module.
   [\#121](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/121),
   [\#136](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/136)
   * Reported [bugs and suggestions](https://github.com/aikenwx/ped/issues) for team SWEe-book, another team in the module.
-
 
 <hr/>
