@@ -275,7 +275,7 @@ Exports the currently displayed flashcards in [List mode](#list-mode) to a CSV f
 Format: `export CSV_FILE_NAME`
 
 * Provides a file name with a **.csv extension** in which the flashcards will be stored and exported.
-* If you want to export to a file that already exists in the *data* folder, ensure it is not opened elsewhere. 
+* If you want to export to a file that already exists in the *data* folder, ensure it is not opened elsewhere.
 * If you are exporting to a new file, the file will be added to the *data* folder (located in the same folder as the *lingogo.jar* file).
 * The CSV file will have **3 columns** in this order from left to right:
   1. Language
@@ -294,8 +294,8 @@ Filters flashcards based on specified condition(s), such that only flashcards ma
 Format: `filter [l/LANGUAGE] [i/INDEX_LIST] [r/INDEX_RANGE]`
 
 
-* The `filter` search will apply **only on flashcards in the displayed flashcard list of [List mode](#list-mode)**. 
-  Flashcards not in the displayed flashcard list will not subsequently show up even if a `filter` command with matching conditions is executed. 
+* The `filter` search will apply **only on flashcards in the displayed flashcard list of [List mode](#list-mode)**.
+  Flashcards not in the displayed flashcard list will not subsequently show up even if a `filter` command with matching conditions is executed.
   (Refer to the last `filter` example).
 * `LANGUAGE` is not **case-sensitive** (e.g. "Chinese" matches "CHINESE").
 * `INDEX_LIST` is a list of space separated indices, that refer to the indices shown in the displayed flashcard list of [List mode](#list-mode).
@@ -312,11 +312,11 @@ Examples:
 * `filter r/2 4` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 2 to 4.
 * `filter i/1 3 6 l/Tamil` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed at 1, 3 and 6, **or** of `Tamil` language.
 * `filter l/Chinese r/1 4` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 4, **or** of `Chinese` language.
-* `filter l/French r/1 10 i/15 19 20` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 10 **or** 
+* `filter l/French r/1 10 i/15 19 20` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 10 **or**
   indexed at 15, 19 and 20  **or** of the `French` language.
-*  When the displayed flashcard list of [List mode](#list-mode) shows `e/Good Morning f/早安 l/Chinese` and 
-   `e/hand f/손 l/Korean`, executing `filter l/Korean` will return a displayed flashcard list with only the `e/hand f/손 l/Korean` 
-   flashcard left. If we then execute `filter l/Chinese`, an empty displayed flashcard list will be returned. 
+*  When the displayed flashcard list of [List mode](#list-mode) shows `e/Good Morning f/早安 l/Chinese` and
+   `e/hand f/손 l/Korean`, executing `filter l/Korean` will return a displayed flashcard list with only the `e/hand f/손 l/Korean`
+   flashcard left. If we then execute `filter l/Chinese`, an empty displayed flashcard list will be returned.
 
 ### Locating flashcards by keyword(s): `find`
 

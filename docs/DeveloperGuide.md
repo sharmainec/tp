@@ -393,7 +393,7 @@ The above methods in turn facilitate the following commands:
 
 The `SlideshowApp` class is used to encapsulate all state and operations related to the slideshow, and
 is exposed as a `ReadOnlySlideshowApp` object.
-Below is an overview of the `SlideshowApp` component. 
+Below is an overview of the `SlideshowApp` component.
 
 ![SlideshowAppClassDiagram](images/SlideshowAppClassDiagram.png)
 
@@ -772,7 +772,7 @@ For further details about each use case, see below. For all use cases below, the
     * 1a1. LingoGO! informs user that their request is invalid.
 
       Use case ends.
-  
+
 --------------------------------------------------------------------------------------------------------------------
 
 
@@ -809,7 +809,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder.
 
    2. Double-click the jar file <br>
-       Expected snapshot: 
+       Expected snapshot:
         ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
 
 1. Saving window preferences
@@ -838,8 +838,8 @@ testers are expected to do more *exploratory* testing.
 ### Loading in a JSON data file
 
 1. Loading valid JSON data file
-    
-    1. Prerequisites: Sample `flashcardapp.json` file is filled with following data and is inside a `data` directory in 
+
+    1. Prerequisites: Sample `flashcardapp.json` file is filled with following data and is inside a `data` directory in
        the same directory as the jar file:
        ```
         {
@@ -860,17 +860,17 @@ testers are expected to do more *exploratory* testing.
             "englishPhrase" : "Good Night",
             "foreignPhrase" : "晚安"
              } ]
-        }  
+        }
         ```
     1. Open the jar file <br>
        Expected snapshot:
        ![sampleDataList](images/developerGuideExpectedSnapshots/sampleDataListMode.png)
 1. Opening jar file with non-existing JSON data file or `data` folder:
-    
+
     1. Open the jar file <br>
        Expected snapshot:
        ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
-       
+
 1. Opening jar file with incorrectly named JSON data file in `data` folder:
     1. Open the jar file <br>
        Expected snapshot:
@@ -878,11 +878,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Opening jar file with invalid JSON file:
     1. Test case: empty `flashcardapp.json`<br>
-        
+
     2. Test case: `flashcardapp.json` with data: <br>
        ```null```
-    
-    3. Test case: `flashcardapp.json` with data: 
+
+    3. Test case: `flashcardapp.json` with data:
        ```
        {
            "flashcards" : [ null ]
@@ -948,7 +948,7 @@ The `data` directory in this section refers to the directory named `data` which 
        import.
 
 1. Importing CSV file with invalid headers.
-    1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide/#importing-flashcards--import). 
+    1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide/#importing-flashcards--import).
     1. Test case: `import file.csv`<br>
        Expected: The command result informs the user that the headers in the CSV file are not in the correct format.
 
