@@ -468,6 +468,28 @@ A GUI, short for graphical user interface, is a visual display through which use
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Coming soon
+
+Enjoying LingoGO!? Here are some expansions you can look forward to in the future that will take your language learning experience to the next level!
+
+### Grouping flashcards
+
+Group flashcards into a test set that you can use over and over again! Never worry about typing in many commands to select a specific set of flashcards for testing again.
+
+### Statistics
+
+To further help you on your journey of mastering new languages, LingoGO! plans to help you easily evaluate your progress through the use of statistics. Get summaries of your scores each time you test yourself, and compare them with how you did previously.
+
+### Recommendations
+
+With recommendations, LingoGO! plans to help you identify and improve on your weak points by prioritizing the flashcards that you score poorly in. On starting LingoGO!, the flashcards you score poorly in will be shown to you first to help reinforce your memory.
+
+### Points and levels
+
+With each time you test yourself, earn points that can increase your level. Challenge your friends to see who will stay on top, and encourage each other to learn proactively!
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Command summary
 
 Action | Format | Example

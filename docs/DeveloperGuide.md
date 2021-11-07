@@ -951,3 +951,42 @@ The `data` directory in this section refers to the directory named `data` which 
     1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide/#importing-flashcards--import). 
     1. Test case: `import file.csv`<br>
        Expected: The command result informs the user that the headers in the CSV file are not in the correct format.
+
+## Appendix G: Proposed future features
+
+Given below are brief summaries for some proposed future features of LingoGO!.
+
+### Grouping flashcards
+
+Grouping flashcards gives users the ability to create sets of flashcards that they can easily load into the app and test themselves with.
+
+
+One possible implementation would be to create a `group` command, which takes in a name as the only command parameter (e.g. `group Korean`).
+The `FlashcardApp` class would then contain an extra field containing the sets of flashcards that have been grouped together.
+
+
+As for long term storage, each flashcard within flashcardapp.json would have an **extra key-value pair called groups**, which specify
+the groups that a flashcard belongs to. Below is an example of what this might look like.
+
+![Grouping flashcards proposed storage](images/GroupingFlashcardsJSON.png)
+
+### Statistics
+
+Showing statistics after a user finishes testing with a set of flashcards would make it more convenient for them to track their
+progress. Potential statistics to be shown include:
+* Number of correct answers out of wrong answers
+* Percentage improvement from previous test
+* Specific flashcards the user got wrong
+
+One possible implementation would be to add a `Group` class to encapsulate
+* A group of flashcards
+* Score history for that group of flashcards (only the most recent score will be kept)
+
+### Recommendations
+
+To encourage users to focus on the flashcards they are weaker at remembering, LingoGO! should prioritize displaying flashcards that users
+score the most poorly in.
+
+
+This can be done by changing the order in which flashcards are displayed to be dynamic.
+Whenever users load the app or list their flashcards, the top flashcards in the displayed flashcard list will be those that they score the worst at. The `FilteredList<Flashcard>` within `ModelManager` can be sorted according to the flashcard scores to achieve this.
