@@ -111,18 +111,18 @@ Below is an example of what LingoGO! looks like in Slideshow mode.
 ![Slideshow](images/Slideshow.png)
 
 Slideshow mode tests your knowledge by showing you flashcards one at a time. The flashcards shown to you are the ones
-displayed in list mode.
+displayed in [List mode](#list-mode).
 
-To enter and exit slideshow mode, use the [`slideshow`](#testing-with-a-set-of-flashcards--slideshow) and [`stop`](#exiting-slideshow-mode-stop) commands respectively.
+To enter and exit Slideshow mode, use the [`slideshow`](#testing-with-a-set-of-flashcards--slideshow) and [`stop`](#exiting-slideshow-mode-stop) commands respectively.
 
-In slideshow mode, you can:
+In Slideshow mode, you can:
 * Move to [`next`](#moving-to-the-next-flashcard-in-slideshow-mode--next) or
   [`previous`](#moving-to-the-previous-flashcard-in-slideshow-mode--previous) flashcards
 * Enter an [`answer`](#answering-a-flashcard--answer) for a flashcard
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about slideshow mode:**<br>
+**:information_source: Notes about Slideshow mode:**<br>
 
 * If your flashcards have phrases that are too long to be displayed, you can **increase the app's window size**.
 
@@ -403,7 +403,7 @@ Examples:
 * `list 3` returns 3 randomly selected flashcards in LingoGO!
 
 
-### Moving to the next flashcard in slideshow mode : `next`
+### Moving to the next flashcard in Slideshow mode : `next`
 
 Goes forward to the next flashcard (if there is one) in [Slideshow mode](#slideshow-mode).
 * This command can only be run in [Slideshow mode](#slideshow-mode).
@@ -411,7 +411,7 @@ Goes forward to the next flashcard (if there is one) in [Slideshow mode](#slides
 Format: `next`
 
 
-### Moving to the previous flashcard in slideshow mode : `previous`
+### Moving to the previous flashcard in Slideshow mode : `previous`
 
 Goes back to the previous flashcard (if there is one) in [Slideshow mode](#slideshow-mode).
 * This command can only be run in [Slideshow mode](#slideshow-mode).
@@ -427,7 +427,7 @@ Switches to [Slideshow mode](#slideshow-mode) for you to test yourself using the
 Format: `slideshow`
 
 
-### Exiting slideshow mode: `stop`
+### Exiting Slideshow mode: `stop`
 
 Exits [Slideshow mode](#slideshow-mode) and returns to [List mode](#list-mode).
 * This command can only be run in [Slideshow mode](#slideshow-mode).
