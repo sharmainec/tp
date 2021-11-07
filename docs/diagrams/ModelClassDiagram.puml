@@ -22,6 +22,7 @@ Class ReadOnlyUserPrefs
 Class UniqueFlashcardList
 Class Flashcard
 Class Phrase
+Class LanguageType
 Class Slideshow
 
 }
@@ -43,7 +44,8 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 FlashcardApp *--> "1" UniqueFlashcardList
 UniqueFlashcardList --> "~* all" Flashcard
-Flashcard *--> "3" Phrase
+Flashcard *--> "2" Phrase
+Flashcard *--> "1" LanguageType
 
 SlideshowApp *--> "1" Slideshow
 Slideshow --> "slideshow flashcards ~*" Flashcard
