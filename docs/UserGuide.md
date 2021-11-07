@@ -160,10 +160,12 @@ This section aims to provide users with a quick breakdown on LingoGO!'s command 
   * Along with command words, commands may come with extra details that need to be filled up. 
     * e.g. `clear` is an example of a command that is used with just the command word alone. 
     * e.g. `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` is an example of a command that comes with details 
-      that need to be given.
+      that need to be given by the user.
 * **Prefixes**
-  * Certain prefixes have been reserved for use by LingoGO!'s commands. Prefixes are used by LingoGO! to identify 
-    the type of input the user is giving. All command prefixes and their associated input types are as listed below:
+  * Certain prefixes have been reserved for use by LingoGO!'s commands. Prefixes are used by LingoGO! to identify the
+    parameter types of input given by the user. 
+    * e.g. LingoGO! will interpret `l/Tamil` as a Language called `Tamil`.
+  * All command prefixes and their associated parameter types are as listed below:
     * `e/` for English Phrase.
     * `f/` for Foreign Phrase.
     * `i/` for Index/Indices.
@@ -179,7 +181,7 @@ This section aims to provide users with a quick breakdown on LingoGO!'s command 
   * Words in `UPPER_CASE` are parameters to be supplied by you.
     * e.g. a usage of `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` could be `add l/Chinese e/Good Morning f/早安`.
   * Some commands have optional parameters which do not need to be given by the user. These optional parameters are 
-    indicated in square brackets.
+    indicated with square brackets.
     * e.g. `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or `edit 1 e/Good Morning`.
   * Extraneous parameters for commands that do not take in parameters (such as `help` and `clear`) will be ignored.
     * e.g. `help 123` is the same as `help`.
