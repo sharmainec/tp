@@ -399,7 +399,9 @@ Below is an overview of the `SlideshowApp` component.
 
 `SlideshowApp` tracks the current state of the slideshow, such as whether the slideshow mode `isActive`, and whether `isAnswerDisplayed` for the current slide. It also contains a `Slideshow` component, which tracks the list of flashcards in the current slideshow, and the index of the current slide.
 
-The following sequence diagrams shows how the `slideshow` command works:
+##### Slideshow command
+
+The following sequence diagrams show how the `slideshow` command works:
 
 ![SlideshowSequenceDiagram](images/SlideshowSequenceDiagram.png)
 
@@ -407,7 +409,7 @@ The following sequence diagrams shows how the `slideshow` command works:
 
 The reference sequence diagram above shows the various state changes within `SlideshowApp`.
 When a certain property is changed, the UI updates itself accordingly.
-The relevant `UiPart` listens to changes in these properties using the `ChangeListener` class provided by `java.beans`.
+The relevant `UiPart` listens to changes in these properties using the `ChangeListener` class provided by the `java.beans` package.
 
 For instance, when `isActive:BooleanProperty` becomes true, the UI will go into [Slideshow mode](UserGuide/#slideshow-mode).
 Below is a code snippet on how this is implemented in `FlashcardListPanel.java`.
@@ -428,6 +430,16 @@ readOnlySlideshowApp.isActiveProperty().addListener(new ChangeListener<>() {
    }
 });
 {% endhighlight %}
+
+##### Answer command
+
+The following sequence diagram shows how the `answer` command works:
+
+<!-- TODO: Add sequence diagram for AnswerCommand -->
+
+The sequence diagram above shows that within `SlideshowApp`, the `currentFlashcard` changes and `isAnswerDisplayed` becomes true when a user
+answers a flashcard. This will trigger an update in whichever `UiPart` that is listening to changes in these properties.
+In this case, the UI will display the flashcard's answer to the user.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -505,10 +517,11 @@ University students
 
 ## Appendix C: Use Cases
 
-For all use cases below, the **System** is **LingoGO!** and the **Actor** is the **user**, unless specified otherwise.
-
 Below is a use case diagram summarizing the main use cases of the app.
+
 ![Use Case Diagram](images/UseCaseDiagram.png)
+
+For further details about each use case, see below. For all use cases below, the **System** is **LingoGO!** and the **Actor** is the **user**, unless specified otherwise.
 
 ### Use case: UC01 - List all flashcards
 
