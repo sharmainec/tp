@@ -10,7 +10,7 @@ participant "isActive:BooleanProperty" as isActive MODEL_COLOR
 participant "isAnswerDisplayed:BooleanProperty" as isAnswerDisplayed MODEL_COLOR
 end box
 
-mainframe update slideshowApp
+mainframe ref start slideshowApp
 
 activate ModelManager
 

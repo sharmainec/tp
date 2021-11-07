@@ -35,7 +35,7 @@ SlideshowCommand -> ModelManager : startSlideshow()
 activate ModelManager
 
 ref over ModelManager
-    update slideshowApp
+    start slideshowApp
 end
 
 SlideshowCommand <-- ModelManager

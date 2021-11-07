@@ -372,40 +372,62 @@ The sequence diagram below illustrates the execution of `ListCommand`.
 
 #### Description
 
-The slideshow feature displays the flashcards shown in list mode one at a time in individual "slides".
-In slideshow mode, users can test how well they remember their flashcards by entering their answers for each flashcard
+The slideshow feature displays the current list of flashcards shown in [List mode](UserGuide/#list-mode) one at a time in individual "slides".
+In [Slideshow mode](UserGuide/#slideshow-mode), users can test how well they remember their flashcards by entering their answers for each flashcard
 and getting feedback on whether they are right or wrong. Users may also navigate between "slides".
 
 #### Implementation
 
 The slideshow feature is facilitated by `ModelManager`.
-It extends `Model` and implements `startSlideshow`, `stopSlideshow`, `isSlideshowActive`, `slideshowNextFlashcard`,
+It extends `Model` and implements the methods `startSlideshow`, `stopSlideshow`, `isSlideshowActive`, `slideshowNextFlashcard`,
 `slideshowPreviousFlashcard`, `answerCurrentSlide`, `displayCurrentAnswer`, `getSlideshowApp`, and `getCurrentSlide`.
 
 The above methods in turn facilitate the following commands:
-* `SlideshowCommand` - When the user enters slideshow mode.
-* `AnswerCommand` - When the user enters an answer for the flashcard shown on the current slide.
-* `NextCommand` - When the user navigates to the next slide.
-* `PreviousCommand` - When the user navigates to the previous slide.
-* `StopCommand` - When the user exits slideshow mode.
 
-The `SlideshowApp` class is used to encapsulate all state and operations related to the slideshow.
-It is exposed as a `ReadOnlySlideshowApp` object.
+| Command Class | Command | Usage |
+| `SlideshowCommand` | [`slideshow`](UserGuide/#testing-with-a-set-of-flashcards--slideshow) | When the user enters [Slideshow mode](UserGuide/#slideshow-mode). |
+| `AnswerCommand` | [`answer`](UserGuide/#answering-a-flashcard--answer) | When the user enters an answer for the flashcard shown on the current slide. |
+| `NextCommand` | [`next`](UserGuide/#moving-to-the-next-flashcard-in-slideshow-mode--next) | When the user navigates to the next slide. |
+| `PreviousCommand` | [`previous`](UserGuide/#moving-to-the-previous-flashcard-in-slideshow-mode--previous) | When the user navigates to the previous slide. |
+| `StopCommand` | [`stop`](UserGuide/#exiting-slideshow-mode-stop) | When the user exits [Slideshow mode](UserGuide/#slideshow-mode). |
 
-The following sequence diagrams shows how the slideshow command works:
+The `SlideshowApp` class is used to encapsulate all state and operations related to the slideshow, and
+is exposed as a `ReadOnlySlideshowApp` object.
+Below is an overview of the `SlideshowApp` component. 
+
+![SlideshowAppClassDiagram](images/SlideshowAppClassDiagram.png)
+
+`SlideshowApp` tracks the current state of the slideshow, such as whether the slideshow mode `isActive`, and whether `isAnswerDisplayed` for the current slide. It also contains a `Slideshow` component, which tracks the list of flashcards in the current slideshow, and the index of the current slide.
+
+The following sequence diagrams shows how the `slideshow` command works:
 
 ![SlideshowSequenceDiagram](images/SlideshowSequenceDiagram.png)
 
-![UpdateSlideshowAppReferenceSequenceDiagram](images/UpdateSlideshowAppReferenceSequenceDIagram.png)
+![UpdateSlideshowAppReferenceSequenceDiagram](images/StartSlideshowAppReferenceSequenceDiagram.png)
 
 The reference sequence diagram above shows the various state changes within `SlideshowApp`.
 When a certain property is changed, the UI updates itself accordingly.
 The relevant `UiPart` listens to changes in these properties using the `ChangeListener` class provided by `java.beans`.
 
-For instance, when `isActive:BooleanProperty` becomes true, the UI will go into slideshow mode.
+For instance, when `isActive:BooleanProperty` becomes true, the UI will go into [Slideshow mode](UserGuide/#slideshow-mode).
 Below is a code snippet on how this is implemented in `FlashcardListPanel.java`.
 
-![SlideshowUpdateUiCodeSnippet](images/SlideshowUpdateUiCodeSnippet.png)
+{% highlight java %}
+readOnlySlideshowApp.isActiveProperty().addListener(new ChangeListener<>() {
+   @Override
+   public void changed(ObservableValue<? extends Boolean> o, Boolean oldVal, Boolean newVal) {
+         if (newVal.booleanValue()) {
+            assert !flashcardListPanel.getChildren().contains(slideshowPanel.getRoot())
+                     : "FlashcardListPanel.java: Slideshow already being displayed";
+            flashcardListPanel.getChildren().add(slideshowPanel.getRoot());
+         } else {
+            assert flashcardListPanel.getChildren().contains(slideshowPanel.getRoot())
+                     : "FlashcardListPanel.java: No slideshow to exit from";
+            flashcardListPanel.getChildren().remove(slideshowPanel.getRoot());
+         }
+   }
+});
+{% endhighlight %}
 
 --------------------------------------------------------------------------------------------------------------------
 

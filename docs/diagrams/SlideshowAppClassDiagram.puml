@@ -17,6 +17,7 @@ Class Slideshow
 Package Flashcard <<Rectangle>>{
 Class Flashcard
 Class Phrase
+Class LanguageType
 }
 
 }
@@ -24,6 +25,7 @@ Class Phrase
 SlideshowApp .up.|> ReadOnlySlideshowApp
 SlideshowApp *--> "1" Slideshow
 Slideshow "1" --> "*" Flashcard
-Flashcard *--> "3" Phrase
+Flashcard *--> "2" Phrase
+Flashcard *--> "1" LanguageType
 
 @enduml
