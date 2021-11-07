@@ -507,6 +507,9 @@ University students
 
 For all use cases below, the **System** is **LingoGO!** and the **Actor** is the **user**, unless specified otherwise.
 
+Below is a use case diagram summarizing the main use cases of the app.
+![Use Case Diagram](images/UseCaseDiagram.png)
+
 ### Use case: UC01 - List all flashcards
 
 **MSS**
