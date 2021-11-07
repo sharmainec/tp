@@ -358,12 +358,13 @@ Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`
 * Flashcard(s) **matching at least one keyword** will be displayed.
 * **At least one** of the optional fields must be provided.
 
-Examples:
-* `find e/HELLO` returns `e/Hello f/你好`.
-* `find f/早` returns `e/Good Morning f/早安` and `e/Morning f/早晨`.
-* `find e/Hello f/早` returns `e/Hello f/你好`, `e/Good Morning f/早安` and `e/Morning f/早晨`.
+Examples *(refer to the snapshot below)*:
 
-  ![find foreign keywords](images/findMixedKeywords.png)<br>
+![find foreign keywords](images/FindExample.png)
+
+* `find e/HELLO` updates displayed flashcard list in [List mode](#list-mode) to display flashcard 1.
+* `find f/安` updates displayed flashcard list in [List mode](#list-mode) to display flashcards 2, 3 and 4.
+* `find e/Hello f/早` updates displayed flashcard list [List mode](#list-mode) to display flashcards 1, 2, 3 and 4.
 
 
 ### Viewing help : `help`
