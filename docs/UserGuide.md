@@ -146,43 +146,43 @@ In Slideshow mode, you can:
 ## Commands
 
 The following section gives an in-depth overview of each command in LingoGO! and provides some examples on 
-their usages. If you are a new user, you may also want to refer to the [Notes about the command format](#notes-about-the-command-format)
-below for an overview on how LingoGO!'s commands work.
+their usages. If you are a new user, you may also want to refer to the [Command Format](#command-format) section
+below for a breakdown on LingoGO!'s command format.
 
-### Notes about the command format
-This section aims to provide users with a quick overview on how LingoGO!'s commands work.
-* Each command always starts with a command word such as `add` or `find` and may come with extra parameters that 
-  need to be filled up. An example of a command without any extra parameters is `clear`. An example of a 
-  command with extra parameters is `edit INDEX 
-  [l/LANGUAGE] 
-  [e/ENGLISH_PHRASE] 
-  [f/FOREIGN_PHRASE]`.
+### Command Format
+This section aims to provide users with a quick breakdown on LingoGO!'s command format.
 
-* Certain prefixes have been reserved for use by LingoGO!'s commands. Prefixes are used by LingoGO! to identify 
-  the type of input the user is giving. All command prefixes and their associated input types are as listed below:
-  * `e/` for English Phrase.
-  * `f/` for Foreign Phrase.
-  * `i/` for Index/Indices.
-  * `l/` for Language.
-  * `r/` for Index Range.
-  
-* Words in `UPPER_CASE` are parameters to be supplied by you.
-  * e.g. a usage of `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` could be `add l/Chinese e/Good Morning f/早安`.
-  
-* The command words and prefixes are case-sensitive.
-  * e.g. `clEar` will not be accepted for the `clear` command.
 
-* Items in square brackets are optional.
-  * e.g. `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or `edit 1 e/Good Morning`.
-
-* Parameters can be in any order.
-  * e.g. if the command specifies `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `add f/FOREIGN_PHRASE l/LANGUAGE e/ENGLISH_PHRASE` is also acceptable.
-
-* If a command is given with parameters of repeated prefixes only the last occurrence will be taken.
-  * e.g. `edit 2 e/Hi e/Hello` is the same as `edit 2 e/Hello`.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help` and `clear`) will be ignored.
-  * e.g. `help 123` is the same as `help`.
+* **Command Words**
+  * Each command always starts with a command word such as `add` or `find`.
+  * Command words are case-sensitive.
+    * e.g. `clEar` will not be accepted for the `clear` command.
+  * Along with command words, commands may come with extra details that need to be filled up. 
+    * e.g. `clear` is an example of a command that is used with just the command word alone. 
+    * e.g. `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` is an example of a command that comes with details 
+      that need to be given.
+* **Prefixes**
+  * Certain prefixes have been reserved for use by LingoGO!'s commands. Prefixes are used by LingoGO! to identify 
+    the type of input the user is giving. All command prefixes and their associated input types are as listed below:
+    * `e/` for English Phrase.
+    * `f/` for Foreign Phrase.
+    * `i/` for Index/Indices.
+    * `l/` for Language.
+    * `r/` for Index Range.
+  * Prefixes are case-sensitive.
+    * e.g. `E/` will not be accepted for `e/`.
+  * If there are repeated prefixes in a command, only the last occurrence will be taken.
+    * e.g. `edit 2 e/Hi e/Hello` is the same as `edit 2 e/Hello`.
+  * Prefixes (along with their respective parameters) can be given in any order.
+      * e.g. if the command specifies `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `add f/FOREIGN_PHRASE l/LANGUAGE e/ENGLISH_PHRASE` is also acceptable.
+* **Parameters**
+  * Words in `UPPER_CASE` are parameters to be supplied by you.
+    * e.g. a usage of `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` could be `add l/Chinese e/Good Morning f/早安`.
+  * Some commands have optional parameters which do not need to be given by the user. These optional parameters are 
+    indicated in square brackets.
+    * e.g. `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or `edit 1 e/Good Morning`.
+  * Extraneous parameters for commands that do not take in parameters (such as `help` and `clear`) will be ignored.
+    * e.g. `help 123` is the same as `help`.
 
 
 
