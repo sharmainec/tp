@@ -254,7 +254,7 @@ predicates into a single predicate.
 complex constructors or factory methods when more types of filters are added.
 
 
-The following sequence diagrams shows how the filter operation works:
+The following sequence diagrams shows how the `filter` command works:
 
 ![FilterSequenceDiagram](images/filterCommand/FilterSequenceDiagram.png)
 
@@ -300,7 +300,7 @@ which creates a CSV file in the `data` folder.
 The export feature uses `CSVWriter` class which generates a CSV file
 line by line in the file specified by the user.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following sequence diagram shows how the `export` command works:
 
 ![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 
@@ -315,7 +315,7 @@ The import feature uses `CSVReader` class to check if the given CSV file
 is in the correct format line by line and uploads each card to the flashcard list
 if there is no duplicate.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following sequence diagram shows how the `import` command works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
@@ -327,7 +327,7 @@ The find feature is facilitated by `ModelManager`. It extends `Model` implements
 
 The find feature relies on the `FindCommandParser` and `PhraseContainsKeywordsPredicate`. Multiple keywords can be given for both english and foreign phrases. `FindCommandParser` uses `PhraseContainsKeywordsPredicate` to select flashcards that matches the keywords.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following sequence diagram shows how the `find` command works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
@@ -352,7 +352,7 @@ The list feature is facilitated by `ModelManager`. It extends `Model` and implem
 
 The list feature relies on the `ListCommandParser` and `FlashcardInGivenFlashcardListPredicate`. In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the main list of flashcards.
 
-The sequence diagram below illustrates the execution of `ListCommand`.
+The following sequence diagram shows how the `list` command works:
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
@@ -393,13 +393,15 @@ The above methods in turn facilitate the following commands:
 
 The `SlideshowApp` class is used to encapsulate all state and operations related to the slideshow, and
 is exposed as a `ReadOnlySlideshowApp` object.
-Below is an overview of the `SlideshowApp` component. 
+Below is an overview of the `SlideshowApp` component.
 
 ![SlideshowAppClassDiagram](images/SlideshowAppClassDiagram.png)
 
 `SlideshowApp` tracks the current state of the slideshow, such as whether the slideshow mode `isActive`, and whether `isAnswerDisplayed` for the current slide. It also contains a `Slideshow` component, which tracks the list of flashcards in the current slideshow, and the index of the current slide.
 
-The following sequence diagrams shows how the `slideshow` command works:
+##### Slideshow command
+
+The following sequence diagrams show how the `slideshow` command works:
 
 ![SlideshowSequenceDiagram](images/SlideshowSequenceDiagram.png)
 
@@ -407,7 +409,7 @@ The following sequence diagrams shows how the `slideshow` command works:
 
 The reference sequence diagram above shows the various state changes within `SlideshowApp`.
 When a certain property is changed, the UI updates itself accordingly.
-The relevant `UiPart` listens to changes in these properties using the `ChangeListener` class provided by `java.beans`.
+The relevant `UiPart` listens to changes in these properties using the `ChangeListener` class provided by the `java.beans` package.
 
 For instance, when `isActive:BooleanProperty` becomes true, the UI will go into [Slideshow mode](UserGuide/#slideshow-mode).
 Below is a code snippet on how this is implemented in `FlashcardListPanel.java`.
@@ -428,6 +430,16 @@ readOnlySlideshowApp.isActiveProperty().addListener(new ChangeListener<>() {
    }
 });
 {% endhighlight %}
+
+##### Answer command
+
+The following sequence diagram shows how the `answer` command works:
+
+<!-- TODO: Add sequence diagram for AnswerCommand -->
+
+The sequence diagram above shows that within `SlideshowApp`, the `currentFlashcard` changes and `isAnswerDisplayed` becomes true when a user
+answers a flashcard. This will trigger an update in whichever `UiPart` that is listening to changes in these properties.
+In this case, the UI will display the flashcard's answer to the user.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -505,10 +517,11 @@ University students
 
 ## Appendix C: Use Cases
 
-For all use cases below, the **System** is **LingoGO!** and the **Actor** is the **user**, unless specified otherwise.
+Below is a *use case diagram* summarizing the **main use cases** of the app. Note that this diagram does not show all use cases, and does not contain the full details of each use case.
 
-Below is a use case diagram summarizing the main use cases of the app.
 ![Use Case Diagram](images/UseCaseDiagram.png)
+
+For further details about each use case, see below. For all use cases below, the **System** is **LingoGO!** and the **Actor** is the **user**, unless specified otherwise.
 
 ### Use case: UC01 - List all flashcards
 
@@ -759,7 +772,7 @@ Below is a use case diagram summarizing the main use cases of the app.
     * 1a1. LingoGO! informs user that their request is invalid.
 
       Use case ends.
-  
+
 --------------------------------------------------------------------------------------------------------------------
 
 
@@ -796,7 +809,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder.
 
    2. Double-click the jar file <br>
-       Expected snapshot: 
+       Expected snapshot:
         ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
 
 1. Saving window preferences
@@ -825,8 +838,8 @@ testers are expected to do more *exploratory* testing.
 ### Loading in a JSON data file
 
 1. Loading valid JSON data file
-    
-    1. Prerequisites: Sample `flashcardapp.json` file is filled with following data and is inside a `data` directory in 
+
+    1. Prerequisites: Sample `flashcardapp.json` file is filled with following data and is inside a `data` directory in
        the same directory as the jar file:
        ```
         {
@@ -847,17 +860,17 @@ testers are expected to do more *exploratory* testing.
             "englishPhrase" : "Good Night",
             "foreignPhrase" : "晚安"
              } ]
-        }  
+        }
         ```
     1. Open the jar file <br>
        Expected snapshot:
        ![sampleDataList](images/developerGuideExpectedSnapshots/sampleDataListMode.png)
 1. Opening jar file with non-existing JSON data file or `data` folder:
-    
+
     1. Open the jar file <br>
        Expected snapshot:
        ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
-       
+
 1. Opening jar file with incorrectly named JSON data file in `data` folder:
     1. Open the jar file <br>
        Expected snapshot:
@@ -865,11 +878,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Opening jar file with invalid JSON file:
     1. Test case: empty `flashcardapp.json`<br>
-        
+
     2. Test case: `flashcardapp.json` with data: <br>
        ```null```
-    
-    3. Test case: `flashcardapp.json` with data: 
+
+    3. Test case: `flashcardapp.json` with data:
        ```
        {
            "flashcards" : [ null ]
@@ -935,6 +948,45 @@ The `data` directory in this section refers to the directory named `data` which 
        import.
 
 1. Importing CSV file with invalid headers.
-    1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide/#importing-flashcards--import). 
+    1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide/#importing-flashcards--import).
     1. Test case: `import file.csv`<br>
        Expected: The command result informs the user that the headers in the CSV file are not in the correct format.
+
+## Appendix G: Proposed future features
+
+Given below are brief summaries for some proposed future features of LingoGO!.
+
+### Grouping flashcards
+
+Grouping flashcards gives users the ability to create sets of flashcards that they can easily load into the app and test themselves with.
+
+
+One possible implementation would be to create a `group` command, which takes in a name as the only command parameter (e.g. `group Korean`).
+The `FlashcardApp` class would then contain an extra field containing the sets of flashcards that have been grouped together.
+
+
+As for long term storage, each flashcard within flashcardapp.json would have an **extra key-value pair called groups**, which specify
+the groups that a flashcard belongs to. Below is an example of what this might look like.
+
+![Grouping flashcards proposed storage](images/GroupingFlashcardsJSON.png)
+
+### Statistics
+
+Showing statistics after a user finishes testing with a set of flashcards would make it more convenient for them to track their
+progress. Potential statistics to be shown include:
+* Number of correct answers out of wrong answers
+* Percentage improvement from previous test
+* Specific flashcards the user got wrong
+
+One possible implementation would be to add a `Group` class to encapsulate
+* A group of flashcards
+* Score history for that group of flashcards (only the most recent score will be kept)
+
+### Recommendations
+
+To encourage users to focus on the flashcards they are weaker at remembering, LingoGO! should prioritize displaying flashcards that users
+score the most poorly in.
+
+
+This can be done by changing the order in which flashcards are displayed to be dynamic.
+Whenever users load the app or list their flashcards, the top flashcards in the displayed flashcard list will be those that they score the worst at. The `FilteredList<Flashcard>` within `ModelManager` can be sorted according to the flashcard scores to achieve this.
