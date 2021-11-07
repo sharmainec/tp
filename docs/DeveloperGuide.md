@@ -254,7 +254,7 @@ predicates into a single predicate.
 complex constructors or factory methods when more types of filters are added.
 
 
-The following sequence diagrams shows how the filter operation works:
+The following sequence diagrams shows how the `filter` command works:
 
 ![FilterSequenceDiagram](images/filterCommand/FilterSequenceDiagram.png)
 
@@ -300,7 +300,7 @@ which creates a CSV file in the `data` folder.
 The export feature uses `CSVWriter` class which generates a CSV file
 line by line in the file specified by the user.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following sequence diagram shows how the `export` command works:
 
 ![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 
@@ -315,7 +315,7 @@ The import feature uses `CSVReader` class to check if the given CSV file
 is in the correct format line by line and uploads each card to the flashcard list
 if there is no duplicate.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following sequence diagram shows how the `import` command works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
@@ -327,7 +327,7 @@ The find feature is facilitated by `ModelManager`. It extends `Model` implements
 
 The find feature relies on the `FindCommandParser` and `PhraseContainsKeywordsPredicate`. Multiple keywords can be given for both english and foreign phrases. `FindCommandParser` uses `PhraseContainsKeywordsPredicate` to select flashcards that matches the keywords.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following sequence diagram shows how the `find` command works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
@@ -352,7 +352,7 @@ The list feature is facilitated by `ModelManager`. It extends `Model` and implem
 
 The list feature relies on the `ListCommandParser` and `FlashcardInGivenFlashcardListPredicate`. In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the main list of flashcards.
 
-The sequence diagram below illustrates the execution of `ListCommand`.
+The following sequence diagram shows how the `list` command works:
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
