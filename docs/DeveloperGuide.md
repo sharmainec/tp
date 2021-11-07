@@ -67,9 +67,33 @@ Third party libraries used:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Setting up, getting started
+## Guides, Tools, and Standards
+
+Below are some guides, tools available, and standards used by developers of this project.
+
+### Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+### Documentation
+
+Refer to the [_Documentation guide_](Documentation.md).
+
+### Testing
+
+Refer to the [_Testing guide_](Testing.md).
+
+### Logging
+
+Refer to the [_Logging guide_](Logging.md).
+
+### Configuration
+
+Refer to the [Configuration guide](Configuration.md).
+
+### DevOps
+
+Refer to the [DevOps guide](DevOps.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -440,16 +464,6 @@ The following sequence diagram shows how the `answer` command works:
 The sequence diagram above shows that within `SlideshowApp`, the `currentFlashcard` changes and `isAnswerDisplayed` becomes true when a user
 answers a flashcard. This will trigger an update in whichever `UiPart` that is listening to changes in these properties.
 In this case, the UI will display the flashcard's answer to the user.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Documentation, logging, testing, configuration, dev-ops
-
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -842,26 +856,26 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Sample `flashcardapp.json` file is filled with following data and is inside a `data` directory in
        the same directory as the jar file:
        ```
-        {
-            "flashcards" : [ {
-            "languageType" : "Chinese",
-            "englishPhrase" : "Hello",
-            "foreignPhrase" : "你好"
-            }, {
-            "languageType" : "Chinese",
-            "englishPhrase" : "Good Morning",
-            "foreignPhrase" : "早安"
-            }, {
-            "languageType" : "Chinese",
-            "englishPhrase" : "Good Afternoon",
-            "foreignPhrase" : "午安"
-            }, {
-            "languageType" : "Chinese",
-            "englishPhrase" : "Good Night",
-            "foreignPhrase" : "晚安"
-             } ]
-        }
-        ```
+       {
+         "flashcards" : [ {
+           "languageType": "Chinese",
+           "englishPhrase": "Hello",
+           "foreignPhrase": "你好"
+         }, {
+           "languageType": "Chinese",
+           "englishPhrase": "Good Morning",
+           "foreignPhrase": "早安"
+         }, {
+           "languageType": "Chinese",
+           "englishPhrase": "Good Afternoon",
+           "foreignPhrase": "午安"
+         }, {
+           "languageType": "Chinese",
+           "englishPhrase": "Good Night",
+           "foreignPhrase": "晚安"
+         } ]
+       }
+       ```
     1. Open the jar file <br>
        Expected snapshot:
        ![sampleDataList](images/developerGuideExpectedSnapshots/sampleDataListMode.png)
@@ -885,29 +899,29 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `flashcardapp.json` with data:
        ```
        {
-           "flashcards" : [ null ]
+         "flashcards": [ null ]
        }
        ```
     4. Test case: `flashcardapp.json` with data:
-        ```
-        {
-            "flashcards" : [ {
-                "languageType" : "Chinese",
-                "englishPhrase" : "good morning"
-                "foreignPhrase" : "早上好"
-            } ]
-        }
-        ```
+       ```
+       {
+         "flashcards" : [ {
+           "languageType": "Chinese",
+           "englishPhrase": "good morning"
+           "foreignPhrase": "早上好"
+         } ]
+       }
+       ```
     5. Test case: `flashcardapp.json` with data:
-        ```
-        {
-            "flashcards" : [ {
-                "languageType" : "Chinese",
-                "englishPhrase" : null,
-                "foreignPhrase" : "早上好"
-            } ]
-        }
-        ```
+       ```
+       {
+         "flashcards" : [ {
+           "languageType": "Chinese",
+           "englishPhrase": null,
+           "foreignPhrase": "早上好"
+         } ]
+       }
+       ```
    Expected snapshot for above test cases 1 to 5:
    ![invalidJSONDataFile](images/developerGuideExpectedSnapshots/invalidJSONDataFile.png)
 
@@ -968,7 +982,31 @@ The `FlashcardApp` class would then contain an extra field containing the sets o
 As for long term storage, each flashcard within flashcardapp.json would have an **extra key-value pair called groups**, which specify
 the groups that a flashcard belongs to. Below is an example of what this might look like.
 
-![Grouping flashcards proposed storage](images/GroupingFlashcardsJSON.png)
+```
+{
+  "flashcards": [ {
+    "languageType": "Chinese",
+    "englishPhrase": "Good Morning",
+    "foreignPhrase": "早安",
+    "groups": ["Chinese greetings"]
+  }, {
+    "languageType": "Chinese",
+    "englishPhrase": "Good Afternoon",
+    "foreignPhrase": "午安",
+    "groups": ["Chinese greetings"]
+  }, {
+    "languageType": "Chinese",
+    "englishPhrase": "Good Night",
+    "foreignPhrase": "晚安",
+    "groups": ["Chinese greetings"]
+  }, {
+    "languageType": "Tamil",
+    "englishPhrase": "Hello",
+    "foreignPhrase": "வணக்கம்",
+    "groups": ["Tamil greetings"]
+  } ]
+}
+```
 
 ### Statistics
 
