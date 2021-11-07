@@ -5,7 +5,6 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlySlideshowApp <<Interface>>
 Class SlideshowApp
 
 
@@ -17,15 +16,12 @@ Class Slideshow
 Package Flashcard <<Rectangle>>{
 Class Flashcard
 Class Phrase
-Class LanguageType
 }
 
 }
 
-SlideshowApp .up.|> ReadOnlySlideshowApp
 SlideshowApp *--> "1" Slideshow
 Slideshow "1" --> "*" Flashcard
-Flashcard *--> "2" Phrase
-Flashcard *--> "1" LanguageType
+Flashcard *--> "3" Phrase
 
 @enduml

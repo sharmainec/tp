@@ -1,0 +1,44 @@
+@startuml
+left to right direction
+actor User as g
+
+package LingoGO! {
+  usecase "List all flashcards" as UC1
+  usecase "Filter flashcards" as UC7
+  usecase "Find a flashcard" as UC6
+  usecase "List n flashcards" as UC2
+  usecase "Add a flashcard" as UC3
+  usecase "Delete a flashcard" as UC4
+  usecase "Edit a flashcard" as UC5
+  usecase "Test flashcards" as UC14
+  usecase "Import flashcards" as UC8
+  usecase "Export flashcards" as UC9
+  usecase "Request is invalid" as UC10
+  usecase "LingoGO! already contains\n all the flashcards" as UC11
+  usecase "Overwrite the file's contents" as UC12
+  usecase "Getting help" as UC13
+}
+
+g --> UC1
+g --> UC2
+g --> UC3
+g --> UC4
+g --> UC5
+g --> UC6
+g --> UC7
+g --> UC8
+g --> UC9
+g --> UC13
+g --> UC14
+
+UC2 <.. UC10 : <<Extends>>
+UC3 <.. UC10 : <<Extends>>
+UC4 <.. UC10 : <<Extends>>
+UC5 <.. UC10 : <<Extends>>
+UC7 <.. UC10 : <<Extends>>
+UC8 <.. UC10 : <<Extends>>
+UC8 <.. UC11 : <<Extends>>
+UC9 <.. UC10 : <<Extends>>
+UC9 <.. UC12 : <<Extends>>
+UC14 <.. UC10 : <<Extends>>
+@enduml

@@ -11,40 +11,40 @@ written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-_To be added._
+* **New Feature**: Added the ability to export displayed flashcards to a CSV file. ([\#93](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/93)
+  , [\#100](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/100), [\#136](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/136), [\#191](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/191))
+  * What it does: allows the user to provide a CSV file name to export all displayed flashcards into.
+  * Justification: This feature improves the product significantly because a user might have multiple devices for LingoGO! and the app should provide a convenient way to sync up hundreds of flashcards.
+  * Highlights: Many bugs surfaced when users interact with the exported CSV files in Microsoft Excel, which uses Windows-1252 (Western European languages) as a default setting for text/csv import. Thus, flashcards in LingoGO! containing foreign languages (encoded in UTF-8 format) were not properly displayed in the Excel. Furthermore, it was also a task to account for the different rules for valid file names in different Operating Systems.
+  * Credits: CSVWriter in the [OpenCSV](http://opencsv.sourceforge.net/) was used to format the CSV file created.
 
-<!-- * **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to import new flashcards from a CSV file. ([\#93](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/93)
+  , [\#100](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/100), [\#136](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/136), [\#191](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/191), [\#217](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/217))
+  * What it does: allows the user to specify a CSV file to import all new flashcards into LingoGO!.
+  * Justification: This feature improves the product significantly because a user might wish to add a ready-made dictionary into LingoGO! and the app should provide a convenient way to add hundreds of new flashcards.
+  * Highlights: Various scenarios emerged during an I/O process. For example, the CSV file can be empty, its header or content can be invalid, or might have special characters embedded to mark the file as written under the UTF-8 format. It was a challenge to account for individual cases.
+  * Credits: CSVReader in the [OpenCSV](http://opencsv.sourceforge.net/) was used to process the CSV file given.
+  
+* **New Feature**: Added the ability to specify Language for each flashcard. ([\#100](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/100))
+  * What it does: allows the user to specify a langauge type for each flashcard to be created or edited.
+  * Justification: This feature improves the product significantly because a user might have flashcards of multiple languages and the app should provide a convenient way to display only the cards of their chosen language.
+  * Highlights: This enhancement affects existing commands and commands to be added in future. Thus, the implementation was challenging as it required changes to existing commands. Futhermore, it was difficult to find a balance between freely naming a language type and yet validating the correctness of the given name.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=jhlee1997&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Contributed to releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
+  * Initially created a Filter command with a prefix `/l` for language type such that only the flashcards of a certain language is displayed on the LingoGO!. (([\#100](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/100)))
+  * Wrote additional tests for existing features to increase coverage. This includes tests for valid CSV file name, test CSV files for Import and Export, etc. ([\#136](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/136), [\#191](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/191))
+  
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the current feature `import` and `export`. ([\#32](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/32), [\#60](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/60), [\#198](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/198), [\#200](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/200))
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
+    * Added implementation details of the `import` and `export` features. ([\#124](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/124))
+    * Added the Use Case Diagram ([\#225](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/225))
+    
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_ -->
+  * PRs reviewed: [\#28](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/28), [\#30](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/30), [\#92](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/92), [\#94](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/94), [\#106](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/106), [\#114](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/114), [\#145](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/145), [\#195](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/195), [\#196](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/196), [\#205](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/205), [\#222](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/222)
