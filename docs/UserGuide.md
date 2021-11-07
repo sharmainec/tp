@@ -36,7 +36,9 @@ Detailed information about these features can be found under the [Modes](#modes)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Purpose of the user guide
-This user guide aims to help users familiarize themselves with the commands of LingoGO! and use the application effectively.
+This user guide aims to help you familiarize themselves with the commands of LingoGO! and use the application effectively.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## How to use the user guide
 * A [Table of Contents](#table-of-contents) with clickable links can be found above to help with navigating across the user guide quickly.
@@ -83,10 +85,10 @@ you will see the following [GUI](#gui) with some sample flashcards.
 
 Before diving into the specific commands, let's have an overview of the different modes in LingoGO!.
 
-LingoGO! has two main modes, [List mode](#list-mode) and [Slideshow mode](#slideshow-mode), through which users can interact with
+LingoGO! has two main modes, [List mode](#list-mode) and [Slideshow mode](#slideshow-mode), through which you can interact with
 the application. At a high level, List mode provides an intuitive table overview to manage flashcards with our 
-powerful and flexible search features. In contrast, Slideshow mode allows users to test their knowledge on selected 
-flashcards one by one in a questionnaire-style interface while retaining the feel and look of traditional flashcards.
+powerful and flexible search features. In contrast, Slideshow mode allows you to test your knowledge on selected 
+flashcards one by one in a questionnaire-style interface while retaining the look and feel of traditional flashcards.
 
 The following two sections will describe these modes in further detail.
 
@@ -123,19 +125,20 @@ Once you have selected your flashcards using the [`list`](#listing-flashcards--l
 knowledge with them by entering Slideshow mode.
 
 Slideshow mode brings the most out of your practice session by allowing you to focus on one
-flashcard at a time.
+flashcard at a time and displays the relevant foreign phrase.
 
-To enter Slideshow mode, use the [`slideshow`](#testing-with-a-set-of-flashcards--slideshow) command. Once you are 
-done practicing, you may exit Slideshow mode using the [`stop`](#exiting-slideshow-mode-stop) command.
+To enter Slideshow mode, use the [`slideshow`](#testing-with-a-set-of-flashcards--slideshow) command. 
 
 In Slideshow mode, you can:
 * Move to [`next`](#moving-to-the-next-flashcard-in-slideshow-mode--next) or
-  [`previous`](#moving-to-the-previous-flashcard-in-slideshow-mode--previous) flashcards
-* Enter an [`answer`](#answering-a-flashcard--answer) for a flashcard
+  [`previous`](#moving-to-the-previous-flashcard-in-slideshow-mode--previous) flashcards.
+* Enter an [`answer`](#answering-a-flashcard--answer) for a flashcard.
+
+Once you are done practicing, you may exit Slideshow mode using the [`stop`](#exiting-slideshow-mode-stop) command.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about Slideshow mode:**<br>
+**:information_source: A note about Slideshow mode:**<br>
 
 * If your flashcards have phrases that are too long to be displayed, you can **increase the app's window size**.
 
@@ -150,7 +153,7 @@ their usages. If you are a new user, you may also want to refer to the [Command 
 below for a breakdown on LingoGO!'s command format.
 
 ### Command Format
-This section aims to provide users with a quick breakdown on LingoGO!'s command format.
+This section aims to provide you with a quick breakdown on LingoGO!'s command format.
 
 
 * **Command Words**
@@ -160,10 +163,10 @@ This section aims to provide users with a quick breakdown on LingoGO!'s command 
   * Along with command words, commands may come with extra details that need to be filled up. 
     * e.g. `clear` is an example of a command that is used with just the command word alone. 
     * e.g. `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` is an example of a command that comes with details 
-      that need to be given by the user.
+      that need to be given by you.
 * **Prefixes**
   * Certain prefixes have been reserved for use by LingoGO!'s commands. Prefixes are used by LingoGO! to identify the
-    parameter types of input given by the user. 
+    parameter types of input given by you. 
     * e.g. LingoGO! will interpret `l/Tamil` as a Language called `Tamil`.
   * All command prefixes and their associated parameter types are as listed below:
     * `e/` for English Phrase.
@@ -180,13 +183,27 @@ This section aims to provide users with a quick breakdown on LingoGO!'s command 
 * **Parameters**
   * Words in `UPPER_CASE` are parameters to be supplied by you.
     * e.g. a usage of `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` could be `add l/Chinese e/Good Morning f/早安`.
-  * Some commands have optional parameters which do not need to be given by the user. These optional parameters are 
+  * Some commands have optional parameters which you do not need to give. These optional parameters are 
     indicated with square brackets.
     * e.g. `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or `edit 1 e/Good Morning`.
   * Extraneous parameters for commands that do not take in parameters (such as `help` and `clear`) will be ignored.
     * e.g. `help 123` is the same as `help`.
 
+### Flashcard Format
+This section aims to provide you with a quick breakdown on LingoGO!'s flashcard format. Flashcards with the same `LANGUAGE`, `ENGLISH_PHRASE` and `FOREIGN_PHRASE` will be considered as duplicated flashcards and only one copy of the flashcard can exist in LingoGO!.
 
+
+* **`LANGUAGE`** parameter
+    * Should not be longer than **50 characters**.
+    * Should only contain **alphabetic** characters (e.g. "华文" will not be accepted, since it is not alphabetic).
+    * The first letter will be capitalized and the remaining letters will be in lowercase  (e.g. "cHINESE" will be saved as "Chinese").
+* **`ENGLISH_PHRASE`** parameter
+    * Should not be longer than **100 characters**.
+    * Is not restricted to alphabetic characters only, but it is **recommended** that you ensure your input is a valid English input (e.g. you can use "こんにちは" as an English input).
+* **`FOREIGN_PHRASE`** parameter
+    * Should not be longer than **100 characters**.
+    * Should be distinguishable between flashcards with the same `FOREIGN_PHRASE` but with different `ENGLISH_PHRASE`. 
+      * [Slideshow mode](#slideshow-mode) will **only** display the `FOREIGN_PHRASE`, so to use the [`answer`](#answering-a-flashcard--answer) command correctly, you need to be able to distinguish between the `FOREIGN_PHRASE`.
 
 ### Adding a flashcard: `add`
 
@@ -196,43 +213,31 @@ Adds a flashcard to LingoGO!.
 
 Format: `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about adding flashcards:**<br>
-
-* `ENGLISH_PHRASE` and `FOREIGN_PHRASE` should not be longer than **100 characters**.
-  For optimal viewing experience, flashcard phrases should be kept as short as possible.
-  If your phrases are too long to be displayed, you can **increase the app's window size**.
-* `LANGUAGE` should not be longer than **50 characters**.
-* Make sure that you are able to distinguish between the different foreign phrases, otherwise the [`answer`](#answering-a-flashcard--answer) command in [Slideshow mode](#slideshow-mode) would not be beneficial for your testing of knowledge.
-
-</div>
-* `LANGUAGE` only allows alphabetic characters which will be **capitalized** when the flashcard is added (e.g. "CHINESE" will be saved as "Chinese").
-* `ENGLISH_PHRASE` is not restricted to alphabetic characters, it is **recommended** that users ensure that `ENGLISH_PHRASE` is a valid English input.
+* Adds a new flashcard if all the inputs satisfy the [flashcard format](#flashcard-format).
 
 Examples:
-* `add l/Chinese e/Good Morning f/早安`
+* `add l/Chinese e/Good Morning f/早安` adds a new flashcard with language, English phrase, and foreign phrase to be `Chinese`, `Good Morning`, `早安` to the bottom of the displayed flashcard list of [List mode](#list-mode).
 
 
 ### Answering a flashcard : `answer`
 
-Checks whether the English phrase of a flashcard matches the phrase you provide.
+Checks whether the answer you have provided correctly translates to the foreign phrase displayed in [Slideshow mode](#slideshow-mode).
 * This command can only be run in [Slideshow mode](#slideshow-mode).
 
 Format: `answer e/ENGLISH_PHRASE`
 
-* Checks the English phrase of the displayed flashcard against the `ENGLISH_PHRASE` you provide.
+* Checks the English phrase of the displayed foreign phrase in [Slideshow mode](#slideshow-mode) against the `ENGLISH_PHRASE` you provide.
 * The app will then show the correct English phrase and tell you whether you got it right.
 * `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello").
 * You can only answer a flashcard in [Slideshow mode](#slideshow-mode), and you can only answer it once.
 
 Examples:
-* `answer e/hello` checks the English phrase of the flashcard on display to see if `hello` matches it.
+* `answer e/hello` checks the English phrase of the foreign phrase on display (e.g. "你好") in [Slideshow mode](#slideshow-mode) to see if `hello` matches it.
 
 
 ### Clearing all flashcards : `clear`
 
-Clears all flashcards from LingoGO!.
+Deletes all flashcards from LingoGO!.
 * This command can only be run in [List mode](#list-mode).
 
 Format: `clear`
@@ -250,8 +255,8 @@ Format: `delete INDEX`
 * `INDEX` **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd flashcard in the displayed flashcard list of [List mode](#list-mode).
-* `find Hello` followed by `delete 1` deletes the 1st flashcard in the displayed flashcard list of [List mode](#list-mode), following the results of the `find` command.
+* `list` followed by `delete 2` lists all flashcard in the app in the displayed flashcard list of [List mode](#list-mode) and deletes the 2nd flashcard.
+* `find e/Hello` followed by `delete 1` lists flashcards matching with `ENGLISH_PHRASE` "hello" in the displayed flashcard list of [List mode](#list-mode) and then deletes the 1st flashcard in the displayed flashcard list of [List mode](#list-mode).
 
 
 ### Editing a flashcard : `edit`
@@ -266,21 +271,12 @@ Format: `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * **At least one** of the optional fields must be provided.
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about editing flashcards:**<br>
-
-* `ENGLISH_PHRASE` and `FOREIGN_PHRASE` should not be longer than **100 characters**.
-  For optimal viewing experience, flashcard phrases should be kept as short as possible.
-  If your phrases are too long to be displayed, you can **increase the app's window size**.
-
-</div>
 
 Examples:
-* `edit 1 l/German` Edits the language of the 1st flashcard in the displayed flashcard list of [List mode](#list-mode) to be `German`.
-* `edit 1 e/Good Morning` Edits the English phrase of the 1st flashcard in the displayed flashcard list of [List mode](#list-mode) to be `Good Morning`.
-* `edit 2 f/Guten Morgen` Edits the foreign phrase of the 2nd flashcard in the displayed flashcard list of [List mode](#list-mode) to be `Guten Morgen`.
-* `edit 2 l/German e/Good Morning f/Guten Morgen` Edits the language, English phrase, and foreign phrase of the 2nd flashcard in the displayed flashcard list of [List mode](#list-mode) to be `German`, `Good Morning`, and `Guten Morgen` respectively.
+* `edit 1 l/German` edits the language of the 1st flashcard in the displayed flashcard list of [List mode](#list-mode) to be `German`.
+* `edit 1 e/Good Morning` edits the English phrase of the 1st flashcard in the displayed flashcard list of [List mode](#list-mode) to be `Good Morning`.
+* `edit 2 f/Guten Morgen` edits the foreign phrase of the 2nd flashcard in the displayed flashcard list of [List mode](#list-mode) to be `Guten Morgen`.
+* `edit 2 l/German e/Good Morning f/Guten Morgen` edits the language, English phrase, and foreign phrase of the 2nd flashcard in the displayed flashcard list of [List mode](#list-mode) to be `German`, `Good Morning`, and `Guten Morgen` respectively.
 
 
 ### Exiting LingoGO! : `exit`
@@ -306,10 +302,10 @@ Format: `export CSV_FILE_NAME`
 * Provides a file name with a **.csv extension** in which the flashcards will be stored and exported.
 * If you want to export to a file that already exists in the *data* folder, ensure it is not opened elsewhere.
 * If you are exporting to a new file, the file will be added to the *data* folder (located in the same folder as the *lingogo.jar* file).
-* The CSV file will have **3 columns** in this order from left to right:
+* The CSV file will have **3 column headers** in this order from left to right:
   1. Language
-  1. Foreign phrase
-  1. English phrase
+  1. Foreign
+  1. English
 
 Examples:
 * `export myCards.csv` will save all cards in LingoGO! to a CSV file named `myCards.csv` located in the *data* folder mentioned above.
@@ -363,9 +359,9 @@ Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`
 * **At least one** of the optional fields must be provided.
 
 Examples:
-* `find e/HELLO` returns `e/Hello f/你好`
-* `find f/早` returns `e/Good Morning f/早安` and `e/Morning f/早晨`
-* `find e/Hello f/早` returns `e/Hello f/你好`, `e/Good Morning f/早安` and `e/Morning f/早晨`
+* `find e/HELLO` returns `e/Hello f/你好`.
+* `find f/早` returns `e/Good Morning f/早安` and `e/Morning f/早晨`.
+* `find e/Hello f/早` returns `e/Hello f/你好`, `e/Good Morning f/早安` and `e/Morning f/早晨`.
 
   ![find foreign keywords](images/findMixedKeywords.png)<br>
 
@@ -389,12 +385,15 @@ Imports flashcards from a CSV file and **adds** them to the existing list in Lin
 
 Format: `import CSV_FILE_NAME`
 
+Below is an example of how the CSV file might look like.
+![sample CSV file](images/SampleCSVFile.png)
+
 * Place the CSV file that you wish to import in the *data* folder
  (located in the same folder as the *lingogo.jar* file).
-* The CSV file must have **3 columns** in this order from left to right:
+* The CSV file must have **3 column headers** in this order from left to right (refer to sample CSV file above):
   1. Language
-  2. Foreign phrase
-  3. English phrase
+  2. Foreign
+  3. English
 * The headers in the CSV file are case-sensitive.
 
 <div markdown="block" class="alert alert-info">
@@ -408,9 +407,6 @@ LingoGO! will **not** import the flashcards
 * Please save the CSV file in the 'CSV UTF-8 (Comma-delimited)' file format in Excel before importing into LingoGO!
 ![Excel CSV UTF-8 save format screenshot](images/ExcelSaveScreenshot.png)
 </div>
-
-Below is an example of how the CSV file might look like.
-     ![sample CSV file](images/SampleCSVFile.png)
 
 Examples:
 * `import dictionary.csv` will add all flashcards stored in the CSV file dictionary.csv to LingoGO!.
@@ -464,19 +460,23 @@ Exits [Slideshow mode](#slideshow-mode) and returns to [List mode](#list-mode).
 Format: `stop`
 
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Data
 
 ### Saving the data
 
-LingoGO!'s data is saved in the hard disk automatically after any command that changes its data. There is no need to save manually.
+LingoGO!'s data is saved in the hard disk automatically after any command. There is no need to save manually.
 
 ### Editing the data file
 
 LingoGO!'s data is saved as a JSON file at `{JAR file location}/data/lingogo.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-<br> 1. If your changes to the data file makes its format invalid, LingoGO! will discard all data and start with an empty data file on the next run.
-<br> 2. Some changes to the JSON file, such as the adding of extraneous JSON fields, may be ignored and overwritten upon the next LingoGO! command.
+
+<div markdown="block" class="alert alert-warning">
+**exclamation: Caution:**<br> 
+1. If your changes to the data file makes its format invalid, LingoGO! will discard all data and start with an empty data file on the next run.<br>
+2. Some changes to the JSON file, such as the adding of extraneous JSON fields, may be ignored and overwritten upon the next LingoGO! command.
 </div>
 
 
@@ -489,6 +489,8 @@ A CSV file, short for comma-separated values, is a special text file that uses c
 
 ### GUI
 A GUI, short for graphical user interface, is a visual display through which users can interact with the application.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
