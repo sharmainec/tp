@@ -517,7 +517,7 @@ University students
 
 ## Appendix C: Use Cases
 
-Below is a use case diagram summarizing the main use cases of the app.
+Below is a *use case diagram* summarizing the **main use cases** of the app. Note that this diagram does not show all use cases, and does not contain the full details of each use case.
 
 ![Use Case Diagram](images/UseCaseDiagram.png)
 
