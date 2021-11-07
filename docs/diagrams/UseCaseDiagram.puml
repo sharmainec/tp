@@ -12,9 +12,9 @@ package System {
   usecase "Filter flashcards" as UC7
   usecase "Import flashcards" as UC8
   usecase "Export flashcards" as UC9
-  usecase "Shows an error message" as UC10
-  usecase "Shows a warning message" as UC11
-  usecase "Creates a new file" as UC12
+  usecase "Request is invalid" as UC10
+  usecase "LingoGO! already contains\n all the flashcards" as UC11
+  usecase "Overwrite the file's contents" as UC12
   usecase "Getting help" as UC13
 }
 
@@ -32,10 +32,9 @@ UC2 <.. UC10 : <<Extends>>
 UC3 <.. UC10 : <<Extends>>
 UC4 <.. UC10 : <<Extends>>
 UC5 <.. UC10 : <<Extends>>
-UC6 <.. UC10 : <<Extends>>
 UC7 <.. UC10 : <<Extends>>
 UC8 <.. UC10 : <<Extends>>
 UC8 <.. UC11 : <<Extends>>
-UC9 <.. UC11 : <<Extends>>
+UC9 <.. UC10 : <<Extends>>
 UC9 <.. UC12 : <<Extends>>
 @enduml
