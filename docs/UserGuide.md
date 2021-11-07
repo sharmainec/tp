@@ -12,7 +12,8 @@ title: User Guide
 
 LingoGO! is a **desktop app** for **university students who use English as their first language** and are trying to **learn a
 new language**. Founded on the widely established learning technique of **spaced-repetition**, LingoGO! takes all the
-benefits of pen-and-paper flashcards in learning, and brings them to the next level with our **powerful indexing** and **sharing
+benefits of pen-and-paper flashcards in learning, and brings them to the next level with our **powerful search** and 
+**sharing
 features** -- *without the hassle* of managing actual physical ones. Coupled with our unique **Command Line Interface (CLI)** and
 an elegant **Graphical User Interface (GUI)** to accompany it, LingoGO! is sure to delight you, and empower you on your
 journey in mastering the new language you *have always wanted*.
@@ -83,7 +84,9 @@ you will see the following [GUI](#gui) with some sample flashcards.
 Before diving into the specific commands, let's have an overview of the different modes in LingoGO!.
 
 LingoGO! has two main modes, [List mode](#list-mode) and [Slideshow mode](#slideshow-mode), through which users can interact with
-the application. At a high level, List mode provides an intuitive table overview to manage flashcards with our powerful and flexible indexing features. In contrast, Slideshow mode allows users to test their knowledge on selected flashcards one by one in a questionnaire-style interface while retaining the feel and look of traditional flashcards.
+the application. At a high level, List mode provides an intuitive table overview to manage flashcards with our 
+powerful and flexible search features. In contrast, Slideshow mode allows users to test their knowledge on selected 
+flashcards one by one in a questionnaire-style interface while retaining the feel and look of traditional flashcards.
 
 The following two sections will describe these modes in further detail.
 
@@ -99,10 +102,15 @@ List mode lets you [`add`](#adding-a-flashcard-add), [`delete`](#deleting-a-flas
 [`edit`](#editing-a-flashcard--edit), [`import`](#importing-flashcards--import), and [`export`](#exporting-flashcards--export)
 flashcards.
 
-List mode also lets you choose what flashcards to display. The displayed flashcards
-will be the flashcards you get tested on when you switch to [Slideshow mode](#slideshow-mode).
-You can use the [`list`](#listing-flashcards--list), [`filter`](#filtering-flashcards-by-conditions-filter), or
-[`find`](#locating-flashcards-by-keywords-find) command to choose which flashcards to display.
+Sometimes, you may also want to search for specific flashcards among all your saved flashcards. List mode allows you to 
+do this easily using the [`list`](#listing-flashcards--list), [`filter`](#filtering-flashcards-by-conditions-filter),
+and [`find`](#locating-flashcards-by-keywords-find) commands.
+
+The [`list`](#listing-flashcards--list), [`filter`](#filtering-flashcards-by-conditions-filter),
+and [`find`](#locating-flashcards-by-keywords-find) commands also serve as the means to select which flashcards to 
+display. This is useful for your practice sessions as the displayed flashcards will be the 
+flashcards you get tested on when you switch to [Slideshow mode](#slideshow-mode).
+
 
 ### Slideshow mode
 
@@ -110,10 +118,15 @@ Below is an example of what LingoGO! looks like in Slideshow mode.
 
 ![Slideshow](images/Slideshow.png)
 
-Slideshow mode tests your knowledge by showing you flashcards one at a time. The flashcards shown to you are the ones
-displayed in [List mode](#list-mode).
+Once you have selected your flashcards using the [`list`](#listing-flashcards--list), [`filter`](#filtering-flashcards-by-conditions-filter), or
+[`find`](#locating-flashcards-by-keywords-find) commands in [List mode](#list-mode), you may proceed to test your 
+knowledge with them by entering Slideshow mode.
 
-To enter and exit Slideshow mode, use the [`slideshow`](#testing-with-a-set-of-flashcards--slideshow) and [`stop`](#exiting-slideshow-mode-stop) commands respectively.
+Slideshow mode brings the most out of your practice session by allowing you to focus on one
+flashcard at a time.
+
+To enter Slideshow mode, use the [`slideshow`](#testing-with-a-set-of-flashcards--slideshow) command. Once you are 
+done practicing, you may exit Slideshow mode using the [`stop`](#exiting-slideshow-mode-stop) command.
 
 In Slideshow mode, you can:
 * Move to [`next`](#moving-to-the-next-flashcard-in-slideshow-mode--next) or
@@ -132,17 +145,32 @@ In Slideshow mode, you can:
 
 ## Commands
 
-The following section gives an in-depth overview of each command in the application, and provides some examples on their usages.
+The following section gives an in-depth overview of each command in LingoGO! and provides some examples on 
+their usages. If you are a new user, you may also want to refer to the [Notes about the command format](#notes-about-the-command-format)
+below for an overview on how LingoGO!'s commands work.
 
-<div markdown="block" class="alert alert-info">
+### Notes about the command format
+This section aims to provide users with a quick overview on how LingoGO!'s commands work.
+* Each command always starts with a command word such as `add` or `find` and may come with extra parameters that 
+  need to be filled up. An example of a command without any extra parameters is `clear`. An example of a 
+  command with extra parameters is `edit INDEX 
+  [l/LANGUAGE] 
+  [e/ENGLISH_PHRASE] 
+  [f/FOREIGN_PHRASE]`.
 
-**:information_source: Notes about the command format:**<br>
-
-* The command words and prefixes are case-sensitive.
-  * e.g. `clEar` will not be accepted for the `clear` command
-
+* Certain prefixes have been reserved for use by LingoGO!'s commands. Prefixes are used by LingoGO! to identify 
+  the type of input the user is giving. All command prefixes and their associated input types are as listed below:
+  * `e/` for English Phrase.
+  * `f/` for Foreign Phrase.
+  * `i/` for Index/Indices.
+  * `l/` for Language.
+  * `r/` for Index Range.
+  
 * Words in `UPPER_CASE` are parameters to be supplied by you.
   * e.g. a usage of `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` could be `add l/Chinese e/Good Morning f/早安`.
+  
+* The command words and prefixes are case-sensitive.
+  * e.g. `clEar` will not be accepted for the `clear` command.
 
 * Items in square brackets are optional.
   * e.g. `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or `edit 1 e/Good Morning`.
@@ -150,13 +178,12 @@ The following section gives an in-depth overview of each command in the applicat
 * Parameters can be in any order.
   * e.g. if the command specifies `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`, `add f/FOREIGN_PHRASE l/LANGUAGE e/ENGLISH_PHRASE` is also acceptable.
 
-* If a parameter is expected only once, but you specified it multiple times, only the last occurrence will be taken.
+* If a command is given with parameters of repeated prefixes only the last occurrence will be taken.
   * e.g. `edit 2 e/Hi e/Hello` is the same as `edit 2 e/Hello`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help` and `clear`) will be ignored.
   * e.g. `help 123` is the same as `help`.
 
-</div>
 
 
 ### Adding a flashcard: `add`
