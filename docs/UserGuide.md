@@ -35,7 +35,7 @@ Detailed information about these features can be found under the [Modes](#modes)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Purpose of the user guide
-This user guide aims to help users familiarise themselves with the commands of LingoGO! and use the application effectively.
+This user guide aims to help users familiarize themselves with the commands of LingoGO! and use the application effectively.
 
 ## How to use the user guide
 * A [Table of Contents](#table-of-contents) with clickable links can be found above to help with navigating across the user guide quickly.

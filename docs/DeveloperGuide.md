@@ -360,7 +360,7 @@ The sequence diagram below illustrates the execution of `ListCommand`.
 
 **Aspect: Generating list of flashcards:**
 
-* **Alternative 1 (current choice):** Randomise the list of flashcards
+* **Alternative 1 (current choice):** Randomize the list of flashcards
     * Pros: Users are able to use flashcards more effectively.
     * Cons: Harder to implement and needs a random stream of `Index`.
 
@@ -452,14 +452,14 @@ University students
 ### Value proposition
 
 * Fast way to generate flashcards to learn new languages.
-* Help students memorise words when learning a new language.
+* Help students memorize words when learning a new language.
 * Gamified features such as recording of scores and tracking of improvements to make learning engaging and encourage continued usage.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix B: User Stories
 
-**Categories:** Usage pattern, user behaviours, general user, multiple language user, user learning style, user learning 'rate', level of experience, user collaboration<br>
+**Categories:** Usage pattern, user behaviors, general user, multiple language user, user learning style, user learning 'rate', level of experience, user collaboration<br>
 **Priorities:** High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
@@ -471,13 +471,13 @@ University students
 |***| General user | user | be able to list my flashcards |
 |***| General user | user | be able to test myself and view my performance using flashcards |
 |***| General user | user | be able to update my flashcards |
-|***| User behaviours | lazy user | automatically generate cards by typing in the vocabulary | don't have to spend time manually creating cards
+|***| User behaviors | lazy user | automatically generate cards by typing in the vocabulary | don't have to spend time manually creating cards
 |**| Level of experience | experienced user | be able to delete multiple flashcards that are no longer relevant to me (multi-delete function) |
 |**| Level of experience | new user | have a basic set of flashcards available from the get go | can reduce the setup time or reduce the need for setup
 |**| Multiple language user | user who is learning multiple languages | be able to combine flashcards of the same question in different languages | can test myself in all the languages that I have learnt in one go
-|**| Usage patterns | frequent user | be able to jumble up my flashcards | am really testing my vocabulary instead of just memorising without really knowing the vocabulary
+|**| Usage patterns | frequent user | be able to jumble up my flashcards | am really testing my vocabulary instead of just memorizing without really knowing the vocabulary
 |**| User collaboration | helpful user | be able to export and share my flashcards with my friends | can help them save time in generating their own set of flashcards (and they can help me too!)
-|*| General user | user | be able to tag my flashcards under the categories I specify (e.g. easy, medium, for fun, nouns, etc.) | organise my flashcards easily
+|*| General user | user | be able to tag my flashcards under the categories I specify (e.g. easy, medium, for fun, nouns, etc.) | organize my flashcards easily
 |*| General user | user | see the summary statistics over a period of time | can track my progress
 |*| General user | user | use the app in another language |
 |*| Level of experience | expert user | be able to set up questions in batches | can prepare flashcards faster
@@ -489,11 +489,11 @@ University students
 |*| Usage patterns | active user with hundred of cards already made | be automatically given a list of cards to test my memory | can efficiently expand my vocabulary
 |*| Usage patterns | forgetful user (who forgets about LingoGO!) | be reminded about using flashcards | can be actively learning new vocabularies instead of just cramming them at the last minute
 |*| Usage patterns | frequent user | be able to load up cards done x days ago | can test my memory retention of the words I learned that day
-|*| User behaviours | mobile user | be able to access my cards wherever I am, on the go |
-|*| User behaviours | organised user (who prepares flashcards based on languages) | I want to be able to combine different decks of flashcards | can prepare for my major exams (eg. mid-terms, finals)
-|*| User behaviours | user who learns better when things are in hardcopy | have a convenient way to print out the flashcards | do not have to manually format the card design
-|*| User behaviours | user who seeks improvement | see the progress made in terms of scores | can visualize my improvement
-|*| User collaboration | competitive user | be able to compete with my friends based on how fast and how mnay flashcards we can get correct | will be more motivated to learn
+|*| User behaviors | mobile user | be able to access my cards wherever I am, on the go |
+|*| User behaviors | organized user (who prepares flashcards based on languages) | I want to be able to combine different decks of flashcards | can prepare for my major exams (eg. mid-terms, finals)
+|*| User behaviors | user who learns better when things are in hard copy | have a convenient way to print out the flashcards | do not have to manually format the card design
+|*| User behaviors | user who seeks improvement | see the progress made in terms of scores | can visualize my improvement
+|*| User collaboration | competitive user | be able to compete with my friends based on how fast and how many flashcards we can get correct | will be more motivated to learn
 |*| User learning 'rate' | slow/fast learner | adjust the frequency at which the cards will be tested | can better suit my pace of learning
 |*| User learning 'rate' | slow learner | have cards with words I don't remember to be shown more often to reinforce my learning |
 |*| User learning style | auditory user | hear the vocabulary that I stored in the flashcard | can better memorize the words by sound
@@ -917,7 +917,7 @@ The `data` directory in this section refers to the directory named `data` which 
 1. Export successfully overwrites existing file content.
     1. Prerequisites: An empty file named `file.csv` should already exist in the `data` directory.
     1. Test case: `export file.csv`<br>
-       Expected: The contents of `file.csv` have been overwriten to contain the flashcard data as per the previous test cases.
+       Expected: The contents of `file.csv` have been overwritten to contain the flashcard data as per the previous test cases.
 
 ### Importing flashcards from CSV file
 The `data` directory in this section refers to the directory named `data` which is located in the same directory as the jar file to be tested.
