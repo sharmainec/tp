@@ -149,10 +149,10 @@ Once you are done practicing, you may exit Slideshow mode using the [`stop`](#ex
 ## Commands
 
 The following section gives an in-depth overview of each command in LingoGO! and provides some examples on 
-their usages. If you are a new user, you may also want to refer to the [Command Format](#command-format) section
-below for a breakdown on LingoGO!'s command format.
+their usages. If you are a new user, you may also want to refer to the [Command format](#command-format) and 
+[Flashcard format](#flashcard-format) sections below for a breakdown on LingoGO!'s command and flashcard formats.
 
-### Command Format
+### Command format
 This section aims to provide you with a quick breakdown on LingoGO!'s command format.
 
 
@@ -188,13 +188,14 @@ This section aims to provide you with a quick breakdown on LingoGO!'s command fo
   * Extraneous parameters for commands that do not take in parameters (such as `help` and `clear`) will be ignored.
     * e.g. `help 123` is the same as `help`.
 
-### Flashcard Format
+### Flashcard format
 This section aims to provide you with a quick breakdown on LingoGO!'s flashcard format.
 
 * **`LANGUAGE` parameter**
     * Should not be longer than **50 characters**.
     * Should only contain **alphabetic** characters (e.g. "华文" will not be accepted, since it is not alphabetic).
-    * The first letter will be capitalized and the remaining letters will be in lowercase  (e.g. "cHINESE" will be saved as "Chinese").
+    * The first letter of each word will be capitalized and the remaining letters will be in lowercase  (
+      "behasa mElayu" will be saved as "Behasa Melayu").
 * **`ENGLISH_PHRASE` parameter**
     * Should not be longer than **100 characters**.
     * Is not restricted to alphabetic characters only, but it is **recommended** that you ensure your input is a valid English input (e.g. you can use "こんにちは" as an English input).
@@ -219,7 +220,7 @@ Adds a flashcard to LingoGO!.
 
 Format: `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
 
-* Adds a new flashcard if all the inputs satisfy the [flashcard format](#flashcard-format).
+* Adds a new flashcard if all the inputs satisfy the [Flashcard format](#flashcard-format).
 
 Examples:
 * `add l/Chinese e/Good Morning f/早安` adds a new flashcard with language, English phrase, and foreign phrase to be `Chinese`, `Good Morning`, `早安` to the bottom of the displayed flashcard list of [List mode](#list-mode).
@@ -272,7 +273,7 @@ Edits an existing flashcard in LingoGO!.
 
 Format: `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 
-* Edits the flashcard at the specified `INDEX`.
+* Edits the flashcard at the specified `INDEX` if all given inputs satisfy the [Flashcard format](#flashcard-format).
 * `INDEX` refers to the index number of the flashcard shown in [List mode](#list-mode).
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * **At least one** of the optional fields must be provided.

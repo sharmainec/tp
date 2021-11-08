@@ -45,16 +45,16 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
     the JSON data file.
   * Such alerts help users to troubleshoot against unintended data file changes.
 * **<u>User Guide Documentation</u>**
-  1. **Command Format**:
+  1. **Command format**:
   * PR(s): [\#225](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/225)
-  * Adapted the _Notes about the command format_ section into a fully fledged out _Command Format_ section to give a 
+  * Adapted the _Notes about the command format_ section into a fully fledged out _Command format_ section to give a 
     detailed breakdown on how LingoGO!'s commands are formatted.
-  1. **Command Usage**
+  1. **Command usage**
   * PR(s): [\#36](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/36), [\#107](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/107),
     [\#130](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/130)
   * Updated the User Guide for the `filter`, `flip` (deprecated) and `test` (deprecated) commands. 
 * **<u>Developer Guide Documentation</u>**
-  1. **Overall Design: Storage component**:
+  1. **Overall design: Storage component**:
   * PR(s): [\#116](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/116/commits)
   * Updated overall description of the Storage component.
   * Updated UML class diagram for Storage component.
