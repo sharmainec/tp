@@ -36,7 +36,7 @@ Detailed information about these features can be found under the [Modes](#modes)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Purpose of the user guide
-This user guide aims to help you familiarize themselves with the commands of LingoGO! and use the application effectively.
+This user guide aims to familiarize you with the commands of LingoGO! and to use the application effectively.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -165,8 +165,7 @@ This section aims to provide you with a quick breakdown on LingoGO!'s command fo
     * e.g. `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` is an example of a command that comes with details 
       that need to be given by you.
 * **Prefixes**
-  * Certain prefixes have been reserved for use by LingoGO!'s commands. Prefixes are used by LingoGO! to identify the
-    parameter types of input given by you. 
+  * Certain prefixes have been reserved for use by LingoGO!'s commands. Prefixes are used by LingoGO! to identify your inputs. 
     * e.g. LingoGO! will interpret `l/Tamil` as a Language called `Tamil`.
   * All command prefixes and their associated parameter types are as listed below:
     * `e/` for English Phrase.
@@ -190,7 +189,7 @@ This section aims to provide you with a quick breakdown on LingoGO!'s command fo
     * e.g. `help 123` is the same as `help`.
 
 ### Flashcard Format
-This section aims to provide you with a quick breakdown on LingoGO!'s flashcard format. Flashcards with the same `LANGUAGE`, `ENGLISH_PHRASE` and `FOREIGN_PHRASE` will be considered as duplicated flashcards and only one copy of the flashcard can exist in LingoGO!.
+This section aims to provide you with a quick breakdown on LingoGO!'s flashcard format. Flashcards with the same `LANGUAGE`, `ENGLISH_PHRASE` and `FOREIGN_PHRASE` will be considered as a duplicated flashcard and only one copy of the flashcard can exist in LingoGO!.
 
 
 * **`LANGUAGE` parameter**
