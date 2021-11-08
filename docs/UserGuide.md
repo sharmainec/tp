@@ -203,7 +203,7 @@ This section aims to provide you with a quick breakdown on LingoGO!'s flashcard 
 * **`FOREIGN_PHRASE`** parameter
     * Should not be longer than **100 characters**.
     * Should be distinguishable between flashcards with the same `FOREIGN_PHRASE` but with different `ENGLISH_PHRASE`. 
-      * [Slideshow mode](#slideshow-mode) will **only** display the `FOREIGN_PHRASE`, so to use the [`answer`](#answering-a-flashcard-answer) command correctly, you need to be able to distinguish between the `FOREIGN_PHRASE`.
+    * [Slideshow mode](#slideshow-mode) will **only** display the `FOREIGN_PHRASE`, so to use the [`answer`](#answering-a-flashcard-answer) command correctly, you need to be able to distinguish between the `FOREIGN_PHRASE`.
 
 ### Adding a flashcard: `add`
 
@@ -381,7 +381,7 @@ Format: `help`
 ### Importing flashcards: `import`
 
 Imports flashcards from a CSV file and **adds** them to the existing list in LingoGO!
-(instead of replacing the current list)
+(instead of replacing the current list).
 * This command can only be run in [List mode](#list-mode).
 
 Format: `import CSV_FILE_NAME`
@@ -400,17 +400,17 @@ Below is an example of how the CSV file might look like.
 <div markdown="block" class="alert alert-info">
 **:information_source: Importing invalid CSV file:**<br>
 * If any of the above required information in the CSV file is invalid or missing,
-LingoGO! will **not** import the flashcards
+LingoGO! will **not** import the flashcards.
 </div>
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about importing CSV files made with Microsoft Excel:**<br>
-* Please save the CSV file in the 'CSV UTF-8 (Comma-delimited)' file format in Excel before importing into LingoGO!
+* Please save the CSV file in the 'CSV UTF-8 (Comma-delimited)' file format in Excel before importing into LingoGO!.
 ![Excel CSV UTF-8 save format screenshot](images/ExcelSaveScreenshot.png)
 </div>
 
 Examples:
-* `import dictionary.csv` will add all flashcards stored in the CSV file dictionary.csv to LingoGO!.
+* `import dictionary.csv` will add all flashcards stored in the CSV file `dictionary.csv` to LingoGO!.
 
 
 ### Listing flashcards: `list`
@@ -420,13 +420,13 @@ Shows a list of flashcards in LingoGO!.
 
 Format: `list [NUMBER_OF_FLASHCARDS]`
 
-* Lists flashcards in LingoGO!
-* If `[NUMBER_OF_FLASHCARDS]` is provided, randomly select `[NUMBER_OF_FLASHCARDS]` flashcards from the entire application to be shown in [List mode](#list-mode)
+* Lists flashcards in LingoGO!.
+* If `[NUMBER_OF_FLASHCARDS]` is provided, randomly select `[NUMBER_OF_FLASHCARDS]` flashcards from the entire application to be shown in [List mode](#list-mode).
 * The `[NUMBER_OF_FLASHCARDS]` **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` returns all flashcards in LingoGO!.
-* `list 3` returns 3 randomly selected flashcards in LingoGO!
+* `list 3` returns 3 randomly selected flashcards in LingoGO!.
 
 
 ### Moving to the next flashcard in Slideshow mode: `next`
@@ -464,6 +464,7 @@ Format: `stop`
 --------------------------------------------------------------------------------------------------------------------
 
 ## Data
+This section addresses how LingoGO! handles data.
 
 ### Saving the data
 
@@ -475,7 +476,7 @@ LingoGO!'s data is saved as a JSON file at `{JAR file location}/data/lingogo.jso
 
 
 <div markdown="block" class="alert alert-warning">
-**exclamation: Caution:**<br> 
+**:exclamation: Caution:**<br> 
 1. If your changes to the data file makes its format invalid, LingoGO! will discard all data and start with an empty data file on the next run.<br>
 2. Some changes to the JSON file, such as the adding of extraneous JSON fields, may be ignored and overwritten upon the next LingoGO! command.
 </div>
@@ -484,6 +485,7 @@ LingoGO!'s data is saved as a JSON file at `{JAR file location}/data/lingogo.jso
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
+This section gives you a very quick definition of the terms used in this user guide.
 
 ### CSV
 A CSV file, short for comma-separated values, is a special text file that uses commas for formatting.
