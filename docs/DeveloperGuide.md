@@ -26,6 +26,7 @@ LingoGO! currently supports **all languages that can be represented on your comp
 Detailed information about these features can be found under the [Modes](UserGuide.html#modes) and [Commands](UserGuide.html#commands) sections in the user guide.
 
 <hr/>
+<div style="page-break-after: always;"></div>
 
 <h2 id="table-of-contents">Table of Contents</h2>
 
@@ -33,6 +34,7 @@ Detailed information about these features can be found under the [Modes](UserGui
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Purpose of the developer guide
 
@@ -65,6 +67,7 @@ This project was originally adapted from [AddressBook-Level3 (AB3)](https://se-e
 Third party libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [OpenCSV](http://opencsv.sourceforge.net/)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Guides, Tools, and Standards
 
@@ -95,6 +98,7 @@ Refer to the [Configuration guide](Configuration.md).
 Refer to the [DevOps guide](DevOps.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Overall Design
 
@@ -152,6 +156,8 @@ We can see an illustration of this in the (partial) *Class Diagram* below.
 
 The sections below give more details on each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 **API** : [`Ui.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/ui/Ui.java)
@@ -176,6 +182,8 @@ The `UI` component:
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * Depends on some classes in the `Model` component, as it displays `Flashcard` objects residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -206,6 +214,8 @@ How the parsing works:
 * `XYZCommandParser` uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g. `AddCommand`) which the `FlashcardAppParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible (e.g. during testing).
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-T11-2/tp/blob/master/src/main/java/lingogo/model/Model.java)
@@ -223,6 +233,8 @@ The `Model` component:
 * Stores the slideshow app data i.e., all `Flashcard` objects in the slideshow (which are contained in a `Slideshow` object). This is exposed as a `ReadOnlySlideshowApp` object.
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed as a `ReadOnlyUserPref` object.
 * Does not depend on any of the other three components (as the `Model` represents data entities of the domain, it should make sense on its own without depending on other components).
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -243,7 +255,7 @@ The `Storage` component:
 
 Classes used by multiple components are in the `lingogo.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Feature Implementation
 
@@ -304,6 +316,8 @@ The following *Sequence Diagrams* show how the `filter` command works:
     * Cons: There is a need for multiple constructors to handle optional user inputs due to a lack of set-variable
       methods. Furthermore `FilterCommandParser` may become needlessly complex.
 
+<div style="page-break-after: always;"></div>
+
 ### Export feature
 
 #### Implementation
@@ -315,6 +329,8 @@ The following *Sequence Diagrams* show how the `export` command works:
 [![](images/ExportSequenceDiagram.png)](images/ExportSequenceDiagram.png)
 
 ![ExportToCsvReferenceSequenceDiagram](images/ExportToCsvReferenceSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Import feature
 
@@ -328,6 +344,8 @@ The following *Sequence Diagrams* show how the `import` command works:
 [![](images/ImportSequenceDiagram.png)](images/ImportSequenceDiagram.png)
 
 ![ImportFromCsvFileReferenceSequenceDiagram](images/ImportFromCsvFileReferenceSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Find feature
 
@@ -354,6 +372,7 @@ The following *Sequence diagram* shows how the `find` command works:
   * Pros: Only exact match will be output, user will only see flashcards that are exactly the keyword.
   * Cons: Too restrictive, will not output phrases that contains more than the keyword.
 
+<div style="page-break-after: always;"></div>
 
 ### List feature
 
@@ -378,6 +397,8 @@ The following *Sequence diagram* shows how the `list` command works:
 * **Alternative 2:** Output list up to `n`.
     * Pros: Easy to implement.
     * Cons: Does not add value to the user's learning experience.
+
+<div style="page-break-after: always;"></div>
 
 ### Slideshow feature
 
@@ -425,22 +446,29 @@ Below is a code snippet on how this is implemented in `FlashcardListPanel.java`.
 
 {% highlight java %}
 readOnlySlideshowApp.isActiveProperty().addListener(new ChangeListener<>() {
-   @Override
-   public void changed(ObservableValue<? extends Boolean> o, Boolean oldVal, Boolean newVal) {
-         if (newVal.booleanValue()) {
-            assert !flashcardListPanel.getChildren().contains(slideshowPanel.getRoot())
-                     : "FlashcardListPanel.java: Slideshow already being displayed";
-            flashcardListPanel.getChildren().add(slideshowPanel.getRoot());
-         } else {
-            assert flashcardListPanel.getChildren().contains(slideshowPanel.getRoot())
-                     : "FlashcardListPanel.java: No slideshow to exit from";
-            flashcardListPanel.getChildren().remove(slideshowPanel.getRoot());
-         }
-   }
+  @Override
+  public void changed(ObservableValue<? extends Boolean> o,
+    Boolean oldVal, Boolean newVal) {
+      if (newVal.booleanValue()) {
+        assert !flashcardListPanel
+                .getChildren()
+                .contains(slideshowPanel.getRoot())
+                : "FlashcardListPanel.java: Slideshow already being displayed";
+        flashcardListPanel.getChildren().add(slideshowPanel.getRoot());
+      } else {
+        assert flashcardListPanel
+                .getChildren()
+                .contains(slideshowPanel.getRoot())
+                : "FlashcardListPanel.java: No slideshow to exit from";
+        flashcardListPanel.getChildren().remove(slideshowPanel.getRoot());
+      }
+  }
 });
 {% endhighlight %}
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix A: Product Scope
 
@@ -457,6 +485,8 @@ University students
 * Provide a focused environment for students to efficiently train their memory.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix B: User Stories
 
@@ -503,6 +533,8 @@ University students
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix C: Use Cases
 
@@ -625,6 +657,8 @@ For further details about each use case, see below. For all use cases below, the
   * 2a1. LingoGO! informs user that their request is invalid.
 
     Use case resumes from step 2.
+
+<div style="page-break-after: always;"></div>
 
 ### Use case: UC08 - Import flashcards
 
@@ -764,6 +798,7 @@ For further details about each use case, see below. For all use cases below, the
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 
 ## Appendix D: Non-Functional Requirements
 
@@ -781,6 +816,8 @@ For further details about each use case, see below. For all use cases below, the
   along with a hidden translation.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix F: Instructions for Manual Testing
 
@@ -946,6 +983,8 @@ The `data` directory in this section refers to the directory named `data` which 
     1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide.html#importing-flashcards-import).
     1. Test case: `import file.csv`<br>
        Expected: The command result informs the user that the headers in the CSV file are not in the correct format.
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix G: Proposed future features
 
