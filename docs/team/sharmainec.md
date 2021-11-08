@@ -29,14 +29,14 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
      * Updated the color scheme to white and blue.
   4. **Flip feature** *(deprecated)*
      * PR(s): [\#81](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/81).
-     * Added flip to toggle between English and foreign phrase.
+     * Added flip to toggle between the English phrase and foreign phrase of the selected flashcard.
      * Wrote tests for flip command.
 
 * **<u>User Guide Documentation</u>**
   1. **Command Usage**
      * PR(s): [\#104](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/104/), [\#108](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/108),  [\#140](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/140), [\#200](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/200), [\#229](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/229).
      * Updated the User Guide for `find` and `list` commands.
-     * Added a section for Flashcard Formats.
+     * Added a section for Flashcard format.
   2. **Screenshots and Overall Flow**
      * PR(s): [\#54](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/54), [\#229](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/229).
      * Updated screenshots for `filter` and `find` examples.
