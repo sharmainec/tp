@@ -194,8 +194,8 @@ This section aims to provide you with a quick breakdown on LingoGO!'s flashcard 
 * **`LANGUAGE` parameter**
     * Should not be longer than **50 characters**.
     * Should only contain **alphabetic** characters (e.g. "华文" will not be accepted, since it is not alphabetic).
-    * The first letter of each word will be capitalized and the remaining letters will be in lowercase  (
-      "behasa mElayu" will be saved as "Behasa Melayu").
+    * The first letter of each word will be capitalized and the remaining letters will be in lowercase (e.g. "behasa 
+      mElayu" will be saved as "Behasa Melayu").
 * **`ENGLISH_PHRASE` parameter**
     * Should not be longer than **100 characters**.
     * Is not restricted to alphabetic characters only, but it is **recommended** that you ensure your input is a valid English input (e.g. you can use "こんにちは" as an English input).
