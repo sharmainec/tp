@@ -27,13 +27,13 @@ LingoGO! currently supports **all languages that can be represented on your comp
 Detailed information about these features can be found under the [Modes](#modes) and [Commands](#commands) sections in this user guide.
 
 <hr/>
-
+<div style="page-break-after: always;"></div>
 <h2 id="table-of-contents">Table of Contents</h2>
 
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Purpose of the user guide
 This user guide aims to familiarize you with the commands of LingoGO! and to use the application effectively.
@@ -49,6 +49,7 @@ This user guide aims to familiarize you with the commands of LingoGO! and to use
 * A [Glossary](#glossary) is provided to help explain certain important terms used in this guide.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -80,6 +81,7 @@ you will see the following [GUI](#gui) with some sample flashcards.
      * Shows a list of your flashcards.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Modes
 
@@ -91,6 +93,7 @@ powerful and flexible search features. In contrast, Slideshow mode allows you to
 flashcards one by one in a questionnaire-style interface while retaining the look and feel of traditional flashcards.
 
 The following two sections will describe these modes in further detail.
+<div style="page-break-after: always;"></div>
 
 ### List mode
 
@@ -112,7 +115,7 @@ The [`list`](#listing-flashcards-list), [`filter`](#filtering-flashcards-by-cond
 and [`find`](#locating-flashcards-by-keywords-find) commands also serve as the means to select which flashcards to 
 display. This is useful for your practice sessions as the displayed flashcards will be the 
 flashcards you get tested on when you switch to [Slideshow mode](#slideshow-mode).
-
+<div style="page-break-after: always;"></div>
 
 ### Slideshow mode
 
@@ -145,12 +148,13 @@ Once you are done practicing, you may exit Slideshow mode using the [`stop`](#ex
 </div>
 
 <hr/>
-
+<div style="page-break-after: always;"></div>
 ## Commands
 
 The following section gives an in-depth overview of each command in LingoGO! and provides some examples on 
 their usages. If you are a new user, you may also want to refer to the [Command format](#command-format) and 
 [Flashcard format](#flashcard-format) sections below for a breakdown on LingoGO!'s command and flashcard formats.
+<div style="page-break-after: always;"></div>
 
 ### Command format
 This section aims to provide you with a quick breakdown on LingoGO!'s command format.
@@ -161,7 +165,7 @@ This section aims to provide you with a quick breakdown on LingoGO!'s command fo
   * Command words are case-sensitive.
     * e.g. `clEar` will not be accepted for the `clear` command.
   * Along with command words, commands may come with extra details that need to be filled up. 
-    * e.g. `clear` is an example of a command that is used with just the command word alone. 
+    * e.g. `clear` is an example of a command used with just the command word alone. 
     * e.g. `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` is an example of a command that comes with details 
       that need to be provided by you.
 * **Prefixes**
@@ -187,6 +191,7 @@ This section aims to provide you with a quick breakdown on LingoGO!'s command fo
     * e.g. `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or `edit 1 e/Good Morning`.
   * Extraneous parameters for commands that do not take in parameters (such as `help` and `clear`) will be ignored.
     * e.g. `help 123` is the same as `help`.
+<div style="page-break-after: always;"></div>
 
 ### Flashcard format
 This section aims to provide you with a quick breakdown on LingoGO!'s flashcard format.
@@ -210,7 +215,7 @@ This section aims to provide you with a quick breakdown on LingoGO!'s flashcard 
 * LingoGO! **does not allow** you to have **duplicate flashcards** (duplicate flashcards are flashcards containing the same `LANGUAGE`, `ENGLISH_PHRASE`, and `FOREIGN_PHRASE`).
 
 </div>
-
+<div style="page-break-after: always;"></div>
 
 ### Adding a flashcard: `add`
 
@@ -240,7 +245,7 @@ Format: `answer e/ENGLISH_PHRASE`
 
 Examples:
 * `answer e/hello` checks the English phrase of the foreign phrase on display (e.g. "你好") in [Slideshow mode](#slideshow-mode) to see if `hello` matches it.
-
+<div style="page-break-after: always;"></div>
 
 ### Clearing all flashcards: `clear`
 
@@ -264,7 +269,7 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` lists all flashcard in the app in the displayed flashcard list of [List mode](#list-mode) and deletes the 2nd flashcard.
 * `find e/Hello` followed by `delete 1` lists flashcards matching with `ENGLISH_PHRASE` "hello" in the displayed flashcard list of [List mode](#list-mode) and then deletes the 1st flashcard in the displayed flashcard list of [List mode](#list-mode).
-
+<div style="page-break-after: always;"></div>
 
 ### Editing a flashcard: `edit`
 
@@ -292,7 +297,7 @@ Exits the app.
 * This command can be run in both [List mode](#list-mode) and [Slideshow mode](#slideshow-mode).
 
 Format: `exit`
-
+<div style="page-break-after: always;"></div>
 
 ### Exporting flashcards: `export`
 
@@ -316,7 +321,7 @@ Format: `export CSV_FILE_NAME`
 
 Examples:
 * `export myCards.csv` will save all cards in LingoGO! to a [CSV](#csv) file named `myCards.csv` located in the *data* folder mentioned above.
-
+<div style="page-break-after: always;"></div>
 
 ### Filtering flashcards by condition(s): `filter`
 
@@ -337,7 +342,7 @@ Format: `filter [l/LANGUAGE] [i/INDEX_LIST] [r/INDEX_RANGE]`
 * The indices **must be positive integers** 1, 2, 3, …
 * **At least one** of the optional fields must be provided.
 
-
+<div style="page-break-after: always;"></div>
 Examples:
 
 ![filter example list](images/FilterExample.png)
@@ -351,6 +356,7 @@ For each example below, refer to the snapshot above as the starting point before
 * `filter l/French r/1 3 i/5 7` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 3 **or**
   indexed at 5 and 7  **or** of the `French` language, e.g. only flashcards #1, #2, #3, #5, #6, #7 will be displayed in the displayed flashcard list.
 *  `filter l/Korean` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) with the `Korean` language, e.g. only flashcard #7. If we then execute `filter l/Chinese`, an empty displayed flashcard list will be returned.
+<div style="page-break-after: always;"></div>
 
 ### Locating flashcards by keyword(s): `find`
 
@@ -367,6 +373,7 @@ Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`
 * Flashcard(s) **matching at least one keyword** will be displayed.
 * **At least one** of the optional fields must be provided.
 
+<div style="page-break-after: always;"></div>
 Examples:
 
 ![find example list](images/FindExample.png)
@@ -375,7 +382,7 @@ For each example below, refer to the snapshot above as the starting point before
 * `find e/HELLO` returns all flashcards in the app that matches the English keyword "Hello" in the displayed flashcard list in [List mode](#list-mode), e.g. only flashcard #1 will be displayed in the displayed flashcard list.
 * `find f/安` returns all flashcards in the app that matches the foreign keyword "安" in the displayed flashcard list in [List mode](#list-mode), e.g. only flashcard #2, #3, and #4 will be displayed in the displayed flashcard list.
 * `find e/Hello f/早` returns all flashcards in the app that matches the english keyword "Hello" **or** the foreign keyword "安" in the displayed flashcard list in [List mode](#list-mode), e.g. only flashcard #1, #2, #3, and #4 will be displayed in the displayed flashcard list.
-
+<div style="page-break-after: always;"></div>
 
 ### Viewing help: `help`
 
@@ -386,7 +393,7 @@ for each command.
 Format: `help`
 
 ![help message](images/helpMessage.png)
-
+<div style="page-break-after: always;"></div>
 
 ### Importing flashcards: `import`
 
@@ -412,7 +419,7 @@ Below is an example of how the [CSV](#csv) file might look like.
 * If any of the above required information in the [CSV](#csv) file is invalid or missing,
 LingoGO! will **not** import the flashcards.
 </div>
-
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about importing CSV files made with Microsoft Excel:**<br>
 * Please save the [CSV](#csv) file in the 'CSV UTF-8 (Comma-delimited)' file format in Excel before importing into LingoGO!.
@@ -421,7 +428,7 @@ LingoGO! will **not** import the flashcards.
 
 Examples:
 * `import dictionary.csv` will add all flashcards stored in the [CSV](#csv) file `dictionary.csv` to LingoGO!.
-
+<div style="page-break-after: always;"></div>
 
 ### Listing flashcards: `list`
 
@@ -437,7 +444,7 @@ Format: `list [NUMBER_OF_FLASHCARDS]`
 Examples:
 * `list` returns all flashcards in LingoGO!.
 * `list 3` returns 3 randomly selected flashcards in LingoGO!.
-
+<div style="page-break-after: always;"></div>
 
 ### Moving to the next flashcard in Slideshow mode: `next`
 
@@ -472,6 +479,7 @@ Format: `stop`
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Data
 This section addresses how LingoGO! handles data.
@@ -493,6 +501,7 @@ LingoGO!'s data is saved as a JSON file at `{JAR file location}/data/lingogo.jso
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 This section gives you a very quick definition of the terms used in this user guide.
@@ -514,6 +523,7 @@ The folder on your computer which contains the LingoGO! app.
 **A**: Download the app on your other computer. Copy and paste the *data* folder of LingoGO! from your computer into the [home folder](#home-folder) of LingoGO! in your other computer.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Coming soon
 
@@ -536,6 +546,7 @@ With recommendations, LingoGO! plans to help you identify and improve on your we
 With each time you test yourself, earn points that can increase your level. Challenge your friends to see who will stay on top, and encourage each other to learn proactively!
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
