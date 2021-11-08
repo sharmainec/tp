@@ -96,7 +96,6 @@ public class FlashcardApp implements ReadOnlyFlashcardApp {
     @Override
     public String toString() {
         return flashcards.asUnmodifiableObservableList().size() + " flashcards";
-        // TODO: refine later
     }
 
     @Override
