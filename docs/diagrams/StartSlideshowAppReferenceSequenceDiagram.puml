@@ -12,8 +12,6 @@ end box
 
 mainframe **sd**   start slideshowApp
 
-activate ModelManager
-
 ModelManager -> SlideshowApp : start()
 activate SlideshowApp
 
