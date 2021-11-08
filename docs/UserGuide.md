@@ -86,7 +86,7 @@ you will see the following [GUI](#gui) with some sample flashcards.
 Before diving into the specific commands, let's have an overview of the different modes in LingoGO!.
 
 LingoGO! has two main modes, [List mode](#list-mode) and [Slideshow mode](#slideshow-mode), through which you can interact with
-the application. At a high level, List mode provides an intuitive table overview to manage flashcards with our 
+the application. List mode provides an intuitive table overview to manage flashcards with our 
 powerful and flexible search features. In contrast, Slideshow mode allows you to test your knowledge on selected 
 flashcards one by one in a questionnaire-style interface while retaining the look and feel of traditional flashcards.
 
@@ -163,11 +163,11 @@ This section aims to provide you with a quick breakdown on LingoGO!'s command fo
   * Along with command words, commands may come with extra details that need to be filled up. 
     * e.g. `clear` is an example of a command that is used with just the command word alone. 
     * e.g. `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` is an example of a command that comes with details 
-      that need to be given by you.
+      that need to be provided by you.
 * **Prefixes**
   * Certain prefixes have been reserved for use by LingoGO!'s commands. Prefixes are used by LingoGO! to identify your inputs. 
     * e.g. LingoGO! will interpret `l/Tamil` as a Language called `Tamil`.
-  * All command prefixes and their associated parameter types are as listed below:
+  * All command prefixes and the inputs they identify are as listed below:
     * `e/` for English Phrase.
     * `f/` for Foreign Phrase.
     * `i/` for Index/Indices.
@@ -183,14 +183,13 @@ This section aims to provide you with a quick breakdown on LingoGO!'s command fo
   * Words in `UPPER_CASE` are parameters to be supplied by you.
     * e.g. a usage of `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` could be `add l/Chinese e/Good Morning f/早安`.
   * Some commands have optional parameters which you do not need to give. These optional parameters are 
-    indicated with square brackets.
+    indicated within square brackets.
     * e.g. `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]` can be used as `edit 1 l/Chinese e/Good Morning f/早安` or `edit 1 e/Good Morning`.
   * Extraneous parameters for commands that do not take in parameters (such as `help` and `clear`) will be ignored.
     * e.g. `help 123` is the same as `help`.
 
 ### Flashcard Format
-This section aims to provide you with a quick breakdown on LingoGO!'s flashcard format. Flashcards with the same `LANGUAGE`, `ENGLISH_PHRASE` and `FOREIGN_PHRASE` will be considered as a duplicated flashcard and only one copy of the flashcard can exist in LingoGO!.
-
+This section aims to provide you with a quick breakdown on LingoGO!'s flashcard format.
 
 * **`LANGUAGE` parameter**
     * Should not be longer than **50 characters**.
@@ -201,8 +200,16 @@ This section aims to provide you with a quick breakdown on LingoGO!'s flashcard 
     * Is not restricted to alphabetic characters only, but it is **recommended** that you ensure your input is a valid English input (e.g. you can use "こんにちは" as an English input).
 * **`FOREIGN_PHRASE` parameter**
     * Should not be longer than **100 characters**.
-    * Should be distinguishable between flashcards with the same `FOREIGN_PHRASE` but with different `ENGLISH_PHRASE`. 
-    * [Slideshow mode](#slideshow-mode) will **only** display the `FOREIGN_PHRASE`, so to use the [`answer`](#answering-a-flashcard-answer) command correctly, you need to be able to distinguish between the `FOREIGN_PHRASE`.
+    * [Slideshow mode](#slideshow-mode) will **only** display the `FOREIGN_PHRASE` of a flashcard. To use the [`answer`](#answering-a-flashcard-answer) command correctly, you need to be able to distinguish between flashcards with the same `FOREIGN_PHRASE`
+    but different `ENGLISH_PHRASE`.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: A note about flashcards:**<br>
+
+* LingoGO! **does not allow** you to have **duplicate flashcards** (duplicate flashcards are flashcards containing the same `LANGUAGE`, `ENGLISH_PHRASE`, and `FOREIGN_PHRASE`).
+
+</div>
+
 
 ### Adding a flashcard: `add`
 
@@ -228,7 +235,7 @@ Format: `answer e/ENGLISH_PHRASE`
 * Checks the English phrase of the displayed foreign phrase in [Slideshow mode](#slideshow-mode) against the `ENGLISH_PHRASE` you provide.
 * The app will then show the correct English phrase and tell you whether you got it right.
 * `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello").
-* You can only answer a flashcard in [Slideshow mode](#slideshow-mode), and you can only answer it once.
+* During a slideshow, you can only answer each flashcard once.
 
 Examples:
 * `answer e/hello` checks the English phrase of the foreign phrase on display (e.g. "你好") in [Slideshow mode](#slideshow-mode) to see if `hello` matches it.
@@ -298,7 +305,7 @@ Exports the currently displayed flashcards in [List mode](#list-mode) to a CSV f
 
 Format: `export CSV_FILE_NAME`
 
-* Provides a file name with a **.csv extension** in which the flashcards will be stored and exported.
+* Produces a file with a **.csv extension** in which the flashcards will be stored and exported.
 * If you want to export to a file that already exists in the *data* folder, ensure it is not opened elsewhere.
 * If you are exporting to a new file, the file will be added to the *data* folder (located in the same folder as the *lingogo.jar* file).
 * The CSV file will have **3 column headers** in this order from left to right:
@@ -330,9 +337,11 @@ Format: `filter [l/LANGUAGE] [i/INDEX_LIST] [r/INDEX_RANGE]`
 * **At least one** of the optional fields must be provided.
 
 
-Examples *(refer to the snapshot below)*:
+Examples:
 
 ![filter example list](images/FilterExample.png)
+
+For each example below, refer to the snapshot above as the starting point before the example command is executed.
 * `filter l/Chinese` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) with the `Chinese` language, e.g. only flashcards #1, #2, #3 and #4 will be displayed in the displayed flashcard list.
 * `filter i/1 2 3` returns the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed at 1, 2 and 3, e.g. only flashcards #1, #2 and #3 will be displayed in the displayed flashcard list.
 * `filter r/2 4` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 2 to 4, e.g. e.g. only flashcards #2, #3 and #4 will be displayed in the displayed flashcard list.
@@ -340,11 +349,11 @@ Examples *(refer to the snapshot below)*:
 * `filter l/Korean r/1 2` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 2, **or** of `Korean` language, e.g. only flashcards #1, #2 and #7 will be displayed in the displayed flashcard list.
 * `filter l/French r/1 3 i/5 7` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 3 **or**
   indexed at 5 and 7  **or** of the `French` language, e.g. only flashcards #1, #2, #3, #5, #6, #7 will be displayed in the displayed flashcard list.
-*  `filter l/Korean` returns all flashcards in the displayed flashcard list with the `Korean` language, e.g. only flashcard #7. If we then execute `filter l/Chinese`, an empty displayed flashcard list will be returned.
+*  `filter l/Korean` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) with the `Korean` language, e.g. only flashcard #7. If we then execute `filter l/Chinese`, an empty displayed flashcard list will be returned.
 
 ### Locating flashcards by keyword(s): `find`
 
-Finds flashcards from the **entire** flashcard list based on the keyword(s) specified.
+Finds flashcards from the **entire** app based on the keyword(s) specified.
 * This command can only be run in [List mode](#list-mode).
 
 Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`
@@ -357,10 +366,11 @@ Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`
 * Flashcard(s) **matching at least one keyword** will be displayed.
 * **At least one** of the optional fields must be provided.
 
-Examples *(refer to the snapshot below)*:
+Examples:
 
 ![find example list](images/FindExample.png)
 
+For each example below, refer to the snapshot above as the starting point before the command is executed.
 * `find e/HELLO` returns all flashcards in the app that matches the English keyword "Hello" in the displayed flashcard list in [List mode](#list-mode), e.g. only flashcard #1 will be displayed in the displayed flashcard list.
 * `find f/安` returns all flashcards in the app that matches the foreign keyword "安" in the displayed flashcard list in [List mode](#list-mode), e.g. only flashcard #2, #3, and #4 will be displayed in the displayed flashcard list.
 * `find e/Hello f/早` returns all flashcards in the app that matches the english keyword "Hello" **or** the foreign keyword "安" in the displayed flashcard list in [List mode](#list-mode), e.g. only flashcard #1, #2, #3, and #4 will be displayed in the displayed flashcard list.
@@ -420,7 +430,7 @@ Shows a list of flashcards in LingoGO!.
 Format: `list [NUMBER_OF_FLASHCARDS]`
 
 * Lists flashcards in LingoGO!.
-* If `[NUMBER_OF_FLASHCARDS]` is provided, randomly select `[NUMBER_OF_FLASHCARDS]` flashcards from the entire application to be shown in [List mode](#list-mode).
+* If `[NUMBER_OF_FLASHCARDS]` is provided, randomly select `[NUMBER_OF_FLASHCARDS]` flashcards from the entire app to be shown in [List mode](#list-mode).
 * The `[NUMBER_OF_FLASHCARDS]` **must be a positive integer** 1, 2, 3, …
 
 Examples:
@@ -490,14 +500,17 @@ This section gives you a very quick definition of the terms used in this user gu
 A CSV file, short for comma-separated values, is a special text file that uses commas for formatting.
 
 ### GUI
-A GUI, short for graphical user interface, is a visual display through which users can interact with the application.
+A GUI, short for graphical user interface, is a visual display through which users can interact with the app.
+
+### Home folder
+The folder on your computer which contains the LingoGO! app.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LingoGO! home folder.
+**A**: Download the app on your other computer. Copy and paste the *data* folder of LingoGO! from your computer into the home folder of LingoGO! in your other computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
