@@ -56,10 +56,14 @@ deactivate ImportCommand
 
 loop until all valid flashcards have been added
     ImportCommand -> Model: hasFlashcard(flashcard)
+    activate Model
     Model --> ImportCommand: isFlashcardInModel
+    deactivate Model
     opt if !isFlashcardInModel
         ImportCommand -> Model: addFlashcard(flashcard)
+        activate Model
         Model --> ImportCommand:
+        deactivate Model
     end
 end
 
