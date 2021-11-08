@@ -44,7 +44,7 @@ Feel free to check out our individual project portfolios below and reach out to 
 [[Portfolio](team/chownces.md)]
 
 * Role: Developer
-* Responsibilities: Code quality, Integration, `Model` component
+* Responsibilities: Code quality, CI/CD, `Model` component
 
 ### Lee Jae Ho
 

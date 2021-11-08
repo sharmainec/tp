@@ -5,67 +5,74 @@ title: Aiken Wong Xiheng's Project Portfolio Page
 
 ### Project: LingoGO!
 
-LingoGO! is a desktop application created as part of a team project for the module CS2103T (Software Engineering) at the
-National University of Singapore (NUS). The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is
-written in Java, and has about 10 kLoC.
+LingoGO! is a **desktop app** for **university students who use English as their first language** and are trying to **learn a
+new language**. Our unique **Command Line Interface (CLI)** and
+elegant **Graphical User Interface (GUI)** is sure to delight you, and empower you on your journey in mastering the new language you *have always wanted*.
 
-Given below are my contributions to the project.
+<hr/>
 
-* **[Filter Command](../UserGuide.md/#filtering-flashcards-by-conditions-filter) (enhancement)**: Added range
-  and index filter conditions and the ability to combine multiple filter conditions ([\#107](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/107)
-  , [\#130](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/130), [\#201](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/201)).
-  * What it does: Allow users to specify several filter conditions at once within one filter command. The
-    added index and range filter conditions also allow users to search for flashcards by their indices in the
-    displayed flashcards list of [List mode](../UserGuide.md/#list-mode).
-  * Justification: The enhancements made to filter command makes it a more powerful and convenient search tool for
-    users. A better search functionality also helps users to more quickly select flashcards to be loaded into
-    [Slideshow mode](../UserGuide.md/#slideshow-mode) for practice sessions.
-  * Highlights: Enhancements made to filter command also included refactoring to allow greater ease of adding more
-    additional filter conditions in the future.
-* **Test Command (deprecated feature)**: Added the ability to test flashcards in [List mode](../UserGuide.md/#list-mode)
-  with an answer given by the user ([\#80](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/80)).
-  * What it does: Allows the user to test their knowledge with flashcards that they have made by typing in their
-    answers.
-  * Justification: This feature provided a means for users to interact and practise with their flashcards. It
-    was a basic command meant for the first few iterations of the project.
-  * Highlights: The test command is now deprecated and has been integrated into before it into the
-    [answer command](../UserGuide.md/#answering-a-flashcard--answer) of [Slideshow mode](../UserGuide.md/#slideshow-mode).
+* **Code contributions**: View my code contributions on RepoSense [here](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=aikenwx&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
 
-* **[Storage](../DeveloperGuide.md/#storage-component) (refactoring)**: Refactored the Storage component to work for
-  LingoGO!'s implementation ([\#70](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/70), [\#72](https://github.com/AY2122S1-CS2103T-T11-2/tp/pulls?q=is%3Apr+author%3Aaikenwx+is%3Aclosed)).
-  * Justification: The refactoring was done to ensure correctness of Storage component with the new requirements of
-    LingoGO! as well as to remove any stale references to deprecated code.
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabAuthor=aikenwx&tabRepo=AY2122S1-CS2103T-T11-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&tabType=authorship)
-
-* **Project management**:
-    * Recorded demo video for `v1.2`.
-
-* **Enhancements to existing features**:
-  * Refactored `Flashcard` class ([\#95](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/95)) to ensure immutable
-    implementation of `isFlipped` attribute as well as its setter
-    and getter methods to defend against unwanted mutations.
-  * Wrote alert dialogues popups ([\#201](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/201)) to greet new users as well as to warn them when they make code-breaking changes to
-    the
-    data file.
-  * Added functionality for flip command ([\#95](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/95)) to show and hide English Phrases in [List mode](../UserGuide.md/#list-mode)
-    (deprecated).
-  * Debugged `edit` feature ([\#205](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/205)) to ensure that it works correctly with `filter` and wrote integration tests.
-
-* **Documentation**:
-  * User Guide:
-    * Added documentation for the current feature `filter`, as well as the deprecated features `flip` and `test` (
-      [\#36](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/36)).
-  * Developer Guide:
-    * Added implementation details of the `filter` feature.
-    * Updated UML class diagram for Storage component.
-    * Added manual test cases for data file manipulation.
-
-* **Community**:
+* **<u>Enhancements/Features Implemented</u>**
+  1. **Refactored Storage component**
+  * PR(s): [\#70](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/70), [\#72](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/72)
+  * Refactored the Storage component to work for LingoGO!'s requirements .
+  * All references of AB3 code were also removed from Storage component.
+  1. **Added test feature** *(deprecated)*
+  * PR(s): [\#80](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/80)
+  * Added the ability for users to test themselves with flashcards.
+  * This provided a basic means for users to practise with their flashcards.
+  1. **Refactored `Flashcard` class**
+  * PR(s): [\#95](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/95), [\#107](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/107)
+  * Refactored `Flashcard` class to ensure immutable implementation of setter and getter methods of `isFlipped` 
+    attribute to defend against unwanted mutations.
+  * Updated `isSameFlashcard` method to allow for the checking of duplicate flashcards.
+  1. **Enhanced flip feature** *(deprecated)*
+  * PR(s): [\#95](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/95)
+  * Added functionality for flip command to show and hide English phrases.
+  * This allowed users to interact with their flashcards by "flipping" them.
+  1. **Enhanced filter feature**
+  * PR(s): [\#107](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/107),
+    [\#130](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/130), [\#201](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/201)
+  * Added range and index filter conditions and enabled combining of multiple filter conditions.
+  * This provides greater convenience for users, allowing them to specify several filter conditions at once within one
+    filter command.
+  * Search flexibility is also enhanced through the added filter conditions, allowing users to more quickly select
+    flashcards to be loaded into Slideshow mode for practice sessions.
+  1. **Added alert dialogues**
+  * PR(s): [\#201](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/201)
+  * Wrote alert dialogue popups to greet new users as well as to warn users when they make code-breaking changes to
+    the JSON data file.
+  * Such alerts help users to troubleshoot against unintended data file changes.
+* **<u>User Guide Documentation</u>**
+  1. **Command format**:
+  * PR(s): [\#225](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/225)
+  * Adapted the _Notes about the command format_ section into a fully fledged out _Command format_ section to give a 
+    detailed breakdown on how LingoGO!'s commands are formatted.
+  1. **Command usage**
+  * PR(s): [\#36](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/36), [\#107](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/107),
+    [\#130](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/130)
+  * Updated the User Guide for the `filter`, `flip` (deprecated) and `test` (deprecated) commands. 
+* **<u>Developer Guide Documentation</u>**
+  1. **Overall design: Storage component**:
+  * PR(s): [\#116](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/116/commits)
+  * Updated overall description of the Storage component.
+  * Updated UML class diagram for Storage component.
+  1. **Filter feature**:
+  * PR(s): [\#116](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/116/commits)
+  * Wrote description and implementation details for the `filter` command.
+  * Prepared UML sequence diagrams for `filter` command.
+  1. **Manual testing**:
+  * PR(s): [\#200](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/200/commits)
+  * Added manual test cases to test LingoGO!'s behavior after manipulation of JSON data file.
+* **<u>Community</u>**:
+  * Recorded demo video for v1.2 of LingoGO!.
   * PRs reviewed (with non-trivial review comments):
   [\#81](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/81)
   [\#93](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/93),
   [\#100](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/100),
   [\#104](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/104),
   [\#121](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/121),
-  [\#136](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/136),
+  [\#136](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/136)
+  * Total PRs reviewed: 13
+  * Reported [bugs and suggestions](https://github.com/aikenwx/ped/issues) for team SWEe-book, another team in the module.

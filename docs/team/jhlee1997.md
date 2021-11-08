@@ -36,7 +36,7 @@ Given below are my contributions to the project.
   * Contributed to releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Initially created a Filter command with a prefix `/l` for language type such that only the flashcards of a certain language is displayed on the LingoGO!. (([\#100](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/100)))
+  * Initially created a Filter command with a prefix `/l` for language type such that only the flashcards of a certain language is displayed on the LingoGO!. ([\#100](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/100))
   * Wrote additional tests for existing features to increase coverage. This includes tests for valid CSV file name, test CSV files for Import and Export, etc. ([\#136](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/136), [\#191](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/191))
   
 * **Documentation**:

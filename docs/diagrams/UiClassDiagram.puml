@@ -11,13 +11,12 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class CommandHelpMessage
+Class CommandBox
 Class ResultDisplay
 Class FlashcardListPanel
-Class Slideshow
 Class FlashcardHeaderBar
+Class SlideshowPanel
 Class FlashcardPane
-Class StatusBarFooter
-Class CommandBox
 }
 
 package Model <<Rectangle>> {
@@ -33,41 +32,34 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
+
+MainWindow *-down-> "1" HelpWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" FlashcardListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow -down-> "0..1" HelpWindow
 
-FlashcardListPanel -down-> "0..1" Slideshow
-FlashcardListPanel -down-> "1" FlashcardHeaderBar
-FlashcardListPanel -down-> "*" FlashcardPane
-HelpWindow <-down-> "*" CommandHelpMessage
+FlashcardListPanel *-down-> "1" FlashcardHeaderBar
+FlashcardListPanel *-down-> "1" SlideshowPanel
+FlashcardListPanel *-down-> "*" FlashcardPane
+HelpWindow *-down-> "*" CommandHelpMessage
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 FlashcardListPanel --|> UiPart
-StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 CommandHelpMessage --|> UiPart
-Slideshow --|> UiPart
+SlideshowPanel --|> UiPart
 FlashcardHeaderBar --|> UiPart
 FlashcardPane --|> UiPart
 
 FlashcardPane ..> Model
+SlideshowPanel ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-FlashcardListPanel -[hidden]left- CommandBox
+ResultDisplay -[hidden]left- FlashcardListPanel
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
-StatusBarFooter -[hidden]left- HelpWindow
 
-FlashcardPane -[hidden]left- FlashcardHeaderBar
-FlashcardHeaderBar -[hidden]left- Slideshow
-
-MainWindow -[hidden]-|> UiPart
-HelpWindow -[hidden]-|> UiPart
 @enduml

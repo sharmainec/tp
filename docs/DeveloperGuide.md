@@ -12,7 +12,7 @@ title: Developer Guide
 
 LingoGO! is a **desktop app** for **university students who use English as their first language** and are trying to **learn a
 new language**. Founded on the widely established learning technique of **spaced-repetition**, LingoGO! takes all the
-benefits of pen-and-paper flashcards in learning, and brings them to the next level with our **powerful indexing** and **sharing
+benefits of pen-and-paper flashcards in learning, and brings them to the next level with our **powerful search** and **sharing
 features** -- *without the hassle* of managing actual physical ones. Coupled with our unique **Command Line Interface (CLI)** and
 an elegant **Graphical User Interface (GUI)** to accompany it, LingoGO! is sure to delight you, and empower you on your
 journey in mastering the new language you *have always wanted*.
@@ -43,18 +43,18 @@ contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
 
 ## How to use the developer guide
 <!-- CHANGE LINKS -->
-* A [*Table of Contents*](#) with clickable links can be found above to help with navigating across the user guide quickly.
-* To set up your development environment, refer to the guide on [*Setting up and getting started*](#setting-up-getting-started).
-* For a high level overview of the design of the application, refer to the [*Overall Design*](#overall-design) section.
-* For a lower level, more in depth look at some of the features implemented in LingoGO!, refer to the [*Feature Implementation*](#feature-implementation) section.
-* To better understand the documentation practices of the project, refer to the [*Documentation guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Documentation.html).
-* To better understand the testing methods used in the project, refer to the [*Testing guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Testing.html).
-* To better understand the tools available to you as a developer, refer to the [*Logging guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Logging.html),
-  [*Configuration guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/Configuration.html), and [*DevOps Guide*](https://ay2122s1-cs2103t-t11-2.github.io/tp/DevOps.html).
-* For a list of requirements that LingoGO! has to meet/is planning to meet, refer to [*Appendix B: User Stories*](#appendix-b-user-stories),
-  [*Appendix C: Use Cases*](#appendix-c-use-cases), and [*Appendix D: Non-Functional Requirements*](#appendix-d-non-functional-requirements).
+* A [Table of Contents](#table-of-contents) with clickable links can be found above to help with navigating across the user guide quickly.
+* To set up your development environment, refer to the guide on [Setting up and getting started](#setting-up-getting-started).
+* For a high level overview of the design of the application, refer to the [Overall Design](#overall-design) section.
+* For a lower level, more in depth look at some of the features implemented in LingoGO!, refer to the [Feature Implementation](#feature-implementation) section.
+* To better understand the documentation practices of the project, refer to the [Documentation guide](Documentation).
+* To better understand the testing methods used in the project, refer to the [Testing guide](Testing).
+* To better understand the tools available to you as a developer, refer to the [Logging guide](Logging),
+  [Configuration guide](Configuration), and [DevOps Guide](DevOps).
+* For a list of requirements that LingoGO! has to meet/is planning to meet, refer to [Appendix B: User Stories](#appendix-b-user-stories),
+  [Appendix C: Use Cases](#appendix-c-use-cases), and [Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements).
 * A [Glossary](#appendix-e-glossary) is provided to help explain certain important terms used in this guide.
-* For instructions on manual testing, refer to the [*Manual testing*](#appendix-f-instructions-for-manual-testing) section.
+* For instructions on manual testing, refer to the [Manual testing](#appendix-f-instructions-for-manual-testing) section.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -62,8 +62,7 @@ contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
 
 This project was originally adapted from [AddressBook-Level3 (AB3)](https://se-education.org/addressbook-level3/).
 
-Third party libraries used:
-* [OpenCSV](http://opencsv.sourceforge.net/) - Reading and writing CSV files.
+Third party libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [OpenCSV](http://opencsv.sourceforge.net/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -71,27 +70,27 @@ Third party libraries used:
 
 Below are some guides, tools available, and standards used by developers of this project.
 
-### Setting up, getting started
+##### Setting up, getting started
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [Setting up and getting started](SettingUp.md).
 
-### Documentation
+##### Documentation
 
-Refer to the [_Documentation guide_](Documentation.md).
+Refer to the [Documentation guide](Documentation.md).
 
-### Testing
+##### Testing
 
-Refer to the [_Testing guide_](Testing.md).
+Refer to the [Testing guide](Testing.md).
 
-### Logging
+##### Logging
 
-Refer to the [_Logging guide_](Logging.md).
+Refer to the [Logging guide](Logging.md).
 
-### Configuration
+##### Configuration
 
 Refer to the [Configuration guide](Configuration.md).
 
-### DevOps
+##### DevOps
 
 Refer to the [DevOps guide](DevOps.md).
 
@@ -126,9 +125,9 @@ It has the following responsibilities:
 
 The rest of the app consists of **four components**.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of the app.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of the app in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
@@ -163,8 +162,7 @@ An overall *Class Diagram* for this component can be found below:
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The `UI` component consists of a `MainWindow` that is made up of several sub-components (e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`,
-`StatusBarFooter`, etc.) which come together to make up the entire user interface. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+The `UI` component consists of a `MainWindow` that is made up of several sub-components (e.g. `CommandBox`, `ResultDisplay`, `FlashcardListPanel`, etc.) which come together to make up the entire user interface. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
@@ -191,7 +189,7 @@ A (partial) *Class Diagram* of the `Logic` component can be found below:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `FlashcardAppParser` class to parse the user command.
-1. This creates a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This creates a `Command` object (more precisely, an object of one of its subclasses, e.g. `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a flashcard).
 1. The result of the command execution is encapsulated in a `CommandResult` object which is returned by `Logic`.
 
@@ -199,17 +197,14 @@ The *Sequence Diagram* below illustrates the interactions within the `Logic` com
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 Here are the other classes in `Logic` (omitted from the *Class Diagram* above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `FlashcardAppParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`)
-* `XYZCommandParser` uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FlashcardAppParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible (e.g., during testing).
+* When called upon to parse a user command, the `FlashcardAppParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name, e.g. `AddCommandParser`).
+* `XYZCommandParser` uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g. `AddCommand`) which the `FlashcardAppParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible (e.g. during testing).
 
 ### Model component
 
@@ -223,8 +218,8 @@ A *Class Diagram* of the `Model` component can be found below:
 
 The `Model` component:
 
-* Stores the flashcard app data i.e., all `Flashcard` objects (which are contained in a `UniqueFlashcardList` object).
-* Stores the currently 'selected' `Flashcard` objects (e.g., results of a search query) as a **separate filtered list** which is exposed as an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the `UI` can be bound to this list so that the `UI` automatically updates when the data in the list changes.
+* Stores the flashcard app data, i.e. all `Flashcard` objects (which are contained in a `UniqueFlashcardList` object).
+* Stores the currently 'selected' `Flashcard` objects (e.g. results of a search query) as a **separate filtered list** which is exposed as an unmodifiable `ObservableList<Flashcard>` that can be 'observed' (e.g. the `UI` can be bound to this list so that the `UI` automatically updates when the data in the list changes).
 * Stores the slideshow app data i.e., all `Flashcard` objects in the slideshow (which are contained in a `Slideshow` object). This is exposed as a `ReadOnlySlideshowApp` object.
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed as a `ReadOnlyUserPref` object.
 * Does not depend on any of the other three components (as the `Model` represents data entities of the domain, it should make sense on its own without depending on other components).
@@ -240,7 +235,7 @@ A *Class Diagram* of the `Storage` component can be found below:
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component:
-* Can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+* Can save both LingoGO! data and user preference data in JSON format, and read them back into corresponding objects.
 * Inherits from both `FlashcardAppStorage` and `UserPrefStorage`, which means it can be treated as either one (if the functionality of only one is needed).
 * Depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
@@ -259,7 +254,7 @@ This section describes some noteworthy details on how certain features are imple
 #### Description
 The filter feature allows users to quickly select a group of flashcards to be shown in the displayed flashcards list
 of the GUI. This effectively enables users to "prepare" a batch of flashcards for a test session. The command
-accepts various conditions from the user to filter the flashcards with. (e.g. what type of
+accepts various conditions from the user to filter the flashcards with (e.g. what type of
 language, which card indexes).
 
 #### Implementation
@@ -269,7 +264,7 @@ which returns an unmodifiable view of filtered flashcards in the GUI.
 
 The filter feature also relies on a nested `FilterBuilder` class within `FilterCommand`. Multiple filters can be
 given by the user in one command, however only one predicate (filter) can be accepted by
-`Model::updateFilteredFlashList` to produce the filtered flashcards. `FilterBuilder` helps by combining multiple
+`Model::updateFilteredFlashcardList` to produce the filtered flashcards. `FilterBuilder` helps by combining multiple
 predicates into a single predicate.
 
 `FilterBuilder` is also a mutable class which allows processed user inputs to be directly set as variables within a
@@ -278,14 +273,9 @@ predicates into a single predicate.
 complex constructors or factory methods when more types of filters are added.
 
 
-The following sequence diagrams shows how the `filter` command works:
+The following *Sequence Diagrams* show how the `filter` command works:
 
-![FilterSequenceDiagram](images/filterCommand/FilterSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterCommand`,
-`FilterCommandParser` and `FilterBuilder`should end at the destroy marker (X) but due to a limitation of PlantUML,
-the lifeline reaches the end of diagram.
-</div>
+[![](images/filterCommand/FilterSequenceDiagram.png)](images/filterCommand/FilterSequenceDiagram.png)
 
 ![SetFilterReferenceSequenceDiagram](images/filterCommand/SetFilterReferenceSequenceDiagram.png)
 
@@ -303,7 +293,7 @@ the lifeline reaches the end of diagram.
   * Pros: Easier to implement.
   * Cons: Less convenient for users.
 
-**Aspect: Mutability of `FilterBuilder`**
+**Aspect: Mutability of `FilterBuilder`:**
 
 * **Alternative 1 (current choice):** Make it mutable.
     * Pros: No need for complex constructors and easier for more types of filters to be added in the future.
@@ -318,30 +308,26 @@ the lifeline reaches the end of diagram.
 
 #### Implementation
 
-The export feature is facilitated by `ModelManager`. It extends `Model` and implements `exportFlashcards`
-which creates a CSV file in the `data` folder.
+The export feature uses the `CSVWriter` class from the `OpenCSV` package which generates a CSV file line by line in the file specified by the user. The file-writing operations can be found in the `exportToCsvFile` method in `FileUtil`.
 
-The export feature uses `CSVWriter` class which generates a CSV file
-line by line in the file specified by the user.
+The following *Sequence Diagrams* show how the `export` command works:
 
-The following sequence diagram shows how the `export` command works:
+[![](images/ExportSequenceDiagram.png)](images/ExportSequenceDiagram.png)
 
-![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+![ExportToCsvReferenceSequenceDiagram](images/ExportToCsvReferenceSequenceDiagram.png)
 
 ### Import feature
 
 #### Implementation
 
-The import feature is facilitated by `ModelManager`. It extends `Model` and implements `importFlashcards`
-which returns an updated view of the flashcards in the GUI.
+The import feature uses the `CSVReader` class from the `OpenCSV` package to check if the given CSV file
+is in the correct CSV format. The file-reading operations can be found in the `importCsvFileContent` method in `FileUtil`. During the execution of the `import` command, the CSV content is further validated to be valid flashcards and are not duplicates before they are added to the flashcard list.
 
-The import feature uses `CSVReader` class to check if the given CSV file
-is in the correct format line by line and uploads each card to the flashcard list
-if there is no duplicate.
+The following *Sequence Diagrams* show how the `import` command works:
 
-The following sequence diagram shows how the `import` command works:
+[![](images/ImportSequenceDiagram.png)](images/ImportSequenceDiagram.png)
 
-![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+![ImportFromCsvFileReferenceSequenceDiagram](images/ImportFromCsvFileReferenceSequenceDiagram.png)
 
 ### Find feature
 
@@ -349,21 +335,22 @@ The following sequence diagram shows how the `import` command works:
 
 The find feature is facilitated by `ModelManager`. It extends `Model` implements `updateFilteredFlashcardList` which returns an unmodifiable view of flashcards matching the specified keywords in the GUI.
 
-The find feature relies on the `FindCommandParser` and `PhraseContainsKeywordsPredicate`. Multiple keywords can be given for both english and foreign phrases. `FindCommandParser` uses `PhraseContainsKeywordsPredicate` to select flashcards that matches the keywords.
+The find feature relies on the `FindCommandParser` and `PhraseContainsKeywordsPredicate`. Multiple keywords can be 
+given for both English and foreign phrases. `FindCommandParser` uses `PhraseContainsKeywordsPredicate` to select flashcards that matches the keywords.
 
-The following sequence diagram shows how the `find` command works:
+The following *Sequence diagram* shows how the `find` command works:
 
-![FindSequenceDiagram](images/FindSequenceDiagram.png)
+[![](images/FindSequenceDiagram.png)](images/FindSequenceDiagram.png)
 
 #### Design considerations
 
 **Aspect: How to search in foreign language:**
 
-* **Alternative 1 (current choice):** Allow non-full match
+* **Alternative 1 (current choice):** Allow non-full match.
   * Pros: Will not miss out any related flashcards that is related to the keyword provided.
   * Cons: May output a lot more flashcards than the user's desired outcome.
 
-* **Alternative 2:** Only allow full match
+* **Alternative 2:** Only allow full match.
   * Pros: Only exact match will be output, user will only see flashcards that are exactly the keyword.
   * Cons: Too restrictive, will not output phrases that contains more than the keyword.
 
@@ -374,21 +361,21 @@ The following sequence diagram shows how the `find` command works:
 
 The list feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList` which returns an unmodifiable view of the flashcards in the GUI.
 
-The list feature relies on the `ListCommandParser` and `FlashcardInGivenFlashcardListPredicate`. In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the main list of flashcards.
+The list feature relies on the `ListCommandParser` and `FlashcardInGivenFlashcardListPredicate`. In order to generate a list of random flashcards, a random stream of integers is used to get the flashcards from the main list of flashcards.
 
-The following sequence diagram shows how the `list` command works:
+The following *Sequence diagram* shows how the `list` command works:
 
-![ListSequenceDiagram](images/ListSequenceDiagram.png)
+[![](images/ListSequenceDiagram.png)](images/ListSequenceDiagram.png)
 
 #### Design considerations:
 
 **Aspect: Generating list of flashcards:**
 
-* **Alternative 1 (current choice):** Randomize the list of flashcards
+* **Alternative 1 (current choice):** Randomize the list of flashcards.
     * Pros: Users are able to use flashcards more effectively.
     * Cons: Harder to implement and needs a random stream of `Index`.
 
-* **Alternative 2:** Output list up to `n`
+* **Alternative 2:** Output list up to `n`.
     * Pros: Easy to implement.
     * Cons: Does not add value to the user's learning experience.
 
@@ -396,9 +383,9 @@ The following sequence diagram shows how the `list` command works:
 
 #### Description
 
-The slideshow feature displays the current list of flashcards shown in [List mode](UserGuide/#list-mode) one at a time in individual "slides".
+The slideshow feature displays the current list of flashcards shown in [List mode](UserGuide/#list-mode) one at a time.
 In [Slideshow mode](UserGuide/#slideshow-mode), users can test how well they remember their flashcards by entering their answers for each flashcard
-and getting feedback on whether they are right or wrong. Users may also navigate between "slides".
+and getting feedback on whether they are right or wrong. Users may also navigate between flashcards in the slideshow.
 
 #### Implementation
 
@@ -409,29 +396,27 @@ It extends `Model` and implements the methods `startSlideshow`, `stopSlideshow`,
 The above methods in turn facilitate the following commands:
 
 | Command Class | Command | Usage |
-| `SlideshowCommand` | [`slideshow`](UserGuide/#testing-with-a-set-of-flashcards--slideshow) | When the user enters [Slideshow mode](UserGuide/#slideshow-mode). |
-| `AnswerCommand` | [`answer`](UserGuide/#answering-a-flashcard--answer) | When the user enters an answer for the flashcard shown on the current slide. |
-| `NextCommand` | [`next`](UserGuide/#moving-to-the-next-flashcard-in-slideshow-mode--next) | When the user navigates to the next slide. |
-| `PreviousCommand` | [`previous`](UserGuide/#moving-to-the-previous-flashcard-in-slideshow-mode--previous) | When the user navigates to the previous slide. |
+| `SlideshowCommand` | [`slideshow`](UserGuide/#testing-with-a-set-of-flashcards-slideshow) | When the user enters [Slideshow mode](UserGuide/#slideshow-mode). |
+| `AnswerCommand` | [`answer`](UserGuide/#answering-a-flashcard-answer) | When the user enters an answer for the currently shown flashcard. |
+| `NextCommand` | [`next`](UserGuide/#moving-to-the-next-flashcard-in-slideshow-mode-next) | When the user navigates to the next flashcard in the slideshow. |
+| `PreviousCommand` | [`previous`](UserGuide/#moving-to-the-previous-flashcard-in-slideshow-mode-previous) | When the user navigates to the previous flashcard in the slideshow. |
 | `StopCommand` | [`stop`](UserGuide/#exiting-slideshow-mode-stop) | When the user exits [Slideshow mode](UserGuide/#slideshow-mode). |
 
-The `SlideshowApp` class is used to encapsulate all state and operations related to the slideshow, and
-is exposed as a `ReadOnlySlideshowApp` object.
-Below is an overview of the `SlideshowApp` component.
+Below is a *Class Diagram* of the `SlideshowApp` component, the class in charge of this feature.
 
 ![SlideshowAppClassDiagram](images/SlideshowAppClassDiagram.png)
 
-`SlideshowApp` tracks the current state of the slideshow, such as whether the slideshow mode `isActive`, and whether `isAnswerDisplayed` for the current slide. It also contains a `Slideshow` component, which tracks the list of flashcards in the current slideshow, and the index of the current slide.
+The `SlideshowApp` class encapsulates all state and operations related to the slideshow, and
+is exposed via the `ReadOnlySlideshowApp` interface.
+`SlideshowApp` tracks the current state of the slideshow, such as whether the [Slideshow mode](UserGuide/#slideshow-mode) `isActive`, and whether `isAnswerDisplayed` for the current slide. It also contains a `Slideshow` component, which tracks the list of flashcards in the current slideshow.
 
-##### Slideshow command
+The following *Sequence Diagrams* show how the `slideshow` command works:
 
-The following sequence diagrams show how the `slideshow` command works:
+[![](images/SlideshowSequenceDiagram.png)](images/SlideshowSequenceDiagram.png)
 
-![SlideshowSequenceDiagram](images/SlideshowSequenceDiagram.png)
+[![](images/StartSlideshowAppReferenceSequenceDiagram.png)](images/StartSlideshowAppReferenceSequenceDiagram.png)
 
-![UpdateSlideshowAppReferenceSequenceDiagram](images/StartSlideshowAppReferenceSequenceDiagram.png)
-
-The reference sequence diagram above shows the various state changes within `SlideshowApp`.
+The *Reference Sequence Diagram* above shows the various state changes within `SlideshowApp`.
 When a certain property is changed, the UI updates itself accordingly.
 The relevant `UiPart` listens to changes in these properties using the `ChangeListener` class provided by the `java.beans` package.
 
@@ -455,16 +440,6 @@ readOnlySlideshowApp.isActiveProperty().addListener(new ChangeListener<>() {
 });
 {% endhighlight %}
 
-##### Answer command
-
-The following sequence diagram shows how the `answer` command works:
-
-<!-- TODO: Add sequence diagram for AnswerCommand -->
-
-The sequence diagram above shows that within `SlideshowApp`, the `currentFlashcard` changes and `isAnswerDisplayed` becomes true when a user
-answers a flashcard. This will trigger an update in whichever `UiPart` that is listening to changes in these properties.
-In this case, the UI will display the flashcard's answer to the user.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix A: Product Scope
@@ -477,9 +452,9 @@ University students
 
 ### Value proposition
 
-* Fast way to generate flashcards to learn new languages.
-* Help students memorize words when learning a new language.
-* Gamified features such as recording of scores and tracking of improvements to make learning engaging and encourage continued usage.
+* Fast way to generate and search for flashcards to learn new languages.
+* Convenient way to access numerous flashcards without physical hassle.
+* Provide a focused environment for students to efficiently train their memory.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -491,13 +466,13 @@ University students
 
 | Priority | Category | As a/an... | I want to... | So that I...
 | -------- | -------- | ---------- | ------------ | ----------------
-|***| Level of experience | new user | be guided through the set-up process of a flashcard | can use LingoGo! Properly
-|***| General user | user | be able to add new flash cards |
+|***| General user | user | be able to add new flashcards |
 |***| General user | user | be able to delete my flashcards |
 |***| General user | user | be able to list my flashcards |
 |***| General user | user | be able to test myself and view my performance using flashcards |
 |***| General user | user | be able to update my flashcards |
-|***| User behaviors | lazy user | automatically generate cards by typing in the vocabulary | don't have to spend time manually creating cards
+|***| Level of experience | new user | be guided through the set-up process of a flashcard | can use LingoGo! properly
+|***| User behaviors | lazy user | automatically generate flashcards by typing in the vocabulary | don't have to spend time manually creating flashcards
 |**| Level of experience | experienced user | be able to delete multiple flashcards that are no longer relevant to me (multi-delete function) |
 |**| Level of experience | new user | have a basic set of flashcards available from the get go | can reduce the setup time or reduce the need for setup
 |**| Multiple language user | user who is learning multiple languages | be able to combine flashcards of the same question in different languages | can test myself in all the languages that I have learnt in one go
@@ -509,19 +484,19 @@ University students
 |*| Level of experience | expert user | be able to set up questions in batches | can prepare flashcards faster
 |*| Level of experience | long-time user | be able to archive my flashcards that I may not have used for a long time | can retrieve them in future should I want to use them
 |*| Level of experience | long-time user | be able to delete flashcards that have not been used for over a year | only have the flashcards that are relevant to me
-|*| Level of experience | long-time user | be able to quickly search through my large library of cards easily and quickly |
+|*| Level of experience | long-time user | be able to quickly search through my large library of flashcards easily and quickly |
 |*| Level of experience | new user | have intuitive UI and commands | can get started easily
 |*| Multiple language user | user who is learning multiple languages | be able to load different question sets and store my questions in different files |
-|*| Usage patterns | active user with hundred of cards already made | be automatically given a list of cards to test my memory | can efficiently expand my vocabulary
+|*| Usage patterns | active user with hundred of flashcards already made | be automatically given a list of flashcards to test my memory | can efficiently expand my vocabulary
 |*| Usage patterns | forgetful user (who forgets about LingoGO!) | be reminded about using flashcards | can be actively learning new vocabularies instead of just cramming them at the last minute
-|*| Usage patterns | frequent user | be able to load up cards done x days ago | can test my memory retention of the words I learned that day
-|*| User behaviors | mobile user | be able to access my cards wherever I am, on the go |
+|*| Usage patterns | frequent user | be able to load up flashcards done x days ago | can test my memory retention of the words I learned that day
+|*| User behaviors | mobile user | be able to access my flashcards wherever I am, on the go |
 |*| User behaviors | organized user (who prepares flashcards based on languages) | I want to be able to combine different decks of flashcards | can prepare for my major exams (eg. mid-terms, finals)
-|*| User behaviors | user who learns better when things are in hard copy | have a convenient way to print out the flashcards | do not have to manually format the card design
+|*| User behaviors | user who learns better when things are in hard copy | have a convenient way to print out the flashcards | do not have to manually format the flashcard design
 |*| User behaviors | user who seeks improvement | see the progress made in terms of scores | can visualize my improvement
 |*| User collaboration | competitive user | be able to compete with my friends based on how fast and how many flashcards we can get correct | will be more motivated to learn
-|*| User learning 'rate' | slow/fast learner | adjust the frequency at which the cards will be tested | can better suit my pace of learning
-|*| User learning 'rate' | slow learner | have cards with words I don't remember to be shown more often to reinforce my learning |
+|*| User learning rate | slow/fast learner | adjust the frequency at which the flashcards will be tested | can better suit my pace of learning
+|*| User learning rate | slow learner | have flashcards with words I don't remember to be shown more often to reinforce my learning |
 |*| User learning style | auditory user | hear the vocabulary that I stored in the flashcard | can better memorize the words by sound
 |*| User learning style | visual learner | color code my flashcards | can better memorize the words by category
 |*| User learning style | visual learner | use pictures instead of words as the question part of my flashcard | can remember the vocabulary easier
@@ -557,7 +532,7 @@ For further details about each use case, see below. For all use cases below, the
 * 1a. LingoGO! detects that the number of flashcards specified is invalid.
     * 1a1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 ### Use case: UC03 - Add a flashcard
 
@@ -576,12 +551,12 @@ For further details about each use case, see below. For all use cases below, the
 * 2a. LingoGO! detects that the flashcard to be added is already present in the app.
     * 2a1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 * 2b. LingoGO! detects that incomplete/invalid information is provided for the flashcard to be added.
     * 2b1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 ### Use case: UC04 - Delete a flashcard
 
@@ -595,7 +570,7 @@ For further details about each use case, see below. For all use cases below, the
 * 1a. LingoGO! detects that the flashcard specified is invalid.
     * 1a1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 ### Use case: UC05 - Edit a flashcard
 
@@ -614,17 +589,17 @@ For further details about each use case, see below. For all use cases below, the
 * 1a. LingoGO! detects that the flashcard specified is invalid.
     * 1a1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 * 2a. LingoGO! detects that incomplete/invalid information is provided for the flashcard to be added.
     * 2a1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 * 2b. LingoGO! detects that the information provided will cause the edited flashcard to be a duplicate of a flashcard already present in the app.
     * 2b1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 ### Use case: UC06 - Find flashcard(s)
 
@@ -677,7 +652,7 @@ For further details about each use case, see below. For all use cases below, the
 * 2c. LingoGO! detects that all the flashcards to be added are duplicates of flashcards already present in the app.
     * 2c1. LingoGO! informs user that it already contains all the flashcards they want to import.
 
-    Use case ends.
+      Use case ends.
 
 ### Use case: UC09 - Export flashcards
 
@@ -731,7 +706,7 @@ For further details about each use case, see below. For all use cases below, the
 * 2a. User did not select any flashcards to test themselves with.
   * 2a1. LingoGO! informs user that their request is invalid.
 
-    Use case resumes from step 1.
+    Use case ends.
 
 ### Use case: UC12 - Answer a flashcard
 
@@ -792,7 +767,7 @@ For further details about each use case, see below. For all use cases below, the
 
 ## Appendix D: Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should work on **any mainstream OS** as long as it has Java 11 or above installed.
 2. Should be able to hold up to 1000 flashcards without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be usable to someone who has never used flashcards before.
@@ -801,9 +776,9 @@ For further details about each use case, see below. For all use cases below, the
 
 ## Appendix E: Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, macOS.
 * **Flashcard**: A memory aid that users can use to input a phrase or word in the language that they are learning
-  along with a hidden translation
+  along with a hidden translation.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -822,9 +797,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder.
 
-   2. Double-click the jar file <br>
-       Expected snapshot:
-        ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
+   2. Double-click the jar file.<br>
+
+       **Expected snapshot:**
+       ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
 
 1. Saving window preferences
 
@@ -838,10 +814,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a flashcard while all flashcards are listed
 
-   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards are in the list.
+   1. Prerequisites: List all flashcards using the [`list`](UserGuide/#listing-flashcards-list) command. Multiple flashcards are in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First flashcard is deleted from the list. Details of the deleted flashcard (e.g. Language type, English Phrase, Foreign Phrase) shown in the command result. Command box will be cleared.
+      Expected: First flashcard is deleted from the list. Details of the deleted flashcard (e.g. language, English phrase, foreign phrase) shown in the command result. Command box will be cleared.
 
    1. Test case: `delete 0`<br>
       Expected: No flashcard is deleted. Error details (e.g. Error type and Message Usage) shown in the command result. The `delete 0` command will remain in the command box.
@@ -876,33 +852,38 @@ testers are expected to do more *exploratory* testing.
          } ]
        }
        ```
-    1. Open the jar file <br>
-       Expected snapshot:
+    1. Open the jar file.<br>
+
+       **Expected snapshot:**
        ![sampleDataList](images/developerGuideExpectedSnapshots/sampleDataListMode.png)
 1. Opening jar file with non-existing JSON data file or `data` folder:
 
-    1. Open the jar file <br>
-       Expected snapshot:
+    1. Open the jar file.<br>
+
+       **Expected snapshot:**
        ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
 
 1. Opening jar file with incorrectly named JSON data file in `data` folder:
-    1. Open the jar file <br>
-       Expected snapshot:
+    1. Open the jar file.<br>
+
+       **Expected snapshot:**
        ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
 
 1. Opening jar file with invalid JSON file:
-    1. Test case: empty `flashcardapp.json`<br>
+    1. Test case: empty `flashcardapp.json`.<br>
 
-    2. Test case: `flashcardapp.json` with data: <br>
-       ```null```
+    2. Test case: `flashcardapp.json` with only `null` as its data:<br>
+       ```
+       null
+       ```
 
-    3. Test case: `flashcardapp.json` with data:
+    3. Test case: `flashcardapp.json` with a `null` array as the value for `"flashcards"`:
        ```
        {
          "flashcards": [ null ]
        }
        ```
-    4. Test case: `flashcardapp.json` with data:
+    4. Test case: `flashcardapp.json` with a missing comma in its data:
        ```
        {
          "flashcards" : [ {
@@ -912,7 +893,7 @@ testers are expected to do more *exploratory* testing.
          } ]
        }
        ```
-    5. Test case: `flashcardapp.json` with data:
+    5. Test case: `flashcardapp.json` with a `null` value in one of the flashcards' key-value pairs:
        ```
        {
          "flashcards" : [ {
@@ -922,21 +903,21 @@ testers are expected to do more *exploratory* testing.
          } ]
        }
        ```
-   Expected snapshot for above test cases 1 to 5:
+   **Expected snapshot for above test cases 1 to 5:**
    ![invalidJSONDataFile](images/developerGuideExpectedSnapshots/invalidJSONDataFile.png)
 
 ### Exporting flashcards to CSV file
 The `data` directory in this section refers to the directory named `data` which is located in the same directory as the jar file to be tested.
 
 1. Exporting to CSV file while all flashcards are listed.
-    1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards are in the list. The `data` directory does not contain a file named `file.csv`.
+    1. Prerequisites: List all flashcards using the [`list`](UserGuide/#listing-flashcards-list) command. Multiple flashcards are in the list. The `data` directory does not contain a file named `file.csv`.
     1. Test case: `export file.csv`<br>
        Expected: A CSV file named `file.csv` is created in the `data` directory.
        This CSV file contains 3 columns with the headers "Language", "Foreign", "English" from left to right, while the rows contain
        the data for **all** the flashcards in the app.
 
 1. Exporting a set of filtered flashcards to CSV file.
-    1. Prerequisites: Use the `filter` or `find` commands to obtain a filtered list of flashcards. This filtered list of flashcards
+    1. Prerequisites: Use the [`filter`](UserGuide/#filtering-flashcards-by-conditions-filter) or [`find`](UserGuide/#locating-flashcards-by-keywords-find) commands to obtain a filtered list of flashcards. This filtered list of flashcards
        should contain a **strict subset** of all the flashcards in the app. The `data` directory does not contain a file named `file.csv`.
     1. Test case: `export file.csv`<br>
        Expected: Similar to previous, but now the CSV row data should **only** contain the data for the flashcards in the filtered list of flashcards.
@@ -953,7 +934,7 @@ The `data` directory in this section refers to the directory named `data` which 
     1. Prerequisites:
       * A valid CSV file named `file.csv` is located in the `data` directory.
       * This CSV file should contain flashcard data for some **new** flashcards not found in the app currently, and some flashcards that are **already** in the app currently.
-      * See the User Guide [here](UserGuide/#importing-flashcards--import) for more information on what constitutes a valid CSV file.
+      * See the User Guide [here](UserGuide/#importing-flashcards-import) for more information on what constitutes a valid CSV file.
     1. Test case: `import file.csv`<br>
        Expected: All the flashcard data in `file.csv` is successful imported as flashcards in the application, and displayed in the
        current list of flashcards. Note that the duplicated flashcards set up above in the prerequisites will not be imported into the application.
@@ -962,7 +943,7 @@ The `data` directory in this section refers to the directory named `data` which 
        import.
 
 1. Importing CSV file with invalid headers.
-    1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide/#importing-flashcards--import).
+    1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide/#importing-flashcards-import).
     1. Test case: `import file.csv`<br>
        Expected: The command result informs the user that the headers in the CSV file are not in the correct format.
 

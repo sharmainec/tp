@@ -5,8 +5,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FlashcardAppParser" as FlashcardAppParser LOGIC_COLOR
 participant ":ImportCommandParser" as ImportCommandParser LOGIC_COLOR
-participant ":ImportCommand" as ImportCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "importCommand:ImportCommand" as ImportCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -33,40 +33,47 @@ create ImportCommand
 ImportCommandParser -> ImportCommand
 activate ImportCommand
 
-ImportCommand --> ImportCommandParser
+ImportCommand --> ImportCommandParser:importCommand
 deactivate ImportCommand
 
-ImportCommandParser --> FlashcardAppParser
+ImportCommandParser --> FlashcardAppParser:importCommand
 deactivate ImportCommandParser
 
-ImportCommandParser -[hidden]-> FlashcardAppParser
-destroy ImportCommandParser
-
-FlashcardAppParser --> LogicManager
+FlashcardAppParser --> LogicManager:importCommand
 deactivate FlashcardAppParser
 
 LogicManager -> ImportCommand : execute()
 activate ImportCommand
 
-ImportCommand -> Model : importFlashCards("dictionary.csv")
-activate Model
+ref over ImportCommand
+    import from CSV file
+end
 
-Model --> ImportCommand
-deactivate Model
+ImportCommand -> ImportCommand: validateCsvContentAreValidFlashcards(csvContent)
+activate ImportCommand
+ImportCommand --> ImportCommand: validatedFlashcards
+deactivate ImportCommand
+
+loop until all valid flashcards have been added
+    ImportCommand -> Model: hasFlashcard(flashcard)
+    Model --> ImportCommand: isFlashcardInModel
+    opt if !isFlashcardInModel
+        ImportCommand -> Model: addFlashcard(flashcard)
+        Model --> ImportCommand:
+    end
+end
 
 create CommandResult
 ImportCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ImportCommand
+CommandResult --> ImportCommand:result
 deactivate CommandResult
 
 ImportCommand --> LogicManager : result
 deactivate ImportCommand
 
-ImportCommand -[hidden]-> LogicManager : result
-destroy ImportCommand
 
-[<--LogicManager
+[<--LogicManager:result
 deactivate LogicManager
 @enduml
