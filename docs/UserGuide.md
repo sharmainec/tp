@@ -362,9 +362,9 @@ Examples *(refer to the snapshot below)*:
 
 ![find example list](images/FindExample.png)
 
-* `find e/HELLO` updates displayed flashcard list in [List mode](#list-mode) to display flashcard 1.
-* `find f/安` updates displayed flashcard list in [List mode](#list-mode) to display flashcards 2, 3 and 4.
-* `find e/Hello f/早` updates displayed flashcard list [List mode](#list-mode) to display flashcards 1, 2, 3 and 4.
+* `find e/HELLO` returns all flashcards in the app that matches the English keyword "Hello" in the displayed flashcard list in [List mode](#list-mode), e.g. only flashcard #1 will be displayed in the displayed flashcard list.
+* `find f/安` returns all flashcards in the app that matches the foreign keyword "安" in the displayed flashcard list in [List mode](#list-mode), e.g. only flashcard #2, #3, and #4 will be displayed in the displayed flashcard list.
+* `find e/Hello f/早` returns all flashcards in the app that matches the english keyword "Hello" **or** the foreign keyword "安" in the displayed flashcard list in [List mode](#list-mode), e.g. only flashcard #1, #2, #3, and #4 will be displayed in the displayed flashcard list.
 
 
 ### Viewing help: `help`
