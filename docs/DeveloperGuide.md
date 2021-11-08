@@ -555,7 +555,7 @@ For further details about each use case, see below. For all use cases below, the
 * 1a. LingoGO! detects that the number of flashcards specified is invalid.
     * 1a1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 ### Use case: UC03 - Add a flashcard
 
@@ -574,12 +574,12 @@ For further details about each use case, see below. For all use cases below, the
 * 2a. LingoGO! detects that the flashcard to be added is already present in the app.
     * 2a1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 * 2b. LingoGO! detects that incomplete/invalid information is provided for the flashcard to be added.
     * 2b1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 ### Use case: UC04 - Delete a flashcard
 
@@ -593,7 +593,7 @@ For further details about each use case, see below. For all use cases below, the
 * 1a. LingoGO! detects that the flashcard specified is invalid.
     * 1a1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 ### Use case: UC05 - Edit a flashcard
 
@@ -612,17 +612,17 @@ For further details about each use case, see below. For all use cases below, the
 * 1a. LingoGO! detects that the flashcard specified is invalid.
     * 1a1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 * 2a. LingoGO! detects that incomplete/invalid information is provided for the flashcard to be added.
     * 2a1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 * 2b. LingoGO! detects that the information provided will cause the edited flashcard to be a duplicate of a flashcard already present in the app.
     * 2b1. LingoGO! informs user that their request is invalid.
 
-      Use case resumes from step 1.
+      Use case ends.
 
 ### Use case: UC06 - Find flashcard(s)
 
@@ -675,7 +675,7 @@ For further details about each use case, see below. For all use cases below, the
 * 2c. LingoGO! detects that all the flashcards to be added are duplicates of flashcards already present in the app.
     * 2c1. LingoGO! informs user that it already contains all the flashcards they want to import.
 
-    Use case ends.
+      Use case ends.
 
 ### Use case: UC09 - Export flashcards
 
@@ -729,7 +729,7 @@ For further details about each use case, see below. For all use cases below, the
 * 2a. User did not select any flashcards to test themselves with.
   * 2a1. LingoGO! informs user that their request is invalid.
 
-    Use case resumes from step 1.
+    Use case ends.
 
 ### Use case: UC12 - Answer a flashcard
 
