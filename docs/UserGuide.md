@@ -193,14 +193,14 @@ This section aims to provide you with a quick breakdown on LingoGO!'s command fo
 This section aims to provide you with a quick breakdown on LingoGO!'s flashcard format. Flashcards with the same `LANGUAGE`, `ENGLISH_PHRASE` and `FOREIGN_PHRASE` will be considered as duplicated flashcards and only one copy of the flashcard can exist in LingoGO!.
 
 
-* **`LANGUAGE`** parameter
+* **`LANGUAGE` parameter**
     * Should not be longer than **50 characters**.
     * Should only contain **alphabetic** characters (e.g. "华文" will not be accepted, since it is not alphabetic).
     * The first letter will be capitalized and the remaining letters will be in lowercase  (e.g. "cHINESE" will be saved as "Chinese").
-* **`ENGLISH_PHRASE`** parameter
+* **`ENGLISH_PHRASE` parameter**
     * Should not be longer than **100 characters**.
     * Is not restricted to alphabetic characters only, but it is **recommended** that you ensure your input is a valid English input (e.g. you can use "こんにちは" as an English input).
-* **`FOREIGN_PHRASE`** parameter
+* **`FOREIGN_PHRASE` parameter**
     * Should not be longer than **100 characters**.
     * Should be distinguishable between flashcards with the same `FOREIGN_PHRASE` but with different `ENGLISH_PHRASE`. 
     * [Slideshow mode](#slideshow-mode) will **only** display the `FOREIGN_PHRASE`, so to use the [`answer`](#answering-a-flashcard-answer) command correctly, you need to be able to distinguish between the `FOREIGN_PHRASE`.
@@ -331,17 +331,17 @@ Format: `filter [l/LANGUAGE] [i/INDEX_LIST] [r/INDEX_RANGE]`
 * **At least one** of the optional fields must be provided.
 
 
-Examples:
-* `filter l/Chinese` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) with the `Chinese` language like `e/Good Morning f/早安 l/Chinese`.
-* `filter i/1 2 3` returns the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed at 1, 2 and 3.
-* `filter r/2 4` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 2 to 4.
-* `filter i/1 3 6 l/Tamil` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed at 1, 3 and 6, **or** of `Tamil` language.
-* `filter l/Chinese r/1 4` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 4, **or** of `Chinese` language.
-* `filter l/French r/1 10 i/15 19 20` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 10 **or**
-  indexed at 15, 19 and 20  **or** of the `French` language.
-*  When the displayed flashcard list of [List mode](#list-mode) shows `e/Good Morning f/早安 l/Chinese` and
-   `e/hand f/손 l/Korean`, executing `filter l/Korean` will return a displayed flashcard list with only the `e/hand f/손 l/Korean`
-   flashcard left. If we then execute `filter l/Chinese`, an empty displayed flashcard list will be returned.
+Examples *(refer to the snapshot below)*:
+
+![filter example list](images/FilterExample.png)
+* `filter l/Chinese` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) with the `Chinese` language, e.g. only flashcards #1, #2, #3 and #4 will be displayed in the displayed flashcard list.
+* `filter i/1 2 3` returns the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed at 1, 2 and 3, e.g. only flashcards #1, #2 and #3 will be displayed in the displayed flashcard list.
+* `filter r/2 4` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 2 to 4, e.g. e.g. only flashcards #2, #3 and #4 will be displayed in the displayed flashcard list.
+* `filter i/1 3 6 l/Tamil` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed at 1, 3 and 6, **or** of `Tamil` language, e.g. only flashcards #1, #3, #5 and #6 will be displayed in the displayed flashcard list.
+* `filter l/Korean r/1 2` returns all the flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 2, **or** of `Korean` language, e.g. only flashcards #1, #2 and #7 will be displayed in the displayed flashcard list.
+* `filter l/French r/1 3 i/5 7` returns all flashcards in the displayed flashcard list of [List mode](#list-mode) indexed from 1 to 3 **or**
+  indexed at 5 and 7  **or** of the `French` language, e.g. only flashcards #1, #2, #3, #5, #6, #7 will be displayed in the displayed flashcard list.
+*  `filter l/Korean` returns all flashcards in the displayed flashcard list with the `Korean` language, e.g. only flashcard #7. If we then execute `filter l/Chinese`, an empty displayed flashcard list will be returned.
 
 ### Locating flashcards by keyword(s): `find`
 
@@ -360,7 +360,7 @@ Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`
 
 Examples *(refer to the snapshot below)*:
 
-![find foreign keywords](images/FindExample.png)
+![find example list](images/FindExample.png)
 
 * `find e/HELLO` updates displayed flashcard list in [List mode](#list-mode) to display flashcard 1.
 * `find f/安` updates displayed flashcard list in [List mode](#list-mode) to display flashcards 2, 3 and 4.
