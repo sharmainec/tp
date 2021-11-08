@@ -56,7 +56,7 @@ This user guide aims to familiarize you with the commands of LingoGO! and to use
 
 1. Download the latest *lingogo.jar* from [here](https://github.com/AY2122S1-CS2103T-T11-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the home folder for LingoGO!.
+1. Copy the file to the folder you want to use as the [home folder](#home-folder) for LingoGO!.
 
 1. Double-click the file to start the app. Upon opening the app, you will be greeted with a welcome message. After acknowledging,
 you will see the following [GUI](#gui) with some sample flashcards.
@@ -296,7 +296,7 @@ Format: `exit`
 
 ### Exporting flashcards: `export`
 
-Exports the currently displayed flashcards in [List mode](#list-mode) to a CSV file.
+Exports the currently displayed flashcards in [List mode](#list-mode) to a [CSV](#csv) file.
 * This command can only be run in [List mode](#list-mode).
 
 <div markdown="block" class="alert alert-warning">
@@ -309,13 +309,13 @@ Format: `export CSV_FILE_NAME`
 * Produces a file with a **.csv extension** in which the flashcards will be stored and exported.
 * If you want to export to a file that already exists in the *data* folder, ensure it is not opened elsewhere.
 * If you are exporting to a new file, the file will be added to the *data* folder (located in the same folder as the *lingogo.jar* file).
-* The CSV file will have **3 column headers** in this order from left to right:
+* The [CSV](#csv) file will have **3 column headers** in this order from left to right:
   1. Language
   1. Foreign
   1. English
 
 Examples:
-* `export myCards.csv` will save all cards in LingoGO! to a CSV file named `myCards.csv` located in the *data* folder mentioned above.
+* `export myCards.csv` will save all cards in LingoGO! to a [CSV](#csv) file named `myCards.csv` located in the *data* folder mentioned above.
 
 
 ### Filtering flashcards by condition(s): `filter`
@@ -390,37 +390,37 @@ Format: `help`
 
 ### Importing flashcards: `import`
 
-Imports flashcards from a CSV file and **adds** them to the existing list in LingoGO!
+Imports flashcards from a [CSV](#csv) file and **adds** them to the existing list in LingoGO!
 (instead of replacing the current list).
 * This command can only be run in [List mode](#list-mode).
 
 Format: `import CSV_FILE_NAME`
 
-Below is an example of how the CSV file might look like.
+Below is an example of how the [CSV](#csv) file might look like.
 ![sample CSV file](images/SampleCSVFile.png)
 
-* Place the CSV file that you wish to import in the *data* folder
+* Place the [CSV](#csv) file that you wish to import in the *data* folder
  (located in the same folder as the *lingogo.jar* file).
-* The CSV file must have **3 column headers** in this order from left to right (refer to sample CSV file above):
+* The [CSV](#csv) file must have **3 column headers** in this order from left to right (refer to sample [CSV](#csv) file above):
   1. Language
   2. Foreign
   3. English
-* The headers in the CSV file are case-sensitive.
+* The headers in the [CSV](#csv) file are case-sensitive.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Importing invalid CSV file:**<br>
-* If any of the above required information in the CSV file is invalid or missing,
+* If any of the above required information in the [CSV](#csv) file is invalid or missing,
 LingoGO! will **not** import the flashcards.
 </div>
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about importing CSV files made with Microsoft Excel:**<br>
-* Please save the CSV file in the 'CSV UTF-8 (Comma-delimited)' file format in Excel before importing into LingoGO!.
+* Please save the [CSV](#csv) file in the 'CSV UTF-8 (Comma-delimited)' file format in Excel before importing into LingoGO!.
 ![Excel CSV UTF-8 save format screenshot](images/ExcelSaveScreenshot.png)
 </div>
 
 Examples:
-* `import dictionary.csv` will add all flashcards stored in the CSV file `dictionary.csv` to LingoGO!.
+* `import dictionary.csv` will add all flashcards stored in the [CSV](#csv) file `dictionary.csv` to LingoGO!.
 
 
 ### Listing flashcards: `list`
@@ -511,7 +511,7 @@ The folder on your computer which contains the LingoGO! app.
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Download the app on your other computer. Copy and paste the *data* folder of LingoGO! from your computer into the home folder of LingoGO! in your other computer.
+**A**: Download the app on your other computer. Copy and paste the *data* folder of LingoGO! from your computer into the [home folder](#home-folder) of LingoGO! in your other computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
