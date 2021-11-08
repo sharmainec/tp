@@ -341,7 +341,7 @@ given for both English and foreign phrases. `FindCommandParser` uses `PhraseCont
 
 The following *Sequence diagram* shows how the `find` command works:
 
-![FindSequenceDiagram](images/FindSequenceDiagram.png)
+[![](images/FindSequenceDiagram.png)](images/FindSequenceDiagram.png)
 
 #### Design considerations
 
@@ -366,7 +366,7 @@ The list feature relies on the `ListCommandParser` and `FlashcardInGivenFlashcar
 
 The following *Sequence diagram* shows how the `list` command works:
 
-![ListSequenceDiagram](images/ListSequenceDiagram.png)
+[![](images/ListSequenceDiagram.png)](images/ListSequenceDiagram.png)
 
 #### Design considerations:
 
