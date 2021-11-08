@@ -45,11 +45,20 @@ deactivate FlashcardAppParser
 LogicManager -> ExportCommand : execute()
 activate ExportCommand
 
-ExportCommand -> Model : exportFlashCards("myCards.csv")
+ExportCommand -> Model : getFilteredFlashcardList()
 activate Model
 
-Model --> ExportCommand
+Model --> ExportCommand: flashcards
 deactivate Model
+
+ExportCommand -> ExportCommand: flashcardListToCsvFormat(flashcards)
+activate ExportCommand
+ExportCommand --> ExportCommand: csvContent
+deactivate ExportCommand
+
+ref over ExportCommand
+    export to CSV
+end
 
 create CommandResult
 ExportCommand -> CommandResult

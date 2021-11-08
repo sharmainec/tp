@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+
+'https://plantuml.com/sequence-diagram
+
+participant ":ImportCommand" as ImportCommand LOGIC_COLOR
+participant "<<class>> \n FileUtil" as FileUtil LOGIC_COLOR
+
+mainframe **sd**  import from CSV file
+
+ImportCommand -> FileUtil: importCsvFileContent(filepath, csvHeaders)
+activate FileUtil
+
+FileUtil --> ImportCommand: csvContent
+deactivate FileUtil
+
+@enduml

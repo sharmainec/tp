@@ -12,7 +12,7 @@ title: Developer Guide
 
 LingoGO! is a **desktop app** for **university students who use English as their first language** and are trying to **learn a
 new language**. Founded on the widely established learning technique of **spaced-repetition**, LingoGO! takes all the
-benefits of pen-and-paper flashcards in learning, and brings them to the next level with our **powerful indexing** and **sharing
+benefits of pen-and-paper flashcards in learning, and brings them to the next level with our **powerful search** and **sharing
 features** -- *without the hassle* of managing actual physical ones. Coupled with our unique **Command Line Interface (CLI)** and
 an elegant **Graphical User Interface (GUI)** to accompany it, LingoGO! is sure to delight you, and empower you on your
 journey in mastering the new language you *have always wanted*.
@@ -276,8 +276,7 @@ complex constructors or factory methods when more types of filters are added.
 
 The following sequence diagrams shows how the `filter` command works:
 
-![FilterSequenceDiagram](images/filterCommand/FilterSequenceDiagram.png)
-
+[![](images/filterCommand/FilterSequenceDiagram.png)](images/filterCommand/FilterSequenceDiagram.png)
 
 ![SetFilterReferenceSequenceDiagram](images/filterCommand/SetFilterReferenceSequenceDiagram.png)
 
@@ -310,30 +309,26 @@ The following sequence diagrams shows how the `filter` command works:
 
 #### Implementation
 
-The export feature is facilitated by `ModelManager`. It extends `Model` and implements `exportFlashcards`
-which creates a CSV file in the `data` folder.
+The export feature uses the `CSVWriter` class from the `OpenCSV` package which generates a CSV file line by line in the file specified by the user. This export logic has been encapsulated in the `exportToCsvFile` method in `FileUtil`.
 
-The export feature uses `CSVWriter` class which generates a CSV file
-line by line in the file specified by the user.
+The following sequence diagrams show how the `export` command works:
 
-The following sequence diagram shows how the `export` command works:
+[![](images/ExportSequenceDiagram.png)](images/ExportSequenceDiagram.png)
 
-![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+![ExportToCsvReferenceSequenceDiagram](images/ExportToCsvReferenceSequenceDiagram.png)
 
 ### Import feature
 
 #### Implementation
 
-The import feature is facilitated by `ModelManager`. It extends `Model` and implements `importFlashcards`
-which returns an updated view of the flashcards in the GUI.
+The import feature uses the `CSVReader` class from the `OpenCSV` package to check if the given CSV file
+is in the correct CSV format. This logic is encapsulated in the `importCsvFileContent` method in `FileUtil`. During the execution of the `import` command, the CSV content is further validated to be valid flashcards and are not duplicates before they are added to the flashcard list.
 
-The import feature uses `CSVReader` class to check if the given CSV file
-is in the correct format line by line and uploads each card to the flashcard list
-if there is no duplicate.
+The following sequence diagrams show how the `import` command works:
 
-The following sequence diagram shows how the `import` command works:
+[![](images/ImportSequenceDiagram.png)](images/ImportSequenceDiagram.png)
 
-![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+![ImportFromCsvFileReferenceSequenceDiagram](images/ImportFromCsvFileReferenceSequenceDiagram.png)
 
 ### Find feature
 
