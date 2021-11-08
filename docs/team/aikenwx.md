@@ -47,10 +47,6 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
   * Wrote alert dialogue popups to greet new users as well as to warn users when they make code-breaking changes to
     the JSON data file.
   * Such alerts help users to troubleshoot against unintended data file changes.
-  1. **Debugged edit feature**
-  * PR(s): [\#205](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/205)
-  * Debugged `edit` command to ensure that it works correctly with `filter` command.
-  * Added integration tests for `edit` and `filter` command to increase total test coverage.
 * **<u>User Guide Documentation</u>**
   1. **Command Format**:
   * PR(s): [\#225](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/225)
