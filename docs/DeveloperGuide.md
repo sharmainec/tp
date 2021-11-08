@@ -265,7 +265,7 @@ which returns an unmodifiable view of filtered flashcards in the GUI.
 
 The filter feature also relies on a nested `FilterBuilder` class within `FilterCommand`. Multiple filters can be
 given by the user in one command, however only one predicate (filter) can be accepted by
-`Model::updateFilteredFlashList` to produce the filtered flashcards. `FilterBuilder` helps by combining multiple
+`Model::updateFilteredFlashcardList` to produce the filtered flashcards. `FilterBuilder` helps by combining multiple
 predicates into a single predicate.
 
 `FilterBuilder` is also a mutable class which allows processed user inputs to be directly set as variables within a
@@ -362,7 +362,7 @@ The following *Sequence diagram* shows how the `find` command works:
 
 The list feature is facilitated by `ModelManager`. It extends `Model` and implements `updateFilteredFlashcardList` which returns an unmodifiable view of the flashcards in the GUI.
 
-The list feature relies on the `ListCommandParser` and `FlashcardInGivenFlashcardListPredicate`. In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the main list of flashcards.
+The list feature relies on the `ListCommandParser` and `FlashcardInGivenFlashcardListPredicate`. In order to generate a list of random flashcards, a random stream of integers is used to get the flashcards from the main list of flashcards.
 
 The following *Sequence diagram* shows how the `list` command works:
 
