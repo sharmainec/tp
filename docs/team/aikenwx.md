@@ -16,14 +16,12 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
 * **<u>Enhancements/Features Implemented</u>**
   1. **Refactored Storage component**
   * PR(s): [\#70](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/70), [\#72](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/72)
-  * Refactored the Storage component to work for
-  LingoGO!'s requirements .
+  * Refactored the Storage component to work for LingoGO!'s requirements .
   * All references of AB3 code were also removed from Storage component.
   1. **Added test feature** *(deprecated)*
   * PR(s): [\#80](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/80)
-  * Added the ability to test flashcards in List mode
-    with an answer given by the user.
-  * This feature provided a basic means for users to interact and practise with their flashcards.
+  * Added the ability for users to test themselves with flashcards.
+  * This provided a basic means for users to practise with their flashcards.
   1. **Refactored `Flashcard` class**
   * PR(s): [\#95](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/95), [\#107](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/107)
   * Refactored `Flashcard` class to ensure immutable implementation of setter and getter methods of `isFlipped` 
@@ -32,12 +30,11 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
   1. **Enhanced flip feature** *(deprecated)*
   * PR(s): [\#95](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/95)
   * Added functionality for flip command to show and hide English phrases in List mode.
-  * This feature provided a basic means for users to interact with the digital flashcards, as if with real
-    flashcards by 'flipping' them over.
+  * This allowed users to interact with their flashcards, by `flipping` them.
   1. **Enhanced filter feature**
   * PR(s): [\#107](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/107),
     [\#130](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/130), [\#201](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/201)
-  * Added range and index filter conditions and added the ability to combine of multiple filter conditions.
+  * Added range and index filter conditions and enabled combining of multiple filter conditions.
   * This provides greater convenience for users, allowing them to specify several filter conditions at once within one
     filter command.
   * Search flexibility is also enhanced through the added filter conditions, allowing users to more quickly select
@@ -63,7 +60,7 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
   * Updated UML class diagram for Storage component.
   1. **Filter feature**:
   * PR(s): [\#116](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/116/commits)
-  * Wrote up description and implementation details for the `filter` command.
+  * Wrote description and implementation details for the `filter` command.
   * Prepared UML sequence diagrams for `filter` command.
   1. **Manual testing**:
   * PR(s): [\#200](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/200/commits)
