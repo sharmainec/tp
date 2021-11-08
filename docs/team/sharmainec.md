@@ -34,7 +34,7 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
 
 * **<u>User Guide Documentation</u>**
   1. **Command Usage**
-     * PR(s): [\#104](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/104/), [\#108](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/108), [\#108](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/108), [\#140](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/140), [\#200](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/200), [\#229](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/229).
+     * PR(s): [\#104](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/104/), [\#108](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/108),  [\#140](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/140), [\#200](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/200), [\#229](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/229).
      * Updated the User Guide for `find` and `list` commands.
      * Added a section for Flashcard Formats.
   2. **Screenshots and Overall Flow**
@@ -55,7 +55,7 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
      * Updated target user profile, value proposition, user stories. acknowledgements and appendices.
      * Updated instructions and screenshots for manual testing.
 
-* **<u>Community</u>**:
+* **<u>Community</u>**
     * PRs reviewed (with non-trivial review comments): [\#109](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/109).
     * Total PRs reviewed: 7.
     * Reported [bugs and suggestions](https://github.com/sharmainec/ped/issues) for team ForYourInterest.
