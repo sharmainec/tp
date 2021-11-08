@@ -470,9 +470,9 @@ University students
 
 ### Value proposition
 
-* Fast way to generate flashcards to learn new languages.
-* Help students memorize words when learning a new language.
-* Gamified features such as recording of scores and tracking of improvements to make learning engaging and encourage continued usage.
+* Fast way to generate and search for flashcards to learn new languages.
+* Convenient way to access numerous flashcards without physical hassle.
+* Provide a focused environment for students to efficiently train their memory.
 
 --------------------------------------------------------------------------------------------------------------------
 
