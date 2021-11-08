@@ -5,46 +5,57 @@ title: Sharmaine Cheong Shi Min's Project Portfolio Page
 
 ### Project: LingoGO!
 
-LingoGO! is a desktop application created as part of a team project for the module CS2103T (Software Engineering) at the
-National University of Singapore (NUS). The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is
-written in Java, and has about 10 kLoC.
+LingoGO! is a **desktop app** for **university students who use English as their first language** and are trying to **learn a
+new language**. Our unique **Command Line Interface (CLI)** and
+elegant **Graphical User Interface (GUI)** is sure to delight you, and empower you on your journey in mastering the new language you *have always wanted*.
 
-Given below are my contributions to the project.
+<hr>
 
-_To be added._
+* **Code contributions**: View my code contributions on RepoSense [here](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=sharmainec&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&zFR=false&tabAuthor=sharmainec&tabRepo=AY2122S1-CS2103T-T11-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&tabType=authorship).
 
-<!-- * **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **<u>Enhancements/Features Implemented</u>**
+  1. **Find feature**
+     * PR(s): [\#104](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/104).
+     * Updated StringUtil to compare foreign words.
+     * Updated find parser to take in english and foreign keywords.
+     * Updated find to search for matching english or foreign keywords.
+     * Wrote tests for find command.
+  2. **List feature**
+     * PR(s): [\#108](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/108), [\#219](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/219).
+     * Updated list to generate a random list of flashcards from the entire app based on the input given by the user.
+     * Added list parser.
+  3. **Enhance GUI color scheme**
+     * PR(s): [\#141](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/141), [\#146](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/146), [\#201](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/201/commits/03b7bb956940eb5810b51ca9d6604c6229486a64).
+     * Updated the color scheme to white and blue.
+  4. **Flip feature** *(deprecated)*
+     * PR(s): [\#81](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/81).
+     * Added flip to toggle between English and foreign phrase.
+     * Wrote tests for flip command.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **<u>User Guide Documentation</u>**
+  1. **Command Usage**
+     * PR(s): [\#104](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/104/), [\#108](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/108), [\#108](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/108), [\#140](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/140), [\#200](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/200), [\#229](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/229).
+     * Updated the User Guide for `find` and `list` commands.
+     * Added a section for Flashcard Formats.
+  2. **Screenshots and Overall Flow**
+     * PR(s): [\#54](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/54), [\#229](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/229).
+     * Updated screenshots for `filter` and `find` examples.
+     * Updated command summary.
+     * Replace all AB3 related content with LingoGO!.
+  
+* **<u>Developer Guide Documentation</u>**
+  1. **Command Implementation**
+     * PR(s): [\#108](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/108), [\#122](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/122), [\#200](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/200/commits/8ed658a7789543cc5e804949df0fb7eedaee6de9).
+     * Updated the Developer Guide for `find` and `list` commands.
+     * Added sequence diagram for `find` and `list` commands.
+     * Added class diagram for `SlideshowApp`.
+     * Added use cases for `find` and `list` commands.
+  2. **Screenshots and Overall Flow**
+     * PR(s): [\#44](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/44), [\#89](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/89), [\#140](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/140).
+     * Updated target user profile, value proposition, user stories. acknowledgements and appendices.
+     * Updated instructions and screenshots for manual testing.
 
-* **Code contributed**: [RepoSense link]()
-
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
-* **Documentation**:
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_ -->
+* **<u>Community</u>**:
+    * PRs reviewed (with non-trivial review comments): [\#109](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/109).
+    * Total PRs reviewed: 7.
+    * Reported [bugs and suggestions](https://github.com/sharmainec/ped/issues) for team ForYourInterest.
