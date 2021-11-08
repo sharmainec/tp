@@ -274,7 +274,7 @@ predicates into a single predicate.
 complex constructors or factory methods when more types of filters are added.
 
 
-The following sequence diagrams shows how the `filter` command works:
+The following *Sequence Diagrams* show how the `filter` command works:
 
 [![](images/filterCommand/FilterSequenceDiagram.png)](images/filterCommand/FilterSequenceDiagram.png)
 
@@ -311,7 +311,7 @@ The following sequence diagrams shows how the `filter` command works:
 
 The export feature uses the `CSVWriter` class from the `OpenCSV` package which generates a CSV file line by line in the file specified by the user. This export logic has been encapsulated in the `exportToCsvFile` method in `FileUtil`.
 
-The following sequence diagrams show how the `export` command works:
+The following *Sequence Diagrams* show how the `export` command works:
 
 [![](images/ExportSequenceDiagram.png)](images/ExportSequenceDiagram.png)
 
@@ -324,7 +324,7 @@ The following sequence diagrams show how the `export` command works:
 The import feature uses the `CSVReader` class from the `OpenCSV` package to check if the given CSV file
 is in the correct CSV format. This logic is encapsulated in the `importCsvFileContent` method in `FileUtil`. During the execution of the `import` command, the CSV content is further validated to be valid flashcards and are not duplicates before they are added to the flashcard list.
 
-The following sequence diagrams show how the `import` command works:
+The following *Sequence Diagrams* show how the `import` command works:
 
 [![](images/ImportSequenceDiagram.png)](images/ImportSequenceDiagram.png)
 
@@ -339,7 +339,7 @@ The find feature is facilitated by `ModelManager`. It extends `Model` implements
 The find feature relies on the `FindCommandParser` and `PhraseContainsKeywordsPredicate`. Multiple keywords can be 
 given for both English and foreign phrases. `FindCommandParser` uses `PhraseContainsKeywordsPredicate` to select flashcards that matches the keywords.
 
-The following sequence diagram shows how the `find` command works:
+The following *Sequence diagram* shows how the `find` command works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
@@ -364,7 +364,7 @@ The list feature is facilitated by `ModelManager`. It extends `Model` and implem
 
 The list feature relies on the `ListCommandParser` and `FlashcardInGivenFlashcardListPredicate`. In order to generate a list of random flashcards, a random stream of `Index` is used to get the flashcards from the main list of flashcards.
 
-The following sequence diagram shows how the `list` command works:
+The following *Sequence diagram* shows how the `list` command works:
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
@@ -386,7 +386,7 @@ The following sequence diagram shows how the `list` command works:
 
 The slideshow feature displays the current list of flashcards shown in [List mode](UserGuide/#list-mode) one at a time.
 In [Slideshow mode](UserGuide/#slideshow-mode), users can test how well they remember their flashcards by entering their answers for each flashcard
-and getting feedback on whether they are right or wrong. Users may also navigate between flashcards.
+and getting feedback on whether they are right or wrong. Users may also navigate between flashcards in the slideshow.
 
 #### Implementation
 
@@ -403,23 +403,21 @@ The above methods in turn facilitate the following commands:
 | `PreviousCommand` | [`previous`](UserGuide/#moving-to-the-previous-flashcard-in-slideshow-mode--previous) | When the user navigates to the previous flashcard in the slideshow. |
 | `StopCommand` | [`stop`](UserGuide/#exiting-slideshow-mode-stop) | When the user exits [Slideshow mode](UserGuide/#slideshow-mode). |
 
-The `SlideshowApp` class is used to encapsulate all state and operations related to the slideshow, and
-is exposed as a `ReadOnlySlideshowApp` object.
-Below is an overview of the `SlideshowApp` component.
+Below is a *Class Diagram* of the `SlideshowApp` component, the class in charge of this feature.
 
 ![SlideshowAppClassDiagram](images/SlideshowAppClassDiagram.png)
 
-`SlideshowApp` tracks the current state of the slideshow, such as whether the slideshow mode `isActive`, and whether `isAnswerDisplayed` for the current slide. It also contains a `Slideshow` component, which tracks the list of flashcards in the current slideshow, and the index of the current slide.
+The `SlideshowApp` class encapsulates all state and operations related to the slideshow, and
+is exposed via the `ReadOnlySlideshowApp` interface.
+`SlideshowApp` tracks the current state of the slideshow, such as whether the slideshow mode `isActive`, and whether `isAnswerDisplayed` for the current slide. It also contains a `Slideshow` component, which tracks the list of flashcards in the current slideshow.
 
-##### Slideshow command
-
-The following sequence diagrams show how the `slideshow` command works:
+The following *Sequence Diagrams* show how the `slideshow` command works:
 
 ![SlideshowSequenceDiagram](images/SlideshowSequenceDiagram.png)
 
 ![UpdateSlideshowAppReferenceSequenceDiagram](images/StartSlideshowAppReferenceSequenceDiagram.png)
 
-The reference sequence diagram above shows the various state changes within `SlideshowApp`.
+The *Reference Sequence Diagram* above shows the various state changes within `SlideshowApp`.
 When a certain property is changed, the UI updates itself accordingly.
 The relevant `UiPart` listens to changes in these properties using the `ChangeListener` class provided by the `java.beans` package.
 
@@ -442,16 +440,6 @@ readOnlySlideshowApp.isActiveProperty().addListener(new ChangeListener<>() {
    }
 });
 {% endhighlight %}
-
-##### Answer command
-
-The following sequence diagram shows how the `answer` command works:
-
-<!-- TODO: Add sequence diagram for AnswerCommand -->
-
-The sequence diagram above shows that within `SlideshowApp`, the `currentFlashcard` changes and `isAnswerDisplayed` becomes true when a user
-answers a flashcard. This will trigger an update in whichever `UiPart` that is listening to changes in these properties.
-In this case, the UI will display the flashcard's answer to the user.
 
 --------------------------------------------------------------------------------------------------------------------
 
