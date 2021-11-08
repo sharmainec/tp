@@ -47,10 +47,10 @@ contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
 * To set up your development environment, refer to the guide on [Setting up and getting started](#setting-up-getting-started).
 * For a high level overview of the design of the application, refer to the [Overall Design](#overall-design) section.
 * For a lower level, more in depth look at some of the features implemented in LingoGO!, refer to the [Feature Implementation](#feature-implementation) section.
-* To better understand the documentation practices of the project, refer to the [Documentation guide](https://ay2122s1-cs2103t-t11-2.github.io/tp/Documentation.html).
-* To better understand the testing methods used in the project, refer to the [Testing guide](https://ay2122s1-cs2103t-t11-2.github.io/tp/Testing.html).
-* To better understand the tools available to you as a developer, refer to the [Logging guide](https://ay2122s1-cs2103t-t11-2.github.io/tp/Logging.html),
-  [Configuration guide](https://ay2122s1-cs2103t-t11-2.github.io/tp/Configuration.html), and [DevOps Guide](https://ay2122s1-cs2103t-t11-2.github.io/tp/DevOps.html).
+* To better understand the documentation practices of the project, refer to the [Documentation guide](Documentation).
+* To better understand the testing methods used in the project, refer to the [Testing guide](Testing).
+* To better understand the tools available to you as a developer, refer to the [Logging guide](Logging),
+  [Configuration guide](Configuration), and [DevOps Guide](DevOps).
 * For a list of requirements that LingoGO! has to meet/is planning to meet, refer to [Appendix B: User Stories](#appendix-b-user-stories),
   [Appendix C: Use Cases](#appendix-c-use-cases), and [Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements).
 * A [Glossary](#appendix-e-glossary) is provided to help explain certain important terms used in this guide.
@@ -62,8 +62,7 @@ contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
 
 This project was originally adapted from [AddressBook-Level3 (AB3)](https://se-education.org/addressbook-level3/).
 
-Third party libraries used:
-* [OpenCSV](http://opencsv.sourceforge.net/) - Reading and writing CSV files.
+Third party libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [OpenCSV](http://opencsv.sourceforge.net/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,19 +72,19 @@ Below are some guides, tools available, and standards used by developers of this
 
 ##### Setting up, getting started
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [Setting up and getting started](SettingUp.md).
 
 ##### Documentation
 
-Refer to the [_Documentation guide_](Documentation.md).
+Refer to the [Documentation guide](Documentation.md).
 
 ##### Testing
 
-Refer to the [_Testing guide_](Testing.md).
+Refer to the [Testing guide](Testing.md).
 
 ##### Logging
 
-Refer to the [_Logging guide_](Logging.md).
+Refer to the [Logging guide](Logging.md).
 
 ##### Configuration
 
@@ -309,7 +308,7 @@ The following *Sequence Diagrams* show how the `filter` command works:
 
 #### Implementation
 
-The export feature uses the `CSVWriter` class from the `OpenCSV` package which generates a CSV file line by line in the file specified by the user. This export logic has been encapsulated in the `exportToCsvFile` method in `FileUtil`.
+The export feature uses the `CSVWriter` class from the `OpenCSV` package which generates a CSV file line by line in the file specified by the user. The file-writing operations can be found in the `exportToCsvFile` method in `FileUtil`.
 
 The following *Sequence Diagrams* show how the `export` command works:
 
@@ -322,7 +321,7 @@ The following *Sequence Diagrams* show how the `export` command works:
 #### Implementation
 
 The import feature uses the `CSVReader` class from the `OpenCSV` package to check if the given CSV file
-is in the correct CSV format. This logic is encapsulated in the `importCsvFileContent` method in `FileUtil`. During the execution of the `import` command, the CSV content is further validated to be valid flashcards and are not duplicates before they are added to the flashcard list.
+is in the correct CSV format. The file-reading operations can be found in the `importCsvFileContent` method in `FileUtil`. During the execution of the `import` command, the CSV content is further validated to be valid flashcards and are not duplicates before they are added to the flashcard list.
 
 The following *Sequence Diagrams* show how the `import` command works:
 
@@ -409,13 +408,13 @@ Below is a *Class Diagram* of the `SlideshowApp` component, the class in charge 
 
 The `SlideshowApp` class encapsulates all state and operations related to the slideshow, and
 is exposed via the `ReadOnlySlideshowApp` interface.
-`SlideshowApp` tracks the current state of the slideshow, such as whether the slideshow mode `isActive`, and whether `isAnswerDisplayed` for the current slide. It also contains a `Slideshow` component, which tracks the list of flashcards in the current slideshow.
+`SlideshowApp` tracks the current state of the slideshow, such as whether the [Slideshow mode](UserGuide/#slideshow-mode) `isActive`, and whether `isAnswerDisplayed` for the current slide. It also contains a `Slideshow` component, which tracks the list of flashcards in the current slideshow.
 
 The following *Sequence Diagrams* show how the `slideshow` command works:
 
-![SlideshowSequenceDiagram](images/SlideshowSequenceDiagram.png)
+[![](images/SlideshowSequenceDiagram.png)](images/SlideshowSequenceDiagram.png)
 
-![UpdateSlideshowAppReferenceSequenceDiagram](images/StartSlideshowAppReferenceSequenceDiagram.png)
+[![](images/StartSlideshowAppReferenceSequenceDiagram.png)](images/StartSlideshowAppReferenceSequenceDiagram.png)
 
 The *Reference Sequence Diagram* above shows the various state changes within `SlideshowApp`.
 When a certain property is changed, the UI updates itself accordingly.
