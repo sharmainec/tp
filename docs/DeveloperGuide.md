@@ -397,10 +397,10 @@ It extends `Model` and implements the methods `startSlideshow`, `stopSlideshow`,
 The above methods in turn facilitate the following commands:
 
 | Command Class | Command | Usage |
-| `SlideshowCommand` | [`slideshow`](UserGuide/#testing-with-a-set-of-flashcards--slideshow) | When the user enters [Slideshow mode](UserGuide/#slideshow-mode). |
-| `AnswerCommand` | [`answer`](UserGuide/#answering-a-flashcard--answer) | When the user enters an answer for the currently shown flashcard. |
-| `NextCommand` | [`next`](UserGuide/#moving-to-the-next-flashcard-in-slideshow-mode--next) | When the user navigates to the next flashcard in the slideshow. |
-| `PreviousCommand` | [`previous`](UserGuide/#moving-to-the-previous-flashcard-in-slideshow-mode--previous) | When the user navigates to the previous flashcard in the slideshow. |
+| `SlideshowCommand` | [`slideshow`](UserGuide/#testing-with-a-set-of-flashcards-slideshow) | When the user enters [Slideshow mode](UserGuide/#slideshow-mode). |
+| `AnswerCommand` | [`answer`](UserGuide/#answering-a-flashcard-answer) | When the user enters an answer for the currently shown flashcard. |
+| `NextCommand` | [`next`](UserGuide/#moving-to-the-next-flashcard-in-slideshow-mode-next) | When the user navigates to the next flashcard in the slideshow. |
+| `PreviousCommand` | [`previous`](UserGuide/#moving-to-the-previous-flashcard-in-slideshow-mode-previous) | When the user navigates to the previous flashcard in the slideshow. |
 | `StopCommand` | [`stop`](UserGuide/#exiting-slideshow-mode-stop) | When the user exits [Slideshow mode](UserGuide/#slideshow-mode). |
 
 Below is a *Class Diagram* of the `SlideshowApp` component, the class in charge of this feature.
