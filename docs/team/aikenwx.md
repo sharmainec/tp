@@ -25,8 +25,8 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
   1. **Refactored `Flashcard` class**
   * PR(s): [\#95](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/95), [\#107](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/107)
   * Refactored `Flashcard` class to ensure immutable implementation of setter and getter methods of `isFlipped` 
-    to defend against unwanted mutations.
-  * Updated `isSameFlashcards` method to allow for the checking of duplicate flashcards.
+    attribute to defend against unwanted mutations.
+  * Updated `isSameFlashcard` method to allow for the checking of duplicate flashcards.
   1. **Enhanced flip feature** *(deprecated)*
   * PR(s): [\#95](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/95)
   * Added functionality for flip command to show and hide English phrases.
