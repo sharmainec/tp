@@ -71,27 +71,27 @@ Third party libraries used:
 
 Below are some guides, tools available, and standards used by developers of this project.
 
-### Setting up, getting started
+##### Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-### Documentation
+##### Documentation
 
 Refer to the [_Documentation guide_](Documentation.md).
 
-### Testing
+##### Testing
 
 Refer to the [_Testing guide_](Testing.md).
 
-### Logging
+##### Logging
 
 Refer to the [_Logging guide_](Logging.md).
 
-### Configuration
+##### Configuration
 
 Refer to the [Configuration guide](Configuration.md).
 
-### DevOps
+##### DevOps
 
 Refer to the [DevOps guide](DevOps.md).
 
