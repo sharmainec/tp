@@ -23,7 +23,7 @@ LingoGO! currently supports **all languages that can be represented on your comp
 * Importing and exporting of flashcards to be shared with others.
 * Testing your knowledge in a questionnaire of flashcards.
 
-Detailed information about these features can be found under the [Modes](UserGuide/#modes) and [Commands](UserGuide/#commands) sections in the user guide.
+Detailed information about these features can be found under the [Modes](UserGuide.html#modes) and [Commands](UserGuide.html#commands) sections in the user guide.
 
 <hr/>
 
@@ -383,8 +383,8 @@ The following *Sequence diagram* shows how the `list` command works:
 
 #### Description
 
-The slideshow feature displays the current list of flashcards shown in [List mode](UserGuide/#list-mode) one at a time.
-In [Slideshow mode](UserGuide/#slideshow-mode), users can test how well they remember their flashcards by entering their answers for each flashcard
+The slideshow feature displays the current list of flashcards shown in [List mode](UserGuide.html#list-mode) one at a time.
+In [Slideshow mode](UserGuide.html#slideshow-mode), users can test how well they remember their flashcards by entering their answers for each flashcard
 and getting feedback on whether they are right or wrong. Users may also navigate between flashcards in the slideshow.
 
 #### Implementation
@@ -396,11 +396,11 @@ It extends `Model` and implements the methods `startSlideshow`, `stopSlideshow`,
 The above methods in turn facilitate the following commands:
 
 | Command Class | Command | Usage |
-| `SlideshowCommand` | [`slideshow`](UserGuide/#testing-with-a-set-of-flashcards-slideshow) | When the user enters [Slideshow mode](UserGuide/#slideshow-mode). |
-| `AnswerCommand` | [`answer`](UserGuide/#answering-a-flashcard-answer) | When the user enters an answer for the currently shown flashcard. |
-| `NextCommand` | [`next`](UserGuide/#moving-to-the-next-flashcard-in-slideshow-mode-next) | When the user navigates to the next flashcard in the slideshow. |
-| `PreviousCommand` | [`previous`](UserGuide/#moving-to-the-previous-flashcard-in-slideshow-mode-previous) | When the user navigates to the previous flashcard in the slideshow. |
-| `StopCommand` | [`stop`](UserGuide/#exiting-slideshow-mode-stop) | When the user exits [Slideshow mode](UserGuide/#slideshow-mode). |
+| `SlideshowCommand` | [`slideshow`](UserGuide.html#testing-with-a-set-of-flashcards-slideshow) | When the user enters [Slideshow mode](UserGuide.html#slideshow-mode). |
+| `AnswerCommand` | [`answer`](UserGuide.html#answering-a-flashcard-answer) | When the user enters an answer for the currently shown flashcard. |
+| `NextCommand` | [`next`](UserGuide.html#moving-to-the-next-flashcard-in-slideshow-mode-next) | When the user navigates to the next flashcard in the slideshow. |
+| `PreviousCommand` | [`previous`](UserGuide.html#moving-to-the-previous-flashcard-in-slideshow-mode-previous) | When the user navigates to the previous flashcard in the slideshow. |
+| `StopCommand` | [`stop`](UserGuide.html#exiting-slideshow-mode-stop) | When the user exits [Slideshow mode](UserGuide.html#slideshow-mode). |
 
 Below is a *Class Diagram* of the `SlideshowApp` component, the class in charge of this feature.
 
@@ -408,7 +408,7 @@ Below is a *Class Diagram* of the `SlideshowApp` component, the class in charge 
 
 The `SlideshowApp` class encapsulates all state and operations related to the slideshow, and
 is exposed via the `ReadOnlySlideshowApp` interface.
-`SlideshowApp` tracks the current state of the slideshow, such as whether the [Slideshow mode](UserGuide/#slideshow-mode) `isActive`, and whether `isAnswerDisplayed` for the current slide. It also contains a `Slideshow` component, which tracks the list of flashcards in the current slideshow.
+`SlideshowApp` tracks the current state of the slideshow, such as whether the [Slideshow mode](UserGuide.html#slideshow-mode) `isActive`, and whether `isAnswerDisplayed` for the current slide. It also contains a `Slideshow` component, which tracks the list of flashcards in the current slideshow.
 
 The following *Sequence Diagrams* show how the `slideshow` command works:
 
@@ -420,7 +420,7 @@ The *Reference Sequence Diagram* above shows the various state changes within `S
 When a certain property is changed, the UI updates itself accordingly.
 The relevant `UiPart` listens to changes in these properties using the `ChangeListener` class provided by the `java.beans` package.
 
-For instance, when `isActive:BooleanProperty` becomes true, the UI will go into [Slideshow mode](UserGuide/#slideshow-mode).
+For instance, when `isActive:BooleanProperty` becomes true, the UI will go into [Slideshow mode](UserGuide.html#slideshow-mode).
 Below is a code snippet on how this is implemented in `FlashcardListPanel.java`.
 
 {% highlight java %}
@@ -814,7 +814,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a flashcard while all flashcards are listed
 
-   1. Prerequisites: List all flashcards using the [`list`](UserGuide/#listing-flashcards-list) command. Multiple flashcards are in the list.
+   1. Prerequisites: List all flashcards using the [`list`](UserGuide.html#listing-flashcards-list) command. Multiple flashcards are in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First flashcard is deleted from the list. Details of the deleted flashcard (e.g. language, English phrase, foreign phrase) shown in the command result. Command box will be cleared.
@@ -910,14 +910,14 @@ testers are expected to do more *exploratory* testing.
 The `data` directory in this section refers to the directory named `data` which is located in the same directory as the jar file to be tested.
 
 1. Exporting to CSV file while all flashcards are listed.
-    1. Prerequisites: List all flashcards using the [`list`](UserGuide/#listing-flashcards-list) command. Multiple flashcards are in the list. The `data` directory does not contain a file named `file.csv`.
+    1. Prerequisites: List all flashcards using the [`list`](UserGuide.html#listing-flashcards-list) command. Multiple flashcards are in the list. The `data` directory does not contain a file named `file.csv`.
     1. Test case: `export file.csv`<br>
        Expected: A CSV file named `file.csv` is created in the `data` directory.
        This CSV file contains 3 columns with the headers "Language", "Foreign", "English" from left to right, while the rows contain
        the data for **all** the flashcards in the app.
 
 1. Exporting a set of filtered flashcards to CSV file.
-    1. Prerequisites: Use the [`filter`](UserGuide/#filtering-flashcards-by-conditions-filter) or [`find`](UserGuide/#locating-flashcards-by-keywords-find) commands to obtain a filtered list of flashcards. This filtered list of flashcards
+    1. Prerequisites: Use the [`filter`](UserGuide.html#filtering-flashcards-by-conditions-filter) or [`find`](UserGuide.html#locating-flashcards-by-keywords-find) commands to obtain a filtered list of flashcards. This filtered list of flashcards
        should contain a **strict subset** of all the flashcards in the app. The `data` directory does not contain a file named `file.csv`.
     1. Test case: `export file.csv`<br>
        Expected: Similar to previous, but now the CSV row data should **only** contain the data for the flashcards in the filtered list of flashcards.
@@ -934,7 +934,7 @@ The `data` directory in this section refers to the directory named `data` which 
     1. Prerequisites:
       * A valid CSV file named `file.csv` is located in the `data` directory.
       * This CSV file should contain flashcard data for some **new** flashcards not found in the app currently, and some flashcards that are **already** in the app currently.
-      * See the User Guide [here](UserGuide/#importing-flashcards-import) for more information on what constitutes a valid CSV file.
+      * See the User Guide [here](UserGuide.html#importing-flashcards-import) for more information on what constitutes a valid CSV file.
     1. Test case: `import file.csv`<br>
        Expected: All the flashcard data in `file.csv` is successful imported as flashcards in the application, and displayed in the
        current list of flashcards. Note that the duplicated flashcards set up above in the prerequisites will not be imported into the application.
@@ -943,7 +943,7 @@ The `data` directory in this section refers to the directory named `data` which 
        import.
 
 1. Importing CSV file with invalid headers.
-    1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide/#importing-flashcards-import).
+    1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide.html#importing-flashcards-import).
     1. Test case: `import file.csv`<br>
        Expected: The command result informs the user that the headers in the CSV file are not in the correct format.
 

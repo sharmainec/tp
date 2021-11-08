@@ -35,4 +35,4 @@ This project has three types of tests:
 1. Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
    e.g. `lingogo.logic.LogicManagerTest`
 
-There are also a set of manual test cases developers can refer to in the Developer's Guide [here](DeveloperGuide/#appendix-f-instructions-for-manual-testing).
+There are also a set of manual test cases developers can refer to in the Developer's Guide [here](DeveloperGuide.html#appendix-f-instructions-for-manual-testing).
