@@ -3,29 +3,30 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+show members
+hide methods
+
+skinparam Class {
+    AttributeFontColor #FFFFFF
+}
 
 Package Model <<Rectangle>>{
-Interface ReadOnlySlideshowApp <<Interface>>
-Class SlideshowApp
-
-
-Package Slideshow <<Rectangle>>{
-Class Slideshow
-}
-
-
-Package Flashcard <<Rectangle>>{
-Class Flashcard
-Class Phrase
-Class LanguageType
-}
-
+    Interface ReadOnlySlideshowApp <<Interface>>
+    Class SlideshowApp {
+        ObjectProperty<Flashcard> currentFlashcard
+        BooleanProperty isActive
+        BooleanProperty isAnswerDisplayed
+    }
+    Class Slideshow
+    Class Flashcard
+    Class LanguageType
+    Class Phrase
 }
 
 SlideshowApp .up.|> ReadOnlySlideshowApp
 SlideshowApp *--> "1" Slideshow
-Slideshow "1" --> "*" Flashcard
-Flashcard *--> "2" Phrase
+Slideshow "1" --> "1..*" Flashcard
 Flashcard *--> "1" LanguageType
+Flashcard *--> "2" Phrase
 
 @enduml

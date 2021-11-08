@@ -372,11 +372,11 @@ The following sequence diagram shows how the `list` command works:
 
 **Aspect: Generating list of flashcards:**
 
-* **Alternative 1 (current choice):** Randomize the list of flashcards
+* **Alternative 1 (current choice):** Randomize the list of flashcards.
     * Pros: Users are able to use flashcards more effectively.
     * Cons: Harder to implement and needs a random stream of `Index`.
 
-* **Alternative 2:** Output list up to `n`
+* **Alternative 2:** Output list up to `n`.
     * Pros: Easy to implement.
     * Cons: Does not add value to the user's learning experience.
 
@@ -384,9 +384,9 @@ The following sequence diagram shows how the `list` command works:
 
 #### Description
 
-The slideshow feature displays the current list of flashcards shown in [List mode](UserGuide/#list-mode) one at a time in individual "slides".
+The slideshow feature displays the current list of flashcards shown in [List mode](UserGuide/#list-mode) one at a time.
 In [Slideshow mode](UserGuide/#slideshow-mode), users can test how well they remember their flashcards by entering their answers for each flashcard
-and getting feedback on whether they are right or wrong. Users may also navigate between "slides".
+and getting feedback on whether they are right or wrong. Users may also navigate between flashcards.
 
 #### Implementation
 
@@ -398,9 +398,9 @@ The above methods in turn facilitate the following commands:
 
 | Command Class | Command | Usage |
 | `SlideshowCommand` | [`slideshow`](UserGuide/#testing-with-a-set-of-flashcards--slideshow) | When the user enters [Slideshow mode](UserGuide/#slideshow-mode). |
-| `AnswerCommand` | [`answer`](UserGuide/#answering-a-flashcard--answer) | When the user enters an answer for the flashcard shown on the current slide. |
-| `NextCommand` | [`next`](UserGuide/#moving-to-the-next-flashcard-in-slideshow-mode--next) | When the user navigates to the next slide. |
-| `PreviousCommand` | [`previous`](UserGuide/#moving-to-the-previous-flashcard-in-slideshow-mode--previous) | When the user navigates to the previous slide. |
+| `AnswerCommand` | [`answer`](UserGuide/#answering-a-flashcard--answer) | When the user enters an answer for the currently shown flashcard. |
+| `NextCommand` | [`next`](UserGuide/#moving-to-the-next-flashcard-in-slideshow-mode--next) | When the user navigates to the next flashcard in the slideshow. |
+| `PreviousCommand` | [`previous`](UserGuide/#moving-to-the-previous-flashcard-in-slideshow-mode--previous) | When the user navigates to the previous flashcard in the slideshow. |
 | `StopCommand` | [`stop`](UserGuide/#exiting-slideshow-mode-stop) | When the user exits [Slideshow mode](UserGuide/#slideshow-mode). |
 
 The `SlideshowApp` class is used to encapsulate all state and operations related to the slideshow, and
@@ -484,13 +484,8 @@ University students
 |***| General user | user | be able to list my flashcards |
 |***| General user | user | be able to test myself and view my performance using flashcards |
 |***| General user | user | be able to update my flashcards |
-<<<<<<< HEAD
-|***| Level of experience | new user | be guided through the set-up process of a flashcard | can use LingoGo! Properly
-|***| User behaviors | lazy user | automatically generate cards by typing in the vocabulary | don't have to spend time manually creating cards
-=======
 |***| Level of experience | new user | be guided through the set-up process of a flashcard | can use LingoGo! properly
 |***| User behaviors | lazy user | automatically generate flashcards by typing in the vocabulary | don't have to spend time manually creating flashcards
->>>>>>> 9ab12651 (Standardize user stories)
 |**| Level of experience | experienced user | be able to delete multiple flashcards that are no longer relevant to me (multi-delete function) |
 |**| Level of experience | new user | have a basic set of flashcards available from the get go | can reduce the setup time or reduce the need for setup
 |**| Multiple language user | user who is learning multiple languages | be able to combine flashcards of the same question in different languages | can test myself in all the languages that I have learnt in one go
