@@ -16,7 +16,7 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
 * **<u>Enhancements/Features Implemented</u>**
   1. **Refactored Storage component**
   * PR(s): [\#70](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/70), [\#72](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/72)
-  * Refactored the Storage component to work for LingoGO!'s requirements .
+  * Refactored the Storage component to work for LingoGO!'s requirements.
   * All references of AB3 code were also removed from Storage component.
   1. **Added test feature** *(deprecated)*
   * PR(s): [\#80](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/80)
