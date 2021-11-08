@@ -13,9 +13,9 @@ skinparam Class {
 Package Model <<Rectangle>>{
     Interface ReadOnlySlideshowApp <<Interface>>
     Class SlideshowApp {
-        ObjectProperty<Flashcard>: currentFlashcard
-        BooleanProperty: isActive
-        BooleanProperty: isAnswerDisplayed
+        currentFlashcard: ObjectProperty<Flashcard>
+        isActive: BooleanProperty
+        isAnswerDisplayed: BooleanProperty
     }
     Class Slideshow
     Class Flashcard

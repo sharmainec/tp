@@ -125,7 +125,7 @@ It has the following responsibilities:
 
 The rest of the app consists of **four components**.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of the app.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the app in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
@@ -162,7 +162,7 @@ An overall *Class Diagram* for this component can be found below:
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The `UI` component consists of a `MainWindow` that is made up of several sub-components (e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, etc.) which come together to make up the entire user interface. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+The `UI` component consists of a `MainWindow` that is made up of several sub-components (e.g. `CommandBox`, `ResultDisplay`, `FlashcardListPanel`, etc.) which come together to make up the entire user interface. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
@@ -189,7 +189,7 @@ A (partial) *Class Diagram* of the `Logic` component can be found below:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `FlashcardAppParser` class to parse the user command.
-1. This creates a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This creates a `Command` object (more precisely, an object of one of its subclasses, e.g. `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a flashcard).
 1. The result of the command execution is encapsulated in a `CommandResult` object which is returned by `Logic`.
 
@@ -202,9 +202,9 @@ Here are the other classes in `Logic` (omitted from the *Class Diagram* above) t
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `FlashcardAppParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`).
-* `XYZCommandParser` uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FlashcardAppParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible (e.g., during testing).
+* When called upon to parse a user command, the `FlashcardAppParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name, e.g. `AddCommandParser`).
+* `XYZCommandParser` uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g. `AddCommand`) which the `FlashcardAppParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible (e.g. during testing).
 
 ### Model component
 
@@ -218,8 +218,8 @@ A *Class Diagram* of the `Model` component can be found below:
 
 The `Model` component:
 
-* Stores the flashcard app data i.e., all `Flashcard` objects (which are contained in a `UniqueFlashcardList` object).
-* Stores the currently 'selected' `Flashcard` objects (e.g., results of a search query) as a **separate filtered list** which is exposed as an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the `UI` can be bound to this list so that the `UI` automatically updates when the data in the list changes.
+* Stores the flashcard app data, i.e. all `Flashcard` objects (which are contained in a `UniqueFlashcardList` object).
+* Stores the currently 'selected' `Flashcard` objects (e.g. results of a search query) as a **separate filtered list** which is exposed as an unmodifiable `ObservableList<Flashcard>` that can be 'observed' (e.g. the `UI` can be bound to this list so that the `UI` automatically updates when the data in the list changes).
 * Stores the slideshow app data i.e., all `Flashcard` objects in the slideshow (which are contained in a `Slideshow` object). This is exposed as a `ReadOnlySlideshowApp` object.
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed as a `ReadOnlyUserPref` object.
 * Does not depend on any of the other three components (as the `Model` represents data entities of the domain, it should make sense on its own without depending on other components).
@@ -817,7 +817,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all flashcards using the [`list`](UserGuide/#listing-flashcards-list) command. Multiple flashcards are in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First flashcard is deleted from the list. Details of the deleted flashcard (e.g. Language type, English Phrase, Foreign Phrase) shown in the command result. Command box will be cleared.
+      Expected: First flashcard is deleted from the list. Details of the deleted flashcard (e.g. language, English phrase, foreign phrase) shown in the command result. Command box will be cleared.
 
    1. Test case: `delete 0`<br>
       Expected: No flashcard is deleted. Error details (e.g. Error type and Message Usage) shown in the command result. The `delete 0` command will remain in the command box.
