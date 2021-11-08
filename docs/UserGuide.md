@@ -100,15 +100,15 @@ Below is an example of what LingoGO! looks like in List mode.
 
 LingoGO! always starts in List mode and displays all of your flashcards.
 
-List mode lets you [`add`](#adding-a-flashcard-add), [`delete`](#deleting-a-flashcard--delete),
-[`edit`](#editing-a-flashcard--edit), [`import`](#importing-flashcards--import), and [`export`](#exporting-flashcards--export)
+List mode lets you [`add`](#adding-a-flashcard-add), [`delete`](#deleting-a-flashcard-delete),
+[`edit`](#editing-a-flashcard-edit), [`import`](#importing-flashcards-import), and [`export`](#exporting-flashcards-export)
 flashcards.
 
 Sometimes, you may also want to search for specific flashcards among all your saved flashcards. List mode allows you to 
-do this easily using the [`list`](#listing-flashcards--list), [`filter`](#filtering-flashcards-by-conditions-filter),
+do this easily using the [`list`](#listing-flashcards-list), [`filter`](#filtering-flashcards-by-conditions-filter),
 and [`find`](#locating-flashcards-by-keywords-find) commands.
 
-The [`list`](#listing-flashcards--list), [`filter`](#filtering-flashcards-by-conditions-filter),
+The [`list`](#listing-flashcards-list), [`filter`](#filtering-flashcards-by-conditions-filter),
 and [`find`](#locating-flashcards-by-keywords-find) commands also serve as the means to select which flashcards to 
 display. This is useful for your practice sessions as the displayed flashcards will be the 
 flashcards you get tested on when you switch to [Slideshow mode](#slideshow-mode).
@@ -120,19 +120,19 @@ Below is an example of what LingoGO! looks like in Slideshow mode.
 
 ![Slideshow](images/Slideshow.png)
 
-Once you have selected your flashcards using the [`list`](#listing-flashcards--list), [`filter`](#filtering-flashcards-by-conditions-filter), or
+Once you have selected your flashcards using the [`list`](#listing-flashcards-list), [`filter`](#filtering-flashcards-by-conditions-filter), or
 [`find`](#locating-flashcards-by-keywords-find) commands in [List mode](#list-mode), you may proceed to test your 
 knowledge with them by entering Slideshow mode.
 
 Slideshow mode brings the most out of your practice session by allowing you to focus on one
 flashcard at a time and displays the relevant foreign phrase.
 
-To enter Slideshow mode, use the [`slideshow`](#testing-with-a-set-of-flashcards--slideshow) command. 
+To enter Slideshow mode, use the [`slideshow`](#testing-with-a-set-of-flashcards-slideshow) command. 
 
 In Slideshow mode, you can:
-* Move to [`next`](#moving-to-the-next-flashcard-in-slideshow-mode--next) or
-  [`previous`](#moving-to-the-previous-flashcard-in-slideshow-mode--previous) flashcards.
-* Enter an [`answer`](#answering-a-flashcard--answer) for a flashcard.
+* Move to [`next`](#moving-to-the-next-flashcard-in-slideshow-mode-next) or
+  [`previous`](#moving-to-the-previous-flashcard-in-slideshow-mode-previous) flashcards.
+* Enter an [`answer`](#answering-a-flashcard-answer) for a flashcard.
 
 Once you are done practicing, you may exit Slideshow mode using the [`stop`](#exiting-slideshow-mode-stop) command.
 
@@ -203,7 +203,7 @@ This section aims to provide you with a quick breakdown on LingoGO!'s flashcard 
 * **`FOREIGN_PHRASE`** parameter
     * Should not be longer than **100 characters**.
     * Should be distinguishable between flashcards with the same `FOREIGN_PHRASE` but with different `ENGLISH_PHRASE`. 
-      * [Slideshow mode](#slideshow-mode) will **only** display the `FOREIGN_PHRASE`, so to use the [`answer`](#answering-a-flashcard--answer) command correctly, you need to be able to distinguish between the `FOREIGN_PHRASE`.
+      * [Slideshow mode](#slideshow-mode) will **only** display the `FOREIGN_PHRASE`, so to use the [`answer`](#answering-a-flashcard-answer) command correctly, you need to be able to distinguish between the `FOREIGN_PHRASE`.
 
 ### Adding a flashcard: `add`
 
@@ -219,7 +219,7 @@ Examples:
 * `add l/Chinese e/Good Morning f/早安` adds a new flashcard with language, English phrase, and foreign phrase to be `Chinese`, `Good Morning`, `早安` to the bottom of the displayed flashcard list of [List mode](#list-mode).
 
 
-### Answering a flashcard : `answer`
+### Answering a flashcard: `answer`
 
 Checks whether the answer you have provided correctly translates to the foreign phrase displayed in [Slideshow mode](#slideshow-mode).
 * This command can only be run in [Slideshow mode](#slideshow-mode).
@@ -235,7 +235,7 @@ Examples:
 * `answer e/hello` checks the English phrase of the foreign phrase on display (e.g. "你好") in [Slideshow mode](#slideshow-mode) to see if `hello` matches it.
 
 
-### Clearing all flashcards : `clear`
+### Clearing all flashcards: `clear`
 
 Deletes all flashcards from LingoGO!.
 * This command can only be run in [List mode](#list-mode).
@@ -243,7 +243,7 @@ Deletes all flashcards from LingoGO!.
 Format: `clear`
 
 
-### Deleting a flashcard : `delete`
+### Deleting a flashcard: `delete`
 
 Deletes the specified flashcard from LingoGO!.
 * This command can only be run in [List mode](#list-mode).
@@ -259,7 +259,7 @@ Examples:
 * `find e/Hello` followed by `delete 1` lists flashcards matching with `ENGLISH_PHRASE` "hello" in the displayed flashcard list of [List mode](#list-mode) and then deletes the 1st flashcard in the displayed flashcard list of [List mode](#list-mode).
 
 
-### Editing a flashcard : `edit`
+### Editing a flashcard: `edit`
 
 Edits an existing flashcard in LingoGO!.
 * This command can only be run in [List mode](#list-mode).
@@ -279,7 +279,7 @@ Examples:
 * `edit 2 l/German e/Good Morning f/Guten Morgen` edits the language, English phrase, and foreign phrase of the 2nd flashcard in the displayed flashcard list of [List mode](#list-mode) to be `German`, `Good Morning`, and `Guten Morgen` respectively.
 
 
-### Exiting LingoGO! : `exit`
+### Exiting LingoGO!: `exit`
 
 Exits the app.
 * This command can be run in both [List mode](#list-mode) and [Slideshow mode](#slideshow-mode).
@@ -287,7 +287,7 @@ Exits the app.
 Format: `exit`
 
 
-### Exporting flashcards : `export`
+### Exporting flashcards: `export`
 
 Exports the currently displayed flashcards in [List mode](#list-mode) to a CSV file.
 * This command can only be run in [List mode](#list-mode).
@@ -367,7 +367,7 @@ Examples *(refer to the snapshot below)*:
 * `find e/Hello f/早` updates displayed flashcard list [List mode](#list-mode) to display flashcards 1, 2, 3 and 4.
 
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page, as well as dropdowns with brief explanations
 for each command.
@@ -378,7 +378,7 @@ Format: `help`
 ![help message](images/helpMessage.png)
 
 
-### Importing flashcards : `import`
+### Importing flashcards: `import`
 
 Imports flashcards from a CSV file and **adds** them to the existing list in LingoGO!
 (instead of replacing the current list)
@@ -413,7 +413,7 @@ Examples:
 * `import dictionary.csv` will add all flashcards stored in the CSV file dictionary.csv to LingoGO!.
 
 
-### Listing flashcards : `list`
+### Listing flashcards: `list`
 
 Shows a list of flashcards in LingoGO!.
 * This command can only be run in [List mode](#list-mode).
@@ -429,7 +429,7 @@ Examples:
 * `list 3` returns 3 randomly selected flashcards in LingoGO!
 
 
-### Moving to the next flashcard in Slideshow mode : `next`
+### Moving to the next flashcard in Slideshow mode: `next`
 
 Goes forward to the next flashcard (if there is one) in [Slideshow mode](#slideshow-mode).
 * This command can only be run in [Slideshow mode](#slideshow-mode).
@@ -437,7 +437,7 @@ Goes forward to the next flashcard (if there is one) in [Slideshow mode](#slides
 Format: `next`
 
 
-### Moving to the previous flashcard in Slideshow mode : `previous`
+### Moving to the previous flashcard in Slideshow mode: `previous`
 
 Goes back to the previous flashcard (if there is one) in [Slideshow mode](#slideshow-mode).
 * This command can only be run in [Slideshow mode](#slideshow-mode).
@@ -445,7 +445,7 @@ Goes back to the previous flashcard (if there is one) in [Slideshow mode](#slide
 Format: `previous`
 
 
-### Testing with a set of flashcards : `slideshow`
+### Testing with a set of flashcards: `slideshow`
 
 Switches to [Slideshow mode](#slideshow-mode) for you to test yourself using the flashcards shown in [List mode](#list-mode).
 * This command can only be run in [List mode](#list-mode).
