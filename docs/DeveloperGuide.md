@@ -790,7 +790,7 @@ For further details about each use case, see below. For all use cases below, the
 
 ## Appendix D: Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should work on **any mainstream OS** as long as it has Java 11 or above installed.
 2. Should be able to hold up to 1000 flashcards without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be usable to someone who has never used flashcards before.
@@ -799,9 +799,9 @@ For further details about each use case, see below. For all use cases below, the
 
 ## Appendix E: Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, macOS.
 * **Flashcard**: A memory aid that users can use to input a phrase or word in the language that they are learning
-  along with a hidden translation
+  along with a hidden translation.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -820,9 +820,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder.
 
-   2. Double-click the jar file <br>
-       Expected snapshot:
-        ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
+   2. Double-click the jar file.<br>
+
+       **Expected snapshot:**
+       ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
 
 1. Saving window preferences
 
@@ -874,33 +875,38 @@ testers are expected to do more *exploratory* testing.
          } ]
        }
        ```
-    1. Open the jar file <br>
-       Expected snapshot:
+    1. Open the jar file.<br>
+
+       **Expected snapshot:**
        ![sampleDataList](images/developerGuideExpectedSnapshots/sampleDataListMode.png)
 1. Opening jar file with non-existing JSON data file or `data` folder:
 
-    1. Open the jar file <br>
-       Expected snapshot:
+    1. Open the jar file.<br>
+
+       **Expected snapshot:**
        ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
 
 1. Opening jar file with incorrectly named JSON data file in `data` folder:
-    1. Open the jar file <br>
-       Expected snapshot:
+    1. Open the jar file.<br>
+
+       **Expected snapshot:**
        ![initial start up](images/developerGuideExpectedSnapshots/initialStartUp.png)
 
 1. Opening jar file with invalid JSON file:
-    1. Test case: empty `flashcardapp.json`<br>
+    1. Test case: empty `flashcardapp.json`.<br>
 
-    2. Test case: `flashcardapp.json` with data: <br>
-       ```null```
+    2. Test case: `flashcardapp.json` with only `null` as its data:<br>
+       ```
+       null
+       ```
 
-    3. Test case: `flashcardapp.json` with data:
+    3. Test case: `flashcardapp.json` with a `null` array as the value for `"flashcards"`:
        ```
        {
          "flashcards": [ null ]
        }
        ```
-    4. Test case: `flashcardapp.json` with data:
+    4. Test case: `flashcardapp.json` with a missing comma in its data:
        ```
        {
          "flashcards" : [ {
@@ -910,7 +916,7 @@ testers are expected to do more *exploratory* testing.
          } ]
        }
        ```
-    5. Test case: `flashcardapp.json` with data:
+    5. Test case: `flashcardapp.json` with a `null` value in one of the flashcards' key-value pairs:
        ```
        {
          "flashcards" : [ {
@@ -920,7 +926,7 @@ testers are expected to do more *exploratory* testing.
          } ]
        }
        ```
-   Expected snapshot for above test cases 1 to 5:
+   **Expected snapshot for above test cases 1 to 5:**
    ![invalidJSONDataFile](images/developerGuideExpectedSnapshots/invalidJSONDataFile.png)
 
 ### Exporting flashcards to CSV file
