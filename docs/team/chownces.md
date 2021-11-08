@@ -47,9 +47,10 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
     * Updated the architecture sequence diagram and links to our new repository.
     * Updated the description and 4 UML diagrams for the `Model` and `Logic` sections.
   1. **Slideshow, Import and Export Commands**
-    * PR(s): [#225](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/225)
-    * Added manual test cases for the `import` and `export` commands.
+    * PR(s): [#225](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/225), [#229](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/229)
     * Updated implementation details of the Slideshow component.
+    * Updated implementation details and UML diagrams for the `import` and `export` commands.
+    * Added manual test cases for the `import` and `export` commands.
 
 * **<u>Project management and Tools</u>**:
   * Set up documentation preview CI/CD on CloudFlare Pages.
