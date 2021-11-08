@@ -15,49 +15,41 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
 
 * **<u>Enhancements/Features Implemented</u>**
   1. **Refactored Storage component**
-  * PR(s): [\#70](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/70), [\#72](https://github.com/AY2122S1-CS2103T-T11-2/tp/pulls?q=is%3Apr+author%3Aaikenwx+is%3Aclosed)
+  * PR(s): [\#70](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/70), [\#72](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/72)
   * Refactored the Storage component to work for
   LingoGO!'s requirements .
   * All references of AB3 code were also removed from Storage component.
-  1. **Added test feature**
+  1. **Added test feature** *(deprecated)*
   * PR(s): [\#80](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/80)
   * Added the ability to test flashcards in List mode
     with an answer given by the user.
-  * This feature provided a means for users to interact and practise with their flashcards. It
-    was a basic command meant for the first two iterations of the project.
-  * This feature is now deprecated and has been integrated into the
-    `answer` command of Slideshow mode.
+  * This feature provided a basic means for users to interact and practise with their flashcards.
   1. **Refactored `Flashcard` class**
   * PR(s): [\#95](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/95), [\#107](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/107)
-  * Refactored `Flashcard` class to ensure immutable implementation of `isFlipped` attribute as well as its setter
-    and getter methods to defend against unwanted mutations.
+  * Refactored `Flashcard` class to ensure immutable implementation of setter and getter methods of `isFlipped` 
+    to defend against unwanted mutations.
   * Updated `isSameFlashcards` method to allow for the checking of duplicate flashcards.
-  1. **Enhanced flip feature**
+  1. **Enhanced flip feature** *(deprecated)*
   * PR(s): [\#95](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/95)
   * Added functionality for flip command to show and hide English phrases in List mode.
   * This feature provided a basic means for users to interact with the digital flashcards, as if with real
     flashcards by 'flipping' them over.
-  * This feature is now deprecated and has been integrated into the
-    `answer` command of Slideshow mode.
   1. **Enhanced filter feature**
   * PR(s): [\#107](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/107),
     [\#130](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/130), [\#201](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/201)
-  * Added range and index filter conditions and the ability to combine multiple filter conditions.
+  * Added range and index filter conditions and added the ability to combine of multiple filter conditions.
   * This provides greater convenience for users, allowing them to specify several filter conditions at once within one
     filter command.
   * Search flexibility is also enhanced through the added filter conditions, allowing users to more quickly select
     flashcards to be loaded into Slideshow mode for practice sessions.
-  * Other enhancements made to filter command also include refactoring to allow greater ease of adding more
-    additional filter conditions in the future.
   1. **Added alert dialogues**
   * PR(s): [\#201](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/201)
   * Wrote alert dialogue popups to greet new users as well as to warn users when they make code-breaking changes to
     the JSON data file.
-  * Such alerts can help users to troubleshoot if they have made
-    unintended changes to the data file.
+  * Such alerts help users to troubleshoot against unintended data file changes.
   1. **Debugged edit feature**
   * PR(s): [\#205](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/205)
-  * Helped to debug `edit` command to ensure that it works correctly with `filter` command.
+  * Debugged `edit` command to ensure that it works correctly with `filter` command.
   * Added integration tests for `edit` and `filter` command to increase total test coverage.
 * **<u>User Guide Documentation</u>**
   1. **Command Format**:
