@@ -29,8 +29,8 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
   * Updated `isSameFlashcards` method to allow for the checking of duplicate flashcards.
   1. **Enhanced flip feature** *(deprecated)*
   * PR(s): [\#95](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/95)
-  * Added functionality for flip command to show and hide English phrases in List mode.
-  * This allowed users to interact with their flashcards, by `flipping` them.
+  * Added functionality for flip command to show and hide English phrases.
+  * This allowed users to interact with their flashcards by "flipping" them.
   1. **Enhanced filter feature**
   * PR(s): [\#107](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/107),
     [\#130](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/130), [\#201](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/201)
