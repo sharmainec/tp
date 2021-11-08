@@ -489,8 +489,13 @@ University students
 |***| General user | user | be able to list my flashcards |
 |***| General user | user | be able to test myself and view my performance using flashcards |
 |***| General user | user | be able to update my flashcards |
+<<<<<<< HEAD
 |***| Level of experience | new user | be guided through the set-up process of a flashcard | can use LingoGo! Properly
 |***| User behaviors | lazy user | automatically generate cards by typing in the vocabulary | don't have to spend time manually creating cards
+=======
+|***| Level of experience | new user | be guided through the set-up process of a flashcard | can use LingoGo! properly
+|***| User behaviors | lazy user | automatically generate flashcards by typing in the vocabulary | don't have to spend time manually creating flashcards
+>>>>>>> 9ab12651 (Standardize user stories)
 |**| Level of experience | experienced user | be able to delete multiple flashcards that are no longer relevant to me (multi-delete function) |
 |**| Level of experience | new user | have a basic set of flashcards available from the get go | can reduce the setup time or reduce the need for setup
 |**| Multiple language user | user who is learning multiple languages | be able to combine flashcards of the same question in different languages | can test myself in all the languages that I have learnt in one go
@@ -502,19 +507,19 @@ University students
 |*| Level of experience | expert user | be able to set up questions in batches | can prepare flashcards faster
 |*| Level of experience | long-time user | be able to archive my flashcards that I may not have used for a long time | can retrieve them in future should I want to use them
 |*| Level of experience | long-time user | be able to delete flashcards that have not been used for over a year | only have the flashcards that are relevant to me
-|*| Level of experience | long-time user | be able to quickly search through my large library of cards easily and quickly |
+|*| Level of experience | long-time user | be able to quickly search through my large library of flashcards easily and quickly |
 |*| Level of experience | new user | have intuitive UI and commands | can get started easily
 |*| Multiple language user | user who is learning multiple languages | be able to load different question sets and store my questions in different files |
-|*| Usage patterns | active user with hundred of cards already made | be automatically given a list of cards to test my memory | can efficiently expand my vocabulary
+|*| Usage patterns | active user with hundred of flashcards already made | be automatically given a list of flashcards to test my memory | can efficiently expand my vocabulary
 |*| Usage patterns | forgetful user (who forgets about LingoGO!) | be reminded about using flashcards | can be actively learning new vocabularies instead of just cramming them at the last minute
-|*| Usage patterns | frequent user | be able to load up cards done x days ago | can test my memory retention of the words I learned that day
-|*| User behaviors | mobile user | be able to access my cards wherever I am, on the go |
+|*| Usage patterns | frequent user | be able to load up flashcards done x days ago | can test my memory retention of the words I learned that day
+|*| User behaviors | mobile user | be able to access my flashcards wherever I am, on the go |
 |*| User behaviors | organized user (who prepares flashcards based on languages) | I want to be able to combine different decks of flashcards | can prepare for my major exams (eg. mid-terms, finals)
-|*| User behaviors | user who learns better when things are in hard copy | have a convenient way to print out the flashcards | do not have to manually format the card design
+|*| User behaviors | user who learns better when things are in hard copy | have a convenient way to print out the flashcards | do not have to manually format the flashcard design
 |*| User behaviors | user who seeks improvement | see the progress made in terms of scores | can visualize my improvement
 |*| User collaboration | competitive user | be able to compete with my friends based on how fast and how many flashcards we can get correct | will be more motivated to learn
-|*| User learning 'rate' | slow/fast learner | adjust the frequency at which the cards will be tested | can better suit my pace of learning
-|*| User learning 'rate' | slow learner | have cards with words I don't remember to be shown more often to reinforce my learning |
+|*| User learning rate | slow/fast learner | adjust the frequency at which the flashcards will be tested | can better suit my pace of learning
+|*| User learning rate | slow learner | have flashcards with words I don't remember to be shown more often to reinforce my learning |
 |*| User learning style | auditory user | hear the vocabulary that I stored in the flashcard | can better memorize the words by sound
 |*| User learning style | visual learner | color code my flashcards | can better memorize the words by category
 |*| User learning style | visual learner | use pictures instead of words as the question part of my flashcard | can remember the vocabulary easier
