@@ -43,7 +43,7 @@ contribute to LingoGO!, or adapt LingoGO!'s code into a project of their own.
 
 ## How to use the developer guide
 <!-- CHANGE LINKS -->
-* A [Table of Contents](#) with clickable links can be found above to help with navigating across the user guide quickly.
+* A [Table of Contents](#table-of-contents) with clickable links can be found above to help with navigating across the user guide quickly.
 * To set up your development environment, refer to the guide on [Setting up and getting started](#setting-up-getting-started).
 * For a high level overview of the design of the application, refer to the [Overall Design](#overall-design) section.
 * For a lower level, more in depth look at some of the features implemented in LingoGO!, refer to the [Feature Implementation](#feature-implementation) section.
@@ -203,7 +203,7 @@ Here are the other classes in `Logic` (omitted from the *Class Diagram* above) t
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `FlashcardAppParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`)
+* When called upon to parse a user command, the `FlashcardAppParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`).
 * `XYZCommandParser` uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FlashcardAppParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible (e.g., during testing).
 
@@ -935,7 +935,7 @@ The `data` directory in this section refers to the directory named `data` which 
     1. Prerequisites:
       * A valid CSV file named `file.csv` is located in the `data` directory.
       * This CSV file should contain flashcard data for some **new** flashcards not found in the app currently, and some flashcards that are **already** in the app currently.
-      * See the User Guide [here](UserGuide/#importing-flashcards--import) for more information on what constitutes a valid CSV file.
+      * See the User Guide [here](UserGuide/#importing-flashcards-import) for more information on what constitutes a valid CSV file.
     1. Test case: `import file.csv`<br>
        Expected: All the flashcard data in `file.csv` is successful imported as flashcards in the application, and displayed in the
        current list of flashcards. Note that the duplicated flashcards set up above in the prerequisites will not be imported into the application.
@@ -944,7 +944,7 @@ The `data` directory in this section refers to the directory named `data` which 
        import.
 
 1. Importing CSV file with invalid headers.
-    1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide/#importing-flashcards--import).
+    1. Prerequisites: A CSV file named `file.csv` located in the `data` directory, with headers that do not follow the required format as specified in the User Guide [here](UserGuide/#importing-flashcards-import).
     1. Test case: `import file.csv`<br>
        Expected: The command result informs the user that the headers in the CSV file are not in the correct format.
 
