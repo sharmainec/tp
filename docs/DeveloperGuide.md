@@ -837,7 +837,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a flashcard while all flashcards are listed
 
-   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards are in the list.
+   1. Prerequisites: List all flashcards using the [`list`](UserGuide/#listing-flashcards-list) command. Multiple flashcards are in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First flashcard is deleted from the list. Details of the deleted flashcard (e.g. Language type, English Phrase, Foreign Phrase) shown in the command result. Command box will be cleared.
@@ -933,14 +933,14 @@ testers are expected to do more *exploratory* testing.
 The `data` directory in this section refers to the directory named `data` which is located in the same directory as the jar file to be tested.
 
 1. Exporting to CSV file while all flashcards are listed.
-    1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards are in the list. The `data` directory does not contain a file named `file.csv`.
+    1. Prerequisites: List all flashcards using the [`list`](UserGuide/#listing-flashcards-list) command. Multiple flashcards are in the list. The `data` directory does not contain a file named `file.csv`.
     1. Test case: `export file.csv`<br>
        Expected: A CSV file named `file.csv` is created in the `data` directory.
        This CSV file contains 3 columns with the headers "Language", "Foreign", "English" from left to right, while the rows contain
        the data for **all** the flashcards in the app.
 
 1. Exporting a set of filtered flashcards to CSV file.
-    1. Prerequisites: Use the `filter` or `find` commands to obtain a filtered list of flashcards. This filtered list of flashcards
+    1. Prerequisites: Use the [`filter`](UserGuide/#filtering-flashcards-by-conditions-filter) or [`find`](UserGuide/#locating-flashcards-by-keywords-find) commands to obtain a filtered list of flashcards. This filtered list of flashcards
        should contain a **strict subset** of all the flashcards in the app. The `data` directory does not contain a file named `file.csv`.
     1. Test case: `export file.csv`<br>
        Expected: Similar to previous, but now the CSV row data should **only** contain the data for the flashcards in the filtered list of flashcards.
