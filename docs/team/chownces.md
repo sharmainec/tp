@@ -23,7 +23,7 @@ elegant **Graphical User Interface (GUI)** is sure to delight you, and empower y
 
   1. **Slideshow feature**
   * PR(s): [#109](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/109), [#145](https://github.com/AY2122S1-CS2103T-T11-2/tp/pull/145)
-  * Implemented the backend logic for the [slideshow feature](../UserGuide/#slideshow-mode) in the `Model` and `Logic` components.
+  * Implemented the backend logic for the [slideshow feature](../UserGuide.html#slideshow-mode) in the `Model` and `Logic` components.
   * Wrote unit and integration tests for the new components, which improved overall test coverage by 1.15%.
 
   1. **Import/ Export to CSV feature**
