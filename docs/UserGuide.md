@@ -138,8 +138,6 @@ Let's start off our tutorial by creating some new flashcards!
     
     </div>
 
-<div style="page-break-after: always;"></div>
-
 ### Searching and selecting your flashcards
 
 Before we can start practicing with the flashcards we have created, we must first select them using [`list`](#listing-flashcards-list), [`filter`](#filtering-flashcards-by-conditions-filter),
@@ -172,7 +170,8 @@ Once we have selected all the French flashcards, we can finally start our practi
     </div>
 
 3. To go to the next flashcard, enter `next` into the command box. Can you also provide the answer for this next flashcard shown? If you got the answer right, then well done! At this point, you may also enter `previous` into the command box to go back to the previous flashcard.
-   
+
+<div style="page-break-after: always;"></div>
 ### Sharing your flashcards
 Now that you are done practicing with all your French flashcards, it is time to share them with your friends to let them try it out!
 
