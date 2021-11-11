@@ -10,19 +10,18 @@ title: User Guide
 <br/>
 
 
-LingoGO! is a **desktop flashcards app** for **university students who use English as their first language** and are trying to **learn a
-new language**. Founded on the widely established learning technique of **spaced-repetition**, LingoGO! takes all the
-benefits of pen-and-paper flashcards in learning, and brings them to the next level with our **powerful search** and 
-**sharing
-features** -- *without the hassle* of managing actual physical ones. Coupled with our unique **Command Line Interface (CLI)** and
-an elegant **Graphical User Interface (GUI)** to accompany it, LingoGO! is sure to delight you, and empower you on your
-journey in mastering the new language you *have always wanted*.
+LingoGO! is a **digital flashcard app** for **university students who use English as their first language** and are trying to **learn a
+new language**.
 
-LingoGO! currently already supports **all languages that can be represented on your computer**. Do look forward to trying out the following features:
-* Create and manage over thousands of flashcards.
-* Find your flashcards easily from using our find and filter features. 
-* Back up and share your flashcards with other using our import and export features.
-* Practise with your flashcards in a dedicated questionnaire mode.
+Capitalizing on the widely established learning technique of **spaced repetition** that flashcards provide, LingoGO! elevates your learning through **powerful search and sharing features** - removing the hassle of managing physical flashcards.
+Coupled with a unique **Command Line Interface (CLI)** and an elegant **Graphical User Interface (GUI)** to accompany it,
+LingoGO! is sure to empower you on your journey in mastering the new language you have always wanted.
+
+LingoGO! supports **all languages that can be represented on your computer**. LingoGO! aims to transform your language learning journey, allowing you to:
+* **Create and manage** over **thousands** of flashcards.
+* **Find your flashcards easily** with our find and filter features. 
+* **Back up and share** your flashcards with others using our import and export features.
+* **Practise** with your flashcards in a dedicated questionnaire mode.
 
 Detailed information about these features can be found under the [Modes](#modes), [General commands](#general-commands), [List mode commands](#list-mode-commands) and [Slideshow mode commands](#slideshow-mode-commands) sections in this user guide.
 
@@ -36,28 +35,35 @@ Detailed information about these features can be found under the [Modes](#modes)
 <div style="page-break-after: always;"></div>
 
 ## Purpose of the user guide
-This user guide aims to familiarize you with the commands of LingoGO! and to use the application effectively.
+This user guide aims to familiarize you with the commands of LingoGO!  to help you use the application effectively.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## How to use the user guide
-* A [Table of Contents](#table-of-contents) with clickable links can be found above to help you with navigating across the user guide quickly.
+Below is a brief summary of the main sections in this user guide.
+* A [Table of Contents](#table-of-contents) with clickable links can be found above to help you navigate the user guide quickly.
 * If you are a new user, you can refer to the [Quick Start](#quick-start) and [Tutorial](#tutorial) to get you started.
-* If you are a new user, you can also refer to [Modes](#modes) to start understanding how to use LingoGO!.
+* If you are a new user, you can also refer to [Modes](#modes) to understand how to use LingoGO!.
 * A detailed outline of the commands can be found under [General commands](#general-commands), [List mode commands](#list-mode-commands) and [Slideshow mode commands](#slideshow-mode-commands).
 * If you an experienced user, you can refer to the [Command Summary](#command-summary) for a quick overview of all the commands in LingoGO!.
 * A [Glossary](#glossary) is provided to help explain certain important terms used in this guide.
-* Do also look out for the following colored boxes throughout the guide for useful tips:
+
+As for text formatting,
+* **Bolded words** highlight important points to take note of.
+* *Italcized words* indicate files and folders.
+* `Words in blocks` indicate commands and associated terms like their [prefixes](#prefixes) and [parameters](#parameters).
+
+Do also look out for the following colored boxes throughout the guide for useful tips.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: General information:**<br>
-These boxes give general information on how LingoGO! works, or useful advice that you can follow.
+These boxes give general information on how LingoGO! works, as well as useful advice that you can follow.
 </div>
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Caution:**<br>
-These boxes are to warn you against certain actions that can cause you to lose your data, do take note of them!
+These boxes warn you against certain actions that **can cause you to lose your data**. Do take note of them!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -65,22 +71,24 @@ These boxes are to warn you against certain actions that can cause you to lose y
 
 ## Quick start
 
-1. Ensure you have **Java 11 or above installed** in your Computer (you may download Java from [here](https://www.oracle.com/java/technologies/downloads/)).
+1. Ensure you have **Java 11 or above installed** in your computer (you may download Java from [here](https://www.oracle.com/java/technologies/downloads/)).
 
-1. Download the latest *lingogo.jar* from [here](https://github.com/AY2122S1-CS2103T-T11-2/tp/releases).
+1. Download the latest version of the app, *lingogo.jar*, from [here](https://github.com/AY2122S1-CS2103T-T11-2/tp/releases) (refer to the image below if you are unsure of how to do so).
 
-1. Copy the file to the folder you want to use as the [home folder](#home-folder) for LingoGO!.
+   ![Latest JAR](images/latestJar.png)
+
+1. Copy *lingogo.jar* to the folder you want to use as the *[home folder](#home-folder)* for LingoGO!.
 
 1. Double-click the file to start the app. Upon opening the app, you will be greeted with a welcome message. After acknowledging,
 you will see the following [GUI](#gui) with some sample flashcards.
 
    ![Ui](images/Ui-explanation.png)
 
-    Below is an overview of the [GUI](#gui), with the corresponding number label:
+    Labelled above are the **4 main components** that make up the [GUI](#gui). Read on to find out what each of them does!
    1. <u>Menu</u>
-     * A clickable menu bar.
+     * A clickable menu bar that lets you **exit the app** or open the **help window**.
    1. <u>Command box</u>
-      * Type a command into the command box and press Enter to execute it.
+      * **Type a command** into the command box and press Enter to execute it.
       * Some example commands you can try (refer to the [General commands](#general-commands), [List mode commands](#list-mode-commands) and [Slideshow mode commands](#slideshow-mode-commands) sections below for a full list of commands and their details):
         * `list` : Lists all flashcards.
         * `add l/Chinese e/Good Morning f/早安` : Adds a flashcard with the `Chinese` language, English phrase `Good Morning`, and corresponding foreign phrase `早安`.
@@ -88,9 +96,9 @@ you will see the following [GUI](#gui) with some sample flashcards.
         * `find e/Good Morning` : Finds flashcard(s) with the matching English phrase `Good Morning`.
         * `filter l/Chinese` : Shows only the flashcard(s) with the `Chinese` language in the displayed flashcard list of [List mode](#list-mode).
    1. <u>Command result</u>
-     * Shows a message after you execute a command.
+     * Shows a **message after you execute** a command.
    1. <u>Displayed flashcard list</u>
-     * Shows a list of your flashcards.
+     * Shows a **list of your flashcards**.
     
 1. You may also view our [Tutorial](#tutorial) below to get yourself more familiar with LingoGO!'s features.
 
@@ -99,19 +107,23 @@ you will see the following [GUI](#gui) with some sample flashcards.
 
 ## Tutorial
 
-Now that you are done setting up LingoGO! with the help of our [Quick start](#quick-start) guide, it is time for a quick tutorial to run through the features of LingoGO!. 
-Before you start this tutorial however, make sure that your app looks like the one shown below, which the same as the one you get after following
-our [Quick start](#quick-start) guide.
+Now that you are done setting up LingoGO! with the help of our [Quick start](#quick-start) guide, it is time for a quick tutorial to run through the features of LingoGO!.
+When you open LingoGO! for the first time, the app should look like the image below, with the same sample flashcards loaded in.
+
 ![Ui](images/Ui.png)
 
-### Creating your flashcards
-We can start off our tutorial by creating some new flashcards!
+Follow a long for a tour of how to use the app!
 
-1. Let us first add a new French phrase "Bonjour", which translate to "hello" in English. Simply type in `add e/hello f/Bonjour l/French` into the command box, as can be seen below:
+### Creating your flashcards
+Let's start off our tutorial by creating some new flashcards!
+
+1. First, let's add a new French phrase "Bonjour", which translates to "hello" in English. Simply type in `add e/hello f/Bonjour l/French` into the command box, as can be seen below:
    ![enterAddCommand](images/enterAddCommandTutorial.png)
-1. Now press the Enter key and *voila!* a new flashcard has been created and added to the bottom of the list, as can be seen below:
+1. Now press the Enter key and voila! A new flashcard has been created and added to the bottom of the list, as can be seen below:
    ![addTutorial](images/addTutorial.png)
-1. Now trying adding another French phrase on your own! How about "Au Revoir" which means "Good Bye" in English. Done? Good job! your app should now look like this:
+1. Now trying adding another French phrase on your own! How about "Au Revoir" which means "Good Bye" in English.
+   
+   Done? Good job! Your app should now look like this:
    ![addAuRevoir](images/addAuRevoirTutorial.png)
    
    <div markdown="block" class="alert alert-info">
@@ -124,18 +136,18 @@ We can start off our tutorial by creating some new flashcards!
    
 ### Searching and selecting your flashcards
 
-Before we can start practicing with the flashcards we just created, we must first select them using [`list`](#listing-flashcards-list), [`filter`](#filtering-flashcards-by-conditions-filter),
-or [`find`](#locating-flashcards-by-keywords-find) commands. These commands also double as the search functionality for LingoGO!, 
-allowing you find the flashcards you need quickly.
+Before we can start practicing with the flashcards we have created, we must first select them using [`list`](#listing-flashcards-list), [`filter`](#filtering-flashcards-by-conditions-filter),
+or [`find`](#locating-flashcards-by-keywords-find) commands. These commands also act as search commands for LingoGO!, 
+allowing you to find the flashcards you need quickly.
 
-1. Right now, you can select all your French flashcards easily with the `filter` command. Type in `filter l/French` into the command box.
+1. Let's select all your French flashcards with the [`filter`](#filtering-flashcards-by-conditions-filter) command. Type in `filter l/French` into the command box.
 1. Upon pressing Enter, you will get a filtered list of flashcards. Notice how only your French language flashcards are displayed:
    ![filteredFlashcardsTutorial.png](images/filteredFlashcardsTutorial.png)
 
 ### Practicing with your flashcards
 Once we have selected all the French flashcards, we can finally start our practice session using LingoGO!'s [Slideshow mode](#slideshow-mode).
 
-1. To begin you practice session, simply type in `slideshow` into the command box and press Enter. You will now enter LingoGO!'s [Slideshow mode](#slideshow-mode) where you will see a maximised view of a flashcard.
+1. To begin you practice session, simply type [`slideshow`](#entering-slideshow-mode-slideshow) into the command box and press Enter. You will now enter LingoGO!'s [Slideshow mode](#slideshow-mode) where you will see a maximised view of a flashcard.
    ![slideshowTutorial.png](images/slideshowTutorial.png)
 1. To give an answer for "Bonjour", enter `answer e/Hello` into the command box. You will then see the message below:
    ![answerTutorial.png](images/answerTutorial.png)
@@ -150,12 +162,12 @@ Once we have selected all the French flashcards, we can finally start our practi
     </div>
    
 ### Sharing your flashcards
-Now that you are done practicing with all your French flashcards, it is time to share them with your friends to let the try it out. 
+Now that you are done practicing with all your French flashcards, it is time to share them with your friends to let them try it out!
 
-1. Before you do this, you first need to enter `stop` into the command box to exit [Slideshow mode](#slideshow-mode) and go back to [List mode](#list-mode).
+1. Before you do this, you first need to enter [`stop`](#exiting-slideshow-mode-stop) into the command box to exit [Slideshow mode](#slideshow-mode) and go back to [List mode](#list-mode).
 1. Now to export your flashcards, simply enter `export myCards.csv` into the command box. You will then see the message as shown below:
    ![exportTutorial.png](images/exportTutorial.png)
-1. Your flashcards are now exported into a [CSV](#csv) file named `myCards.csv` located in the *data* folder of your app's [home folder](#home-folder).
+1. Your flashcards have been exported into a [CSV](#csv) file named `myCards.csv` located in the *data folder* of your app's *[home folder](#home-folder)*.
    You may then send these files to your friends via email or other means. They can then import this file into their own LingoGO! app via the 
    [`import`](#importing-flashcards-import) command. Below is what `myCards.csv` looks like in Microsoft Excel:
    ![csvTutorial.png](images/csvTutorial.png)
@@ -168,9 +180,9 @@ Now that you are done practicing with all your French flashcards, it is time to 
 Before diving into the specific commands, let's have an overview of the different modes in LingoGO!.
 
 LingoGO! has two main modes, [List mode](#list-mode) and [Slideshow mode](#slideshow-mode), through which you can interact with
-the application. List mode provides an intuitive table overview to manage flashcards with our 
-powerful and flexible search features. In contrast, Slideshow mode allows you to test your knowledge on selected 
-flashcards one by one in a questionnaire-style interface while retaining the look and feel of traditional flashcards.
+the application. List mode provides an intuitive **table overview** to **manage flashcards** with our
+powerful and flexible search features. In contrast, Slideshow mode allows you to **test your knowledge** on selected
+flashcards one by one in a **questionnaire-style interface** while retaining the look and feel of traditional flashcards.
 
 The following two sections will describe these modes in further detail.
 <div style="page-break-after: always;"></div>
@@ -208,7 +220,7 @@ Once you have selected your flashcards using the [`list`](#listing-flashcards-li
 knowledge with them by entering Slideshow mode.
 
 Slideshow mode brings the most out of your practice session by allowing you to focus on one
-flashcard at a time and displays the relevant foreign phrase.
+flashcard at a time. The foreign phrase of each flashcard is shown, and you must key in the English translation to test your memory.
 
 To enter Slideshow mode, use the [`slideshow`](#entering-slideshow-mode-slideshow) command. 
 
@@ -410,21 +422,21 @@ Exports the currently displayed flashcards in [List mode](#list-mode) to a [CSV]
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Caution:**<br>
-* If you export to a file that already exists in the *data* folder, the file will get overwritten.
+* If you export to a file that already exists in the *data folder*, the file will get overwritten.
 </div>
 
 Format: `export CSV_FILE_NAME`
 
 * Produces a file with a **.csv extension** in which the flashcards will be stored and exported.
-* If you want to export to a file that already exists in the *data* folder, ensure it is not opened elsewhere.
-* If you are exporting to a new file, the file will be added to the *data* folder (located in the same folder as the *lingogo.jar* file).
+* If you want to export to a file that already exists in the *data folder*, ensure it is not opened elsewhere.
+* If you are exporting to a new file, the file will be added to the *data folder* (located in the same folder as the *lingogo.jar* file).
 * The [CSV](#csv) file will have **3 column headers** in this order from left to right:
   1. Language
   1. Foreign
   1. English
 
 Examples:
-* `export myCards.csv` will save all cards in LingoGO! to a [CSV](#csv) file named `myCards.csv` located in the *data* folder mentioned above.
+* `export myCards.csv` will save all cards in LingoGO! to a [CSV](#csv) file named `myCards.csv` located in the *data folder* mentioned above.
 <div style="page-break-after: always;"></div>
 
 ### Filtering flashcards by condition(s): `filter`
@@ -500,7 +512,7 @@ Format: `import CSV_FILE_NAME`
 Below is an example of how the [CSV](#csv) file might look like.
 ![sample CSV file](images/SampleCSVFile.png)
 
-* Place the [CSV](#csv) file that you wish to import in the *data* folder
+* Place the [CSV](#csv) file that you wish to import in the *data folder*
  (located in the same folder as the *lingogo.jar* file).
 * The [CSV](#csv) file must have **3 column headers** in this order from left to right (refer to sample [CSV](#csv) file above):
   1. Language
@@ -620,7 +632,7 @@ The folder on your computer which contains the LingoGO! app.
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Download the app on your other computer. Copy and paste the *data* folder of LingoGO! from your computer into the [home folder](#home-folder) of LingoGO! in your other computer.
+**A**: Download the app on your other computer. Copy and paste the *data folder* of LingoGO! from your computer into the *[home folder](#home-folder)* of LingoGO! in your other computer.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
