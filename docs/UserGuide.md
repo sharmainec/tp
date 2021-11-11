@@ -170,8 +170,8 @@ Once we have selected all the French flashcards, we can finally start our practi
     </div>
 
 3. To go to the next flashcard, enter `next` into the command box. Can you also provide the answer for this next flashcard shown? If you got the answer right, then well done! At this point, you may also enter `previous` into the command box to go back to the previous flashcard.
+<div style="page-break-after: always;"></div>
 
-    <div style="page-break-after: always;"></div>
 ### Sharing your flashcards
 Now that you are done practicing with all your French flashcards, it is time to share them with your friends to let them try it out!
 
@@ -265,7 +265,9 @@ This section aims to provide you with a quick breakdown of LingoGO!'s command fo
   * Command words are case-sensitive (e.g. `clEar` will not be accepted for the `clear` command).
   * Along with command words, commands may come with extra details that need to be filled up (e.g. `clear` is an example of a command used with just the command word alone while`add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE` is an example of a command that comes with details 
       that need to be provided by you).
-    
+
+<div style="page-break-after: always;"></div>
+
 ### Prefixes
 
   * Certain prefixes have been reserved for use by LingoGO!'s commands. Prefixes are used by LingoGO! to identify your inputs (e.g. LingoGO! will interpret `l/Tamil` as a language called `Tamil`).
@@ -375,6 +377,8 @@ Deletes all flashcards from LingoGO!.
 Format: `clear`
 
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a flashcard: `delete`
 
 Deletes the specified flashcard from LingoGO!.
@@ -479,7 +483,6 @@ Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`
 * Flashcard(s) **matching at least one keyword** will be displayed.
 * **At least one** of the optional fields must be provided.
 
-<div style="page-break-after: always;"></div>
 Examples:
 
 ![find example list](images/FindExample.png)
@@ -548,6 +551,7 @@ Format: `slideshow`
 
 
 <hr/>
+<div style="page-break-after: always;"></div>
 
 ## Slideshow mode commands
 
