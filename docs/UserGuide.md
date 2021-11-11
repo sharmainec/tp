@@ -596,7 +596,6 @@ Format: `stop`
 
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## Data
 This section addresses how LingoGO! handles data.
