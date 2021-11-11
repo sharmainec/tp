@@ -167,9 +167,9 @@ Now that you are done practicing with all your French flashcards, it is time to 
 1. Before you do this, you first need to enter [`stop`](#exiting-slideshow-mode-stop) into the command box to exit [Slideshow mode](#slideshow-mode) and go back to [List mode](#list-mode).
 1. Now to export your flashcards, simply enter `export myCards.csv` into the command box. You will then see the message as shown below:
    ![exportTutorial.png](images/exportTutorial.png)
-1. Your flashcards have been exported into a [CSV](#csv) file named `myCards.csv` located in the *data folder* of your app's *[home folder](#home-folder)*.
+1. Your flashcards have been exported into a [CSV](#csv) file named *myCards.csv* located in the *data folder* of your app's *[home folder](#home-folder)*.
    You may then send these files to your friends via email or other means. They can then import this file into their own LingoGO! app via the 
-   [`import`](#importing-flashcards-import) command. Below is what `myCards.csv` looks like in Microsoft Excel:
+   [`import`](#importing-flashcards-import) command. Below is what *myCards.csv* looks like in Microsoft Excel:
    ![csvTutorial.png](images/csvTutorial.png)
 1. With that, we are finally done with our tutorial! Do also check out [General commands](#general-commands), [List mode commands](#list-mode-commands) and [Slideshow mode commands](#slideshow-mode-commands) sections below for a full list of commands and their details.
 
@@ -436,7 +436,7 @@ Format: `export CSV_FILE_NAME`
   1. English
 
 Examples:
-* `export myCards.csv` will save all cards in LingoGO! to a [CSV](#csv) file named `myCards.csv` located in the *data folder* mentioned above.
+* `export myCards.csv` will save all cards in LingoGO! to a [CSV](#csv) file named *myCards.csv* located in the *data folder* mentioned above.
 <div style="page-break-after: always;"></div>
 
 ### Filtering flashcards by condition(s): `filter`
@@ -533,7 +533,7 @@ LingoGO! will **not** import the flashcards.
 </div>
 
 Examples:
-* `import dictionary.csv` will add all flashcards stored in the [CSV](#csv) file `dictionary.csv` to LingoGO!.
+* `import dictionary.csv` will add all flashcards stored in the [CSV](#csv) file *dictionary.csv* to LingoGO!.
 <div style="page-break-after: always;"></div>
 
 ### Listing flashcards: `list`
