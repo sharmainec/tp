@@ -178,6 +178,7 @@ Now that you are done practicing with all your French flashcards, it is time to 
 1. Before you do this, you first need to enter [`stop`](#exiting-slideshow-mode-stop) into the command box to exit [Slideshow mode](#slideshow-mode) and go back to [List mode](#list-mode).
 2. Now to export your flashcards, simply enter `export myCards.csv` into the command box. You will then see the message as shown below:
    ![exportTutorial.png](images/exportTutorial.png)
+<div style="page-break-after: always;"></div>
 
 3. Your flashcards have been exported into a [CSV](#csv) file named *myCards.csv* located in the *data folder* of your app's *[home folder](#home-folder)*.
    You may then send these files to your friends via email or other means. They can then import this file into their own LingoGO! app via the 
