@@ -14,7 +14,7 @@ LingoGO! is a **digital flashcard app** for **university students who use Englis
 new language**.
 
 Capitalizing on the widely established learning technique of **spaced repetition** that flashcards provide, LingoGO! elevates your learning through **powerful search and sharing features** - removing the hassle of managing physical flashcards.
-Coupled with a unique **Command Line Interface (CLI)** and an elegant **Graphical User Interface (GUI)** to accompany it,
+Coupled with a unique **Command Line Interface ([CLI](#cli))** and an elegant **Graphical User Interface ([GUI](#gui))** to accompany it,
 LingoGO! is sure to empower you on your journey in mastering the new language you have always wanted.
 
 LingoGO! supports **all languages that can be represented on your computer**. LingoGO! aims to transform your language learning journey, allowing you to:
@@ -45,12 +45,12 @@ Below is a brief summary of the main sections in this user guide.
 * If you are a new user, you can refer to the [Quick Start](#quick-start) and [Tutorial](#tutorial) to get you started.
 * If you are a new user, you can also refer to [Modes](#modes) to understand how to use LingoGO!.
 * A detailed outline of the commands can be found under [General commands](#general-commands), [List mode commands](#list-mode-commands) and [Slideshow mode commands](#slideshow-mode-commands).
-* If you an experienced user, you can refer to the [Command Summary](#command-summary) for a quick overview of all the commands in LingoGO!.
+* If you an experienced user, you can refer to the [Command summary](#command-summary) for a quick overview of all the commands in LingoGO!.
 * A [Glossary](#glossary) is provided to help explain certain important terms used in this guide.
 
 As for text formatting,
 * **Bolded words** highlight important points to take note of.
-* *Italcized words* indicate files and folders.
+* *Italicized words* indicate files and folders.
 * `Words in blocks` indicate commands and associated terms like their [prefixes](#prefixes) and [parameters](#parameters).
 
 Do also look out for the following colored boxes throughout the guide for useful tips.
@@ -84,7 +84,7 @@ you will see the following [GUI](#gui) with some sample flashcards.
 
    ![Ui](images/Ui-explanation.png)
 
-    Labelled above are the **4 main components** that make up the [GUI](#gui). Read on to find out what each of them does!
+    Labelled above are the **four main components** that make up the [GUI](#gui). Read on to find out what each of them does!
    1. <u>Menu</u>
      * A clickable menu bar that lets you **exit the app** or open the **help window**.
    1. <u>Command box</u>
@@ -107,21 +107,21 @@ you will see the following [GUI](#gui) with some sample flashcards.
 
 ## Tutorial
 
-Now that you are done setting up LingoGO! with the help of our [Quick start](#quick-start) guide, it is time for a quick tutorial to run through the features of LingoGO!.
-When you open LingoGO! for the first time, the app should look like the image below, with the same sample flashcards loaded in.
-
+Upon completing the [Quick start](#quick-start) guide, your LingoGO! should look like this:
 ![Ui](images/Ui.png)
 
-Follow a long for a tour of how to use the app!
+Now, it is time for a quick tutorial to run through the features of LingoGO!. Follow a long for a tour of how to use the app!
 
 ### Creating your flashcards
 Let's start off our tutorial by creating some new flashcards!
 
 1. First, let's add a new French phrase "Bonjour", which translates to "hello" in English. Simply type in `add e/hello f/Bonjour l/French` into the command box, as can be seen below:
    ![enterAddCommand](images/enterAddCommandTutorial.png)
-1. Now press the Enter key and voila! A new flashcard has been created and added to the bottom of the list, as can be seen below:
+
+2. Now press the Enter key and voila! A new flashcard has been created and added to the bottom of the list, as can be seen below:
    ![addTutorial](images/addTutorial.png)
-1. Now trying adding another French phrase on your own! How about "Au Revoir" which means "Good Bye" in English.
+
+3. Now trying adding another French phrase on your own! How about "Au Revoir" which means "Good Bye" in English.
    
    Done? Good job! Your app should now look like this:
    ![addAuRevoir](images/addAuRevoirTutorial.png)
@@ -141,37 +141,41 @@ or [`find`](#locating-flashcards-by-keywords-find) commands. These commands also
 allowing you to find the flashcards you need quickly.
 
 1. Let's select all your French flashcards with the [`filter`](#filtering-flashcards-by-conditions-filter) command. Type in `filter l/French` into the command box.
-1. Upon pressing Enter, you will get a filtered list of flashcards. Notice how only your French language flashcards are displayed:
+2. Upon pressing Enter, you will get a filtered list of flashcards. Notice how only your French language flashcards are displayed:
    ![filteredFlashcardsTutorial.png](images/filteredFlashcardsTutorial.png)
 
 ### Practicing with your flashcards
 Once we have selected all the French flashcards, we can finally start our practice session using LingoGO!'s [Slideshow mode](#slideshow-mode).
 
-1. To begin you practice session, simply type [`slideshow`](#entering-slideshow-mode-slideshow) into the command box and press Enter. You will now enter LingoGO!'s [Slideshow mode](#slideshow-mode) where you will see a maximised view of a flashcard.
+1. To begin you practice session, simply type [`slideshow`](#entering-slideshow-mode-slideshow) into the command box and press Enter. You will now enter LingoGO!'s [Slideshow mode](#slideshow-mode) where you will see a maximized view of a flashcard with only its foreign phrase.
    ![slideshowTutorial.png](images/slideshowTutorial.png)
-1. To give an answer for "Bonjour", enter `answer e/Hello` into the command box. You will then see the message below:
+
+2. To give an answer for "Bonjour", enter `answer e/Hello` into the command box. You will then see the message below:
    ![answerTutorial.png](images/answerTutorial.png)
-1. To go to the next flashcard, enter `next` into the command box. Can you also provide the answer for this next flashcard shown? If you got the answer right, then well done! At this point, you may also enter `previous` into the command box to go back to the first flashcard.
 
     <div markdown="block" class="alert alert-info">
 
-    **:information_source: Just a little hint**<br>
-    
-    * Answers are case-sensitive and must match the English phrase of a flashcard exactly. If you got the answer wrong, this might be the reason why. 
-    
+   **:information_source: Just a little hint**<br>
+
+    * Answers are **not** case-sensitive, which is why "Hello" matches "hello".
+
     </div>
+
+3. To go to the next flashcard, enter `next` into the command box. Can you also provide the answer for this next flashcard shown? If you got the answer right, then well done! At this point, you may also enter `previous` into the command box to go back to the previous flashcard.
    
 ### Sharing your flashcards
 Now that you are done practicing with all your French flashcards, it is time to share them with your friends to let them try it out!
 
 1. Before you do this, you first need to enter [`stop`](#exiting-slideshow-mode-stop) into the command box to exit [Slideshow mode](#slideshow-mode) and go back to [List mode](#list-mode).
-1. Now to export your flashcards, simply enter `export myCards.csv` into the command box. You will then see the message as shown below:
+2. Now to export your flashcards, simply enter `export myCards.csv` into the command box. You will then see the message as shown below:
    ![exportTutorial.png](images/exportTutorial.png)
-1. Your flashcards have been exported into a [CSV](#csv) file named *myCards.csv* located in the *data folder* of your app's *[home folder](#home-folder)*.
+
+3. Your flashcards have been exported into a [CSV](#csv) file named *myCards.csv* located in the *data folder* of your app's *[home folder](#home-folder)*.
    You may then send these files to your friends via email or other means. They can then import this file into their own LingoGO! app via the 
    [`import`](#importing-flashcards-import) command. Below is what *myCards.csv* looks like in Microsoft Excel:
    ![csvTutorial.png](images/csvTutorial.png)
-1. With that, we are finally done with our tutorial! Do also check out [General commands](#general-commands), [List mode commands](#list-mode-commands) and [Slideshow mode commands](#slideshow-mode-commands) sections below for a full list of commands and their details.
+
+With that, we are finally done with our tutorial! Do also check out [General commands](#general-commands), [List mode commands](#list-mode-commands) and [Slideshow mode commands](#slideshow-mode-commands) sections below for a full list of commands and their details.
 
 <hr/>
 
@@ -243,7 +247,7 @@ Once you are done practicing, you may exit Slideshow mode using the [`stop`](#ex
 <div style="page-break-after: always;"></div>
 
 ## Command format
-This section aims to provide you with a quick breakdown on LingoGO!'s command format.
+This section aims to provide you with a quick breakdown of LingoGO!'s command format.
 
 
 ### Command Words
@@ -283,7 +287,7 @@ This section aims to provide you with a quick breakdown on LingoGO!'s command fo
 
 ## Flashcard format
 When you add or edit a flashcard, you have to give one or more of the following three parameters: `LANGUAGE`, `ENGLISH_PHRASE`, `FOREIGN_PHRASE`.
-These parameters follow strict formatting to allow LingoGO!'s commands to run correctly. This section thus aims to explain the details these
+These parameters follow strict formatting to allow LingoGO!'s commands to run correctly. This section thus aims to explain the details of these
 formats below.
 
 ### `LANGUAGE` parameter
@@ -315,7 +319,7 @@ formats below.
 
 The following section gives an in-depth overview of all general commands in LingoGO! that can be used in both [List mode](#list-mode) 
 and [Slideshow mode](#slideshow-mode). If you are a new user, you may also want to refer to the [Command format](#command-format) and
-[Flashcard format](#flashcard-format) sections above for a breakdown on LingoGO!'s command and flashcard formats.
+[Flashcard format](#flashcard-format) sections above for a breakdown of LingoGO!'s command and flashcard formats.
 
 ### Viewing help: `help`
 
@@ -333,18 +337,19 @@ Exits the app.
 Format: `exit`
 
 
+<hr/>
+
 ## List mode commands
 
 The following section gives an in-depth overview of all [List mode](#list-mode) commands in LingoGO! and provides some examples on
-their usages. If you are a new user, you may also want to refer to the [Command format](#command-format) and
-[Flashcard format](#flashcard-format) sections above for a breakdown on LingoGO!'s command and flashcard formats.
+their usages. As such, commands in this section can only be run in [List mode](#list-mode). If you are a new user, you may also want to refer to the [Command format](#command-format) and
+[Flashcard format](#flashcard-format) sections above for a breakdown of LingoGO!'s command and flashcard formats.
 
 
 
 ### Adding a flashcard: `add`
 
 Adds a flashcard to LingoGO!.
-* This command can only be run in [List mode](#list-mode).
 * The flashcard will be added to the bottom of the displayed flashcard list in [List mode](#list-mode).
 
 Format: `add l/LANGUAGE e/ENGLISH_PHRASE f/FOREIGN_PHRASE`
@@ -355,26 +360,9 @@ Examples:
 * `add l/Chinese e/Good Morning f/早安` adds a new flashcard with language, English phrase, and foreign phrase to be `Chinese`, `Good Morning`, `早安` to the bottom of the displayed flashcard list of [List mode](#list-mode).
 
 
-### Answering a flashcard: `answer`
-
-Checks whether the answer you have provided correctly translates to the foreign phrase displayed in [Slideshow mode](#slideshow-mode).
-* This command can only be run in [Slideshow mode](#slideshow-mode).
-
-Format: `answer e/ENGLISH_PHRASE`
-
-* Checks the English phrase of the displayed foreign phrase in [Slideshow mode](#slideshow-mode) against the `ENGLISH_PHRASE` you provide.
-* The app will then show the correct English phrase and tell you whether you got it right.
-* `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello").
-* During a slideshow, you can only answer each flashcard once.
-
-Examples:
-* `answer e/hello` checks the English phrase of the foreign phrase on display (e.g. "你好") in [Slideshow mode](#slideshow-mode) to see if `hello` matches it.
-<div style="page-break-after: always;"></div>
-
 ### Clearing all flashcards: `clear`
 
 Deletes all flashcards from LingoGO!.
-* This command can only be run in [List mode](#list-mode).
 
 Format: `clear`
 
@@ -382,7 +370,6 @@ Format: `clear`
 ### Deleting a flashcard: `delete`
 
 Deletes the specified flashcard from LingoGO!.
-* This command can only be run in [List mode](#list-mode).
 
 Format: `delete INDEX`
 
@@ -398,7 +385,6 @@ Examples:
 ### Editing a flashcard: `edit`
 
 Edits an existing flashcard in LingoGO!.
-* This command can only be run in [List mode](#list-mode).
 
 Format: `edit INDEX [l/LANGUAGE] [e/ENGLISH_PHRASE] [f/FOREIGN_PHRASE]`
 
@@ -418,7 +404,6 @@ Examples:
 ### Exporting flashcards: `export`
 
 Exports the currently displayed flashcards in [List mode](#list-mode) to a [CSV](#csv) file.
-* This command can only be run in [List mode](#list-mode).
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Caution:**<br>
@@ -442,7 +427,6 @@ Examples:
 ### Filtering flashcards by condition(s): `filter`
 
 Filters flashcards based on specified condition(s), such that only flashcards matching **any of the given conditions** remain in the displayed flashcard list of [List mode](#list-mode).
-* This command can only be run in [List mode](#list-mode).
 
 Format: `filter [l/LANGUAGE] [i/INDEX_LIST] [r/INDEX_RANGE]`
 
@@ -477,7 +461,6 @@ For each example below, refer to the snapshot above as the starting point before
 ### Locating flashcards by keyword(s): `find`
 
 Finds flashcards from the **entire** app based on the keyword(s) specified.
-* This command can only be run in [List mode](#list-mode).
 
 Format: `find [e/ENGLISH_KEYWORDS] [f/FOREIGN_KEYWORDS]`
 
@@ -505,7 +488,6 @@ For each example below, refer to the snapshot above as the starting point before
 
 Imports flashcards from a [CSV](#csv) file and **adds** them to the existing list in LingoGO!
 (instead of replacing the current list).
-* This command can only be run in [List mode](#list-mode).
 
 Format: `import CSV_FILE_NAME`
 
@@ -539,7 +521,6 @@ Examples:
 ### Listing flashcards: `list`
 
 Shows a list of flashcards in LingoGO!.
-* This command can only be run in [List mode](#list-mode).
 
 Format: `list [NUMBER_OF_FLASHCARDS]`
 
@@ -551,13 +532,35 @@ Examples:
 * `list` returns all flashcards in LingoGO!.
 * `list 3` returns 3 randomly selected flashcards in LingoGO!.
 
+
+### Entering Slideshow mode: `slideshow`
+
+Switches to [Slideshow mode](#slideshow-mode) for you to test yourself using the flashcards shown in [List mode](#list-mode).
+
+Format: `slideshow`
+
+
 <hr/>
 
 ## Slideshow mode commands
 
-The following section gives an in-depth overview of all [Slideshow mode](#list-mode) commands in LingoGO!. If you are a new user, you may also want to refer to the [Command format](#command-format) and
-[Flashcard format](#flashcard-format) sections above for a breakdown on LingoGO!'s command and flashcard formats.
+The following section gives an in-depth overview of all [Slideshow mode](#list-mode) commands in LingoGO!. As such, commands in this section can only be run in [Slideshow mode](#slideshow-mode). If you are a new user, you may also want to refer to the [Command format](#command-format) and
+[Flashcard format](#flashcard-format) sections above for a breakdown of LingoGO!'s command and flashcard formats.
 
+
+### Answering a flashcard: `answer`
+
+Checks whether the answer you have provided correctly translates to the foreign phrase displayed in [Slideshow mode](#slideshow-mode).
+
+Format: `answer e/ENGLISH_PHRASE`
+
+* Checks the English phrase of the displayed foreign phrase in [Slideshow mode](#slideshow-mode) against the `ENGLISH_PHRASE` you provide.
+* The app will then show the correct English phrase and tell you whether you got it right.
+* `ENGLISH_PHRASE` is not case-sensitive (e.g. "HeLLo" matches "hello").
+* During a slideshow, you can only answer each flashcard once.
+
+Examples:
+* `answer e/hello` checks the English phrase of the foreign phrase on display (e.g. "你好") in [Slideshow mode](#slideshow-mode) to see if `hello` matches it.
 
 
 ### Moving to the next flashcard in Slideshow mode: `next`
@@ -572,14 +575,6 @@ Format: `next`
 Goes back to the previous flashcard (if there is one) in [Slideshow mode](#slideshow-mode).
 
 Format: `previous`
-
-
-### Entering Slideshow mode: `slideshow`
-
-Switches to [Slideshow mode](#slideshow-mode) for you to test yourself using the flashcards shown in [List mode](#list-mode).
-* This command can only be run in [List mode](#list-mode).
-
-Format: `slideshow`
 
 
 ### Exiting Slideshow mode: `stop`
@@ -606,7 +601,7 @@ LingoGO!'s data is saved as a JSON file at `{JAR file location}/data/lingogo.jso
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Caution:**<br> 
-* If your changes to the data file makes its format invalid, LingoGO! will discard all data and start with an empty data file on the next run.<br>
+* If your changes to the data file makes its format invalid, LingoGO! will discard all data and start with an empty flashcard list on the next run.<br>
 * When this happens, an alert dialogue will pop up, reminding you to make changes to your data file. Executing a command after this will then **overwrite your data file permanently**.<br>
 * Some changes to the JSON file, such as the adding of extraneous JSON fields, may be ignored and overwritten upon the next LingoGO! command.
 </div>
@@ -617,6 +612,9 @@ LingoGO!'s data is saved as a JSON file at `{JAR file location}/data/lingogo.jso
 
 ## Glossary
 This section gives you a very quick definition of the terms used in this user guide.
+
+### CLI
+A CLI, short for command line interface, is a text-based user interface through which users can type commands to interact with the app.
 
 ### CSV
 A CSV file, short for comma-separated values, is a special text file that uses commas for formatting.
