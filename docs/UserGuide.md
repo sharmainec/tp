@@ -120,7 +120,7 @@ Let's start off our tutorial by creating some new flashcards!
 1. First, let's add a new French phrase "Bonjour", which translates to "hello" in English. Simply type in `add e/hello f/Bonjour l/French` into the command box, as can be seen below:
    ![enterAddCommand](images/enterAddCommandTutorial.png)
 
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 2. Now press the Enter key and voila! A new flashcard has been created and added to the bottom of the list, as can be seen below:
    ![addTutorial](images/addTutorial.png)
@@ -148,7 +148,7 @@ allowing you to find the flashcards you need quickly.
 2. Upon pressing Enter, you will get a filtered list of flashcards. Notice how only your French language flashcards are displayed:
    ![filteredFlashcardsTutorial.png](images/filteredFlashcardsTutorial.png)
 
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 ### Practicing with your flashcards
 Once we have selected all the French flashcards, we can finally start our practice session using LingoGO!'s [Slideshow mode](#slideshow-mode).
@@ -156,7 +156,7 @@ Once we have selected all the French flashcards, we can finally start our practi
 1. To begin you practice session, simply type [`slideshow`](#entering-slideshow-mode-slideshow) into the command box and press Enter. You will now enter LingoGO!'s [Slideshow mode](#slideshow-mode) where you will see a maximized view of a flashcard with only its foreign phrase.
    ![slideshowTutorial.png](images/slideshowTutorial.png)
 
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 2. To give an answer for "Bonjour", enter `answer e/Hello` into the command box. You will then see the message below:
    ![answerTutorial.png](images/answerTutorial.png)
@@ -171,13 +171,14 @@ Once we have selected all the French flashcards, we can finally start our practi
 
 3. To go to the next flashcard, enter `next` into the command box. Can you also provide the answer for this next flashcard shown? If you got the answer right, then well done! At this point, you may also enter `previous` into the command box to go back to the previous flashcard.
 
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 ### Sharing your flashcards
 Now that you are done practicing with all your French flashcards, it is time to share them with your friends to let them try it out!
 
 1. Before you do this, you first need to enter [`stop`](#exiting-slideshow-mode-stop) into the command box to exit [Slideshow mode](#slideshow-mode) and go back to [List mode](#list-mode).
 2. Now to export your flashcards, simply enter `export myCards.csv` into the command box. You will then see the message as shown below:
-   ![exportTutorial.png](images/exportTutorial.png)<div style="page-break-after: always;"></div>
+   ![exportTutorial.png](images/exportTutorial.png)
+    <div style="page-break-after: always;"></div>
 
 3. Your flashcards have been exported into a [CSV](#csv) file named *myCards.csv* located in the *data folder* of your app's *[home folder](#home-folder)*.
    You may then send these files to your friends via email or other means. They can then import this file into their own LingoGO! app via the 
