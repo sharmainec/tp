@@ -412,6 +412,13 @@ Examples:
 * `edit 2 l/German e/Good Morning f/Guten Morgen` edits the language, English phrase, and foreign phrase of the 2nd flashcard in the displayed flashcard list of [List mode](#list-mode) to be `German`, `Good Morning`, and `Guten Morgen` respectively.
 
 
+### Entering Slideshow mode: `slideshow`
+
+Switches to [Slideshow mode](#slideshow-mode) for you to test yourself using the flashcards shown in [List mode](#list-mode).
+
+Format: `slideshow`
+
+
 ### Exporting flashcards: `export`
 
 Exports the currently displayed flashcards in [List mode](#list-mode) to a [CSV](#csv) file.
@@ -541,13 +548,6 @@ Format: `list [NUMBER_OF_FLASHCARDS]`
 Examples:
 * `list` returns all flashcards in LingoGO!.
 * `list 3` returns 3 randomly selected flashcards in LingoGO!.
-
-
-### Entering Slideshow mode: `slideshow`
-
-Switches to [Slideshow mode](#slideshow-mode) for you to test yourself using the flashcards shown in [List mode](#list-mode).
-
-Format: `slideshow`
 
 
 <hr/>
